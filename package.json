@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "fecha": "^2.3.2",
+    "firebase": "^4.9.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.1.0",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
