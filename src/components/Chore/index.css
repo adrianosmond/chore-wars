@@ -11,14 +11,15 @@
 }
 
 .chore__bar {
-  margin-top: 2rem;
   position: relative;
+  height: 0.25rem;
+  margin-top: 2rem;
 }
 
 .chore__bar::before {
   content: "";
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   height: 0.25rem;
   width: 100%;
@@ -33,6 +34,10 @@
   background-color: navy;
 }
 
+.chore__bar-inner--bonus {
+  background-color: crimson;
+}
+
 .chore__points {
   position: absolute;
   z-index: 1;
@@ -44,6 +49,7 @@
   border-radius: 0.25rem;
   transform: translateX(50%);
 }
+
 
 .chore__points::after {
   content: "";
@@ -58,6 +64,21 @@
   border-color: navy transparent transparent transparent;
 }
 
+
+.chore__points--bonus {
+  background-color: crimson;
+}
+
+.chore__points--bonus::after {
+  border-color: crimson transparent transparent transparent;
+}
+
+.chore__last-done {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  text-align: right;
+}
+
 .chore__complete-button {
   position: absolute;
   display: block;
@@ -67,4 +88,10 @@
   height: 2.5rem;
   background-color: #fff;
   border: none;
+  border-bottom: 2px solid #ccc;
+}
+
+.chore__complete-button:active {
+  border-bottom: 0;
+  border-top: 2px solid transparent;
 }

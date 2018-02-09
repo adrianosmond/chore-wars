@@ -1,0 +1,36 @@
+.select-user {
+  background-color: #fff;
+  padding: 1rem 1rem 2rem;
+}
+
+.select-user__title {
+  margin-top: 0;
+  text-align: center;
+}
+
+.select-user__people {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.select-user__person {
+  width: 200px;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  background-color: transparent;
+}
+
+.select-user__person-name {
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 37.5em) {
+  .select-user {
+    padding: 2rem;
+  }
+}

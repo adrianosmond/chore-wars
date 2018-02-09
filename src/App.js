@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import SelectUser from './components/SelectUser'
 import PointsGraph from './components/PointsGraph'
 import ChoresList from './components/ChoresList'
+import Admin from './components/Admin'
 
 const TIME_UNIT = 1000 * 60 * 60 * 24 // 1 day
 const CHORES_KEY = 'savedChoreData'
@@ -10,14 +11,16 @@ const USER_KEY = 'choresCurrentUser'
 
 const byCurrentPoints = (a, b) => b.currentPoints - a.currentPoints
 
-const calculateCurrentPointsAndPercentage = (chore) => {
+const processChore = (chore) => {
   const timeSinceChore = (new Date().getTime() - chore.lastDone) / TIME_UNIT
   const timeRemaining = timeSinceChore - chore.frequency
   const percentage = Math.min(100 * timeSinceChore / chore.frequency, 100)
   const multiplier = 1 + (1 / chore.frequency)
+  const due = chore.lastDone + (chore.frequency * TIME_UNIT)
   return {
     currentPoints: Math.round(percentage / 100 * chore.pointsPerTime * Math.pow(multiplier, timeRemaining)),
-    percentage
+    percentage,
+    due
   }
 }
 
@@ -61,7 +64,7 @@ class App extends Component {
       let choresWithCurrentPoints = chores.map((chore) => {
         return {
           ...chore,
-          ...calculateCurrentPointsAndPercentage(chore)
+          ...processChore(chore)
         }
       })
 
@@ -78,6 +81,7 @@ class App extends Component {
       let sanitisedChore = { ...chore }
       delete sanitisedChore.currentPoints
       delete sanitisedChore.percentage
+      delete sanitisedChore.due
       return sanitisedChore
     })
 
@@ -113,12 +117,15 @@ class App extends Component {
   completeChore(chore) {
     const { chores } = this.state
     const choreIdx = chores.indexOf(chore)
+    const now = new Date().getTime()
     const completedChore = {
       ...chore,
-      lastDone: new Date().getTime(),
+      lastDone: now,
+      due: now + (chore.frequency * TIME_UNIT),
       currentPoints: 0,
       percentage: 0
     }
+
 
     const newChores = [
       ...chores.slice(0, choreIdx),
@@ -129,15 +136,29 @@ class App extends Component {
       chores: newChores
     })
     this.saveChores(newChores)
+    this.addPointsToUser(this.state.user, chore.currentPoints)
+  }
+
+  addPointsToUser(user, points) {
+    let newPoints = { ...this.state.points }
+    newPoints[`${user}Points`] += points
+    this.setState({
+      points: newPoints
+    })
   }
 
   render() {
-    const {chores, user, points} = this.state
+    const { user, points, chores } = this.state
     if (!user) return <SelectUser selectUser={this.setUser.bind(this)} />;
     return (
-      <div className="chores">
-        { points ? <PointsGraph points={points}/> : null }
-        { chores ? <ChoresList chores={chores} completeChore={this.completeChore.bind(this)} /> : null }
+      <div className="app">
+        <div className="app__chores">
+          { points ? <PointsGraph points={points}/> : null }
+          { chores ? <ChoresList chores={chores} completeChore={this.completeChore.bind(this)} /> : null }
+        </div>
+        <div className="app__admin">
+          <Admin />
+        </div>
       </div>
     )
   }

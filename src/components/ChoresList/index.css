@@ -15,10 +15,3 @@
 .chores-list__item:first-child {
   margin-top: 0;
 }
-
-@media screen and (min-width: 37.5em) {
-  .chores-list {
-    padding: 1rem;
-    background-color: #fff;
-  }
-}
