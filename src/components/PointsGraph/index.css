@@ -1,0 +1,75 @@
+.points-graph {
+  background-color: #fff;
+  padding: 1rem 1rem 2rem;
+}
+
+.points-graph__people {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.points-graph__person {
+  width: 200px;
+}
+
+.points-graph__person-name {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.points-graph__graph {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.points-graph__graph::before {
+  content: "";
+  position: absolute;
+  height: 0.25rem;
+  width: 100%;
+  background-color: #ddd;
+}
+
+.points-graph__bar {
+  position: absolute;
+  left: 50%;
+  height: 0.25rem;
+  background-color: tomato;
+}
+
+.points-graph__difference {
+  position: absolute;
+  top: -0.875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  background-color: tomato;
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 50%;
+}
+
+.points-graph__difference--dina {
+  right: -0.875rem;
+}
+
+@media screen and (min-width: 37.5em) {
+  .points-graph {
+    padding: 2rem;
+  }
+
+  .points-graph__difference {
+    top: -1.125rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 1rem;
+  }
+
+  .points-graph__difference--dina {
+    right: -1.125rem;
+  }
+}
