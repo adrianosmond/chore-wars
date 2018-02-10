@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   withAuthorization(authCondition),
   connect(mapStateToProps, mapDispatchToProps)
-)(Chores);
+)(Chores)

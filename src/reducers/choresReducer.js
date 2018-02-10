@@ -2,7 +2,7 @@ import { database } from '../lib/firebase'
 import { TIME_UNIT } from '../constants/constants'
 
 export default function choresReducer(state = { chores: [] }, action) {
-  let newState = {...state};
+  let newState = { ...state };
 
   switch (action.type) {
     case 'ADD_CHORE':
@@ -10,6 +10,9 @@ export default function choresReducer(state = { chores: [] }, action) {
         ...state.chores.slice(),
         action.newChore
       ]
+
+      database.ref(`games/${action.game}/chores`).set(newState.chores)
+
       return newState
 
     case 'RESET_CHORE_DONE_DATE':

@@ -17,40 +17,6 @@
   text-align: center;
 }
 
-.login__label {
-  display: block;
-  margin-top: 1rem;
-}
-
-.login__input {
-  display: block;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  width: 100%;
-  border: 1px solid #ccc;
-  font: inherit;
-}
-
-.login__button {
-  display: block;
-  margin-top: 1rem;
-  padding: 1rem;
-  border: none;
-  border-bottom: 2px solid rgba(0,0,0,0.3);
-  width: 100%;
-  background-color: dodgerblue;
-  color: #fff;
-  font: inherit;
-  line-height: 1;
-  border-radius: 0.25rem;
-  outline-color: #ccc;
-}
-
-.login__button:active {
-  border-bottom: none;
-  border-top: 2px solid transparent;
-}
-
 @media screen and (min-width: 37.5em) {
   .login__widget {
     padding: 2rem;
