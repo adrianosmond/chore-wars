@@ -4,11 +4,11 @@ import Chore from '../Chore'
 
 import './index.css'
 
-const ChoresList = ({chores, completeChore}) =>
+const ChoresList = ({chores}) =>
   <ul className="chores-list">
     {chores.map((chore, idx) =>
       <li className="chores-list__item" key={idx}>
-        <Chore chore={chore} completeChore={() => { completeChore(chore) }} />
+        <Chore chore={chore} />
       </li>
     )}
   </ul>

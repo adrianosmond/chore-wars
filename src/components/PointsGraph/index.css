@@ -41,7 +41,7 @@
   background-color: tomato;
 }
 
-.points-graph__bar--dina {
+.points-graph__bar--2 {
   left: 50%;
   right: auto;
 }
@@ -69,12 +69,12 @@
   border-color: tomato transparent transparent transparent;
 }
 
-.points-graph__difference--adrian {
+.points-graph__difference--1 {
   transform: translateX(-50%);
   left: 1px;
 }
 
-.points-graph__difference--dina {
+.points-graph__difference--2 {
   transform: translateX(50%);
   right: 1px;
 }
@@ -92,7 +92,7 @@
     font-size: 1rem;
   }
 
-  /* .points-graph__difference--dina {
+  /* .points-graph__difference--2 {
     right: -1.125rem;
   } */
 }

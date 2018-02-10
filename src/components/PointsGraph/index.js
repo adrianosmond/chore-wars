@@ -1,41 +1,42 @@
 import React from 'react'
-
+import { connect } from 'react-redux'
 import './index.css'
 
-import adrianLogo from '../../images/adrian.svg'
-import dinaLogo from '../../images/dina.svg'
-
 const PointsGraph = (props) => {
-  const {adrianPoints, dinaPoints, maxPoints} = props.points
-  const minPoints = Math.min(adrianPoints, dinaPoints)
-  const adrianBar = adrianPoints - minPoints
-  const dinaBar = dinaPoints - minPoints
+  const { points } = props
+  const { maxPoints } = points
+  const players = Object.keys(props.points).filter((id) => id !== 'max');
+  const minPoints = Math.min(points[players[0]].points, points[players[1]].points)
   return (
     <div className="points-graph">
       <div className="points-graph__people">
-        <div className="points-graph__person points-graph__person--adrian">
-          <img src={adrianLogo} className="points-graph__person-picture" alt="adrian" />
-          <div className="points-graph__person-name">Adrian</div>
-        </div>
-        <div className="points-graph__person points-graph__person--dina">
-          <img src={dinaLogo} className="points-graph__person-picture" alt="dina" />
-          <div className="points-graph__person-name">Dina</div>
-        </div>
+        {players.map((playerId, idx) => {
+          const player = points[playerId]
+          return (
+            <div className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
+              <img src={`/images/avatars/${playerId}.svg`} className="points-graph__person-picture" alt={"adrian"} />
+              <div className="points-graph__person-name">{player.name}</div>
+            </div>
+          )
+        })}
       </div>
       <div className="points-graph__graph">
-        <div className="points-graph__bar points-graph__bar--adrian" style={{
-          width: `${(adrianBar / maxPoints) * 50}%`
-        }}>
-          { adrianBar ? <div className="points-graph__difference points-graph__difference--adrian">{adrianBar}</div> : null }
-        </div>
-        <div className="points-graph__bar points-graph__bar--dina" style={{
-          width: `${(dinaBar / maxPoints) * 50}%`
-        }}>
-          { dinaBar ? <div className="points-graph__difference points-graph__difference--dina">{dinaBar}</div> : null }
-        </div>
+        {players.map((playerId, idx) => {
+          const player = points[playerId]
+          const playerBar = (player.points - minPoints)
+          return (
+            <div className={`points-graph__bar points-graph__bar--${idx+1}`} style={{width: `${(playerBar / maxPoints) * 50}%`}} key={playerId}>
+              { playerBar ? <div className={`points-graph__difference points-graph__difference--${idx+1}`}>{playerBar}</div> : null }
+            </div>
+          )
+        })}
       </div>
     </div>
   )
 }
 
-export default PointsGraph
+const mapStateToProps = (state) => ({
+  points: state.points.points
+})
+
+export default connect(mapStateToProps)(PointsGraph)
