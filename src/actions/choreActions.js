@@ -1,5 +1,6 @@
 import { database } from '../lib/firebase';
 import { sortByCurrentPoints, processChore } from '../constants/utils'
+import { addPointsToUser } from './pointActions'
 
 export function addChore (newChore) {
   return {
@@ -8,10 +9,11 @@ export function addChore (newChore) {
   }
 }
 
-export function completeChore (chore) {
+export function resetDoneDate (chore, game) {
   return {
-    type: 'COMPLETE_CHORE',
-    chore
+    type: 'RESET_CHORE_DONE_DATE',
+    chore,
+    game
   }
 }
 
@@ -43,5 +45,12 @@ export function loadChores (game) {
       processedChores.sort(sortByCurrentPoints)
       dispatch(setChores(processedChores))
     })
+  }
+}
+
+export function completeChore (chore, user, game) {
+  return (dispatch) => {
+    dispatch(resetDoneDate(chore, game))
+    dispatch(addPointsToUser(user, chore.currentPoints, game))
   }
 }

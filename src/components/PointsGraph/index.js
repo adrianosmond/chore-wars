@@ -4,7 +4,7 @@ import './index.css'
 
 const PointsGraph = (props) => {
   const { points } = props
-  const { maxPoints } = points
+  const { max } = points
   const players = Object.keys(props.points).filter((id) => id !== 'max');
   const minPoints = Math.min(points[players[0]].points, points[players[1]].points)
   return (
@@ -25,7 +25,7 @@ const PointsGraph = (props) => {
           const player = points[playerId]
           const playerBar = (player.points - minPoints)
           return (
-            <div className={`points-graph__bar points-graph__bar--${idx+1}`} style={{width: `${(playerBar / maxPoints) * 50}%`}} key={playerId}>
+            <div className={`points-graph__bar points-graph__bar--${idx+1}`} style={{width: `${playerBar / max * 50}%`}} key={playerId}>
               { playerBar ? <div className={`points-graph__difference points-graph__difference--${idx+1}`}>{playerBar}</div> : null }
             </div>
           )

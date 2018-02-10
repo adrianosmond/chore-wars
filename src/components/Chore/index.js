@@ -1,5 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import fecha from 'fecha'
+
+import { completeChore } from '../../actions/choreActions'
 
 import './index.css'
 
@@ -7,7 +10,7 @@ import checkIcon from '../../images/check.svg'
 
 const DATE_FORMAT = 'DD/MM/YYYY'
 
-const Chore = ({chore, completeChore}) => {
+const Chore = ({chore, user, game, completeChore}) => {
   const bonusPoints = chore.currentPoints > chore.pointsPerTime
   return (
     <div className="chore">
@@ -24,11 +27,24 @@ const Chore = ({chore, completeChore}) => {
       Done: {fecha.format(new Date(chore.lastDone), DATE_FORMAT )}<br/>
       Due: {fecha.format(new Date(chore.due), DATE_FORMAT )}
     </div>
-    <button className="chore__complete-button" onClick={completeChore}>
+    <button className="chore__complete-button" onClick={completeChore.bind(null, chore, user, game)}>
       <img src={checkIcon} alt="Mark as complete" />
     </button>
   </div>
   )
 }
 
-export default Chore
+const mapStateToProps = (state) => {
+  return {
+    user: state.session.authUser.uid,
+    game: state.session.game.gameId
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    completeChore: (chore, user, game) => dispatch(completeChore(chore, user, game))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chore)

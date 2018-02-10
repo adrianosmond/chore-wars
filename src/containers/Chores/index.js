@@ -12,35 +12,10 @@ import ChoresList from '../../components/ChoresList'
 import Admin from '../../components/Admin'
 
 class Chores extends Component {
-
   componentWillMount() {
     this.props.loadChores(this.props.game.gameId)
     this.props.loadPoints(this.props.game.gameId)
   }
-
-  saveChores(chores) {
-    // const sanitisedChores = chores.map((chore) => {
-    //   let sanitisedChore = { ...chore }
-    //   delete sanitisedChore.currentPoints
-    //   delete sanitisedChore.percentage
-    //   delete sanitisedChore.due
-    //   return sanitisedChore
-    // })
-    //
-    // localStorage.setItem(CHORES_KEY, JSON.stringify(sanitisedChores))
-  }
-
-  // completeChore(chore) {
-  //   this.addPointsToUser(this.state.user, chore.currentPoints)
-  // }
-  //
-  // addPointsToUser(user, points) {
-  //   let newPoints = { ...this.state.points }
-  //   newPoints[`${user}Points`] += points
-  //   this.setState({
-  //     points: newPoints
-  //   })
-  // }
 
   render() {
     const { points, chores } = this.props

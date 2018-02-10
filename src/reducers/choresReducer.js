@@ -1,3 +1,4 @@
+import { database } from '../lib/firebase'
 import { TIME_UNIT } from '../constants/constants'
 
 export default function choresReducer(state = { chores: [] }, action) {
@@ -11,7 +12,7 @@ export default function choresReducer(state = { chores: [] }, action) {
       ]
       return newState
 
-    case 'COMPLETE_CHORE':
+    case 'RESET_CHORE_DONE_DATE':
       const updateIndex = state.chores.indexOf(action.chore)
       if (updateIndex<0) return state
 
@@ -29,6 +30,8 @@ export default function choresReducer(state = { chores: [] }, action) {
         ...state.chores.slice(updateIndex + 1),
         completedChore
       ]
+
+      database.ref(`games/${action.game}/chores`).set(newState.chores)
       return newState
 
     case 'REMOVE_CHORE':

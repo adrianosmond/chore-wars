@@ -1,10 +1,11 @@
 import { database } from '../lib/firebase';
 
-export function addPointsToUser (user, points) {
+export function addPointsToUser (user, points, game) {
   return {
     type: 'ADD_POINTS',
     user,
-    points
+    points,
+    game
   }
 }
 

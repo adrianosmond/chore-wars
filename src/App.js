@@ -7,6 +7,7 @@ import {
 
 import Login from './components/Login'
 import Chores from './containers/Chores'
+import NewChore from './components/NewChore'
 
 import * as routes from './constants/routes'
 
@@ -17,6 +18,7 @@ class App extends Component {
         <Switch>
           <Route exact path={routes.LOGIN} component={Login} />
           <Route exact path={routes.CHORES} component={Chores} />
+          <Route exact path={routes.NEW_CHORE} component={NewChore} />
         </Switch>
       </Router>
     )
