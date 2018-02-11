@@ -95,3 +95,9 @@
   border-bottom: 0;
   border-top: 2px solid transparent;
 }
+
+.chore__extra-options {
+  position: absolute;
+  right: 1rem;
+  top: 4rem;
+}

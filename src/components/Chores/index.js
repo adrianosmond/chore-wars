@@ -11,21 +11,52 @@ import PointsGraph from '../../components/PointsGraph'
 import ChoresList from '../../components/ChoresList'
 import Admin from '../../components/Admin'
 
+import { processChore, sortByCurrentPoints } from '../../constants/utils'
+
 class Chores extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      chores: null
+    }
+  }
+
   componentWillMount() {
     this.props.loadChores(this.props.game.gameId)
     this.props.loadPoints(this.props.game.gameId)
   }
 
+  convertChoresToArray(choresObj) {
+    let choresArr = Object.keys(choresObj).map((key) => {
+      const chore = choresObj[key]
+      return {
+        ...chore,
+        slug: key,
+        ...processChore(chore)
+      }
+    })
+
+    choresArr.sort(sortByCurrentPoints)
+
+    return choresArr
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.chores !== this.props.chores) {
+      this.setState({
+        chores: this.convertChoresToArray(newProps.chores)
+      })
+    }
+  }
+
   render() {
-    const { points, chores } = this.props
+    const { points } = this.props
+    const { chores } = this.state
     return (
       <div className="app">
+        { points ? <PointsGraph points={points}/> : null }
         <div className="app__chores">
-          { points ? <PointsGraph points={points}/> : null }
           { chores ? <ChoresList chores={chores} /> : null }
-        </div>
-        <div className="app__admin">
           <Admin />
         </div>
       </div>

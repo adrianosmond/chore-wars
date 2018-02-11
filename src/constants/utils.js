@@ -14,4 +14,6 @@ const processChore = (chore) => {
   }
 }
 
-export { sortByCurrentPoints, processChore }
+const makeSlug = (title) => title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '')
+
+export { sortByCurrentPoints, processChore, makeSlug }

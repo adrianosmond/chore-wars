@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 import * as routes from '../../constants/routes'
 
+import './index.css'
+
 class Admin extends Component {
   render() {
     return (

@@ -15,10 +15,13 @@ body {
   background-color: #eee;
 }
 
-
 .form__label {
   display: block;
   margin-top: 1rem;
+}
+
+.form__label:first-child {
+  margin-top: 0;
 }
 
 .form__input {
@@ -45,6 +48,7 @@ body {
   line-height: 1;
   border-radius: 0.25rem;
   outline-color: #ccc;
+  cursor: pointer;
 }
 
 .form__button:active {
@@ -52,16 +56,35 @@ body {
   border-top: 2px solid transparent;
 }
 
-
 .form__button--secondary {
-  background-color: #999;
+  background-color: darkslateblue;
 }
 
 @media screen and (min-width: 37.5em) {
+  .app {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .app__chores {
+    display: grid;
+    grid-template-columns: 1fr  1fr;
+    grid-column-gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .form {
+    background-color: #fff;
+    padding: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin: auto;
+  }
 
   .form__button-holder {
     display: grid;
-    grid-template-columns: minmax(100px, 1fr)  minmax(100px, 1fr);;
+    grid-template-columns: minmax(100px, 1fr)  minmax(100px, 1fr);
     grid-column-gap: 1rem;
   }
 }

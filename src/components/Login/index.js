@@ -37,7 +37,7 @@ class Login extends Component {
       <div className="login">
         <div className="login__widget">
           <h1 className="login__title">Chore Wars</h1>
-          <p>{this.state.error ? this.state.error : 'Please enter your username and password to log in'}</p>
+          <p>{this.state.error ? this.state.error : 'Please enter your email and password to log in'}</p>
           <form onSubmit={this.onSubmit.bind(this)} className="form">
             <label htmlFor="email" className="form__label">Email:</label>
             <input className="form__input" id="email" type="email" onChange={event => this.setState({email: event.target.value})} value={this.state.email} />

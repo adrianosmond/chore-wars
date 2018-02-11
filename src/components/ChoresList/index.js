@@ -6,7 +6,7 @@ import './index.css'
 
 const ChoresList = ({chores}) =>
   <ul className="chores-list">
-    {chores.map((chore) =>
+    {chores.map((chore, idx) =>
       <li className="chores-list__item" key={chore.title}>
         <Chore chore={chore} />
       </li>
