@@ -11,10 +11,9 @@ export function addChore (newChore, game, slug) {
   }
 }
 
-export function resetDoneDate (chore, game, slug) {
+export function resetDoneDate (game, slug) {
   return {
     type: 'RESET_CHORE_DONE_DATE',
-    chore,
     game,
     slug
   }
@@ -56,7 +55,7 @@ export function loadChores (game) {
 
 export function completeChore (chore, user, game, slug) {
   return (dispatch) => {
-    dispatch(resetDoneDate(chore, game, slug))
+    dispatch(resetDoneDate(game, slug))
     dispatch(addPointsToUser(user, chore.currentPoints, game))
   }
 }

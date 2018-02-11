@@ -1,15 +1,14 @@
 import { database } from '../lib/firebase'
-import { TIME_UNIT } from '../constants/constants'
 
 export default function choresReducer(state = { chores: [] }, action) {
   let newState = { ...state }
 
   switch (action.type) {
     case 'ADD_CHORE':
-      newState.chores = [
+      newState.chores = {
         ...state.chores,
-        action.newChore
-      ]
+        [action.slug]: action.newChore
+      }
 
       database.ref(`games/${action.game}/chores/${action.slug}`).set(action.newChore)
 
@@ -17,25 +16,18 @@ export default function choresReducer(state = { chores: [] }, action) {
 
     case 'RESET_CHORE_DONE_DATE':
       const now = new Date().getTime()
-      const completedChore = {
-        ...action.chore,
-        lastDone: now,
-        due: now + (action.chore.frequency * TIME_UNIT),
-        currentPoints: 0,
-        percentage: 0
+      newState.chores = {
+        ...state.chores
       }
-
-      newState.chores[action.slug] = completedChore
-
-      database.ref(`games/${action.game}/chores/${action.slug}`).set(completedChore)
+      newState.chores[action.slug].lastDone = now
+      database.ref(`games/${action.game}/chores/${action.slug}/lastDone`).set(now)
       return newState
 
     case 'REMOVE_CHORE':
-      const chores = {
-        ...newState.chores
+      newState.chores = {
+        ...state.chores
       }
-      delete chores[action.slug]
-      newState.chores = chores
+      delete newState.chores[action.slug]
       database.ref(`games/${action.game}/chores/${action.slug}`).set(null)
       return newState
 
