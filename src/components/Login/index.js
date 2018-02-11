@@ -38,11 +38,11 @@ class Login extends Component {
         <div className="login__widget">
           <h1 className="login__title">Chore Wars</h1>
           <p>{this.state.error ? this.state.error : 'Please enter your email and password to log in'}</p>
-          <form onSubmit={this.onSubmit.bind(this)} className="form">
-            <label htmlFor="email" className="form__label">Email:</label>
-            <input className="form__input" id="email" type="email" onChange={event => this.setState({email: event.target.value})} value={this.state.email} />
-            <label htmlFor="password" className="form__label">Password:</label>
-            <input className="form__input" id="password" type="password" onChange={event => this.setState({password: event.target.value})} value={this.state.password} />
+          <form onSubmit={this.onSubmit.bind(this)} className="form form--contained">
+            {/* <label htmlFor="email" className="form__label">Email:</label> */}
+            <input className="form__input" id="email" placeholder="Email" type="email" onChange={event => this.setState({email: event.target.value})} value={this.state.email} />
+            {/* <label htmlFor="password" className="form__label">Password:</label> */}
+            <input className="form__input" id="password" placeholder="Password" type="password" onChange={event => this.setState({password: event.target.value})} value={this.state.password} />
             <button type="submit" className="form__button">Login</button>
           </form>
         </div>

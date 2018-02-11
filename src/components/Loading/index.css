@@ -1,0 +1,61 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.loading__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading__image-wrapper {
+  position: relative;
+  width: 59px;
+  height: 119px;
+  transform-origin: 50% 100%;
+  animation: wobble 2s infinite;
+}
+
+.loading__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.loading__image--2 {
+  top: 20px;
+  left: 4px;
+  transform-origin: 110% -10%;
+  animation: pulltrigger 0.5s infinite;
+}
+
+.loading__text {
+  animation: wobble 1.5s infinite;
+}
+
+@keyframes pulltrigger {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(-15deg);
+  }
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(-5deg)
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+
+  100% {
+    transform: rotate(-5deg)
+  }
+}

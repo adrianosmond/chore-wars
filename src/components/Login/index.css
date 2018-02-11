@@ -6,19 +6,31 @@
 }
 
 .login__widget {
-  max-width: 450px;
+  max-width: 350px;
   background-color: #fff;
   padding: 1rem;
   border: 1px solid #ccc;
+  box-shadow: 0 0 20px #ccc;
 }
 
 .login__title {
-  margin-top: 0;
+  margin-top: -1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  background-color: darkslateblue;
+  color: #fff;
+  padding: 0.5rem;
   text-align: center;
 }
 
 @media screen and (min-width: 37.5em) {
   .login__widget {
     padding: 2rem;
+  }
+
+  .login__title {
+    margin-top: -2rem;
+    margin-left: -2rem;
+    margin-right: -2rem;
   }
 }
