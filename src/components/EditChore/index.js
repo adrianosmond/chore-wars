@@ -6,7 +6,7 @@ import { compose } from 'recompose'
 import withAuthorization from '../withAuthorization'
 import ChoreForm from '../ChoreForm'
 
-import { updateChore, loadChores } from '../../actions/choreActions'
+import { updateChore } from '../../actions/choreActions'
 
 import * as routes from '../../constants/routes'
 
@@ -70,8 +70,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateChore: (slug, newChore, newSlug, game) => dispatch(updateChore(slug, newChore, newSlug, game)),
-    loadChores: (game) => dispatch(loadChores(game))
+    updateChore: (slug, newChore, newSlug, game) => dispatch(updateChore(slug, newChore, newSlug, game))
   }
 }
 
