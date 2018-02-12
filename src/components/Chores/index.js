@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { compose } from 'recompose'
 import { connect } from 'react-redux'
 
-import { loadChores } from '../../actions/choreActions'
-import { loadPoints } from '../../actions/pointActions'
+// import { loadChores } from '../../actions/choreActions'
+// import { loadPoints } from '../../actions/pointActions'
 
 import withAuthorization from '../../components/withAuthorization'
 
@@ -23,8 +23,8 @@ class Chores extends Component {
 
   componentWillMount() {
     this.setChores(this.props.chores)
-    this.props.loadChores(this.props.game.gameId)
-    this.props.loadPoints(this.props.game.gameId)
+    // this.props.loadChores(this.props.game.gameId)
+    // this.props.loadPoints(this.props.game.gameId)
   }
 
   convertChoresToArray(choresObj) {
@@ -70,6 +70,7 @@ class Chores extends Component {
 }
 
 const authCondition = (authUser) => !!authUser;
+const isLoading = (state) => !state.pointsLoaded || !state.choresLoaded
 
 const mapStateToProps = (state) => ({
   game: state.session.game,
@@ -77,14 +78,14 @@ const mapStateToProps = (state) => ({
   chores: state.chores.chores
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loadChores: (game) => dispatch(loadChores(game)),
-    loadPoints: (game) => dispatch(loadPoints(game)),
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     loadChores: (game) => dispatch(loadChores(game)),
+//     loadPoints: (game) => dispatch(loadPoints(game))
+//   }
+// }
 
 export default compose(
-  withAuthorization(authCondition),
-  connect(mapStateToProps, mapDispatchToProps)
+  withAuthorization(authCondition, isLoading),
+  connect(mapStateToProps)
 )(Chores)

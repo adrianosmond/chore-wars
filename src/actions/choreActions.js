@@ -1,6 +1,7 @@
 import { database } from '../lib/firebase';
 // import { sortByCurrentPoints, processChore } from '../constants/utils'
 import { addPointsToUser } from './pointActions'
+import { setChoresLoaded } from './sessionActions'
 
 export function addChore (newChore, game, slug) {
   return {
@@ -49,6 +50,7 @@ export function loadChores (game) {
     database.ref(`games/${game}/chores`).once('value', (result) => {
       const chores = result.val() || {}
       dispatch(setChores(chores))
+      dispatch(setChoresLoaded(true))
     })
   }
 }

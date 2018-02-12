@@ -61,6 +61,7 @@ class EditChore extends Component {
 }
 
 const authCondition = (authUser) => !!authUser;
+const isLoading = (state) => !state.choresLoaded
 
 const mapStateToProps = (state) => ({
   game: state.session.game.gameId,
@@ -75,7 +76,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default compose(
-  withAuthorization(authCondition),
+  withAuthorization(authCondition, isLoading),
   connect(mapStateToProps, mapDispatchToProps),
   withRouter
 )(EditChore)

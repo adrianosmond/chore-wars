@@ -11,3 +11,17 @@ export function setGame (game) {
     game
   }
 }
+
+export function setPointsLoaded (pointsLoaded) {
+  return {
+    type: 'SET_POINTS_LOADED',
+    pointsLoaded
+  }
+}
+
+export function setChoresLoaded (choresLoaded) {
+  return {
+    type: 'SET_CHORES_LOADED',
+    choresLoaded
+  }
+}
