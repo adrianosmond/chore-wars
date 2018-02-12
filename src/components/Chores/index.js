@@ -22,6 +22,7 @@ class Chores extends Component {
   }
 
   componentWillMount() {
+    this.setChores(this.props.chores)
     this.props.loadChores(this.props.game.gameId)
     this.props.loadPoints(this.props.game.gameId)
   }
@@ -41,11 +42,15 @@ class Chores extends Component {
     return choresArr
   }
 
+  setChores(chores) {
+    this.setState({
+      chores: this.convertChoresToArray(chores)
+    })
+  }
+
   componentWillReceiveProps(newProps) {
     if (newProps.chores !== this.props.chores) {
-      this.setState({
-        chores: this.convertChoresToArray(newProps.chores)
-      })
+      this.setChores(newProps.chores)
     }
   }
 
