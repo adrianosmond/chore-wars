@@ -1,6 +1,6 @@
 import { database } from '../lib/firebase'
 
-export default function choresReducer(state = { chores: [] }, action) {
+export default function choresReducer(state = { chores: {} }, action) {
   let newState = { ...state }
 
   switch (action.type) {
