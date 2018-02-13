@@ -25,7 +25,7 @@ const PointsGraph = (props) => {
           const player = points[playerId]
           const playerBar = (player.points - minPoints)
           return (
-            <div className={`points-graph__bar points-graph__bar--${idx+1}`} style={{width: `${playerBar / max * 50}%`}} key={playerId}>
+            <div className={`points-graph__bar points-graph__bar--${idx+1}`} style={{width: `${Math.min(50, playerBar / max * 50)}%`}} key={playerId}>
               { playerBar ? <div className={`points-graph__difference points-graph__difference--${idx+1}`}>{playerBar}</div> : null }
             </div>
           )

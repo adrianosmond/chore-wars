@@ -39,6 +39,7 @@
   right: 50%;
   height: 0.25rem;
   background-color: tomato;
+  transition: width 1s;
 }
 
 .points-graph__bar--2 {
