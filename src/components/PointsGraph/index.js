@@ -9,6 +9,7 @@ const PointsGraph = (props) => {
   const minPoints = Math.min(points[players[0]].points, points[players[1]].points);
   return (
     <div className="points-graph">
+      <h1 className="points-graph__title">Chore Wars</h1>
       <div className="points-graph__people">
         {players.map((playerId, idx) => {
           const player = points[playerId];

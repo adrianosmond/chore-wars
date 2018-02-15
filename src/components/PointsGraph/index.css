@@ -3,6 +3,11 @@
   padding: 1rem 1rem 2rem;
 }
 
+.points-graph__title {
+  margin-top: 0;
+  text-align: center;
+}
+
 .points-graph__people {
   display: flex;
   justify-content: space-around;
