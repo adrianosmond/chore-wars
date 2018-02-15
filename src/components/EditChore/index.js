@@ -6,7 +6,7 @@ import { compose } from 'recompose';
 import withAuthorization from '../withAuthorization';
 import ChoreForm from '../ChoreForm';
 
-import { updateChore } from '../../actions/choreActions';
+import { loadChores, updateChore } from '../../actions/choreActions';
 
 import * as routes from '../../constants/routes';
 
@@ -65,10 +65,11 @@ const isLoading = state => !state.choresLoaded;
 
 const mapStateToProps = state => ({
   game: state.session.game.gameId,
-  chores: state.chores.chores,
+  chores: state.chores.present,
 });
 
 const mapDispatchToProps = dispatch => ({
+  loadChores: game => dispatch(loadChores(game)),
   updateChore: (slug, newChore, newSlug, game) =>
     dispatch(updateChore(slug, newChore, newSlug, game)),
 });
