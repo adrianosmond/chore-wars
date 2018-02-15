@@ -1,24 +1,24 @@
-import { database } from '../lib/firebase'
+import { database } from '../lib/firebase';
 
 export default function pointsReducer(state = { points: null }, action) {
-  let newState = {...state};
+  const newState = { ...state };
+  const newPoints = { ...newState.points };
+  const { points, user, game } = action;
 
   switch (action.type) {
     case 'ADD_POINTS':
-      const { points, user, game } = action
-      const newPoints = {...newState.points}
-      newState.points = newPoints
-      newPoints[user].points += points
+      newState.points = newPoints;
+      newPoints[user].points += points;
 
-      database.ref(`games/${game}/points/${user}/points`).set(newPoints[user].points)
+      database.ref(`games/${game}/points/${user}/points`).set(newPoints[user].points);
 
-      return newState
+      return newState;
 
     case 'SET_POINTS':
-      newState.points = action.points
-      return newState
+      newState.points = action.points;
+      return newState;
 
     default:
-      return state
+      return state;
   }
 }

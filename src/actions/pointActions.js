@@ -1,27 +1,27 @@
 import { database } from '../lib/firebase';
-import { setPointsLoaded } from './sessionActions'
+import { setPointsLoaded } from './sessionActions';
 
-export function addPointsToUser (user, points, game) {
+export function addPointsToUser(user, points, game) {
   return {
     type: 'ADD_POINTS',
     user,
     points,
-    game
-  }
+    game,
+  };
 }
 
-export function setPoints (points) {
+export function setPoints(points) {
   return {
     type: 'SET_POINTS',
-    points
-  }
+    points,
+  };
 }
 
-export function loadPoints (game) {
+export function loadPoints(game) {
   return (dispatch) => {
     database.ref(`games/${game}/points`).once('value', (result) => {
-      dispatch(setPoints(result.val()))
-      dispatch(setPointsLoaded(true))
-    })
-  }
+      dispatch(setPoints(result.val()));
+      dispatch(setPointsLoaded(true));
+    });
+  };
 }

@@ -1,33 +1,33 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import * as routes from '../../constants/routes'
+import * as routes from '../../constants/routes';
 
-import { removeChore } from '../../actions/choreActions'
+import { removeChore } from '../../actions/choreActions';
 
-import './index.css'
+import './index.css';
 
 class ChoreMenu extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      visible: false
-    }
+      visible: false,
+    };
   }
 
   toggleMenu() {
     this.setState({
-      visible: !this.state.visible
-    })
+      visible: !this.state.visible,
+    });
   }
 
   removeChore() {
     this.toggleMenu();
-    this.props.removeChore(this.props.game, this.props.slug)
+    this.props.removeChore(this.props.game, this.props.slug);
   }
 
-  render () {
+  render() {
     return (
       <div className="chore-menu">
         <button className="chore-menu__button" onClick={this.toggleMenu.bind(this)}>
@@ -39,18 +39,16 @@ class ChoreMenu extends Component {
             <button className="chore-menu__item" onClick={this.removeChore.bind(this)}>Delete</button>
           </div> : null }
       </div>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
-  game: state.session.game.gameId
-})
+const mapStateToProps = state => ({
+  game: state.session.game.gameId,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    removeChore: (game, slug) => dispatch(removeChore(game, slug))
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  removeChore: (game, slug) => dispatch(removeChore(game, slug)),
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChoreMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(ChoreMenu);

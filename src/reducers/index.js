@@ -6,5 +6,5 @@ import sessionReducer from './sessionReducer';
 export default combineReducers({
   chores: choresReducer,
   points: pointsReducer,
-  session: sessionReducer
+  session: sessionReducer,
 });
