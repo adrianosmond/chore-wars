@@ -79,6 +79,11 @@
   text-align: right;
 }
 
+.chore__last-done--overdue {
+  color: crimson;
+  font-weight: bold;
+}
+
 .chore__complete-button {
   position: absolute;
   display: block;

@@ -28,7 +28,7 @@ const Chore = ({
     </div>
     <div className="chore__last-done">
       Done: {fecha.format(new Date(chore.lastDone), DATE_FORMAT)}<br/>
-      Due: {fecha.format(new Date(chore.due), DATE_FORMAT)}
+      Due: <span className={`${bonusPoints ? 'chore__last-done--overdue' : ''}`}>{fecha.format(new Date(chore.due), DATE_FORMAT)}</span>
     </div>
     <button className="chore__complete-button" onClick={markChoreComplete.bind(null, chore, user, game, chore.slug)}>
       <img src={checkIcon} alt="Mark as complete" />
