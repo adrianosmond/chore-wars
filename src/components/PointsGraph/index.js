@@ -36,7 +36,7 @@ const PointsGraph = (props) => {
 };
 
 const mapStateToProps = state => ({
-  points: state.points.points,
+  points: state.points.present,
 });
 
 export default connect(mapStateToProps)(PointsGraph);

@@ -35,11 +35,11 @@ class Chores extends Component {
   }
 
   render() {
-    const { points } = this.props;
     const { chores } = this.state;
+
     return (
       <div className="app">
-        { points ? <PointsGraph points={points}/> : null }
+        <PointsGraph />
         <div className="app__chores">
           { chores ? <ChoresList chores={chores} /> : null }
           <Actions />
@@ -54,8 +54,7 @@ const isLoading = state => !state.pointsLoaded || !state.choresLoaded;
 
 const mapStateToProps = state => ({
   game: state.session.game,
-  points: state.points.points,
-  chores: state.chores.chores,
+  chores: state.chores.present,
 });
 
 export default compose(

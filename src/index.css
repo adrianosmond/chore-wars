@@ -16,7 +16,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Patua One', cursive;
+  font-family: 'Patua One', sans-serif;
   font-weight: 400;
 }
 
@@ -45,7 +45,7 @@ h1, h2, h3, h4 {
   border: none;
   border-bottom: 2px solid rgba(0,0,0,0.3);
   width: 100%;
-  background-color: dodgerblue;
+  background-color: darkcyan;
   color: #fff;
   font: inherit;
   text-align: center;
@@ -59,6 +59,11 @@ h1, h2, h3, h4 {
 .form__button:active {
   border-bottom: none;
   border-top: 2px solid transparent;
+}
+
+.form__button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .form__button--secondary {

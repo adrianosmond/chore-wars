@@ -1,49 +1,45 @@
 import { database } from '../lib/firebase';
 
-export default function choresReducer(state = { chores: {} }, action) {
-  const newState = { ...state };
+export default function choresReducer(state = { }, action) {
+  const newState = JSON.parse(JSON.stringify(state));
   const now = new Date().getTime();
 
   switch (action.type) {
     case 'ADD_CHORE':
-      newState.chores = {
-        ...state.chores,
+      database.ref(`games/${action.game}/chores/${action.slug}`).set(action.newChore);
+
+      return {
+        ...state,
         [action.slug]: action.newChore,
       };
 
-      database.ref(`games/${action.game}/chores/${action.slug}`).set(action.newChore);
-
-      return newState;
-
     case 'RESET_CHORE_DONE_DATE':
-      newState.chores = {
-        ...state.chores,
-      };
-      newState.chores[action.slug].lastDone = now;
+      newState[action.slug].lastDone = now;
       database.ref(`games/${action.game}/chores/${action.slug}/lastDone`).set(now);
       return newState;
 
     case 'REMOVE_CHORE':
-      newState.chores = {
-        ...state.chores,
-      };
-      delete newState.chores[action.slug];
+      delete newState[action.slug];
       database.ref(`games/${action.game}/chores/${action.slug}`).set(null);
       return newState;
 
     case 'UPDATE_CHORE':
-      newState.chores[action.newSlug] = action.newChore;
+      newState[action.newSlug] = action.newChore;
       database.ref(`games/${action.game}/chores/${action.newSlug}`).set(action.newChore);
 
       if (action.slug !== action.newSlug) {
-        delete newState.chores[action.slug];
+        delete newState[action.slug];
         database.ref(`games/${action.game}/chores/${action.slug}`).set(null);
       }
       return newState;
 
     case 'SET_CHORES':
-      newState.chores = action.chores;
-      return newState;
+      return {
+        ...action.chores,
+      };
+
+    case '@@redux-undo/UNDO':
+      return state
 
     default:
       return state;

@@ -89,6 +89,7 @@
   background-color: #fff;
   border: none;
   border-bottom: 2px solid #ccc;
+  cursor: pointer;
 }
 
 .chore__complete-button:active {
