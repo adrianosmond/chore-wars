@@ -9,8 +9,8 @@ const processChore = (chore) => {
   const multiplier = 1 + (1 / chore.frequency);
   const due = chore.lastDone + (chore.frequency * TIME_UNIT);
   return {
-    currentPoints: Math.round(percentage /
-      (100 * chore.pointsPerTime * (multiplier ** timeRemaining))),
+    currentPoints: Math.round((percentage / 100) *
+      chore.pointsPerTime * (multiplier ** timeRemaining)),
     percentage,
     due,
   };
