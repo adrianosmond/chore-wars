@@ -17,6 +17,10 @@ export default function pointsReducer(state = { }, action) {
         ...action.points,
       };
 
+    case 'SAVE_STATE_POST_UNDO':
+      database.ref(`games/${game}/points/`).set(state);
+      return state;
+
     default:
       return state;
   }

@@ -36,7 +36,6 @@ class Chores extends Component {
 
   render() {
     const { chores } = this.state;
-
     return (
       <div className="app">
         <PointsGraph />
@@ -53,7 +52,6 @@ const authCondition = authUser => !!authUser;
 const isLoading = state => !state.pointsLoaded || !state.choresLoaded;
 
 const mapStateToProps = state => ({
-  game: state.session.game,
   chores: state.chores.present,
 });
 

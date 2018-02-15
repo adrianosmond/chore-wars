@@ -17,6 +17,12 @@ class Login extends Component {
     this.state = INITIAL_STATE;
   }
 
+  componentDidMount() {
+    auth.onAuthStateChanged((authUser) => {
+      if (authUser) this.props.history.push(routes.CHORES);
+    });
+  }
+
   onSubmit(event) {
     event.preventDefault();
     const { email, password } = this.state;

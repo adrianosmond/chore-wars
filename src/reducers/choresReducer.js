@@ -38,8 +38,9 @@ export default function choresReducer(state = { }, action) {
         ...action.chores,
       };
 
-    case '@@redux-undo/UNDO':
-      return state
+    case 'SAVE_STATE_POST_UNDO':
+      database.ref(`games/${action.game}/chores/`).set(state);
+      return state;
 
     default:
       return state;
