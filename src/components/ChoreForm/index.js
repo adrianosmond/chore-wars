@@ -12,12 +12,9 @@ class ChoreForm extends Component {
     const { chore } = props;
 
     this.state = {
-      title: chore.title,
+      ...chore,
       slug: makeSlug(chore.title),
-      frequency: chore.frequency,
-      pointsPerTime: chore.pointsPerTime,
       doneDate: fecha.format(chore.lastDone, 'YYYY-MM-DD'),
-      lastDone: chore.lastDone,
       error: null,
     };
   }

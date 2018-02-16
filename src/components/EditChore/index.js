@@ -39,7 +39,8 @@ class EditChore extends Component {
           chore: newProps.chores[slug],
         });
       } else {
-        // TODO - Slug not found. Redirect?
+        // Chore not found, so redirect
+        this.props.history.push(routes.CHORES);
       }
     }
   }

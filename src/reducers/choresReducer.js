@@ -40,7 +40,16 @@ export default function choresReducer(state = { }, action) {
       if (action.slug !== action.newSlug) {
         delete newState[action.slug];
         database.ref(`games/${action.game}/chores/${action.slug}`).set(null);
+
+        // Check to see if this chore is part of a chain and rename references to it
+        Object.keys(newState).forEach((slug) => {
+          if (newState[slug].enables === action.slug) {
+            newState[slug].enables = action.newSlug;
+            database.ref(`games/${action.game}/chores/${slug}/enables`).set(action.newSlug);
+          }
+        });
       }
+
       return newState;
 
     case 'SET_CHORES':
