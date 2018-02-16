@@ -1,9 +1,10 @@
 import { database } from '../lib/firebase';
 import { setPointsLoaded } from './sessionActions';
+import { ActionTypes } from '../constants/constants';
 
 export function addPointsToUser(user, points, game) {
   return {
-    type: 'ADD_POINTS',
+    type: ActionTypes.addPoints,
     user,
     points,
     game,
@@ -12,7 +13,7 @@ export function addPointsToUser(user, points, game) {
 
 export function setPoints(points) {
   return {
-    type: 'SET_POINTS',
+    type: ActionTypes.setPoints,
     points,
   };
 }

@@ -1,10 +1,11 @@
 import { database } from '../lib/firebase';
 import { addPointsToUser } from './pointActions';
 import { setChoresLoaded } from './sessionActions';
+import { ActionTypes } from '../constants/constants';
 
 export function addChore(newChore, game, slug) {
   return {
-    type: 'ADD_CHORE',
+    type: ActionTypes.addChore,
     newChore,
     game,
     slug,
@@ -13,7 +14,7 @@ export function addChore(newChore, game, slug) {
 
 export function resetDoneDate(game, slug) {
   return {
-    type: 'RESET_CHORE_DONE_DATE',
+    type: ActionTypes.resetChoreDoneDate,
     game,
     slug,
   };
@@ -21,7 +22,7 @@ export function resetDoneDate(game, slug) {
 
 export function blockChore(game, slug) {
   return {
-    type: 'BLOCK_CHORE',
+    type: ActionTypes.blockChore,
     game,
     slug,
   };
@@ -29,7 +30,7 @@ export function blockChore(game, slug) {
 
 export function unblockChore(game, slug) {
   return {
-    type: 'UNBLOCK_CHORE',
+    type: ActionTypes.unblockChore,
     game,
     slug,
   };
@@ -37,7 +38,7 @@ export function unblockChore(game, slug) {
 
 export function removeChore(game, slug) {
   return {
-    type: 'REMOVE_CHORE',
+    type: ActionTypes.removeChore,
     game,
     slug,
   };
@@ -45,7 +46,7 @@ export function removeChore(game, slug) {
 
 export function updateChore(slug, newChore, newSlug, game) {
   return {
-    type: 'UPDATE_CHORE',
+    type: ActionTypes.updateChore,
     slug,
     newChore,
     newSlug,
@@ -55,7 +56,7 @@ export function updateChore(slug, newChore, newSlug, game) {
 
 export function setChores(chores) {
   return {
-    type: 'SET_CHORES',
+    type: ActionTypes.setChores,
     chores,
   };
 }

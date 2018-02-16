@@ -1,11 +1,12 @@
 import { database } from '../lib/firebase';
+import { ActionTypes } from '../constants/constants';
 
 export default function choresReducer(state = { }, action) {
   const newState = JSON.parse(JSON.stringify(state));
   const now = new Date().getTime();
 
   switch (action.type) {
-    case 'ADD_CHORE':
+    case ActionTypes.addChore:
       database.ref(`games/${action.game}/chores/${action.slug}`).set(action.newChore);
 
       return {
@@ -13,27 +14,27 @@ export default function choresReducer(state = { }, action) {
         [action.slug]: action.newChore,
       };
 
-    case 'RESET_CHORE_DONE_DATE':
+    case ActionTypes.resetChoreDoneDate:
       newState[action.slug].lastDone = now;
       database.ref(`games/${action.game}/chores/${action.slug}/lastDone`).set(now);
       return newState;
 
-    case 'BLOCK_CHORE':
+    case ActionTypes.blockChore:
       newState[action.slug].isWaiting = true;
       database.ref(`games/${action.game}/chores/${action.slug}/isWaiting`).set(true);
       return newState;
 
-    case 'UNBLOCK_CHORE':
+    case ActionTypes.unblockChore:
       newState[action.slug].isWaiting = false;
       database.ref(`games/${action.game}/chores/${action.slug}/isWaiting`).set(false);
       return newState;
 
-    case 'REMOVE_CHORE':
+    case ActionTypes.removeChore:
       delete newState[action.slug];
       database.ref(`games/${action.game}/chores/${action.slug}`).set(null);
       return newState;
 
-    case 'UPDATE_CHORE':
+    case ActionTypes.updateChore:
       newState[action.newSlug] = action.newChore;
       database.ref(`games/${action.game}/chores/${action.newSlug}`).set(action.newChore);
 
@@ -52,12 +53,12 @@ export default function choresReducer(state = { }, action) {
 
       return newState;
 
-    case 'SET_CHORES':
+    case ActionTypes.setChores:
       return {
         ...action.chores,
       };
 
-    case 'SAVE_STATE_POST_UNDO':
+    case ActionTypes.saveStatePostUndo:
       database.ref(`games/${action.game}/chores/`).set(state);
       return state;
 

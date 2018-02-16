@@ -1,26 +1,28 @@
+import { ActionTypes } from '../constants/constants';
+
 export default function sessionReducer(state = {
   authUser: null, game: null, pointsLoaded: false, choresLoaded: false,
 }, action) {
   switch (action.type) {
-    case 'SET_AUTH_USER':
+    case ActionTypes.setAuthUser:
       return {
         ...state,
         authUser: action.authUser,
       };
 
-    case 'SET_GAME':
+    case ActionTypes.setGame:
       return {
         ...state,
         game: action.game,
       };
 
-    case 'SET_POINTS_LOADED':
+    case ActionTypes.setPointsLoaded:
       return {
         ...state,
         pointsLoaded: action.pointsLoaded,
       };
 
-    case 'SET_CHORES_LOADED':
+    case ActionTypes.setChoresLoaded:
       return {
         ...state,
         choresLoaded: action.choresLoaded,

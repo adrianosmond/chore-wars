@@ -1,23 +1,24 @@
 import { database } from '../lib/firebase';
+import { ActionTypes } from '../constants/constants';
 
 export default function pointsReducer(state = { }, action) {
   const newState = JSON.parse(JSON.stringify(state));
   const { points, user, game } = action;
 
   switch (action.type) {
-    case 'ADD_POINTS':
+    case ActionTypes.addPoints:
       newState[user].points += points;
 
       database.ref(`games/${game}/points/${user}/points`).set(newState[user].points);
 
       return newState;
 
-    case 'SET_POINTS':
+    case ActionTypes.setPoints:
       return {
         ...action.points,
       };
 
-    case 'SAVE_STATE_POST_UNDO':
+    case ActionTypes.saveStatePostUndo:
       database.ref(`games/${game}/points/`).set(state);
       return state;
 

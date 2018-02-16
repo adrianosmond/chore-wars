@@ -1,27 +1,29 @@
+import { ActionTypes } from '../constants/constants';
+
 export function setAuthUser(authUser) {
   return {
-    type: 'SET_AUTH_USER',
+    type: ActionTypes.setAuthUser,
     authUser,
   };
 }
 
 export function setGame(game) {
   return {
-    type: 'SET_GAME',
+    type: ActionTypes.setGame,
     game,
   };
 }
 
 export function setPointsLoaded(pointsLoaded) {
   return {
-    type: 'SET_POINTS_LOADED',
+    type: ActionTypes.setPointsLoaded,
     pointsLoaded,
   };
 }
 
 export function setChoresLoaded(choresLoaded) {
   return {
-    type: 'SET_CHORES_LOADED',
+    type: ActionTypes.setChoresLoaded,
     choresLoaded,
   };
 }
