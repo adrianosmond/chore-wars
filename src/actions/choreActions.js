@@ -19,6 +19,22 @@ export function resetDoneDate(game, slug) {
   };
 }
 
+export function blockChore(game, slug) {
+  return {
+    type: 'BLOCK_CHORE',
+    game,
+    slug,
+  };
+}
+
+export function unblockChore(game, slug) {
+  return {
+    type: 'UNBLOCK_CHORE',
+    game,
+    slug,
+  };
+}
+
 export function removeChore(game, slug) {
   return {
     type: 'REMOVE_CHORE',
@@ -54,9 +70,13 @@ export function loadChores(game) {
   };
 }
 
-export function completeChore(chore, user, game, slug) {
+export function completeChore(chore, user, game) {
   return (dispatch) => {
-    dispatch(resetDoneDate(game, slug));
+    dispatch(resetDoneDate(game, chore.slug));
+    if (chore.enables) {
+      dispatch(blockChore(game, chore.slug));
+      dispatch(unblockChore(game, chore.enables));
+    }
     dispatch(addPointsToUser(user, chore.currentPoints, game));
   };
 }

@@ -18,6 +18,16 @@ export default function choresReducer(state = { }, action) {
       database.ref(`games/${action.game}/chores/${action.slug}/lastDone`).set(now);
       return newState;
 
+    case 'BLOCK_CHORE':
+      newState[action.slug].isWaiting = true;
+      database.ref(`games/${action.game}/chores/${action.slug}/isWaiting`).set(true);
+      return newState;
+
+    case 'UNBLOCK_CHORE':
+      newState[action.slug].isWaiting = false;
+      database.ref(`games/${action.game}/chores/${action.slug}/isWaiting`).set(false);
+      return newState;
+
     case 'REMOVE_CHORE':
       delete newState[action.slug];
       database.ref(`games/${action.game}/chores/${action.slug}`).set(null);

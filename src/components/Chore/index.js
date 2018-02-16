@@ -15,6 +15,7 @@ const Chore = ({
   chore, user, game, markChoreComplete,
 }) => {
   const bonusPoints = chore.currentPoints > chore.pointsPerTime;
+  const timeSinceChore = (new Date().getTime() - chore.lastDone);
   return (
     <div className="chore">
       <span className="chore__title">{chore.title}</span>
@@ -28,9 +29,13 @@ const Chore = ({
     </div>
     <div className="chore__last-done">
       Done: {fecha.format(new Date(chore.lastDone), DATE_FORMAT)}<br/>
-      Due: <span className={`${bonusPoints ? 'chore__last-done--overdue' : ''}`}>{fecha.format(new Date(chore.due), DATE_FORMAT)}</span>
+      { chore.frequency > 0 ?
+        <span>Due: <span className={`${bonusPoints ? 'chore__last-done--overdue' : ''}`}>{fecha.format(new Date(chore.due), DATE_FORMAT)}</span></span>
+        : null }
     </div>
-    <button className="chore__complete-button" onClick={markChoreComplete.bind(null, chore, user, game, chore.slug)}>
+    <button className="chore__complete-button"
+      onClick={markChoreComplete.bind(null, chore, user, game)}
+      disabled={timeSinceChore < 60000}>
       <img src={checkIcon} alt="Mark as complete" />
     </button>
     <div className="chore__extra-options">
@@ -46,7 +51,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  markChoreComplete: (chore, user, game, slug) => dispatch(completeChore(chore, user, game, slug)),
+  markChoreComplete: (chore, user, game) => dispatch(completeChore(chore, user, game)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chore);

@@ -24,7 +24,7 @@ class Chores extends Component {
 
   setChores(chores) {
     this.setState({
-      chores: convertChoresToArray(chores),
+      chores: convertChoresToArray(chores).filter(chore => !chore.isWaiting),
     });
   }
 

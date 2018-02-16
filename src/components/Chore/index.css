@@ -102,6 +102,13 @@
   border-top: 2px solid transparent;
 }
 
+.chore__complete-button:disabled {
+  border-bottom: 2px solid #ccc;
+  border-top: 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .chore__extra-options {
   position: absolute;
   right: 1rem;
