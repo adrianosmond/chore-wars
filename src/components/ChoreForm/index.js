@@ -34,6 +34,9 @@ class ChoreForm extends Component {
       ...chore
     } = this.state;
 
+    chore.frequency = parseInt(this.state.frequency, 10);
+    chore.pointsPerTime = parseInt(this.state.pointsPerTime, 10);
+
     this.props.onSubmit(chore, slug);
     return false;
   }
