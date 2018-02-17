@@ -2,8 +2,8 @@ import { TIME_UNIT } from './constants';
 
 const sortByCurrentPoints = (a, b) => b.currentPoints - a.currentPoints;
 
-const processChore = (chore) => {
-  const timeSinceChore = (new Date().getTime() - chore.lastDone) / TIME_UNIT;
+const computedChoreProperties = (chore, now) => {
+  const timeSinceChore = (now - chore.lastDone) / TIME_UNIT;
   const timeRemaining = timeSinceChore - chore.frequency;
   const percentage = Math.min((100 * timeSinceChore) / chore.frequency, 100);
   const multiplier = chore.frequency === 0 ? 1 : 1 + (1 / chore.frequency);
@@ -17,13 +17,13 @@ const processChore = (chore) => {
   };
 };
 
-const convertChoresToArray = (choresObj) => {
+const convertChoresToArray = (choresObj, now = new Date().getTime()) => {
   const choresArr = Object.keys(choresObj).map((key) => {
     const chore = choresObj[key];
     return {
       ...chore,
       slug: key,
-      ...processChore(chore),
+      ...computedChoreProperties(chore, now),
     };
   });
 
@@ -38,6 +38,6 @@ const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replac
 export {
   convertChoresToArray,
   makeSlug,
-  processChore,
+  computedChoreProperties,
   sortByCurrentPoints,
 };

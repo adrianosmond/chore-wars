@@ -6,6 +6,22 @@ describe('Points Reducer', () => {
     expect(pointsReducer(undefined, {})).toEqual({});
   });
 
+  it('Should return state if it gets an unknown action', () => {
+    expect(pointsReducer({
+      test1: {
+        name: 'Test 1',
+        points: 100,
+      },
+    }, {
+      type: 'UNKNOWN_ACTION',
+    })).toEqual({
+      test1: {
+        name: 'Test 1',
+        points: 100,
+      },
+    });
+  });
+
   it('Should be able to add points', () => {
     expect(pointsReducer({
       test1: {

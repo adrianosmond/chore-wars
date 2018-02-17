@@ -6,6 +6,47 @@ describe('Chores Reducer', () => {
     expect(choresReducer(undefined, {})).toEqual({});
   });
 
+  it('Should return state if it gets an unknown action', () => {
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 0,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+      },
+    }, {
+      type: 'UNKNOWN_ACTION',
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 0,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+      },
+    });
+  });
+
+  it('Should be able to set chores', () => {
+    expect(choresReducer({}, {
+      type: ActionTypes.setChores,
+      chores: {
+        'test-chore': {
+          lastDone: 0,
+          frequency: 0,
+          pointsPerTime: 100,
+          title: 'Test Chore',
+        },
+      },
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 0,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+      },
+    });
+  });
+
   it('Should be able to add a chore', () => {
     expect(choresReducer({}, {
       type: ActionTypes.addChore,
@@ -23,7 +64,7 @@ describe('Chores Reducer', () => {
         frequency: 0,
         pointsPerTime: 100,
         title: 'Test Chore',
-      }
+      },
     });
   });
 
@@ -96,6 +137,122 @@ describe('Chores Reducer', () => {
         frequency: 1,
         pointsPerTime: 10,
         title: 'Test Chore',
+      },
+    });
+  });
+
+  it('Should be able to update a chore chain if renaming a chore', () => {
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        enables: 'dependent-chore',
+      },
+      'dependent-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Dependent Chore',
+        enables: 'test-chore',
+      },
+    }, {
+      type: ActionTypes.updateChore,
+      slug: 'test-chore',
+      newChore: {
+        lastDone: 0,
+        frequency: 1,
+        pointsPerTime: 10,
+        title: 'Test Chore',
+      },
+      newSlug: 'renamed-chore',
+      game: 'testgame',
+    })).toEqual({
+      'renamed-chore': {
+        lastDone: 0,
+        frequency: 1,
+        pointsPerTime: 10,
+        title: 'Test Chore',
+      },
+      'dependent-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Dependent Chore',
+        enables: 'renamed-chore',
+      },
+    });
+  });
+
+  it('Should be able to mark a chore as done', () => {
+    const now = new Date().getTime();
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+      },
+    }, {
+      type: ActionTypes.resetChoreDoneDate,
+      slug: 'test-chore',
+      game: 'testgame',
+      now,
+    })).toEqual({
+      'test-chore': {
+        lastDone: now,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+      },
+    });
+  });
+
+  it('Should be able to mark as blocked', () => {
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: false,
+      },
+    }, {
+      type: ActionTypes.blockChore,
+      slug: 'test-chore',
+      game: 'testgame',
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: true,
+      },
+    });
+  });
+
+  it('Should be able to unblock a chore', () => {
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: true,
+      },
+    }, {
+      type: ActionTypes.unblockChore,
+      slug: 'test-chore',
+      game: 'testgame',
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: false,
       },
     });
   });
