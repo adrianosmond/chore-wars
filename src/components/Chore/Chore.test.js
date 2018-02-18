@@ -43,6 +43,6 @@ describe('Chore', () => {
     };
     const shallowChore = shallow(<Chore { ...props } />);
     shallowChore.find('button').simulate('click');
-    expect(completeFn.mock.calls.length).toEqual(1);
+    expect(completeFn).toHaveBeenCalled();
   });
 });

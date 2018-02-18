@@ -75,6 +75,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateChore(slug, newChore, newSlug, game)),
 });
 
+export { EditChore };
+
 export default compose(
   withAuthorization(authCondition, isLoading),
   connect(mapStateToProps, mapDispatchToProps),

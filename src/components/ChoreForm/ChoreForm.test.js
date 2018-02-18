@@ -32,6 +32,6 @@ describe('Chore Form', () => {
     const fakeEvent = { preventDefault: () => {} };
     const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler} />);
     shallowForm.find('form').simulate('submit', fakeEvent);
-    expect(submitHandler.mock.calls.length).toEqual(1);
+    expect(submitHandler).toHaveBeenCalled();
   });
 });
