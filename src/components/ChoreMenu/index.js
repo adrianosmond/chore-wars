@@ -30,13 +30,13 @@ class ChoreMenu extends Component {
   render() {
     return (
       <div className="chore-menu">
-        <button className="chore-menu__button" onClick={this.toggleMenu.bind(this)}>
+        <button className="chore-menu__button js-toggle-menu" onClick={this.toggleMenu.bind(this)}>
           <span className="chore-menu__button-icon">…</span>
         </button>
         { this.state.visible ?
           <div className="chore-menu__menu">
             <Link to={`${routes.EDIT_CHORE}/${this.props.slug}`} className="chore-menu__item">Edit</Link>
-            <button className="chore-menu__item" onClick={this.removeChore.bind(this)}>Delete</button>
+            <button className="chore-menu__item js-remove-chore" onClick={this.removeChore.bind(this)}>Delete</button>
           </div> : null }
       </div>
     );

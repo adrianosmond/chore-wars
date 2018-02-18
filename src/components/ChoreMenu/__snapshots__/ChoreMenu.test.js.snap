@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Chore Form Can be toggled 1`] = `
+exports[`Chore Menu Can be toggled 1`] = `
 <div
   className="chore-menu"
 >
   <button
-    className="chore-menu__button"
+    className="chore-menu__button js-toggle-menu"
     onClick={[Function]}
   >
     <span
@@ -25,7 +25,7 @@ exports[`Chore Form Can be toggled 1`] = `
       Edit
     </Link>
     <button
-      className="chore-menu__item"
+      className="chore-menu__item js-remove-chore"
       onClick={[Function]}
     >
       Delete
@@ -34,12 +34,12 @@ exports[`Chore Form Can be toggled 1`] = `
 </div>
 `;
 
-exports[`Chore Form Renders a new chore menu 1`] = `
+exports[`Chore Menu Renders a new chore menu 1`] = `
 <div
   className="chore-menu"
 >
   <button
-    className="chore-menu__button"
+    className="chore-menu__button js-toggle-menu"
     onClick={[Function]}
   >
     <span
