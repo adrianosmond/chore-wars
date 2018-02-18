@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chore Renders a basic chore 1`] = `
+<div
+  className="chore"
+>
+  <span
+    className="chore__title"
+  >
+    Test Chore
+  </span>
+  <div
+    className="chore__bar"
+  >
+    <div
+      className="chore__bar-inner"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    >
+      <span
+        className="chore__points"
+      >
+        0
+      </span>
+    </div>
+  </div>
+  <div
+    className="chore__last-done"
+  >
+    Done: 
+    18/02/2018
+    <br />
+    <span>
+      Due: 
+      <span
+        className=""
+      >
+        19/02/2018
+      </span>
+    </span>
+  </div>
+  <button
+    className="chore__complete-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    <img
+      alt="Mark as complete"
+      src="check.svg"
+    />
+  </button>
+  <div
+    className="chore__extra-options"
+  >
+    <Connect(ChoreMenu)
+      slug="test-chore"
+    />
+  </div>
+</div>
+`;
+
+exports[`Chore Renders a chore with frequency 0 1`] = `
+<div
+  className="chore"
+>
+  <span
+    className="chore__title"
+  >
+    Test Chore
+  </span>
+  <div
+    className="chore__bar"
+  >
+    <div
+      className="chore__bar-inner"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <span
+        className="chore__points"
+      >
+        100
+      </span>
+    </div>
+  </div>
+  <div
+    className="chore__last-done"
+  >
+    Done: 
+    18/02/2018
+    <br />
+  </div>
+  <button
+    className="chore__complete-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    <img
+      alt="Mark as complete"
+      src="check.svg"
+    />
+  </button>
+  <div
+    className="chore__extra-options"
+  >
+    <Connect(ChoreMenu)
+      slug="test-chore"
+    />
+  </div>
+</div>
+`;

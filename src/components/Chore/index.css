@@ -32,6 +32,7 @@
   left: 0;
   height: 0.25rem;
   background-color: navy;
+  text-align: center;
 }
 
 .chore__bar-inner--bonus {

@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
 import './index.css';
 
 const PointsGraph = (props) => {
   const { points } = props;
-  const { max } = points;
-  const players = Object.keys(props.points).filter(id => id !== 'max');
+  const players = Object.keys(props.points);
   const minPoints = Math.min(points[players[0]].points, points[players[1]].points);
   return (
     <div className="points-graph">
@@ -26,7 +26,7 @@ const PointsGraph = (props) => {
           const player = points[playerId];
           const playerBar = (player.points - minPoints);
           return (
-            <div className={`points-graph__bar points-graph__bar--${idx + 1}`} style={{ width: `${Math.min(50, (playerBar / max) * 50)}%` }} key={playerId}>
+            <div className={`points-graph__bar points-graph__bar--${idx + 1}`} style={{ width: `${Math.min(50, (playerBar / MAX_POINT_DIFFERENCE) * 50)}%` }} key={playerId}>
               { playerBar ? <div className={`points-graph__difference points-graph__difference--${idx + 1}`}>{playerBar}</div> : null }
             </div>
           );
@@ -39,5 +39,7 @@ const PointsGraph = (props) => {
 const mapStateToProps = state => ({
   points: state.points.present,
 });
+
+export { PointsGraph };
 
 export default connect(mapStateToProps)(PointsGraph);

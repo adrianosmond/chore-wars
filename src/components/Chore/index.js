@@ -21,7 +21,6 @@ const Chore = ({
       <span className="chore__title">{chore.title}</span>
       <div className="chore__bar">
         <div className={`chore__bar-inner${bonusPoints ? ' chore__bar-inner--bonus' : ''}`} style={{
-          textAlign: 'center',
           width: `${chore.percentage}%`,
         }}>
         <span className={`chore__points${bonusPoints ? ' chore__points--bonus' : ''}`}>{chore.currentPoints}</span>
@@ -53,5 +52,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   markChoreComplete: (chore, user, game) => dispatch(completeChore(chore, user, game)),
 });
+
+export { Chore };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chore);

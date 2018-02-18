@@ -2,6 +2,8 @@ const TIME_UNIT = 1000 * 60 * 60 * 24; // 1 day
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 
+const MAX_POINT_DIFFERENCE = 500;
+
 const ActionTypes = {
   addChore: 'ADD_CHORE',
   resetChoreDoneDate: 'RESET_CHORE_DONE_DATE',
@@ -21,5 +23,6 @@ const ActionTypes = {
 export {
   TIME_UNIT,
   DATE_FORMAT,
+  MAX_POINT_DIFFERENCE,
   ActionTypes,
 };
