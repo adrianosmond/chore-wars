@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chore Form Can be toggled 1`] = `
+<div
+  className="chore-menu"
+>
+  <button
+    className="chore-menu__button"
+    onClick={[Function]}
+  >
+    <span
+      className="chore-menu__button-icon"
+    >
+      …
+    </span>
+  </button>
+  <div
+    className="chore-menu__menu"
+  >
+    <Link
+      className="chore-menu__item"
+      replace={false}
+      to="/chores/edit/test-chore"
+    >
+      Edit
+    </Link>
+    <button
+      className="chore-menu__item"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Chore Form Renders a new chore menu 1`] = `
+<div
+  className="chore-menu"
+>
+  <button
+    className="chore-menu__button"
+    onClick={[Function]}
+  >
+    <span
+      className="chore-menu__button-icon"
+    >
+      …
+    </span>
+  </button>
+</div>
+`;

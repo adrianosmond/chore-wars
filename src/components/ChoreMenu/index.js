@@ -51,4 +51,6 @@ const mapDispatchToProps = dispatch => ({
   removeChore: (game, slug) => dispatch(removeChore(game, slug)),
 });
 
+export { ChoreMenu };
+
 export default connect(mapStateToProps, mapDispatchToProps)(ChoreMenu);

@@ -10,7 +10,7 @@ const ChoresList = ({ chores }) => (
     <FlipMove>
     {chores.map(chore =>
       <li className="chores-list__item" key={chore.title}>
-          <Chore chore={chore} />
+        <Chore chore={chore} />
       </li>)}
     </FlipMove>
   </ul>
