@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chore Form Renders a new chore 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <label
+    className="form__label"
+    htmlFor="title"
+  >
+    What is the name of this chore?
+  </label>
+  <input
+    className="form__input"
+    id="title"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <label
+    className="form__label"
+    htmlFor="frequency"
+  >
+    How often do you need to do this chore?
+  </label>
+  <input
+    className="form__input"
+    id="frequency"
+    max="365"
+    min="0"
+    onChange={[Function]}
+    type="number"
+    value={7}
+  />
+  <label
+    className="form__label"
+    htmlFor="pointsPerTime"
+  >
+    How many points should this chore be worth? (1 - 200)
+  </label>
+  <input
+    className="form__input"
+    id="pointsPerTime"
+    max="250"
+    min="1"
+    onChange={[Function]}
+    type="number"
+    value={10}
+  />
+  <label
+    className="form__label"
+    htmlFor="doneDate"
+  >
+    When was the last time you did this chore?
+  </label>
+  <input
+    className="form__input"
+    id="doneDate"
+    max="2018-02-18"
+    onChange={[Function]}
+    type="date"
+    value="2018-02-18"
+  />
+  <div
+    className="form__button-holder"
+  >
+    <button
+      className="form__button"
+      type="submit"
+    >
+      Save Chore
+    </button>
+    <Link
+      className="form__button form__button--secondary"
+      replace={false}
+      to="/chores"
+    >
+      Cancel
+    </Link>
+  </div>
+</form>
+`;
+
+exports[`Chore Form Renders an existing chore 1`] = `
+<form
+  className="form"
+  onSubmit={[Function]}
+>
+  <label
+    className="form__label"
+    htmlFor="title"
+  >
+    What is the name of this chore?
+  </label>
+  <input
+    className="form__input"
+    id="title"
+    onChange={[Function]}
+    type="text"
+    value="Test Chore"
+  />
+  <label
+    className="form__label"
+    htmlFor="frequency"
+  >
+    How often do you need to do this chore?
+  </label>
+  <input
+    className="form__input"
+    id="frequency"
+    max="365"
+    min="0"
+    onChange={[Function]}
+    type="number"
+    value={1}
+  />
+  <label
+    className="form__label"
+    htmlFor="pointsPerTime"
+  >
+    How many points should this chore be worth? (1 - 200)
+  </label>
+  <input
+    className="form__input"
+    id="pointsPerTime"
+    max="250"
+    min="1"
+    onChange={[Function]}
+    type="number"
+    value={100}
+  />
+  <label
+    className="form__label"
+    htmlFor="doneDate"
+  >
+    When was the last time you did this chore?
+  </label>
+  <input
+    className="form__input"
+    id="doneDate"
+    max="2018-02-18"
+    onChange={[Function]}
+    type="date"
+    value="2018-02-18"
+  />
+  <div
+    className="form__button-holder"
+  >
+    <button
+      className="form__button"
+      type="submit"
+    >
+      Save Chore
+    </button>
+    <Link
+      className="form__button form__button--secondary"
+      replace={false}
+      to="/chores"
+    >
+      Cancel
+    </Link>
+  </div>
+</form>
+`;

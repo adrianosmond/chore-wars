@@ -18,22 +18,16 @@ const computedChoreProperties = (chore, now) => {
   };
 };
 
-const processChore = (chore, key, now) => ({
+const processChore = (chore, slug, now) => ({
   ...chore,
-  slug: key,
+  slug,
   ...computedChoreProperties(chore, now),
 });
 
-const convertChoresToArray = (choresObj, now = new Date().getTime()) => {
-  const choresArr = Object.keys(choresObj).map((key) => {
-    const chore = choresObj[key];
-    return processChore(chore, key, now);
-  });
-
-  choresArr.sort(sortByCurrentPoints);
-
-  return choresArr;
-};
+const convertChoresToArray = (choresObj, now = new Date().getTime()) =>
+  Object.keys(choresObj)
+    .map(slug => processChore(choresObj[slug], slug, now))
+    .sort(sortByCurrentPoints);
 
 const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
 

@@ -1,4 +1,4 @@
-import React, { Component } from  'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
@@ -21,7 +21,6 @@ class NewChore extends Component {
         slug: '',
         frequency: 7,
         pointsPerTime: 10,
-        doneDate: fecha.format(new Date().getTime(), 'YYYY-MM-DD'),
         lastDone: new Date().getTime(),
       },
     };
