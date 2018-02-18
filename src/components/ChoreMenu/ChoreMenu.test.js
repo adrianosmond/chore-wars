@@ -9,7 +9,7 @@ describe('Chore Menu', () => {
   it('Renders a new chore menu', () => {
     expect(shallowChoreMenu).toMatchSnapshot();
   });
-  
+
   it('Can be toggled', () => {
     toggleButton.simulate('click');
     expect(shallowChoreMenu.state().visible).toBe(true);
@@ -17,7 +17,7 @@ describe('Chore Menu', () => {
     toggleButton.simulate('click');
     expect(shallowChoreMenu.state().visible).toBe(false);
   });
-  
+
   it('Can remove a chore', () => {
     toggleButton.simulate('click');
     const removeButton = shallowChoreMenu.find('.js-remove-chore');
