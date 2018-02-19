@@ -110,7 +110,6 @@
      so the top coordinate of the bar becomes thicker */
     top: calc(-6.5rem - 200px);
     padding-top: 2rem;
-    padding-bottom: 2rem;
   }
 
   .points-graph__person-name {
