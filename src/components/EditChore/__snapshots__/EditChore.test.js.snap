@@ -10,7 +10,7 @@ exports[`Edit Chore Renders 1`] = `
       "title": "Test Chore",
     }
   }
-  currentTime={1519064674011}
+  currentTime={1518912000000}
   onSubmit={[Function]}
 />
 `;

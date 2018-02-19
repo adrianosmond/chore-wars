@@ -16,7 +16,7 @@ class EditChore extends Component {
 
     this.state = {
       slug: this.props.match.params.slug,
-      currentTime: new Date().getTime(),
+      currentTime: props.currentTime || new Date().getTime(),
       chore: null,
     };
   }

@@ -15,7 +15,7 @@ class NewChore extends Component {
     super(props);
 
     this.state = {
-      currentTime: new Date().getTime(),
+      currentTime: props.currentTime || new Date().getTime(),
       chore: {
         title: '',
         slug: '',
