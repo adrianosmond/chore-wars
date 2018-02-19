@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';
@@ -12,12 +12,35 @@ const undoAction = game => ({
   game,
 });
 
-const Actions = props => (
-  <div className="actions">
-    <Link to={routes.NEW_CHORE} className="form__button">Add a chore</Link>
-    <button onClick={() => { props.undo(); props.saveStatePostUndo(props.game); }} disabled={!props.canUndo} className="form__button form__button--secondary">Undo</button>
-  </div>
-);
+class Actions extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+    };
+  }
+
+  toggleMenu() {
+    this.setState({
+      visible: !this.state.visible,
+    });
+  }
+
+  render() {
+    return (
+      <div className={`actions${this.state.visible ? ' actions--visible' : ''}`}>
+        <button className="actions__toggle-button" onClick={this.toggleMenu.bind(this)}>Toggle menu</button>
+        <div className="actions__actions">
+          <Link to={routes.NEW_CHORE} className="form__button">Add a chore</Link>
+          <button onClick={() => { this.props.undo(); this.props.saveStatePostUndo(this.props.game); }}
+            disabled={!this.props.canUndo} 
+            className="form__button form__button--secondary">Undo</button>
+        </div>
+      </div>
+    )
+  }
+}
+ 
 
 const mapStateToProps = state => ({
   canUndo: state.chores.past.length > 0,

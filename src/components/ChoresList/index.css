@@ -1,6 +1,6 @@
 .chores-list {
   margin-top: 1rem;
-  margin-bottom: 0;
+  margin-bottom: 2.5rem;
   padding: 0;
   list-style: none;
 }
@@ -14,4 +14,10 @@
 
 .chores-list__item:first-child {
   margin-top: 0;
+}
+
+@media screen and (min-width: 37.5em) {
+  .chores-list {
+    margin-bottom: 0;
+  }
 }

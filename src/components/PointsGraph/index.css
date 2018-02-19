@@ -14,6 +14,14 @@
   }
 }
 
+/* In the 2 col layout, the width of the avatars grows
+   so the top coordinate of the bar becomes thicker */
+@media screen and (min-width: 37.5em) {
+  .points-graph {
+    top: calc(-6.5rem - 200px);
+  }
+}
+
 .points-graph__title {
   margin: 0;
   line-height: 1;

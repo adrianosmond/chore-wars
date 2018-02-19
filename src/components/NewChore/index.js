@@ -15,12 +15,12 @@ class NewChore extends Component {
     super(props);
 
     this.state = {
+      currentTime: new Date().getTime(),
       chore: {
         title: '',
         slug: '',
         frequency: 7,
         pointsPerTime: 10,
-        currentTime: new Date().getTime(),
         lastDone: new Date().getTime(),
       },
     };
@@ -32,12 +32,11 @@ class NewChore extends Component {
   }
 
   render() {
-    const { chore } = this.state;
-    if (!chore) return null;
+    const { chore, currentTime } = this.state;
     return (
       <ChoreForm
         onSubmit={this.onSubmit.bind(this)}
-        currentTime={this.state.currentTime}
+        currentTime={currentTime}
         chore={chore} />
     );
   }
