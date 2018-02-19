@@ -1,10 +1,22 @@
 .points-graph {
+  position: sticky;
+  z-index: 2;
+  top: calc(-5rem - ((100vw - 4rem)/2));
   background-color: #fff;
   padding: 1rem 1rem 2rem;
 }
 
+/* After 464px the width of the avatars won't grow any more
+   so the top coordinate of the bar becomes constant */
+@media screen and (min-width: 464px) {
+  .points-graph {
+    top: calc(-5rem - 200px);
+  }
+}
+
 .points-graph__title {
-  margin-top: 0;
+  margin: 0;
+  line-height: 1;
   text-align: center;
 }
 
@@ -16,6 +28,10 @@
 
 .points-graph__person {
   width: 200px;
+}
+
+.points-graph__person-picture {
+  display: block;
 }
 
 .points-graph__person-name {
