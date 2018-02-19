@@ -1,24 +1,19 @@
 .points-graph {
   position: sticky;
   z-index: 2;
-  top: calc(-5rem - ((100vw - 4rem)/2));
+  top: calc(-6rem - ((100vw - 4rem)/2));
   background-color: #fff;
   padding: 1rem 1rem 2rem;
+  margin-top: -1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
 }
 
 /* After 464px the width of the avatars won't grow any more
    so the top coordinate of the bar becomes constant */
 @media screen and (min-width: 464px) {
   .points-graph {
-    top: calc(-5rem - 200px);
-  }
-}
-
-/* In the 2 col layout, the width of the avatars grows
-   so the top coordinate of the bar becomes thicker */
-@media screen and (min-width: 37.5em) {
-  .points-graph {
-    top: calc(-6.5rem - 200px);
+    top: calc(-6rem - 200px);
   }
 }
 
@@ -111,7 +106,11 @@
 
 @media screen and (min-width: 37.5em) {
   .points-graph {
-    padding: 2rem;
+  /* In the 2 col layout, the width of the avatars grows
+     so the top coordinate of the bar becomes thicker */
+    top: calc(-6.5rem - 200px);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .points-graph__person-name {
@@ -121,8 +120,4 @@
   .points-graph__difference {
     font-size: 1rem;
   }
-
-  /* .points-graph__difference--2 {
-    right: -1.125rem;
-  } */
 }
