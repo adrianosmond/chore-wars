@@ -3,15 +3,15 @@ import { shallow } from 'enzyme';
 import { processChore, makeSlug } from '../../constants/utils';
 import { Chore } from './index';
 
-const now = new Date().getTime();
+const choreTime = new Date('2018-02-18').getTime();
 const chore = {
   frequency: 1,
-  lastDone: now,
+  lastDone: choreTime,
   pointsPerTime: 100,
   title: 'Test Chore',
 };
 const slug = makeSlug(chore.title);
-const processedChore = processChore(chore, slug, now);
+const processedChore = processChore(chore, slug, choreTime);
 const choreProps = {
   chore: processedChore,
   user: 'test-user',
@@ -30,7 +30,7 @@ describe('Chore', () => {
       chore: processChore({
         ...chore,
         frequency: 0,
-      }, slug, now),
+      }, slug, choreTime),
     };
     expect(shallow(<Chore { ...props } />)).toMatchSnapshot();
   });

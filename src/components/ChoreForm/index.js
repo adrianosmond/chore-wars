@@ -61,7 +61,7 @@ class ChoreForm extends Component {
         <input className="form__input" id="pointsPerTime" type="number" min="1" max="250" value={this.state.pointsPerTime} onChange={(event) => { this.setState({ pointsPerTime: event.target.value }); }} />
 
         <label className="form__label" htmlFor="doneDate">When was the last time you did this chore?</label>
-        <input className="form__input" id="doneDate" type="date" value={this.state.doneDate} max={fecha.format(new Date().getTime(), 'YYYY-MM-DD')} onChange={(event) => { this.setState({ doneDate: event.target.value, lastDone: new Date(event.target.value).getTime() }); }} />
+        <input className="form__input" id="doneDate" type="date" value={this.state.doneDate} max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')} onChange={(event) => { this.setState({ doneDate: event.target.value, lastDone: new Date(event.target.value).getTime() }); }} />
 
         { this.state.error ? <p>{this.state.error}</p> : null }
 

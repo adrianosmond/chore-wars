@@ -16,6 +16,7 @@ class EditChore extends Component {
 
     this.state = {
       slug: this.props.match.params.slug,
+      currentTime: new Date().getTime(),
       chore: null,
     };
   }
@@ -56,6 +57,7 @@ class EditChore extends Component {
     return (
       <ChoreForm
         onSubmit={this.onSubmit.bind(this)}
+        currentTime={this.state.currentTime}
         chore={chore} />
     );
   }

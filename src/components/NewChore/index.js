@@ -20,6 +20,7 @@ class NewChore extends Component {
         slug: '',
         frequency: 7,
         pointsPerTime: 10,
+        currentTime: new Date().getTime(),
         lastDone: new Date().getTime(),
       },
     };
@@ -36,6 +37,7 @@ class NewChore extends Component {
     return (
       <ChoreForm
         onSubmit={this.onSubmit.bind(this)}
+        currentTime={this.state.currentTime}
         chore={chore} />
     );
   }
