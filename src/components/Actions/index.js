@@ -32,15 +32,17 @@ class Actions extends Component {
         <button className="actions__toggle-button" onClick={this.toggleMenu.bind(this)}>Toggle menu</button>
         <div className="actions__actions">
           <Link to={routes.NEW_CHORE} className="form__button">Add a chore</Link>
-          <button onClick={() => { this.props.undo(); this.props.saveStatePostUndo(this.props.game); }}
-            disabled={!this.props.canUndo} 
+          <button onClick={() => {
+              this.props.undo();
+              this.props.saveStatePostUndo(this.props.game);
+            }}
+            disabled={!this.props.canUndo}
             className="form__button form__button--secondary">Undo</button>
         </div>
       </div>
-    )
+    );
   }
 }
- 
 
 const mapStateToProps = state => ({
   canUndo: state.chores.past.length > 0,
