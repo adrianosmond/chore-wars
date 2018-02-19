@@ -15,12 +15,14 @@ const match = { params: { slug: 'test-chore' } };
 
 describe('Edit Chore', () => {
   it('Renders', () => {
-    expect(shallow(<EditChore match={match} chores={chores} currentTime={testTime} />)).toMatchSnapshot();
+    expect(shallow(<EditChore match={match} chores={chores}
+      currentTime={testTime} />)).toMatchSnapshot();
   });
 
   it('Should try to load the chores if they havent already been loaded', () => {
     const mockLoadChores = jest.fn();
-    expect(shallow(<EditChore match={match} loadChores={mockLoadChores} currentTime={testTime} />)).toMatchSnapshot();
+    expect(shallow(<EditChore match={match} loadChores={mockLoadChores}
+      currentTime={testTime} />)).toMatchSnapshot();
     expect(mockLoadChores).toHaveBeenCalled();
   });
 });
