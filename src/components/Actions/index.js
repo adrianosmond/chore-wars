@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';
 
 import * as routes from '../../constants/routes';
+import { ActionTypes } from '../../constants/constants';
 
 import './index.css';
 
 const undoAction = game => ({
-  type: 'SAVE_STATE_POST_UNDO',
+  type: ActionTypes.saveStatePostUndo,
   game,
 });
 

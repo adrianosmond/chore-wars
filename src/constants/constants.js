@@ -18,6 +18,7 @@ const ActionTypes = {
   setGame: 'SET_GAME',
   setPointsLoaded: 'SET_POINTS_LOADED',
   setChoresLoaded: 'SET_CHORES_LOADED',
+  saveStatePostUndo: 'SAVE_STATE_POST_UNDO',
 };
 
 export {
