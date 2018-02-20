@@ -1,0 +1,107 @@
+.chore-form {
+  display: flex;
+  min-height: calc(100vh - 2rem);
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.form__label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-family: 'Patua One', sans-serif;
+  /* font-weight: 400; */
+  font-size: 1.5em;
+}
+
+.form__label--error {
+  color: crimson;
+}
+
+.form__label:first-child {
+  margin-top: 0;
+}
+
+.form__row {
+  display: flex;
+  align-items: baseline;
+  margin-top: 0.5rem;
+}
+
+.form__row-item:not(:first-child) {
+  margin-left: 0.5rem;
+}
+
+.form__input {
+  display: block;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  font: inherit;
+}
+
+.form__input[maxlength="3"] {
+  width: 70px;
+}
+
+.form__input[id="doneDate"] {
+  -webkit-appearance: none;
+}
+
+.form__button-holder {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr)  minmax(100px, 1fr);
+  grid-column-gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form__button {
+  display: block;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: none;
+  border-bottom: 2px solid rgba(0,0,0,0.3);
+  width: 100%;
+  background-color: darkcyan;
+  color: #fff;
+  font: inherit;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  border-radius: 0.25rem;
+  outline-color: #ccc;
+  cursor: pointer;
+}
+
+.form__button:active {
+  border-bottom: none;
+  border-top: 2px solid transparent;
+}
+
+.form__button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.form__button--secondary {
+  background-color: darkslateblue;
+}
+
+@media screen and (min-width: 37.5em) {
+  .form {
+    padding: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin: auto;
+  }
+
+  .form--contained {
+    padding: 0;
+  }
+}

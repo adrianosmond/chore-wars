@@ -1,165 +1,217 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Chore Form Renders a new chore 1`] = `
-<form
-  className="form"
-  onSubmit={[Function]}
+<div
+  className="chore-form"
 >
-  <label
-    className="form__label"
-    htmlFor="title"
+  <form
+    className="form"
+    onSubmit={[Function]}
   >
-    What is the name of this chore?
-  </label>
-  <input
-    className="form__input"
-    id="title"
-    onChange={[Function]}
-    type="text"
-    value=""
-  />
-  <label
-    className="form__label"
-    htmlFor="frequency"
-  >
-    How often do you need to do this chore?
-  </label>
-  <input
-    className="form__input"
-    id="frequency"
-    max="365"
-    min="0"
-    onChange={[Function]}
-    type="number"
-    value={7}
-  />
-  <label
-    className="form__label"
-    htmlFor="pointsPerTime"
-  >
-    How many points should this chore be worth? (1 - 200)
-  </label>
-  <input
-    className="form__input"
-    id="pointsPerTime"
-    max="250"
-    min="1"
-    onChange={[Function]}
-    type="number"
-    value={10}
-  />
-  <label
-    className="form__label"
-    htmlFor="doneDate"
-  >
-    When was the last time you did this chore?
-  </label>
-  <input
-    className="form__input"
-    id="doneDate"
-    max="2018-02-18"
-    onChange={[Function]}
-    type="date"
-    value="2018-02-18"
-  />
-  <div
-    className="form__button-holder"
-  >
-    <button
-      className="form__button"
-      type="submit"
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="title"
+      label="What is the name of this chore?"
     >
-      Save Chore
-    </button>
-    <Link
-      className="form__button form__button--secondary"
-      replace={false}
-      to="/chores"
+      <input
+        className="form__input"
+        id="title"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="frequency"
+      label="How often do you need to do this chore?"
     >
-      Cancel
-    </Link>
-  </div>
-</form>
+      <div
+        className="form__row"
+      >
+        <span
+          className="form__row-item"
+        >
+          Every 
+        </span>
+        <input
+          className="form__row-item form__input"
+          id="frequency"
+          max="365"
+          maxLength="3"
+          min="0"
+          onChange={[Function]}
+          pattern="[0-9]*"
+          type="number"
+          value={7}
+        />
+        <span
+          className="form__row-item"
+        >
+          days
+        </span>
+      </div>
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="pointsPerTime"
+      label="How many points should this chore be worth?"
+    >
+      <p />
+      <input
+        className="form__input"
+        id="pointsPerTime"
+        max="250"
+        min="1"
+        onChange={[Function]}
+        pattern="[0-9]*"
+        type="number"
+        value={10}
+      />
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="lastDone"
+      label="When was the last time you did this chore?"
+    >
+      <input
+        className="form__input"
+        id="doneDate"
+        max="2018-02-18"
+        onChange={[Function]}
+        type="date"
+        value="2018-02-18"
+      />
+    </FormQuestion>
+    <div
+      className="form__button-holder"
+    >
+      <Link
+        className="form__button form__button--secondary"
+        replace={false}
+        to="/chores"
+      >
+        Cancel
+      </Link>
+      <button
+        className="form__button"
+        onClick={[Function]}
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
 `;
 
 exports[`Chore Form Renders an existing chore 1`] = `
-<form
-  className="form"
-  onSubmit={[Function]}
+<div
+  className="chore-form"
 >
-  <label
-    className="form__label"
-    htmlFor="title"
+  <form
+    className="form"
+    onSubmit={[Function]}
   >
-    What is the name of this chore?
-  </label>
-  <input
-    className="form__input"
-    id="title"
-    onChange={[Function]}
-    type="text"
-    value="Test Chore"
-  />
-  <label
-    className="form__label"
-    htmlFor="frequency"
-  >
-    How often do you need to do this chore?
-  </label>
-  <input
-    className="form__input"
-    id="frequency"
-    max="365"
-    min="0"
-    onChange={[Function]}
-    type="number"
-    value={1}
-  />
-  <label
-    className="form__label"
-    htmlFor="pointsPerTime"
-  >
-    How many points should this chore be worth? (1 - 200)
-  </label>
-  <input
-    className="form__input"
-    id="pointsPerTime"
-    max="250"
-    min="1"
-    onChange={[Function]}
-    type="number"
-    value={100}
-  />
-  <label
-    className="form__label"
-    htmlFor="doneDate"
-  >
-    When was the last time you did this chore?
-  </label>
-  <input
-    className="form__input"
-    id="doneDate"
-    max="2018-02-18"
-    onChange={[Function]}
-    type="date"
-    value="2018-02-18"
-  />
-  <div
-    className="form__button-holder"
-  >
-    <button
-      className="form__button"
-      type="submit"
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="title"
+      label="What is the name of this chore?"
     >
-      Save Chore
-    </button>
-    <Link
-      className="form__button form__button--secondary"
-      replace={false}
-      to="/chores"
+      <input
+        className="form__input"
+        id="title"
+        onChange={[Function]}
+        type="text"
+        value="Test Chore"
+      />
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="frequency"
+      label="How often do you need to do this chore?"
     >
-      Cancel
-    </Link>
-  </div>
-</form>
+      <div
+        className="form__row"
+      >
+        <span
+          className="form__row-item"
+        >
+          Every 
+        </span>
+        <input
+          className="form__row-item form__input"
+          id="frequency"
+          max="365"
+          maxLength="3"
+          min="0"
+          onChange={[Function]}
+          pattern="[0-9]*"
+          type="number"
+          value={1}
+        />
+        <span
+          className="form__row-item"
+        >
+          days
+        </span>
+      </div>
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="pointsPerTime"
+      label="How many points should this chore be worth?"
+    >
+      <p />
+      <input
+        className="form__input"
+        id="pointsPerTime"
+        max="250"
+        min="1"
+        onChange={[Function]}
+        pattern="[0-9]*"
+        type="number"
+        value={100}
+      />
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="lastDone"
+      label="When was the last time you did this chore?"
+    >
+      <input
+        className="form__input"
+        id="doneDate"
+        max="2018-02-18"
+        onChange={[Function]}
+        type="date"
+        value="2018-02-18"
+      />
+    </FormQuestion>
+    <div
+      className="form__button-holder"
+    >
+      <Link
+        className="form__button form__button--secondary"
+        replace={false}
+        to="/chores"
+      >
+        Cancel
+      </Link>
+      <button
+        className="form__button"
+        onClick={[Function]}
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
 `;

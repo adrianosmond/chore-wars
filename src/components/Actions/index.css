@@ -19,14 +19,16 @@
   position: absolute;
   top: -2.5rem;
   left: 50%;
-  margin-left: -1.25rem;
+  margin-left: -2rem;
   height: 2.5rem;
-  width: 2.5rem;
+  width: 4rem;
   border: 1px solid #eee;
   border-bottom: 0;
   padding: 0;
   background-color: #fff;
   font-size: 0;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
   outline-color: #ccc;
 }
 
@@ -34,7 +36,8 @@
   content: "";
   position: absolute;
   top: 12px;
-  left: 10px;
+  left: 50%;
+  margin-left: -10px;
   width: 0;
   height: 0;
   border-style: solid;
