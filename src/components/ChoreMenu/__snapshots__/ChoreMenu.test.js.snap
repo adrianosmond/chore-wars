@@ -15,7 +15,7 @@ exports[`Chore Menu Can be toggled 1`] = `
     </span>
   </button>
   <div
-    className="chore-menu__menu"
+    className="chore-menu__menu chore-menu__menu--visible"
   >
     <Link
       className="chore-menu__item"
@@ -48,5 +48,22 @@ exports[`Chore Menu Renders a new chore menu 1`] = `
       …
     </span>
   </button>
+  <div
+    className="chore-menu__menu"
+  >
+    <Link
+      className="chore-menu__item"
+      replace={false}
+      to="/chores/edit/test-chore"
+    >
+      Edit
+    </Link>
+    <button
+      className="chore-menu__item js-remove-chore"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+  </div>
 </div>
 `;
