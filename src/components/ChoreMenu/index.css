@@ -33,6 +33,13 @@
   right: 0.5rem;
   background-color: #fff;
   box-shadow: 0 0 10px #666;
+  transform: scale(0);
+  transform-origin: 100% 0;
+  transition: transform 0.1s;
+}
+
+.chore-menu__menu--visible {
+  transform: scale(1);
 }
 
 .chore-menu__menu::before {
