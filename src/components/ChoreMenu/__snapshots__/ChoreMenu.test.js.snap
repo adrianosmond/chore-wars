@@ -30,6 +30,13 @@ exports[`Chore Menu Can be toggled 1`] = `
     >
       Delete
     </button>
+    <Link
+      className="chore-menu__item"
+      replace={false}
+      to="/chores/log/test-chore"
+    >
+      I forgot to log this
+    </Link>
   </div>
 </div>
 `;
@@ -64,6 +71,13 @@ exports[`Chore Menu Renders a new chore menu 1`] = `
     >
       Delete
     </button>
+    <Link
+      className="chore-menu__item"
+      replace={false}
+      to="/chores/log/test-chore"
+    >
+      I forgot to log this
+    </Link>
   </div>
 </div>
 `;

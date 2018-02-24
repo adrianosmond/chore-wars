@@ -31,6 +31,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
         } else {
           database.ref(`users/${authUser.uid}`).once('value', (result) => {
             const game = result.val();
+            if (process.env.NODE_ENV === 'development') game.gameId = '-TEST';
             const { gameId } = game;
             this.props.setGame(game);
             this.props.loadChores(gameId);

@@ -1,5 +1,5 @@
 .chore-menu {
-
+  
 }
 
 .chore-menu__button {
@@ -31,6 +31,8 @@
   z-index: 2;
   top: 2.5rem;
   right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   background-color: #fff;
   box-shadow: 0 0 10px #666;
   transform: scale(0);
@@ -56,13 +58,17 @@
 
 .chore-menu__item {
   display: block;
+  width: 100%;
   padding: 0.5rem 1rem;
   font: inherit;
   border: 0;
   background-color: transparent;
   text-decoration: none;
   color: #000;
+  white-space: nowrap;
+  text-align: right;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 .chore-menu__item:hover,

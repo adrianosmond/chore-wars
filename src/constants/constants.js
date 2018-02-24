@@ -1,4 +1,8 @@
 const TIME_UNIT = 1000 * 60 * 60 * 24; // 1 day
+const MIN_CHORE_FREQUENCY = 1;
+const MAX_CHORE_FREQUENCY = 365;
+const MIN_CHORE_POINTS = 1;
+const MAX_CHORE_POINTS = 200;
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 
@@ -23,6 +27,10 @@ const ActionTypes = {
 
 export {
   TIME_UNIT,
+  MIN_CHORE_FREQUENCY,
+  MAX_CHORE_FREQUENCY,
+  MIN_CHORE_POINTS,
+  MAX_CHORE_POINTS,
   DATE_FORMAT,
   MAX_POINT_DIFFERENCE,
   ActionTypes,

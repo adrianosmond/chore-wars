@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit Chore Renders 1`] = `
+<ChoreForm
+  chore={
+    Object {
+      "frequency": 1,
+      "lastDone": 0,
+      "pointsPerTime": 100,
+      "title": "Test Chore",
+    }
+  }
+  currentTime={1518912000000}
+  onSubmit={[Function]}
+  questions={
+    Array [
+      "forgotToLog",
+    ]
+  }
+/>
+`;
+
+exports[`Edit Chore Should try to load the chores if they havent already been loaded 1`] = `""`;

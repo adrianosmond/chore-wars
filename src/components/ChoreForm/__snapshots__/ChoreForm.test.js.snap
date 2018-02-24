@@ -27,32 +27,65 @@ exports[`Chore Form Renders a new chore 1`] = `
       error={false}
       id="frequency"
       label="How often do you need to do this chore?"
+      noLabel={true}
     >
-      <div
-        className="form__row"
+      <label
+        className="form__option"
       >
-        <span
-          className="form__row-item"
+        <div
+          className="form__row"
         >
-          Every 
-        </span>
-        <input
-          className="form__row-item form__input"
-          id="frequency"
-          max="365"
-          maxLength="3"
-          min="0"
-          onChange={[Function]}
-          pattern="[0-9]*"
-          type="number"
-          value={7}
-        />
-        <span
-          className="form__row-item"
+          <input
+            checked={true}
+            name="frequency-type"
+            onChange={[Function]}
+            type="radio"
+            value="with-regularity"
+          />
+          <span
+            className="form__row-item"
+          >
+            Every 
+          </span>
+          <input
+            className="form__row-item form__input"
+            id="frequency"
+            max={365}
+            maxLength={3}
+            min={1}
+            onChange={[Function]}
+            onClick={[Function]}
+            pattern="[0-9]*"
+            type="number"
+            value={7}
+          />
+          <span
+            className="form__row-item"
+          >
+            days
+          </span>
+        </div>
+      </label>
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row form__row--inactive"
         >
-          days
-        </span>
-      </div>
+          <input
+            checked={false}
+            name="frequency-type"
+            onChange={[Function]}
+            type="radio"
+            value="as-and-when"
+          />
+          <span
+            className="form__row-item"
+          >
+            Whenever it needs doing
+          </span>
+        </div>
+      </label>
     </FormQuestion>
     <FormQuestion
       currentQuestionId="title"
@@ -64,8 +97,9 @@ exports[`Chore Form Renders a new chore 1`] = `
       <input
         className="form__input"
         id="pointsPerTime"
-        max="250"
-        min="1"
+        max={200}
+        maxLength={3}
+        min={1}
         onChange={[Function]}
         pattern="[0-9]*"
         type="number"
@@ -76,7 +110,7 @@ exports[`Chore Form Renders a new chore 1`] = `
       currentQuestionId="title"
       error={false}
       id="lastDone"
-      label="When was the last time you did this chore?"
+      label="When was the this chore was done?"
     >
       <input
         className="form__input"
@@ -85,6 +119,21 @@ exports[`Chore Form Renders a new chore 1`] = `
         onChange={[Function]}
         type="date"
         value="2018-02-18"
+      />
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="forgotToLog"
+      label="When did you do this chore?"
+    >
+      <input
+        className="form__input"
+        id="doneDate"
+        max="2018-02-18"
+        onChange={[Function]}
+        type="datetime-local"
+        value="2018-02-18T01:00"
       />
     </FormQuestion>
     <div
@@ -135,32 +184,65 @@ exports[`Chore Form Renders an existing chore 1`] = `
       error={false}
       id="frequency"
       label="How often do you need to do this chore?"
+      noLabel={true}
     >
-      <div
-        className="form__row"
+      <label
+        className="form__option"
       >
-        <span
-          className="form__row-item"
+        <div
+          className="form__row"
         >
-          Every 
-        </span>
-        <input
-          className="form__row-item form__input"
-          id="frequency"
-          max="365"
-          maxLength="3"
-          min="0"
-          onChange={[Function]}
-          pattern="[0-9]*"
-          type="number"
-          value={1}
-        />
-        <span
-          className="form__row-item"
+          <input
+            checked={true}
+            name="frequency-type"
+            onChange={[Function]}
+            type="radio"
+            value="with-regularity"
+          />
+          <span
+            className="form__row-item"
+          >
+            Every 
+          </span>
+          <input
+            className="form__row-item form__input"
+            id="frequency"
+            max={365}
+            maxLength={3}
+            min={1}
+            onChange={[Function]}
+            onClick={[Function]}
+            pattern="[0-9]*"
+            type="number"
+            value={1}
+          />
+          <span
+            className="form__row-item"
+          >
+            days
+          </span>
+        </div>
+      </label>
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row form__row--inactive"
         >
-          days
-        </span>
-      </div>
+          <input
+            checked={false}
+            name="frequency-type"
+            onChange={[Function]}
+            type="radio"
+            value="as-and-when"
+          />
+          <span
+            className="form__row-item"
+          >
+            Whenever it needs doing
+          </span>
+        </div>
+      </label>
     </FormQuestion>
     <FormQuestion
       currentQuestionId="title"
@@ -172,8 +254,9 @@ exports[`Chore Form Renders an existing chore 1`] = `
       <input
         className="form__input"
         id="pointsPerTime"
-        max="250"
-        min="1"
+        max={200}
+        maxLength={3}
+        min={1}
         onChange={[Function]}
         pattern="[0-9]*"
         type="number"
@@ -184,7 +267,7 @@ exports[`Chore Form Renders an existing chore 1`] = `
       currentQuestionId="title"
       error={false}
       id="lastDone"
-      label="When was the last time you did this chore?"
+      label="When was the this chore was done?"
     >
       <input
         className="form__input"
@@ -193,6 +276,21 @@ exports[`Chore Form Renders an existing chore 1`] = `
         onChange={[Function]}
         type="date"
         value="2018-02-18"
+      />
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="forgotToLog"
+      label="When did you do this chore?"
+    >
+      <input
+        className="form__input"
+        id="doneDate"
+        max="2018-02-18"
+        onChange={[Function]}
+        type="datetime-local"
+        value="2018-02-18T01:00"
       />
     </FormQuestion>
     <div
