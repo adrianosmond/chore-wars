@@ -3,7 +3,6 @@ import { ActionTypes } from '../constants/constants';
 
 export default function choresReducer(state = { }, action) {
   const newState = JSON.parse(JSON.stringify(state));
-  const now = new Date().getTime();
 
   switch (action.type) {
     case ActionTypes.addChore:
@@ -15,8 +14,8 @@ export default function choresReducer(state = { }, action) {
       };
 
     case ActionTypes.resetChoreDoneDate:
-      newState[action.slug].lastDone = now;
-      database.ref(`games/${action.game}/chores/${action.slug}/lastDone`).set(now);
+      newState[action.slug].lastDone = action.time;
+      database.ref(`games/${action.game}/chores/${action.slug}/lastDone`).set(action.time);
       return newState;
 
     case ActionTypes.blockChore:

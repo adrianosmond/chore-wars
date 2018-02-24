@@ -6,8 +6,7 @@ import { compose } from 'recompose';
 import withAuthorization from '../withAuthorization';
 import ChoreForm from '../ChoreForm';
 
-import { loadChores, updateChore } from '../../actions/choreActions';
-import { addPointsToUser } from '../../actions/pointActions';
+import { loadChores, completeChore } from '../../actions/choreActions';
 
 import * as routes from '../../constants/routes';
 import { computedChoreProperties } from '../../constants/utils';
@@ -49,9 +48,12 @@ class LogChoreCompletion extends Component {
   }
 
   onSubmit(chore, slug) {
-    const computedProperties = computedChoreProperties(this.state.chore, chore.lastDone);
-    this.props.updateChore(this.state.slug, chore, slug, this.props.game);
-    this.props.addPointsToUser(this.props.user, computedProperties.currentPoints, this.props.game);
+    const completedChore = {
+      ...this.state.chore,
+      slug,
+      ...computedChoreProperties(this.state.chore, chore.lastDone),
+    };
+    this.props.completeChore(completedChore, this.props.user, this.props.game, chore.lastDone);
     this.props.history.push(routes.CHORES);
   }
 
@@ -79,10 +81,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadChores: game => dispatch(loadChores(game)),
-  updateChore: (slug, newChore, newSlug, game) =>
-    dispatch(updateChore(slug, newChore, newSlug, game)),
-  addPointsToUser: (user, points, game) =>
-    dispatch(addPointsToUser(user, points, game)),
+  completeChore: (chore, user, game, time) =>
+    dispatch(completeChore(chore, user, game, time)),
 });
 
 export { LogChoreCompletion };

@@ -9,9 +9,9 @@
   margin-right: -1rem;
 }
 
-/* After 464px the width of the avatars won't grow any more
+/* After 27em (432px) the width of the avatars won't grow any more
    so the top coordinate of the bar becomes constant */
-@media screen and (min-width: 432px) {
+@media screen and (min-width: 27em) {
   .points-graph {
     top: calc(-5rem - 200px);
   }

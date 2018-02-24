@@ -186,7 +186,7 @@ describe('Chores Reducer', () => {
   });
 
   it('Should be able to mark a chore as done', () => {
-    const now = new Date().getTime();
+    const time = new Date().getTime();
     expect(choresReducer({
       'test-chore': {
         lastDone: 0,
@@ -198,10 +198,10 @@ describe('Chores Reducer', () => {
       type: ActionTypes.resetChoreDoneDate,
       slug: 'test-chore',
       game: 'testgame',
-      now,
+      time,
     })).toEqual({
       'test-chore': {
-        lastDone: now,
+        lastDone: time,
         frequency: 10,
         pointsPerTime: 100,
         title: 'Test Chore',
