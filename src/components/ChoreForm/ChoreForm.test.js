@@ -28,6 +28,10 @@ describe('Chore Form', () => {
     expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler} currentTime={choreTime} />)).toMatchSnapshot();
   });
 
+  it('Renders a specified question', () => {
+    expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler} currentTime={choreTime} questions={['forgotToLog']} />)).toMatchSnapshot();
+  });
+
   it('Handles button clicks', () => {
     const fakeEvent = { preventDefault: () => {} };
     const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler} currentTime={choreTime} />);
