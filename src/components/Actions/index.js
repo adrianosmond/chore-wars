@@ -33,6 +33,7 @@ class Actions extends Component {
         <button className="actions__toggle-button" onClick={this.toggleMenu.bind(this)}>Toggle menu</button>
         <div className="actions__actions">
           <Link to={routes.NEW_CHORE} className="form__button">Add a chore</Link>
+          <Link to={routes.NEW_CHAIN} className="form__button">Create a chain</Link>
           <button onClick={() => {
               this.props.undo();
               this.props.saveStatePostUndo(this.props.game);
