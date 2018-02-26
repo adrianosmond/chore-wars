@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import FlipMove from 'react-flip-move';
 
 import withAuthorization from '../withAuthorization';
+
+import { loadChores, makeChain } from '../../actions/choreActions';
+
 import { convertChoresToArray } from '../../constants/utils';
-import { loadChores } from '../../actions/choreActions';
+import * as routes from '../../constants/routes';
 
 class ChoreChain extends Component {
   constructor(props) {
@@ -42,10 +47,35 @@ class ChoreChain extends Component {
     });
   }
 
+  moveChoreUp(idx) {
+    const chain = this.state.chain.slice();
+    if (chain.length === 1 || idx === 0) return;
+    [chain[idx], chain[idx - 1]] = [chain[idx - 1], chain[idx]];
+    this.setState({
+      chain,
+    });
+  }
+
+  moveChoreDown(idx) {
+    const chain = this.state.chain.slice();
+    if (chain.length === 1 || idx === chain.length - 1) return;
+    [chain[idx], chain[idx + 1]] = [chain[idx + 1], chain[idx]];
+    this.setState({
+      chain,
+    });
+  }
+
+  saveChain() {
+    const { chain } = this.state;
+    this.props.makeChain(this.props.game, chain.map(chore => chore.slug));
+    this.props.history.push(routes.CHORES);
+  }
+
   render() {
     const { chores, chain } = this.state;
     if (!chores) return null;
     const choresArr = convertChoresToArray(chores).filter(chore => !chore.enables);
+    const canSave = chain.length > 1;
     return (
       <div>
         <h1>Chain</h1>
@@ -58,8 +88,18 @@ class ChoreChain extends Component {
         </ul>
         <p>Choose the order that the chores should be done in</p>
         <ul>
-          {chain.map(chore => <li key={chore.slug}>{chore.title}</li>)}
+          <FlipMove>
+          {chain.map((chore, idx) =>
+          <li key={chore.slug}>
+            {chore.title}
+            <button onClick={this.moveChoreUp.bind(this, idx)} disabled={idx === 0}>^</button>
+            <button onClick={this.moveChoreDown.bind(this, idx)} disabled={idx === chain.length - 1}>v</button>
+          </li>)}
+          </FlipMove>
         </ul>
+        { canSave ?
+        <button onClick={this.saveChain.bind(this)}>Save</button>
+        : null}
       </div>
     );
   }
@@ -72,6 +112,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadChores: game => dispatch(loadChores(game)),
+  makeChain: (game, chain) => dispatch(makeChain(game, chain)),
 });
 
 const authCondition = authUser => !!authUser;
@@ -81,5 +122,6 @@ export { ChoreChain };
 
 export default compose(
   withAuthorization(authCondition, isLoading),
+  withRouter,
   connect(mapStateToProps, mapDispatchToProps),
 )(ChoreChain);

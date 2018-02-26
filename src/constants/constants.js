@@ -16,6 +16,8 @@ const ActionTypes = {
   removeChore: 'REMOVE_CHORE',
   updateChore: 'UPDATE_CHORE',
   setChores: 'SET_CHORES',
+  makeChain: 'MAKE_CHAIN',
+  breakChain: 'BREAK_CHAIN',
   addPoints: 'ADD_POINTS',
   setPoints: 'SET_POINTS',
   setAuthUser: 'SET_AUTH_USER',

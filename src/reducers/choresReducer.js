@@ -52,6 +52,22 @@ export default function choresReducer(state = { }, action) {
 
       return newState;
 
+    case ActionTypes.makeChain:
+      action.chain.forEach((chore, idx) => {
+        const waiting = idx !== 0;
+        const enables = action.chain[(idx + 1) % action.chain.length];
+
+        newState[chore].isWaiting = waiting;
+        database.ref(`games/${action.game}/chores/${chore}/isWaiting`).set(waiting);
+
+        newState[chore].enables = enables;
+        database.ref(`games/${action.game}/chores/${chore}/enables`).set(enables);
+      });
+      return newState;
+
+    case ActionTypes.breakChain:
+      return newState;
+
     case ActionTypes.setChores:
       return {
         ...action.chores,

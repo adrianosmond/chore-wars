@@ -55,6 +55,22 @@ export function updateChore(slug, newChore, newSlug, game) {
   };
 }
 
+export function makeChain(game, chain) {
+  return {
+    type: ActionTypes.makeChain,
+    game,
+    chain,
+  };
+}
+
+export function breakChain(game, slug) {
+  return {
+    type: ActionTypes.breakChain,
+    game,
+    slug,
+  };
+}
+
 export function setChores(chores) {
   return {
     type: ActionTypes.setChores,
