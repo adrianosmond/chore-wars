@@ -1,14 +1,17 @@
 import { combineReducers } from 'redux';
 import undoable, { includeAction } from 'redux-undo';
+import { ActionTypes } from '../constants/constants';
 import choresReducer from './choresReducer';
 import pointsReducer from './pointsReducer';
 import sessionReducer from './sessionReducer';
 
 const undoableActions = [
-  'ADD_CHORE',
-  'RESET_CHORE_DONE_DATE',
-  'REMOVE_CHORE',
-  'UPDATE_CHORE',
+  ActionTypes.addChore,
+  ActionTypes.resetChoreDoneDate,
+  ActionTypes.removeChore,
+  ActionTypes.updateChore,
+  ActionTypes.makeChain,
+  ActionTypes.breakChain,
 ];
 
 export default combineReducers({
