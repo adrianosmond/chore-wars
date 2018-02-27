@@ -24,4 +24,33 @@ describe('Chore Menu', () => {
     removeButton.simulate('click');
     expect(mockRemoveChore).toHaveBeenCalled();
   });
+
+  it('Can render a menu with a break chain button', () => {
+    const chores = {
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: true,
+        enables: 'test-chore-2',
+      },
+      'test-chore-2': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 2',
+        isWaiting: false,
+        enables: 'test-chore',
+      },
+      'test-chore-3': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 3',
+      },
+    };
+    const breakChain = shallow(<ChoreMenu slug={'test-chore'} removeChore={mockRemoveChore} chores={chores} />);
+    expect(breakChain).toMatchSnapshot();
+  });
 });

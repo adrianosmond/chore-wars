@@ -41,6 +41,53 @@ exports[`Chore Menu Can be toggled 1`] = `
 </div>
 `;
 
+exports[`Chore Menu Can render a menu with a break chain button 1`] = `
+<div
+  className="chore-menu"
+>
+  <button
+    className="chore-menu__button js-toggle-menu"
+    onClick={[Function]}
+  >
+    <span
+      className="chore-menu__button-icon"
+    >
+      …
+    </span>
+  </button>
+  <div
+    className="chore-menu__menu"
+  >
+    <Link
+      className="chore-menu__item"
+      replace={false}
+      to="/chores/edit/test-chore"
+    >
+      Edit
+    </Link>
+    <button
+      className="chore-menu__item js-remove-chore"
+      onClick={[Function]}
+    >
+      Delete
+    </button>
+    <button
+      className="chore-menu__item js-break-chain"
+      onClick={[Function]}
+    >
+      Break chain
+    </button>
+    <Link
+      className="chore-menu__item"
+      replace={false}
+      to="/chores/log/test-chore"
+    >
+      I forgot to log this
+    </Link>
+  </div>
+</div>
+`;
+
 exports[`Chore Menu Renders a new chore menu 1`] = `
 <div
   className="chore-menu"
