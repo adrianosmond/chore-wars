@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import FlipMove from 'react-flip-move';
@@ -11,12 +11,28 @@ import { loadChores, makeChain } from '../../actions/choreActions';
 import { convertChoresToArray } from '../../constants/utils';
 import * as routes from '../../constants/routes';
 
+import './index.css';
+
+import checkIcon from '../../images/check.svg';
+
+const filterAndSortChores = (chores) => {
+  if (!chores) return null;
+  return convertChoresToArray(chores)
+    .sort((a, b) => {
+      if (a.slug < b.slug) return -1;
+      if (b.slug < a.slug) return 1;
+      return 0;
+    })
+    .filter(chore => !chore.enables);
+};
+
 class ChoreChain extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chores: props.chores,
+      chores: filterAndSortChores(props.chores),
       chain: [],
+      stage: 'selection',
     };
   }
 
@@ -29,7 +45,7 @@ class ChoreChain extends Component {
   componentWillReceiveProps(newProps) {
     if (this.props.chores !== newProps.chores) {
       this.setState({
-        chores: newProps.chores,
+        chores: filterAndSortChores(newProps.chores),
       });
     }
   }
@@ -72,34 +88,61 @@ class ChoreChain extends Component {
   }
 
   render() {
-    const { chores, chain } = this.state;
+    const { chores, chain, stage } = this.state;
     if (!chores) return null;
-    const choresArr = convertChoresToArray(chores).filter(chore => !chore.enables);
     const canSave = chain.length > 1;
     return (
-      <div>
-        <h1>Chain</h1>
-        <p>Select all the chores that are part of this chain</p>
-        <ul>
-          {choresArr.map(chore =>
-          <li key={chore.slug}>
-            <label><input type="checkbox" name={chore.slug} onChange={this.chooseChore.bind(this, chore)} />{chore.title}</label>
-          </li>)}
-        </ul>
-        <p>Choose the order that the chores should be done in</p>
-        <ul>
-          <FlipMove>
-          {chain.map((chore, idx) =>
-          <li key={chore.slug}>
-            {chore.title}
-            <button onClick={this.moveChoreUp.bind(this, idx)} disabled={idx === 0}>^</button>
-            <button onClick={this.moveChoreDown.bind(this, idx)} disabled={idx === chain.length - 1}>v</button>
-          </li>)}
-          </FlipMove>
-        </ul>
-        { canSave ?
-        <button onClick={this.saveChain.bind(this)}>Save</button>
-        : null}
+      <div className="chore-chain">
+        <h1 className="chore-chain__title">Create a Chain</h1>
+        { stage === 'selection' ?
+        <div className="chore-chain__section">
+          <p>Select all the chores that are part of this chain</p>
+          <ul className="chore-chain__options">
+            {chores.map(chore =>
+            <li key={chore.slug}>
+              <label className="chore-chain__option">
+                <input className="chore-chain__checkbox" type="checkbox" name={chore.slug}
+                  onChange={this.chooseChore.bind(this, chore)}
+                  checked={chain.findIndex(item => item.slug === chore.slug) >= 0} />
+                <span className="chore-chain__chore-title">{chore.title}</span>
+                <div className="chore-chain__status">
+                  <img className="chore-chain__status-icon" src={checkIcon} alt="Include chore in chain" />
+                </div>
+              </label>
+            </li>)}
+          </ul>
+          <div className="form__button-holder">
+            <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
+            <button disabled={!canSave} className="form__button"
+              onClick={() => this.setState({ stage: 'sorting' })}>Next</button>
+          </div>
+        </div>
+        : null }
+        { stage === 'sorting' ?
+        <div className="chore-chain__section">
+          <p>Choose the order that the chores should be done in</p>
+          <ul className="chore-chain__options">
+            <FlipMove>
+            {chain.map((chore, idx) =>
+            <li key={chore.slug} className="chore-chain__option">
+              <span className="chore-chain__chore-title">{chore.title}</span>
+              <div className="chore-chain__sort-buttons">
+                <button className="chore-chain__sort-button" onClick={this.moveChoreUp.bind(this, idx)}
+                  disabled={idx === 0}>&uarr;</button>
+                <button className="chore-chain__sort-button" onClick={this.moveChoreDown.bind(this, idx)}
+                  disabled={idx === chain.length - 1}>&darr;</button>
+              </div>
+            </li>)}
+            </FlipMove>
+          </ul>
+          <div className="form__button-holder">
+            <button className="form__button form__button--secondary"
+              onClick={() => this.setState({ stage: 'selection' })}>Back</button>
+            <button disabled={!canSave} className="form__button"
+              onClick={this.saveChain.bind(this)}>Save</button>
+          </div>
+        </div>
+        : null }
       </div>
     );
   }
