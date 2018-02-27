@@ -7,7 +7,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
     "fecha": "^2.3.2",
-    "firebase": "^4.10.0",
+    "firebase": "^4.10.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-flip-move": "^3.0.1",
