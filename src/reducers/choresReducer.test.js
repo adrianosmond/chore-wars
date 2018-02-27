@@ -256,4 +256,104 @@ describe('Chores Reducer', () => {
       },
     });
   });
+
+  it('Should be able to make a chain', () => {
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+      },
+      'test-chore-2': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 2',
+      },
+      'test-chore-3': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 3',
+      },
+    }, {
+      type: ActionTypes.makeChain,
+      game: 'testgame',
+      chain: ['test-chore-2', 'test-chore'],
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: true,
+        enables: 'test-chore-2',
+      },
+      'test-chore-2': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 2',
+        isWaiting: false,
+        enables: 'test-chore',
+      },
+      'test-chore-3': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 3',
+      },
+    });
+  });
+
+  it('Should be able to break a chain', () => {
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: true,
+        enables: 'test-chore-2',
+      },
+      'test-chore-2': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 2',
+        isWaiting: false,
+        enables: 'test-chore',
+      },
+      'test-chore-3': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 3',
+      },
+    }, {
+      type: ActionTypes.breakChain,
+      game: 'testgame',
+      slug: 'test-chore',
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+      },
+      'test-chore-2': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 2',
+      },
+      'test-chore-3': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 3',
+      },
+    });
+  });
 });
