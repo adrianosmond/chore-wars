@@ -1,7 +1,7 @@
 .points-graph {
   position: sticky;
   z-index: 3;
-  top: calc(-6rem - ((100vw - 4rem)/2));
+  top: calc(-8rem - ((100vw - 4rem)/2));
   background-color: #fff;
   padding: 1rem 1rem 2rem;
   margin-top: -1rem;
@@ -13,7 +13,7 @@
    so the top coordinate of the bar becomes constant */
 @media screen and (min-width: 27em) {
   .points-graph {
-    top: calc(-5rem - 200px);
+    top: calc(-7rem - 200px);
   }
 }
 
@@ -27,6 +27,7 @@
   display: flex;
   justify-content: space-around;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .points-graph__person {
@@ -108,7 +109,7 @@
   .points-graph {
   /* In the 2 col layout, the width of the avatars grows
      so the top coordinate of the bar becomes thicker */
-    top: calc(-6.5rem - 200px);
+    top: calc(-8.5rem - 200px);
     padding-top: 2rem;
   }
 
