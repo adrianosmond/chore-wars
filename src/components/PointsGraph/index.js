@@ -1,4 +1,5 @@
 import React from 'react';
+import Avatar from 'avataaars';
 import { connect } from 'react-redux';
 import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
 import './index.css';
@@ -16,7 +17,9 @@ const PointsGraph = (props) => {
           const player = points[playerId];
           return (
             <div className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
-              <img src={`/images/avatars/${playerId}.svg`} className="points-graph__person-picture" alt={''} />
+              <div className="points-graph__person-picture">
+                <Avatar style={{ width: '100%', height: '100%' }} { ...player.avatar } />
+              </div>
               <div className="points-graph__person-name">{player.name}</div>
             </div>
           );
@@ -39,6 +42,7 @@ const PointsGraph = (props) => {
 
 const mapStateToProps = state => ({
   points: state.points.present,
+  game: state.session.game,
 });
 
 export { PointsGraph };

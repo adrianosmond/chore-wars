@@ -1,4 +1,4 @@
-import { ActionTypes } from '../constants/constants';
+import { ActionTypes } from '../constants/constants';
 
 export function setAuthUser(authUser) {
   return {
