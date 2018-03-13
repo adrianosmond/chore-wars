@@ -1,5 +1,7 @@
 .chore-chain {
-
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .chore-chain__title {

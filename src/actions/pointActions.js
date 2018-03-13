@@ -20,7 +20,7 @@ export function setPoints(points) {
 
 export function loadPoints(game) {
   return (dispatch) => {
-    database.ref(`games/${game}/points`).once('value', (result) => {
+    database.ref(`games/${game}/points`).on('value', (result) => {
       dispatch(setPoints(result.val()));
       dispatch(setPointsLoaded(true));
     });

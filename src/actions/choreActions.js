@@ -80,7 +80,7 @@ export function setChores(chores) {
 
 export function loadChores(game) {
   return (dispatch) => {
-    database.ref(`games/${game}/chores`).once('value', (result) => {
+    database.ref(`games/${game}/chores`).on('value', (result) => {
       const chores = result.val() || {};
       dispatch(setChores(chores));
       dispatch(setChoresLoaded(true));
