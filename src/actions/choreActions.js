@@ -37,14 +37,6 @@ export function unblockChore(game, slug) {
   };
 }
 
-export function removeChore(game, slug) {
-  return {
-    type: ActionTypes.removeChore,
-    game,
-    slug,
-  };
-}
-
 export function updateChore(slug, newChore, newSlug, game) {
   return {
     type: ActionTypes.updateChore,
@@ -68,6 +60,18 @@ export function breakChain(game, slug) {
     type: ActionTypes.breakChain,
     game,
     slug,
+  };
+}
+
+
+export function removeChore(game, slug) {
+  return (dispatch) => {
+    dispatch(breakChain(game, slug));
+    dispatch({
+      type: ActionTypes.removeChore,
+      game,
+      slug,
+    });
   };
 }
 
