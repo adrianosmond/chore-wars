@@ -33,7 +33,8 @@ class ChoreMenu extends Component {
   }
 
   render() {
-    const canBreak = this.props.chores && this.props.chores[this.props.slug].enables;
+    if (!this.props.chores || !this.props.chores[this.props.slug]) return null;
+    const canBreak = this.props.chores[this.props.slug].enables;
     return (
       <div className="chore-menu">
         <button className="chore-menu__button js-toggle-menu" onClick={this.toggleMenu.bind(this)}>
