@@ -110,7 +110,7 @@ exports[`Chore Form Renders a new chore 1`] = `
       currentQuestionId="title"
       error={false}
       id="lastDone"
-      label="When was the this chore was done?"
+      label="When was this chore last done?"
     >
       <input
         className="form__input"
@@ -267,7 +267,7 @@ exports[`Chore Form Renders a specified question 1`] = `
       currentQuestionId="forgotToLog"
       error={false}
       id="lastDone"
-      label="When was the this chore was done?"
+      label="When was this chore last done?"
     >
       <input
         className="form__input"
@@ -424,7 +424,7 @@ exports[`Chore Form Renders an existing chore 1`] = `
       currentQuestionId="title"
       error={false}
       id="lastDone"
-      label="When was the this chore was done?"
+      label="When was this chore last done?"
     >
       <input
         className="form__input"
