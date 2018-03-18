@@ -188,6 +188,476 @@ exports[`PointsGraph Renders a points graph with a difference of > MAX with p2 w
 </div>
 `;
 
+exports[`PointsGraph Renders a points graph with p1 being owed > 1 1`] = `
+<div
+  className="points-graph"
+>
+  <h1
+    className="points-graph__title"
+  >
+    Chore Wars
+  </h1>
+  <div
+    className="points-graph__people"
+  >
+    <div
+      className="points-graph__person points-graph__person--1"
+      key="player1"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+        <PopUpMenu
+          extraClasses="points-graph__paid-button points-graph__paid-button--1"
+          options={
+            Array [
+              Object {
+                "onClick": [Function],
+                "text": "Player 1 was paid back",
+                "type": "button",
+              },
+            ]
+          }
+          side="left"
+        >
+          <span
+            aria-labelledby="Player 1 is owed"
+            className="points-graph__person-owed"
+            role="img"
+          >
+            🌟
+          </span>
+          <span
+            className="points-graph__owed-multiple"
+          >
+            2
+          </span>
+        </PopUpMenu>
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 1
+      </div>
+    </div>
+    <div
+      className="points-graph__person points-graph__person--2"
+      key="player2"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 2
+      </div>
+    </div>
+  </div>
+  <div
+    className="points-graph__graph"
+  >
+    <div
+      className="points-graph__bar points-graph__bar--1 points-graph__bar--winning"
+      key="player1"
+      style={
+        Object {
+          "width": "50%",
+        }
+      }
+    >
+      <div
+        className="points-graph__difference points-graph__difference--1 points-graph__difference--winning"
+        onClick={[Function]}
+      >
+        <Confetti
+          active={false}
+        />
+        600
+      </div>
+    </div>
+    <div
+      className="points-graph__bar points-graph__bar--2"
+      key="player2"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`PointsGraph Renders a points graph with p1 being owed 1`] = `
+<div
+  className="points-graph"
+>
+  <h1
+    className="points-graph__title"
+  >
+    Chore Wars
+  </h1>
+  <div
+    className="points-graph__people"
+  >
+    <div
+      className="points-graph__person points-graph__person--1"
+      key="player1"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+        <PopUpMenu
+          extraClasses="points-graph__paid-button points-graph__paid-button--1"
+          options={
+            Array [
+              Object {
+                "onClick": [Function],
+                "text": "Player 1 was paid back",
+                "type": "button",
+              },
+            ]
+          }
+          side="left"
+        >
+          <span
+            aria-labelledby="Player 1 is owed"
+            className="points-graph__person-owed"
+            role="img"
+          >
+            🌟
+          </span>
+        </PopUpMenu>
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 1
+      </div>
+    </div>
+    <div
+      className="points-graph__person points-graph__person--2"
+      key="player2"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 2
+      </div>
+    </div>
+  </div>
+  <div
+    className="points-graph__graph"
+  >
+    <div
+      className="points-graph__bar points-graph__bar--1 points-graph__bar--winning"
+      key="player1"
+      style={
+        Object {
+          "width": "50%",
+        }
+      }
+    >
+      <div
+        className="points-graph__difference points-graph__difference--1 points-graph__difference--winning"
+        onClick={[Function]}
+      >
+        <Confetti
+          active={false}
+        />
+        600
+      </div>
+    </div>
+    <div
+      className="points-graph__bar points-graph__bar--2"
+      key="player2"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
+  </div>
+</div>
+`;
+
+exports[`PointsGraph Renders a points graph with p2 being owed > 1 1`] = `
+<div
+  className="points-graph"
+>
+  <h1
+    className="points-graph__title"
+  >
+    Chore Wars
+  </h1>
+  <div
+    className="points-graph__people"
+  >
+    <div
+      className="points-graph__person points-graph__person--1"
+      key="player1"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 1
+      </div>
+    </div>
+    <div
+      className="points-graph__person points-graph__person--2"
+      key="player2"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+        <PopUpMenu
+          extraClasses="points-graph__paid-button points-graph__paid-button--2"
+          options={
+            Array [
+              Object {
+                "onClick": [Function],
+                "text": "Player 2 was paid back",
+                "type": "button",
+              },
+            ]
+          }
+          side="right"
+        >
+          <span
+            aria-labelledby="Player 2 is owed"
+            className="points-graph__person-owed"
+            role="img"
+          >
+            🌟
+          </span>
+          <span
+            className="points-graph__owed-multiple"
+          >
+            2
+          </span>
+        </PopUpMenu>
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 2
+      </div>
+    </div>
+  </div>
+  <div
+    className="points-graph__graph"
+  >
+    <div
+      className="points-graph__bar points-graph__bar--1"
+      key="player1"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
+    <div
+      className="points-graph__bar points-graph__bar--2 points-graph__bar--winning"
+      key="player2"
+      style={
+        Object {
+          "width": "50%",
+        }
+      }
+    >
+      <div
+        className="points-graph__difference points-graph__difference--2 points-graph__difference--winning"
+        onClick={[Function]}
+      >
+        <Confetti
+          active={false}
+        />
+        600
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PointsGraph Renders a points graph with p2 being owed 1`] = `
+<div
+  className="points-graph"
+>
+  <h1
+    className="points-graph__title"
+  >
+    Chore Wars
+  </h1>
+  <div
+    className="points-graph__people"
+  >
+    <div
+      className="points-graph__person points-graph__person--1"
+      key="player1"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 1
+      </div>
+    </div>
+    <div
+      className="points-graph__person points-graph__person--2"
+      key="player2"
+    >
+      <div
+        className="points-graph__person-picture"
+      >
+        <AvatarComponent
+          style={
+            Object {
+              "display": "block",
+              "height": "100%",
+              "width": "100%",
+            }
+          }
+        />
+        <PopUpMenu
+          extraClasses="points-graph__paid-button points-graph__paid-button--2"
+          options={
+            Array [
+              Object {
+                "onClick": [Function],
+                "text": "Player 2 was paid back",
+                "type": "button",
+              },
+            ]
+          }
+          side="right"
+        >
+          <span
+            aria-labelledby="Player 2 is owed"
+            className="points-graph__person-owed"
+            role="img"
+          >
+            🌟
+          </span>
+        </PopUpMenu>
+      </div>
+      <div
+        className="points-graph__person-name"
+      >
+        Player 2
+      </div>
+    </div>
+  </div>
+  <div
+    className="points-graph__graph"
+  >
+    <div
+      className="points-graph__bar points-graph__bar--1"
+      key="player1"
+      style={
+        Object {
+          "width": "0%",
+        }
+      }
+    />
+    <div
+      className="points-graph__bar points-graph__bar--2 points-graph__bar--winning"
+      key="player2"
+      style={
+        Object {
+          "width": "50%",
+        }
+      }
+    >
+      <div
+        className="points-graph__difference points-graph__difference--2 points-graph__difference--winning"
+        onClick={[Function]}
+      >
+        <Confetti
+          active={false}
+        />
+        600
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`PointsGraph Renders a points graph with player 1 winning 1`] = `
 <div
   className="points-graph"

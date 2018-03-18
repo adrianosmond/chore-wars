@@ -10,10 +10,12 @@ describe('PointsGraph', () => {
         player1: {
           name: 'Player 1',
           points: 100,
+          isOwed: 0,
         },
         player2: {
           name: 'Player 2',
           points: 100,
+          isOwed: 0,
         },
       },
     };
@@ -26,10 +28,12 @@ describe('PointsGraph', () => {
         player1: {
           name: 'Player 1',
           points: 200,
+          isOwed: 0,
         },
         player2: {
           name: 'Player 2',
           points: 100,
+          isOwed: 0,
         },
       },
     };
@@ -42,10 +46,12 @@ describe('PointsGraph', () => {
         player1: {
           name: 'Player 1',
           points: 100,
+          isOwed: 0,
         },
         player2: {
           name: 'Player 2',
           points: 200,
+          isOwed: 0,
         },
       },
     };
@@ -59,10 +65,12 @@ describe('PointsGraph', () => {
         player1: {
           name: 'Player 1',
           points: p2Score + MAX_POINT_DIFFERENCE + 100,
+          isOwed: 0,
         },
         player2: {
           name: 'Player 2',
           points: p2Score,
+          isOwed: 0,
         },
       },
     };
@@ -76,10 +84,88 @@ describe('PointsGraph', () => {
         player1: {
           name: 'Player 1',
           points: p1Score,
+          isOwed: 0,
         },
         player2: {
           name: 'Player 2',
           points: p1Score + MAX_POINT_DIFFERENCE + 100,
+          isOwed: 0,
+        },
+      },
+    };
+    expect(shallow(<PointsGraph { ...pointsProps } />)).toMatchSnapshot();
+  });
+
+  it('Renders a points graph with p1 being owed', () => {
+    const p2Score = 100;
+    const pointsProps = {
+      points: {
+        player1: {
+          name: 'Player 1',
+          points: p2Score + MAX_POINT_DIFFERENCE + 100,
+          isOwed: 1,
+        },
+        player2: {
+          name: 'Player 2',
+          points: p2Score,
+          isOwed: 0,
+        },
+      },
+    };
+    expect(shallow(<PointsGraph { ...pointsProps } />)).toMatchSnapshot();
+  });
+
+  it('Renders a points graph with p2 being owed', () => {
+    const p1Score = 100;
+    const pointsProps = {
+      points: {
+        player1: {
+          name: 'Player 1',
+          points: p1Score,
+          isOwed: 0,
+        },
+        player2: {
+          name: 'Player 2',
+          points: p1Score + MAX_POINT_DIFFERENCE + 100,
+          isOwed: 1,
+        },
+      },
+    };
+    expect(shallow(<PointsGraph { ...pointsProps } />)).toMatchSnapshot();
+  });
+
+  it('Renders a points graph with p1 being owed > 1', () => {
+    const p2Score = 100;
+    const pointsProps = {
+      points: {
+        player1: {
+          name: 'Player 1',
+          points: p2Score + MAX_POINT_DIFFERENCE + 100,
+          isOwed: 2,
+        },
+        player2: {
+          name: 'Player 2',
+          points: p2Score,
+          isOwed: 0,
+        },
+      },
+    };
+    expect(shallow(<PointsGraph { ...pointsProps } />)).toMatchSnapshot();
+  });
+
+  it('Renders a points graph with p2 being owed > 1', () => {
+    const p1Score = 100;
+    const pointsProps = {
+      points: {
+        player1: {
+          name: 'Player 1',
+          points: p1Score,
+          isOwed: 0,
+        },
+        player2: {
+          name: 'Player 2',
+          points: p1Score + MAX_POINT_DIFFERENCE + 100,
+          isOwed: 2,
         },
       },
     };
