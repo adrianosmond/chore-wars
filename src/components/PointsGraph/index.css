@@ -47,12 +47,32 @@
   margin-bottom: 0.5rem;
 }
 
-.points-graph__person-owed {
+.points-graph__paid-button {
   position: absolute;
   bottom: 2%;
+}
+
+.points-graph__paid-button--1 {
+  left: 20%;
+}
+
+.points-graph__paid-button--2 {
   right: 20%;
+}
+
+.points-graph__person-owed {
   font-size: 2rem;
   line-height: 1;
+}
+
+.points-graph__owed-multiple {
+  position: absolute;
+  width: 2rem;
+  top: 0;
+  left: 0;
+  line-height: 1.75rem;
+  font-size: 0.5rem;
+  text-align: center;
 }
 
 .points-graph__graph {

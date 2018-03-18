@@ -52,13 +52,38 @@ exports[`Chore Renders a basic chore 1`] = `
       src="check.svg"
     />
   </button>
-  <div
-    className="chore__extra-options"
+  <PopUpMenu
+    extraClasses="chore__extra-options"
+    options={
+      Array [
+        Object {
+          "text": "Edit",
+          "to": "/chores/edit/test-chore",
+          "type": "link",
+        },
+        Object {
+          "onClick": [Function],
+          "text": "Delete",
+          "type": "button",
+        },
+        Object {
+          "text": "I fogot to log this",
+          "to": "/chores/log/test-chore",
+          "type": "link",
+        },
+      ]
+    }
   >
-    <Connect(ChoreMenu)
-      slug="test-chore"
-    />
-  </div>
+    <div
+      className="chore__extra-icon"
+    >
+      <span
+        className="chore__extra-icon-text"
+      >
+        …
+      </span>
+    </div>
+  </PopUpMenu>
 </div>
 `;
 
@@ -106,12 +131,37 @@ exports[`Chore Renders a chore with frequency 0 1`] = `
       src="check.svg"
     />
   </button>
-  <div
-    className="chore__extra-options"
+  <PopUpMenu
+    extraClasses="chore__extra-options"
+    options={
+      Array [
+        Object {
+          "text": "Edit",
+          "to": "/chores/edit/test-chore",
+          "type": "link",
+        },
+        Object {
+          "onClick": [Function],
+          "text": "Delete",
+          "type": "button",
+        },
+        Object {
+          "text": "I fogot to log this",
+          "to": "/chores/log/test-chore",
+          "type": "link",
+        },
+      ]
+    }
   >
-    <Connect(ChoreMenu)
-      slug="test-chore"
-    />
-  </div>
+    <div
+      className="chore__extra-icon"
+    >
+      <span
+        className="chore__extra-icon-text"
+      >
+        …
+      </span>
+    </div>
+  </PopUpMenu>
 </div>
 `;

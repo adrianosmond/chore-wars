@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popup Menu Can be toggled 1`] = `
+<div
+  className="pop-up-menu undefined"
+>
+  <button
+    className="pop-up-menu__button"
+    data-test="toggle-menu"
+    onClick={[Function]}
+  >
+    TRIGGER
+  </button>
+  <div
+    className="pop-up-menu__menu pop-up-menu__menu--right pop-up-menu__menu--visible"
+  >
+    <Link
+      className="pop-up-menu__item"
+      key="0"
+      replace={false}
+      to="/link/address"
+    >
+      link
+    </Link>
+    <button
+      className="pop-up-menu__item"
+      key="1"
+      onClick={[Function]}
+    >
+      link
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Popup Menu Renders a new chore menu 1`] = `
+<div
+  className="pop-up-menu undefined"
+>
+  <button
+    className="pop-up-menu__button"
+    data-test="toggle-menu"
+    onClick={[Function]}
+  >
+    TRIGGER
+  </button>
+  <div
+    className="pop-up-menu__menu pop-up-menu__menu--right"
+  >
+    <Link
+      className="pop-up-menu__item"
+      key="0"
+      replace={false}
+      to="/link/address"
+    >
+      link
+    </Link>
+    <button
+      className="pop-up-menu__item"
+      key="1"
+      onClick={[Function]}
+    >
+      link
+    </button>
+  </div>
+</div>
+`;

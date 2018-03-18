@@ -19,10 +19,10 @@ export function claimPrize(user, game) {
   };
 }
 
-export function paidDebt(opponent, game) {
+export function paidDebt(user, game) {
   return {
     type: ActionTypes.paidDebt,
-    opponent,
+    user,
     game,
   };
 }

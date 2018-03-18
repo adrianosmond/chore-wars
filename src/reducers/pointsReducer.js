@@ -3,12 +3,7 @@ import { ActionTypes, MAX_POINT_DIFFERENCE } from '../constants/constants';
 
 export default function pointsReducer(state = { }, action) {
   const newState = JSON.parse(JSON.stringify(state));
-  const {
-    points,
-    user,
-    game,
-    opponent,
-  } = action;
+  const { points, user, game } = action;
 
   switch (action.type) {
     case ActionTypes.addPoints:
@@ -28,9 +23,9 @@ export default function pointsReducer(state = { }, action) {
       return newState;
 
     case ActionTypes.paidDebt:
-      newState[opponent].isOwed -= 1;
+      newState[user].isOwed -= 1;
 
-      database.ref(`games/${game}/points/${opponent}`).set(newState[opponent]);
+      database.ref(`games/${game}/points/${user}/isOwed`).set(newState[user].isOwed);
 
       return newState;
 

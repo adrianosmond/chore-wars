@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Avatar from 'avataaars';
 import Confetti from 'react-dom-confetti';
 
-import { connect } from 'react-redux';
+import PopUpMenu from '../PopUpMenu';
 
-import { claimPrize } from '../../actions/pointActions';
+import { claimPrize, paidDebt } from '../../actions/pointActions';
 
 import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
 import './index.css';
@@ -25,7 +26,16 @@ const PointsGraph = (props) => {
               <div className="points-graph__person-picture">
                 <Avatar style={{ width: '100%', height: '100%', display: 'block' }} { ...player.avatar } />
                 { player.isOwed > 0 ?
-                <span className="points-graph__person-owed" role="img" aria-labelledby={`${player.name} is owed`}>🌟</span>
+                <PopUpMenu extraClasses={`points-graph__paid-button points-graph__paid-button--${idx + 1}`}
+                  side={ idx === 0 ? 'left' : 'right' }
+                  options={[{
+                    type: 'button',
+                    text: `${player.name} was paid back`,
+                    onClick: () => props.paidDebt(playerId, props.gameId),
+                  }]}>
+                  <span className="points-graph__person-owed" role="img" aria-labelledby={`${player.name} is owed`}>🌟</span>
+                  { player.isOwed > 1 ? <span className="points-graph__owed-multiple">{player.isOwed}</span> : null }
+                </PopUpMenu>
                 : null}
               </div>
               <div className="points-graph__person-name">{player.name}</div>
@@ -63,7 +73,8 @@ const mapStateToProps = state => ({
 });
 
 const matchDispatchToProps = dispatch => ({
-  claimPrize: (game, player) => dispatch(claimPrize(game, player)),
+  claimPrize: (player, game) => dispatch(claimPrize(player, game)),
+  paidDebt: (player, game) => dispatch(paidDebt(player, game)),
 });
 
 export { PointsGraph };
