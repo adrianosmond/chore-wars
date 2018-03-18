@@ -11,6 +11,22 @@ export function addPointsToUser(user, points, game) {
   };
 }
 
+export function claimPrize(user, game) {
+  return {
+    type: ActionTypes.claimPrize,
+    user,
+    game,
+  };
+}
+
+export function paidDebt(opponent, game) {
+  return {
+    type: ActionTypes.paidDebt,
+    opponent,
+    game,
+  };
+}
+
 export function setPoints(points) {
   return {
     type: ActionTypes.setPoints,

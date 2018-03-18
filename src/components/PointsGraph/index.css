@@ -68,9 +68,17 @@
   transition: width 1s;
 }
 
+.points-graph__bar--winning {
+  background-image: linear-gradient(270deg, tomato 0, gold 100%);
+}
+
 .points-graph__bar--2 {
   left: 50%;
   right: auto;
+}
+
+.points-graph__bar--2.points-graph__bar--winning {
+  background-image: linear-gradient(90deg, tomato 0, gold 100%);
 }
 
 .points-graph__difference {
@@ -81,6 +89,8 @@
   border-radius: 0.25rem;
   background-color: tomato;
   color: #fff;
+  transform: translateX(var(--points-graph-difference-x-transform));
+  transform-origin: 50% 100%;
 }
 
 .points-graph__difference::after {
@@ -97,13 +107,47 @@
 }
 
 .points-graph__difference--1 {
-  transform: translateX(-50%);
+  --points-graph-difference-x-transform: -50%;
   left: 1px;
 }
 
 .points-graph__difference--2 {
-  transform: translateX(50%);
+  --points-graph-difference-x-transform: 50%;
   right: 1px;
+}
+
+.points-graph__difference--winning {
+  animation: jump 2s infinite;
+  background-color: gold;
+  color: #000;
+}
+
+.points-graph__difference--winning::after {
+  border-color: gold transparent transparent transparent;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateX(var(--points-graph-difference-x-transform));
+  }
+  15% {
+    transform: translateX(var(--points-graph-difference-x-transform)) rotate(-10deg) translateY(-20%);
+  }
+  30% {
+    transform: translateX(var(--points-graph-difference-x-transform));
+  }
+  45% {
+    transform: translateX(var(--points-graph-difference-x-transform)) translateY(-20%);
+  }
+  60% {
+    transform: translateX(var(--points-graph-difference-x-transform));
+  }
+  75% {
+    transform: translateX(var(--points-graph-difference-x-transform)) rotate(10deg) translateY(-20%);
+  }
+  90% {
+    transform: translateX(var(--points-graph-difference-x-transform));
+  }
 }
 
 @media screen and (min-width: 37.5em) {

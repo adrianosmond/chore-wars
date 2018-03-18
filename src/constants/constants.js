@@ -19,6 +19,8 @@ const ActionTypes = {
   makeChain: 'MAKE_CHAIN',
   breakChain: 'BREAK_CHAIN',
   addPoints: 'ADD_POINTS',
+  claimPrize: 'CLAIM_PRIZE',
+  paidDebt: 'PAID_DEBT',
   setPoints: 'SET_POINTS',
   setAuthUser: 'SET_AUTH_USER',
   setGame: 'SET_GAME',

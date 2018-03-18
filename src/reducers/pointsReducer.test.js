@@ -1,5 +1,5 @@
 import pointsReducer from './pointsReducer';
-import { ActionTypes } from '../constants/constants';
+import { ActionTypes, MAX_CHORE_POINTS } from '../constants/constants';
 
 describe('Points Reducer', () => {
   it('Should return initial state', () => {
@@ -37,6 +37,46 @@ describe('Points Reducer', () => {
       test1: {
         name: 'Test 1',
         points: 200,
+      },
+    });
+  });
+  
+  it('Should be able to claim a prize', () => {
+    expect(pointsReducer({
+      test1: {
+        name: 'Test 1',
+        points: 100 + MAX_CHORE_POINTS,
+        isOwed: 0,
+      },
+    }, {
+      type: ActionTypes.claimPrize,
+      user: 'test1',
+      game: 'testgame',
+    })).toEqual({
+      test1: {
+        name: 'Test 1',
+        points: 100,
+        isOwed: 1,
+      },
+    });
+  });
+
+  it('Should be able to pay a debt', () => {
+    expect(pointsReducer({
+      test1: {
+        name: 'Test 1',
+        points: 100,
+        isOwed: 1,
+      },
+    }, {
+      type: ActionTypes.paidDebt,
+      opponent: 'test1',
+      game: 'testgame',
+    })).toEqual({
+      test1: {
+        name: 'Test 1',
+        points: 100,
+        isOwed: 0,
       },
     });
   });

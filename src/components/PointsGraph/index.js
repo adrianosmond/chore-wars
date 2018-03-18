@@ -1,6 +1,9 @@
 import React from 'react';
 import Avatar from 'avataaars';
 import { connect } from 'react-redux';
+
+import { claimPrize } from '../../actions/pointActions';
+
 import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
 import './index.css';
 
@@ -29,9 +32,17 @@ const PointsGraph = (props) => {
         {players.map((playerId, idx) => {
           const player = points[playerId];
           const playerBar = (player.points - minPoints);
+          const winning = playerBar >= MAX_POINT_DIFFERENCE;
           return (
-            <div className={`points-graph__bar points-graph__bar--${idx + 1}`} style={{ width: `${Math.min(50, (playerBar / MAX_POINT_DIFFERENCE) * 50)}%` }} key={playerId}>
-              { playerBar || scoresTied ? <div className={`points-graph__difference points-graph__difference--${idx + 1}`}>{playerBar}</div> : null }
+            <div className={`points-graph__bar points-graph__bar--${idx + 1}${winning ? ' points-graph__bar--winning' : ''}`}
+              style={{ width: `${Math.min(50, (playerBar / MAX_POINT_DIFFERENCE) * 50)}%` }}
+              key={playerId}>
+              { playerBar || scoresTied ?
+              <div className={`points-graph__difference points-graph__difference--${idx + 1}${winning ? ' points-graph__difference--winning' : ''}`}
+                onClick={winning ? () =>
+                  props.claimPrize(playerId, props.gameId)
+                : null}>{playerBar}</div>
+              : null }
             </div>
           );
         })}
@@ -42,9 +53,13 @@ const PointsGraph = (props) => {
 
 const mapStateToProps = state => ({
   points: state.points.present,
-  game: state.session.game,
+  gameId: state.session.game.gameId,
+});
+
+const matchDispatchToProps = dispatch => ({
+  claimPrize: (game, player) => dispatch(claimPrize(game, player)),
 });
 
 export { PointsGraph };
 
-export default connect(mapStateToProps)(PointsGraph);
+export default connect(mapStateToProps, matchDispatchToProps)(PointsGraph);

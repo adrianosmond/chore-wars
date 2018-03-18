@@ -32,10 +32,6 @@
   animation: pulltrigger 0.5s infinite;
 }
 
-.loading__text {
-  animation: wobble 1.5s infinite;
-}
-
 @keyframes pulltrigger {
   0% {
     transform: rotate(0deg)
