@@ -12,6 +12,8 @@ const undoableActions = [
   ActionTypes.updateChore,
   ActionTypes.makeChain,
   ActionTypes.breakChain,
+  ActionTypes.claimPrize,
+  ActionTypes.paidDebt,
 ];
 
 export default combineReducers({

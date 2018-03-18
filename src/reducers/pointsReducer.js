@@ -22,8 +22,8 @@ export default function pointsReducer(state = { }, action) {
       newState[user].points -= MAX_POINT_DIFFERENCE;
       newState[user].isOwed += 1;
 
-      // database.ref(`games/${game}/points/${user}/points`).set(newState[user].points);
-      // database.ref(`games/${game}/points/${user}/isOwed`).set(newState[user].isOwed);
+      database.ref(`games/${game}/points/${user}/points`).set(newState[user].points);
+      database.ref(`games/${game}/points/${user}/isOwed`).set(newState[user].isOwed);
 
       return newState;
 
