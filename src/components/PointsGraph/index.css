@@ -36,6 +36,7 @@
 
 .points-graph__person-picture {
   display: block;
+  position: relative;
 }
 
 .points-graph__person-name {
@@ -44,6 +45,14 @@
   text-align: center;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.points-graph__person-owed {
+  position: absolute;
+  bottom: 2%;
+  right: 20%;
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .points-graph__graph {

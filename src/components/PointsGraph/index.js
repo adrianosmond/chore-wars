@@ -1,5 +1,7 @@
 import React from 'react';
 import Avatar from 'avataaars';
+import Confetti from 'react-dom-confetti';
+
 import { connect } from 'react-redux';
 
 import { claimPrize } from '../../actions/pointActions';
@@ -21,7 +23,10 @@ const PointsGraph = (props) => {
           return (
             <div className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
               <div className="points-graph__person-picture">
-                <Avatar style={{ width: '100%', height: '100%' }} { ...player.avatar } />
+                <Avatar style={{ width: '100%', height: '100%', display: 'block' }} { ...player.avatar } />
+                { player.isOwed > 0 ?
+                <span className="points-graph__person-owed" role="img" aria-labelledby={`${player.name} is owed`}>🌟</span>
+                : null}
               </div>
               <div className="points-graph__person-name">{player.name}</div>
             </div>
@@ -39,9 +44,10 @@ const PointsGraph = (props) => {
               key={playerId}>
               { playerBar || scoresTied ?
               <div className={`points-graph__difference points-graph__difference--${idx + 1}${winning ? ' points-graph__difference--winning' : ''}`}
-                onClick={winning ? () =>
-                  props.claimPrize(playerId, props.gameId)
-                : null}>{playerBar}</div>
+                onClick={winning ? () => props.claimPrize(playerId, props.gameId) : null}>
+                <Confetti active={!winning} />
+                {playerBar}
+                </div>
               : null }
             </div>
           );
