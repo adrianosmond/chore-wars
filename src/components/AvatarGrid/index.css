@@ -1,0 +1,11 @@
+.avatar-grid {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.avatar-grid__option {
+  position: relative;
+}

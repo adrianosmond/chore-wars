@@ -1,0 +1,12 @@
+.profile-editor__avatar {
+  margin-top: -1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  padding: 1rem;
+  background-color: #fff;
+}

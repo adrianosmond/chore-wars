@@ -11,6 +11,7 @@ import NewChore from './components/NewChore';
 import EditChore from './components/EditChore';
 import LogChoreCompletion from './components/LogChoreCompletion';
 import ChoreChain from './components/ChoreChain';
+import ProfileEditor from './components/ProfileEditor';
 
 import * as routes from './constants/routes';
 
@@ -23,6 +24,7 @@ const App = () => (
       <Route exact path={`${routes.EDIT_CHORE}/:slug`} component={EditChore} />
       <Route exact path={`${routes.LOG_PAST_COMPLETION}/:slug`} component={LogChoreCompletion} />
       <Route exact path={routes.NEW_CHAIN} component={ChoreChain} />
+      <Route exact path={routes.PROFILE_EDITOR} component={ProfileEditor} />
     </Switch>
   </Router>
 );
