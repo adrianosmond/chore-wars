@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import Avatar from 'avataaars';
@@ -13,6 +13,8 @@ import { editorOrder, isEditable, labels } from '../../constants/avatars';
 import * as routes from '../../constants/routes';
 
 import './index.css';
+
+const MAX_NAME_LENGTH = 12;
 
 class ProfileEditor extends Component {
   constructor(props) {
@@ -37,8 +39,13 @@ class ProfileEditor extends Component {
   saveUser() {
     const { user, gameId } = this.props;
     const { avatar, name } = this.state;
-    this.props.updateUser(user, name, avatar, gameId);
-    this.props.history.push(routes.CHORES);
+    const trimmedName = name.trim();
+    if (trimmedName.length > 0 && trimmedName.length < MAX_NAME_LENGTH) {
+      this.props.updateUser(user, name.trim(), avatar, gameId);
+      this.props.history.push(routes.CHORES);
+    } else {
+      // TODO: validation
+    }
   }
 
   render() {
@@ -50,15 +57,22 @@ class ProfileEditor extends Component {
           <Avatar { ...avatar } />
         </div>
         <div className="profile-editor__editor">
-          { !editing ? Object.keys(avatar)
-            .sort((a, b) => editorOrder.indexOf(a) - editorOrder.indexOf(b))
-            .map((key) => {
-              if (editorOrder.indexOf(key) >= 0 && isEditable[key](avatar)) {
-                return <button className="form__button" onClick={() =>
-                  this.setState({ editing: key })} key={key}>{labels[key]}</button>;
-              }
-              return null;
-            })
+          { !editing ?
+            <div>
+              <div style={{ marginTop: '1rem' }}>
+                <label htmlFor="name">Name:</label>
+                <input className="form__input" id="name" placeholder="Name" type="text" maxLength={MAX_NAME_LENGTH} onChange={event => this.setState({ name: event.target.value })} value={this.state.name} />
+              </div>
+              {Object.keys(avatar)
+                .sort((a, b) => editorOrder.indexOf(a) - editorOrder.indexOf(b))
+                .map((key) => {
+                  if (editorOrder.indexOf(key) >= 0 && isEditable[key](avatar)) {
+                    return <button className="form__button" onClick={() =>
+                      this.setState({ editing: key })} key={key}>{labels[key]}</button>;
+                  }
+                  return null;
+                })}
+            </div>
           : <div>
               <button className="form__button form__button--secondary"
                 onClick={() => this.setState({ editing: null })}>Back</button>
@@ -66,8 +80,11 @@ class ProfileEditor extends Component {
                 updateAvatar={this.updateAvatar.bind(this)} />
             </div>}
           { !editing ?
-            <button className="form__button form__button--secondary"
-              onClick={this.saveUser.bind(this)}>Save</button> : null }
+            <div className="form__button-holder">
+              <Link to={routes.CHORES} className="form__button form__button--secondary">Back</Link>
+              <button className="form__button form__button"
+                onClick={this.saveUser.bind(this)}>Save</button>
+            </div> : null }
         </div>
       </div>
     );
