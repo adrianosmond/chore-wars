@@ -67,24 +67,25 @@ class ProfileEditor extends Component {
                 .sort((a, b) => editorOrder.indexOf(a) - editorOrder.indexOf(b))
                 .map((key) => {
                   if (editorOrder.indexOf(key) >= 0 && isEditable[key](avatar)) {
-                    return <button className="form__button" onClick={() =>
+                    return <button className="form__button form__button--tertiary" onClick={() =>
                       this.setState({ editing: key })} key={key}>{labels[key]}</button>;
                   }
                   return null;
                 })}
+              <div className="form__button-holder form__button-holder--tight">
+                <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
+                <button className="form__button form__button"
+                  onClick={this.saveUser.bind(this)}>Save</button>
+              </div>
             </div>
           : <div>
               <button className="form__button form__button--secondary"
-                onClick={() => this.setState({ editing: null })}>Back</button>
+                onClick={() => this.setState({ editing: null })}>Cancel</button>
               <AvatarGrid avatar={avatar} editing={editing}
                 updateAvatar={this.updateAvatar.bind(this)} />
+              <button className="form__button form__button--secondary"
+                onClick={() => this.setState({ editing: null })}>Cancel</button>
             </div>}
-          { !editing ?
-            <div className="form__button-holder">
-              <Link to={routes.CHORES} className="form__button form__button--secondary">Back</Link>
-              <button className="form__button form__button"
-                onClick={this.saveUser.bind(this)}>Save</button>
-            </div> : null }
         </div>
       </div>
     );

@@ -72,6 +72,10 @@
   margin-top: 1rem;
 }
 
+.form__button-holder--tight {
+  margin-top: 0;
+}
+
 .form__button {
   display: block;
   margin: 0;
@@ -103,6 +107,15 @@
 
 .form__button--secondary {
   background-color: darkslateblue;
+}
+
+.form__button--tertiary {
+  background-color: dodgerblue;
+}
+
+.form__button--quaternary {
+  background-color:#fff;
+  color: darkslateblue;
 }
 
 @media screen and (min-width: 37.5em) {
