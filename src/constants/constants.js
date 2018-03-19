@@ -22,6 +22,7 @@ const ActionTypes = {
   claimPrize: 'CLAIM_PRIZE',
   paidDebt: 'PAID_DEBT',
   setPoints: 'SET_POINTS',
+  updateUser: 'UPDATE_USER',
   setAuthUser: 'SET_AUTH_USER',
   setGame: 'SET_GAME',
   setPointsLoaded: 'SET_POINTS_LOADED',

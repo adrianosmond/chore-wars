@@ -1,68 +1,18 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import Avatar from 'avataaars';
 
+import AvatarGrid from '../AvatarGrid';
 import withAuthorization from '../withAuthorization';
 
-import AvatarGrid from '../AvatarGrid';
+import { updateUser } from '../../actions/pointActions';
+
+import { editorOrder, isEditable, labels } from '../../constants/avatars';
+import * as routes from '../../constants/routes';
 
 import './index.css';
-
-const editorOrder = [
-  'skinColor',
-  'topType',
-  'hairColor',
-  'hatColor',
-  'facialHairType',
-  'facialHairColor',
-  'accessoriesType',
-  'clotheType',
-  'clotheColor',
-];
-
-const labels = {
-  skinColor: 'Skin Colour',
-  topType: 'Hair or Headware',
-  hairColor: 'Hair Colour',
-  hatColor: 'Headware Colour',
-  facialHairType: 'Facial Hair Type',
-  facialHairColor: 'Facial Hair Colour',
-  accessoriesType: 'Glasses',
-  clotheType: 'Clothing Type',
-  clotheColor: 'Clothing Colour',
-};
-
-const isEditable = {
-  skinColor: () => true,
-  topType: () => true,
-  hairColor: options => [
-    'NoHair',
-    'Eyepatch',
-    'Hat',
-    'Hijab',
-    'Turban',
-    'WinterHat1',
-    'WinterHat2',
-    'WinterHat3',
-    'WinterHat4',
-    'LongHairFrida',
-    'LongHairShavedSides',
-  ].indexOf(options.topType) < 0,
-  hatColor: options => [
-    'Hijab',
-    'Turban',
-    'WinterHat1',
-    'WinterHat2',
-    'WinterHat3',
-    'WinterHat4',
-  ].indexOf(options.topType) >= 0,
-  facialHairType: options => options.topType !== 'Hijab',
-  facialHairColor: options => isEditable.facialHairType(options) && options.facialHairType !== 'Blank',
-  accessoriesType: () => true,
-  clotheType: () => true,
-  clotheColor: options => !options.clotheType.startsWith('Blazer'),
-};
 
 class ProfileEditor extends Component {
   constructor(props) {
@@ -82,6 +32,13 @@ class ProfileEditor extends Component {
         [property]: value,
       },
     });
+  }
+
+  saveUser() {
+    const { user, gameId } = this.props;
+    const { avatar, name } = this.state;
+    this.props.updateUser(user, name, avatar, gameId);
+    this.props.history.push(routes.CHORES);
   }
 
   render() {
@@ -108,7 +65,9 @@ class ProfileEditor extends Component {
               <AvatarGrid avatar={avatar} editing={editing}
                 updateAvatar={this.updateAvatar.bind(this)} />
             </div>}
-          { !editing ? <button className="form__button form__button--secondary">Save</button> : null }
+          { !editing ?
+            <button className="form__button form__button--secondary"
+              onClick={this.saveUser.bind(this)}>Save</button> : null }
         </div>
       </div>
     );
@@ -124,7 +83,12 @@ const mapStateToProps = state => ({
   user: state.session.authUser.uid,
 });
 
+const mapDispatchToProps = dispatch => ({
+  updateUser: (user, name, avatar, game) => dispatch(updateUser(user, name, avatar, game)),
+});
+
 export default compose(
   withAuthorization(authCondition, isLoading),
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
 )(ProfileEditor);

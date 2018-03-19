@@ -32,6 +32,8 @@
 
 .points-graph__person {
   width: 200px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .points-graph__person-picture {

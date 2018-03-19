@@ -1,13 +1,13 @@
 import React from 'react';
 import Avatar from 'avataaars';
 
-import data from './data.json';
+import { avatarOptions } from '../../constants/avatars';
 
 import './index.css';
 
 const AvatarGrid = ({ editing, avatar, updateAvatar }) =>
   <ul className="avatar-grid">
-    {data[editing].map((option, idx) => {
+    {avatarOptions[editing].map((option, idx) => {
       const avatarProps = {
         ...avatar,
         [editing]: option,

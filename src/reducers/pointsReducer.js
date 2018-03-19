@@ -29,6 +29,15 @@ export default function pointsReducer(state = { }, action) {
 
       return newState;
 
+    case ActionTypes.updateUser:
+      newState[user].avatar = action.avatar;
+      newState[user].name = action.name;
+
+      database.ref(`games/${game}/points/${user}/avatar`).set(newState[user].avatar);
+      database.ref(`games/${game}/points/${user}/name`).set(newState[user].name);
+
+      return newState;
+
     case ActionTypes.setPoints:
       return {
         ...points,

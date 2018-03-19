@@ -27,6 +27,16 @@ export function paidDebt(user, game) {
   };
 }
 
+export function updateUser(user, name, avatar, game) {
+  return {
+    type: ActionTypes.updateUser,
+    user,
+    name,
+    avatar,
+    game,
+  };
+}
+
 export function setPoints(points) {
   return {
     type: ActionTypes.setPoints,

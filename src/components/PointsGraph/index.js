@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Avatar from 'avataaars';
 import Confetti from 'react-dom-confetti';
@@ -8,6 +9,8 @@ import PopUpMenu from '../PopUpMenu';
 import { claimPrize, paidDebt } from '../../actions/pointActions';
 
 import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
+import * as routes from '../../constants/routes';
+
 import './index.css';
 
 const PointsGraph = (props) => {
@@ -21,8 +24,8 @@ const PointsGraph = (props) => {
       <div className="points-graph__people">
         {players.map((playerId, idx) => {
           const player = points[playerId];
-          return (
-            <div className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
+          const children = (
+            <div>
               <div className="points-graph__person-picture">
                 <Avatar style={{ width: '100%', height: '100%', display: 'block' }} { ...player.avatar } />
                 { player.isOwed > 0 ?
@@ -39,6 +42,18 @@ const PointsGraph = (props) => {
                 : null}
               </div>
               <div className="points-graph__person-name">{player.name}</div>
+            </div>
+          );
+          if (playerId === props.user) {
+            return (
+              <Link to={routes.PROFILE_EDITOR} className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
+                {children}
+              </Link>
+            );
+          }
+          return (
+            <div className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
+              {children}
             </div>
           );
         })}
@@ -69,6 +84,7 @@ const PointsGraph = (props) => {
 
 const mapStateToProps = state => ({
   points: state.points.present,
+  user: state.session.authUser.uid,
   gameId: state.session.game.gameId,
 });
 
