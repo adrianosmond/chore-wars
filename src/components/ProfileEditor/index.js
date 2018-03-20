@@ -53,12 +53,13 @@ class ProfileEditor extends Component {
     if (!avatar) return null;
     return (
       <div className="profile-editor">
-        <div className="profile-editor__avatar">
-          <Avatar { ...avatar } />
-        </div>
-        <div className="profile-editor__editor">
+        
+
           { !editing ?
             <div>
+              <div className="profile-editor__avatar">
+                <Avatar { ...avatar } />
+              </div>
               <div style={{ marginTop: '1rem' }}>
                 <label htmlFor="name">Name:</label>
                 <input className="form__input" id="name" placeholder="Name" type="text" maxLength={MAX_NAME_LENGTH} onChange={event => this.setState({ name: event.target.value })} value={this.state.name} />
@@ -80,13 +81,16 @@ class ProfileEditor extends Component {
             </div>
           : <div>
               <button className="form__button form__button--secondary"
-                onClick={() => this.setState({ editing: null })}>Cancel</button>
+                onClick={() => this.setState({ editing: null })}>Back</button>
               <AvatarGrid avatar={avatar} editing={editing}
-                updateAvatar={this.updateAvatar.bind(this)} />
+                updateAvatar={(property, value) => {
+                  this.updateAvatar(property, value);
+                  this.setState({ editing: null });
+                }} />
               <button className="form__button form__button--secondary"
-                onClick={() => this.setState({ editing: null })}>Cancel</button>
+                onClick={() => this.setState({ editing: null })}>Back</button>
             </div>}
-        </div>
+
       </div>
     );
   }
