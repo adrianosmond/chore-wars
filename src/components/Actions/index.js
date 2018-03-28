@@ -5,6 +5,7 @@ import { ActionCreators } from 'redux-undo';
 
 import * as routes from '../../constants/routes';
 import { ActionTypes } from '../../constants/constants';
+import { signOut } from '../../actions/sessionActions';
 
 import './index.css';
 
@@ -40,6 +41,8 @@ class Actions extends Component {
             }}
             disabled={!this.props.canUndo}
             className="form__button form__button--secondary">Undo</button>
+          <button onClick={() => { this.props.doSignOut(); }}
+            className="form__button form__button--secondary">Sign out</button>
         </div>
       </div>
     );
@@ -53,6 +56,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   undo: () => dispatch(ActionCreators.undo()),
+  doSignOut: () => dispatch(signOut()),
   saveStatePostUndo: game => dispatch(undoAction(game)),
 });
 

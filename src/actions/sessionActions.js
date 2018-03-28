@@ -1,4 +1,5 @@
 import { ActionTypes } from '../constants/constants';
+import { auth } from '../lib/firebase';
 
 export function setAuthUser(authUser) {
   return {
@@ -25,5 +26,11 @@ export function setChoresLoaded(choresLoaded) {
   return {
     type: ActionTypes.setChoresLoaded,
     choresLoaded,
+  };
+}
+
+export function signOut() {
+  return () => {
+    auth.signOut();
   };
 }
