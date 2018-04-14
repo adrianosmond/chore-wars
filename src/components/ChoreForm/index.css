@@ -15,8 +15,13 @@
   margin-top: 1rem;
   margin-bottom: 2rem;
   font-family: 'Patua One', sans-serif;
-  /* font-weight: 400; */
   font-size: 1.5em;
+}
+
+.form__label--small {
+  margin-bottom: 0.5rem;
+  font-size: 1em;
+  font-weight: 400;
 }
 
 .form__option {

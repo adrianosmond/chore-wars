@@ -21,6 +21,10 @@ h1, h2, h3, h4 {
 }
 
 @media screen and (min-width: 37.5em) {
+  .hide--large {
+    display: none;
+  }
+
   .app {
     max-width: 900px;
     margin-left: auto;

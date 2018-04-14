@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom';
 
 import Login from './components/Login';
+import SignUp from './components/SignUp';
+import NoGame from './components/NoGame';
 import Chores from './components/Chores';
 import NewChore from './components/NewChore';
 import EditChore from './components/EditChore';
@@ -19,6 +21,8 @@ const App = () => (
   <Router>
     <Switch>
       <Route exact path={routes.LOGIN} component={Login} />
+      <Route exact path={routes.SIGN_UP} component={SignUp} />
+      <Route exact path={routes.NO_GAME} component={NoGame} />
       <Route exact path={routes.CHORES} component={Chores} />
       <Route exact path={routes.NEW_CHORE} component={NewChore} />
       <Route exact path={`${routes.EDIT_CHORE}/:slug`} component={EditChore} />

@@ -31,11 +31,17 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
         } else {
           database.ref(`users/${authUser.uid}`).once('value', (result) => {
             const game = result.val();
-            if (process.env.NODE_ENV === 'development') game.gameId = '-TEST';
-            const { gameId } = game;
-            this.props.setGame(game);
-            this.props.loadChores(gameId);
-            this.props.loadPoints(gameId);
+            // if (process.env.NODE_ENV === 'development') game.gameId = '-TEST';
+            if (game && game.gameId) {
+              const { gameId } = game;
+              if (gameId) {
+                this.props.setGame(game);
+                this.props.loadChores(gameId);
+                this.props.loadPoints(gameId);
+              }
+            } else {
+              this.props.history.push(routes.NO_GAME);
+            }
           });
         }
       });
@@ -52,7 +58,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
 
     render() {
       if (!this.props.authUser) return null;
-      if (!this.props.game || this.state.loading) {
+      if (this.state.loading) {
         return (
           <Loading />
         );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import { auth } from '../../lib/firebase';
 import * as routes from '../../constants/routes';
 
@@ -49,6 +49,7 @@ class Login extends Component {
             <input className="form__input" id="password" placeholder="Password" type="password" onChange={event => this.setState({ password: event.target.value })} value={this.state.password} />
             <button type="submit" className="form__button">Login</button>
           </form>
+          <Link to={routes.SIGN_UP}>Create an account</Link>
         </div>
       </div>
     );

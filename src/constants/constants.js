@@ -8,6 +8,9 @@ const DATE_FORMAT = 'DD/MM/YYYY';
 
 const MAX_POINT_DIFFERENCE = 500;
 
+const MAX_NAME_LENGTH = 10;
+const JOIN_CODE_LENGTH = 8;
+
 const ActionTypes = {
   addChore: 'ADD_CHORE',
   resetChoreDoneDate: 'RESET_CHORE_DONE_DATE',
@@ -36,6 +39,8 @@ export {
   MAX_CHORE_FREQUENCY,
   MIN_CHORE_POINTS,
   MAX_CHORE_POINTS,
+  MAX_NAME_LENGTH,
+  JOIN_CODE_LENGTH,
   DATE_FORMAT,
   MAX_POINT_DIFFERENCE,
   ActionTypes,

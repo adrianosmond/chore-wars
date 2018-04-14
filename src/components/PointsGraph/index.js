@@ -16,47 +16,53 @@ import './index.css';
 const PointsGraph = (props) => {
   const { points } = props;
   const players = Object.keys(props.points);
-  const minPoints = Math.min(points[players[0]].points, points[players[1]].points);
-  const scoresTied = points[players[0]].points === points[players[1]].points;
+  const minPoints = players.length === 2 ? Math.min(points[players[0]].points, points[players[1]].points) : points[players[0]].points;
+  const scoresTied = players.length === 2 ? points[players[0]].points === points[players[1]].points : true;
   return (
     <div className="points-graph">
       <h1 className="points-graph__title">Chore Wars</h1>
       <div className="points-graph__people">
         {players.map((playerId, idx) => {
           const player = points[playerId];
-          const children = (
-            <div>
-              <div className="points-graph__person-picture">
-                <Avatar style={{ width: '100%', height: '100%', display: 'block' }} { ...player.avatar } />
-                { player.isOwed > 0 ?
-                <PopUpMenu extraClasses={`points-graph__paid-button points-graph__paid-button--${idx + 1}`}
-                  side={ idx === 0 ? 'left' : 'right' }
-                  options={[{
-                    type: 'button',
-                    text: `${player.name} was paid back`,
-                    onClick: () => props.paidDebt(playerId, props.gameId),
-                  }]}>
-                  <span className="points-graph__person-owed" role="img" aria-labelledby={`${player.name} is owed`}>🌟</span>
-                  { player.isOwed > 1 ? <span className="points-graph__owed-multiple">{player.isOwed}</span> : null }
-                </PopUpMenu>
-                : null}
-              </div>
-              <div className="points-graph__person-name">{player.name}</div>
+          const playerPicture = (
+            <div className="points-graph__person-picture">
+              <Avatar style={{ width: '100%', height: '100%', display: 'block' }} { ...player.avatar } />
+              { player.isOwed > 0 ?
+              <PopUpMenu extraClasses={`points-graph__paid-button points-graph__paid-button--${idx + 1}`}
+                side={ idx === 0 ? 'left' : 'right' }
+                options={[{
+                  type: 'button',
+                  text: `${player.name} was paid back`,
+                  onClick: () => props.paidDebt(playerId, props.gameId),
+                }]}>
+                <span className="points-graph__person-owed" role="img" aria-labelledby={`${player.name} is owed`}>🌟</span>
+                { player.isOwed > 1 ? <span className="points-graph__owed-multiple">{player.isOwed}</span> : null }
+              </PopUpMenu>
+              : null}
             </div>
           );
+          const playerName = <div className="points-graph__person-name">{player.name}</div>;
           if (playerId === props.user) {
             return (
               <Link to={routes.PROFILE_EDITOR} className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
-                {children}
+                {playerPicture}
+                {playerName}
               </Link>
             );
           }
           return (
             <div className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
-              {children}
+              {playerPicture}
+              {playerName}
             </div>
           );
         })}
+        {players.length === 2 ? null :
+        <div className="points-graph__person">
+          <p>Invite someone to sign up and give them the code:</p>
+          <p>{points[players[0]].joinCode}</p>
+          <p>to get them to join this game.</p>
+        </div>}
       </div>
       <div className="points-graph__graph">
         {players.map((playerId, idx) => {

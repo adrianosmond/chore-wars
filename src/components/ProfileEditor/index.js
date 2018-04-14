@@ -11,10 +11,9 @@ import { updateUser } from '../../actions/pointActions';
 
 import { editorOrder, isEditable, labels } from '../../constants/avatars';
 import * as routes from '../../constants/routes';
+import { MAX_NAME_LENGTH } from '../../constants/constants';
 
 import './index.css';
-
-const MAX_NAME_LENGTH = 12;
 
 class ProfileEditor extends Component {
   constructor(props) {
@@ -53,8 +52,6 @@ class ProfileEditor extends Component {
     if (!avatar) return null;
     return (
       <div className="profile-editor">
-        
-
           { !editing ?
             <div>
               <div className="profile-editor__avatar">
