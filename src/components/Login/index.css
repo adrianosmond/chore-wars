@@ -23,6 +23,10 @@
   text-align: center;
 }
 
+.login__link {
+  margin-bottom: 0;
+}
+
 @media screen and (min-width: 37.5em) {
   .login__widget {
     padding: 2rem;

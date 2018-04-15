@@ -51,7 +51,7 @@ class ProfileEditor extends Component {
     const { avatar, editing } = this.state;
     if (!avatar) return null;
     return (
-      <div className="profile-editor">
+      <div className="app profile-editor">
           { !editing ?
             <div>
               <div className="profile-editor__avatar">
