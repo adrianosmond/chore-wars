@@ -30,7 +30,9 @@ export function setChoresLoaded(choresLoaded) {
 }
 
 export function signOut() {
-  return () => {
+  return (dispatch) => {
+    dispatch(setChoresLoaded(false));
+    dispatch(setPointsLoaded(false));
     auth.signOut();
   };
 }

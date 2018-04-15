@@ -1,8 +1,6 @@
 export const LOGIN = '/';
 export const SIGN_UP = '/sign-up';
 export const NO_GAME = '/game';
-export const CREATE_GAME = '/game/create';
-export const JOIN_GAME = '/game/join';
 export const CHORES = '/chores';
 export const NEW_CHORE = '/chores/new';
 export const EDIT_CHORE = '/chores/edit';

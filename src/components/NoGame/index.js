@@ -15,6 +15,27 @@ import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from '../../constants/constants';
 const createJoinCode = () => new Array(JOIN_CODE_LENGTH).fill(97).map(x =>
   String.fromCharCode(x + Math.round(Math.random() * 25))).join('');
 
+const generatePlayerData = (playerName, joinCode = null) => ({
+  name: playerName,
+  isOwed: 0,
+  points: 0,
+  joinCode,
+  avatar: {
+    accessoriesType: 'Blank',
+    avatarStyle: 'Transparent',
+    clotheColor: 'Blue03',
+    clotheType: 'BlazerShirt',
+    eyeType: 'Default',
+    eyebrowType: 'Default',
+    facialHairColor: 'BrownDark',
+    facialHairType: 'Blank',
+    hairColor: 'BrownDark',
+    mouthType: 'Twinkle',
+    skinColor: 'Light',
+    topType: 'LongHairStraight',
+  },
+});
+
 class NoGame extends Component {
   constructor(props) {
     super(props);
@@ -26,38 +47,21 @@ class NoGame extends Component {
 
   createGame() {
     const userId = this.props.user;
+    const { playerName } = this.state;
     const joinCode = createJoinCode();
     const gameData = {
+      gameIncomplete: true,
       points: {
-        [userId]: {
-          name: this.state.playerName,
-          isOwed: 0,
-          points: 0,
-          joinCode,
-          avatar: {
-            accessoriesType: 'Blank',
-            avatarStyle: 'Transparent',
-            clotheColor: 'Blue03',
-            clotheType: 'BlazerShirt',
-            eyeType: 'Default',
-            eyebrowType: 'Default',
-            facialHairColor: 'BrownDark',
-            facialHairType: 'Blank',
-            hairColor: 'BrownDark',
-            mouthType: 'Twinkle',
-            skinColor: 'Light',
-            topType: 'LongHairStraight',
-          },
-        },
+        [userId]: generatePlayerData(playerName, joinCode),
       },
     };
 
     database.ref('games').push().then((ref) => {
-      const newKey = ref.key;
+      const gameKey = ref.key;
       const userData = {
-        gameId: newKey,
+        gameId: gameKey,
       };
-      database.ref(`joinCodes/${joinCode}`).set(newKey);
+      database.ref(`joinCodes/${joinCode}`).set(gameKey);
       database.ref(`users/${userId}`).set(userData).then(() => {
         this.props.setGame(userData);
         ref.set(gameData);
@@ -67,8 +71,27 @@ class NoGame extends Component {
   }
 
   joinGame() {
-    console.log(this.state.playerName);
-    console.log(this.state.gameToJoin);
+    const userId = this.props.user;
+    const { gameToJoin, playerName } = this.state;
+    database.ref(`joinCodes/${gameToJoin}`).once('value', (result) => {
+      const gameKey = result.val();
+      const userData = {
+        gameId: gameKey,
+      };
+      database.ref(`users/${userId}`).set(userData).then(() => {
+        database.ref(`games/${gameKey}/points/`).once('value', (users) => {
+          users.forEach(user => user.child('joinCode').ref.set(null));
+        });
+        database.ref(`games/${gameKey}/points/${userId}`)
+          .set(generatePlayerData(playerName))
+          .then(() => {
+            database.ref(`games/${gameKey}/gameIncomplete`).set(null);
+            database.ref(`joinCodes/${gameToJoin}`).set(null);
+            this.props.setGame(userData);
+            this.props.history.push(routes.CHORES);
+          });
+      });
+    });
   }
 
   render() {
@@ -84,7 +107,7 @@ class NoGame extends Component {
         <h2>Join a game</h2>
         <p>If you have been given a code to join someone else's game, you can enter
           it here:</p>
-        <input type="text" placeholder="e.g. abc12345" className="form__input" value={this.state.gameToJoin}
+        <input type="text" placeholder="e.g. abcdwxyz" className="form__input" value={this.state.gameToJoin}
           onChange={(event) => { this.setState({ gameToJoin: event.target.value }); }}
           maxLength={JOIN_CODE_LENGTH} />
         <button onClick={this.joinGame.bind(this)}
