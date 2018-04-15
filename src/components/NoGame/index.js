@@ -117,7 +117,8 @@ class NoGame extends Component {
         <h2>Create a game</h2>
         <p>Alternatively, if you want create a new game and invite someone else...</p>
         <button onClick={this.createGame.bind(this)}
-          disabled={this.state.playerName.trim().length === 0 || this.state.gameToJoin.trim().length > 0}
+          disabled={this.state.playerName.trim().length === 0 ||
+            this.state.gameToJoin.trim().length > 0}
           className="form__button form__button--secondary">Create a game</button>
       </div>
     );
