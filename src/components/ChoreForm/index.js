@@ -34,6 +34,7 @@ class ChoreForm extends Component {
     this.state = {
       ...chore,
       slug: makeSlug(chore.title),
+      frequency: chore.frequency === 0 ? 7 : chore.frequency,
       doneDate: fecha.format(chore.lastDone, 'YYYY-MM-DD'),
       choreFrequency: chore.frequency === 0 ? 'as-and-when' : 'with-regularity',
       currentQuestionId: questions[0],
@@ -131,7 +132,7 @@ class ChoreForm extends Component {
 
     const chore = {
       title: this.state.title,
-      frequency: parseInt(this.state.frequency, 10),
+      frequency: this.state.choreFrequency === 'as-and-when' ? 0 : parseInt(this.state.frequency, 10),
       pointsPerTime: parseInt(this.state.pointsPerTime, 10),
       lastDone: this.state.lastDone,
     };
@@ -158,15 +159,18 @@ class ChoreForm extends Component {
                   onChange={() => this.setState({ choreFrequency: 'with-regularity' })} />
                 <span className="form__row-item">Every </span>
                 <input className="form__row-item form__input" id="frequency" type="number" pattern="[0-9]*"
-                  min={MIN_CHORE_FREQUENCY} max={MAX_CHORE_FREQUENCY} maxLength={MAX_CHORE_FREQUENCY.toString().length}
-                  value={this.state.frequency} onChange={(event) => { this.setState({ frequency: event.target.value }); }}
+                  min={MIN_CHORE_FREQUENCY} max={MAX_CHORE_FREQUENCY}
+                  maxLength={MAX_CHORE_FREQUENCY.toString().length}
+                  value={this.state.frequency}
+                  onChange={(event) => { this.setState({ frequency: event.target.value }); }}
                   onClick={() => this.setState({ choreFrequency: 'with-regularity' })} />
                 <span className="form__row-item">days</span>
               </div>
             </label>
             <label className="form__option">
             <div className="form__row form__row--inactive">
-                <input type="radio" name="frequency-type" value="as-and-when"
+                <input type="radio" name="frequency-type"
+                  value="as-and-when"
                   checked={this.state.choreFrequency === 'as-and-when'}
                   onChange={() => this.setState({ choreFrequency: 'as-and-when' })} />
                 <span className="form__row-item">Whenever it needs doing</span>
@@ -177,14 +181,22 @@ class ChoreForm extends Component {
             label="How many points should this chore be worth?" error={this.state.error}>
             <p></p>
             <input className="form__input" id="pointsPerTime" type="number" pattern="[0-9]*"
-              min={MIN_CHORE_POINTS} max={MAX_CHORE_POINTS} maxLength={MAX_CHORE_POINTS.toString().length}
-              value={this.state.pointsPerTime} onChange={(event) => { this.setState({ pointsPerTime: event.target.value }); }} />
+              min={MIN_CHORE_POINTS} max={MAX_CHORE_POINTS}
+              maxLength={MAX_CHORE_POINTS.toString().length}
+              value={this.state.pointsPerTime}
+              onChange={(event) => { this.setState({ pointsPerTime: event.target.value }); }} />
           </FormQuestion>
           <FormQuestion id="lastDone" currentQuestionId={this.state.currentQuestionId}
             label="When was this chore last done?" error={this.state.error}>
             <input className="form__input" id="doneDate" type="date"
-            value={this.state.doneDate} max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
-            onChange={(event) => { this.setState({ doneDate: event.target.value, lastDone: new Date(event.target.value).getTime() }); }} />
+              value={this.state.doneDate}
+              max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
+              onChange={(event) => {
+                this.setState({
+                  doneDate: event.target.value,
+                  lastDone: new Date(event.target.value).getTime(),
+                });
+              }} />
           </FormQuestion>
           <FormQuestion id="forgotToLog" currentQuestionId={this.state.currentQuestionId}
             label="When did you do this chore?" error={this.state.error}>
