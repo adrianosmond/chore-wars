@@ -84,12 +84,10 @@ export function setChores(chores) {
 
 export function loadChores(game) {
   return (dispatch) => {
-    database.ref(`games/${game}/chores`).on('value', (result) => {
-      setTimeout(() => {
-        const chores = result.val() || {};
-        dispatch(setChores(chores));
-        dispatch(setChoresLoaded(true));
-      }, 0);
+    database.ref(`games/${game}/chores`).once('value', (result) => {
+      const chores = result.val() || {};
+      dispatch(setChores(chores));
+      dispatch(setChoresLoaded(true));
     });
   };
 }
