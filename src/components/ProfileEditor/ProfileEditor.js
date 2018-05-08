@@ -13,7 +13,7 @@ import { editorOrder, isEditable, labels } from '../../constants/avatars';
 import * as routes from '../../constants/routes';
 import { MAX_NAME_LENGTH } from '../../constants/constants';
 
-import './index.css';
+import './ProfileEditor.css';
 
 class ProfileEditor extends Component {
   constructor(props) {

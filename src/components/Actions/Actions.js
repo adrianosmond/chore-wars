@@ -7,7 +7,7 @@ import * as routes from '../../constants/routes';
 import { ActionTypes } from '../../constants/constants';
 import { signOut } from '../../actions/sessionActions';
 
-import './index.css';
+import './Actions.css';
 
 const undoAction = game => ({
   type: ActionTypes.saveStatePostUndo,

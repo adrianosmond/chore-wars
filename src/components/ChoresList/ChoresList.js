@@ -3,7 +3,7 @@ import FlipMove from 'react-flip-move';
 
 import Chore from '../Chore';
 
-import './index.css';
+import './ChoresList.css';
 
 const ChoresList = ({ chores }) => (
   <ul className="chores-list">

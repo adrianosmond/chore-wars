@@ -8,7 +8,7 @@ import { completeChore, removeChore, breakChain } from '../../actions/choreActio
 import { DATE_FORMAT } from '../../constants/constants';
 import * as routes from '../../constants/routes';
 
-import './index.css';
+import './Chore.css';
 
 import checkIcon from '../../images/check.svg';
 
@@ -17,13 +17,10 @@ const Chore = ({
 }) => {
   const bonusPoints = chore.currentPoints > chore.pointsPerTime;
   const timeSinceChore = (new Date().getTime() - chore.lastDone);
-  /* 
-    {canBreak ? <button className="chore-menu__item js-break-chain" onClick={this.breakChain.bind(this)}>Break chain</button> : null}
-  */
   const menuOptions = [
     { type: 'link', to: `${routes.EDIT_CHORE}/${chore.slug}`, text: 'Edit' },
     { type: 'button', onClick: () => deleteChore(game, chore.slug), text: 'Delete' },
-    { type: 'link', to: `${routes.LOG_PAST_COMPLETION}/${chore.slug}`, text: 'I fogot to log this' },
+    { type: 'link', to: `${routes.LOG_PAST_COMPLETION}/${chore.slug}`, text: 'I forgot to log this' },
   ];
   if (chore.enables) {
     menuOptions.push({

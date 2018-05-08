@@ -11,13 +11,20 @@ import { claimPrize, paidDebt } from '../../actions/pointActions';
 import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
 import * as routes from '../../constants/routes';
 
-import './index.css';
+import './PointsGraph.css';
 
 const PointsGraph = (props) => {
   const { points } = props;
   const players = Object.keys(props.points);
-  const minPoints = players.length === 2 ? Math.min(points[players[0]].points, points[players[1]].points) : points[players[0]].points;
-  const scoresTied = players.length === 2 ? points[players[0]].points === points[players[1]].points : true;
+
+  const minPoints = players.length === 2 ?
+    Math.min(points[players[0]].points, points[players[1]].points) :
+    points[players[0]].points;
+
+  const scoresTied = players.length === 2 ?
+    points[players[0]].points === points[players[1]].points :
+    true;
+
   return (
     <div className="points-graph">
       <h1 className="points-graph__title">Chore Wars</h1>

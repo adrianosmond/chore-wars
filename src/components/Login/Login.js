@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../lib/firebase';
 import * as routes from '../../constants/routes';
 
-import './index.css';
+import './Login.css';
 
 const INITIAL_STATE = {
   email: '',

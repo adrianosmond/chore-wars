@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import './index.css';
+import './PopUpMenu.css';
 
 const makeLink = (child, idx) =>
   <Link to={child.to} className="pop-up-menu__item" key={idx}>{child.text}</Link>;

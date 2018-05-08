@@ -3,7 +3,7 @@ import Avatar from 'avataaars';
 
 import { avatarOptions } from '../../constants/avatars';
 
-import './index.css';
+import './AvatarGrid.css';
 
 const AvatarGrid = ({ editing, avatar, updateAvatar }) =>
   <ul className="avatar-grid">

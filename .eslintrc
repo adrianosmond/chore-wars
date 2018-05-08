@@ -1,4 +1,13 @@
 {
   "parser": "babel-eslint",
-  "extends": ["react-app", "airbnb-base"]
+  "extends": [
+    "react-app",
+    "airbnb-base"
+  ],
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", {"packageDir": "./"}]
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './index.css';
+import './Loading.css';
 
 import loading1 from './loading1.png';
 import loading2 from './loading2.png';

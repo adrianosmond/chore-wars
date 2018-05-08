@@ -6,7 +6,7 @@ import * as routes from '../../constants/routes';
 import { makeSlug } from '../../constants/utils';
 import { MIN_CHORE_FREQUENCY, MAX_CHORE_FREQUENCY, MIN_CHORE_POINTS, MAX_CHORE_POINTS } from '../../constants/constants';
 
-import './index.css';
+import './ChoreForm.css';
 
 const FormQuestion = (props) => {
   if (props.id !== props.currentQuestionId) return null;

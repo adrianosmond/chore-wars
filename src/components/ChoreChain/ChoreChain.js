@@ -11,7 +11,7 @@ import { loadChores, makeChain } from '../../actions/choreActions';
 import { convertChoresToArray } from '../../constants/utils';
 import * as routes from '../../constants/routes';
 
-import './index.css';
+import './ChoreChain.css';
 
 import checkIcon from '../../images/check.svg';
 
