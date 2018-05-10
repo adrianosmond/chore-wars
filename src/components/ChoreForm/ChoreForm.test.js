@@ -21,20 +21,24 @@ const submitHandler = jest.fn();
 
 describe('Chore Form', () => {
   it('Renders a new chore', () => {
-    expect(shallow(<ChoreForm chore={newChore} onSubmit={submitHandler} currentTime={choreTime} />)).toMatchSnapshot();
+    expect(shallow(<ChoreForm chore={newChore} onSubmit={submitHandler}
+      currentTime={choreTime} />)).toMatchSnapshot();
   });
 
   it('Renders an existing chore', () => {
-    expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler} currentTime={choreTime} />)).toMatchSnapshot();
+    expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
+      currentTime={choreTime} />)).toMatchSnapshot();
   });
 
   it('Renders a specified question', () => {
-    expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler} currentTime={choreTime} questions={['forgotToLog']} />)).toMatchSnapshot();
+    expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
+      currentTime={choreTime} questions={['forgotToLog']} />)).toMatchSnapshot();
   });
 
   it('Handles button clicks', () => {
     const fakeEvent = { preventDefault: () => {} };
-    const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler} currentTime={choreTime} />);
+    const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
+      currentTime={choreTime} />);
     shallowForm.find('form').simulate('submit', fakeEvent);
     expect(submitHandler).toHaveBeenCalled();
   });

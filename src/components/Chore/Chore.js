@@ -71,6 +71,4 @@ const mapDispatchToProps = dispatch => ({
   breakChoreChain: (game, slug) => dispatch(breakChain(game, slug)),
 });
 
-export { Chore };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Chore);

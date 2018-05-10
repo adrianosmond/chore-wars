@@ -106,6 +106,4 @@ const matchDispatchToProps = dispatch => ({
   paidDebt: (player, game) => dispatch(paidDebt(player, game)),
 });
 
-export { PointsGraph };
-
 export default connect(mapStateToProps, matchDispatchToProps)(PointsGraph);

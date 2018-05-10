@@ -67,7 +67,7 @@ exports[`Chore Renders a basic chore 1`] = `
           "type": "button",
         },
         Object {
-          "text": "I fogot to log this",
+          "text": "I forgot to log this",
           "to": "/chores/log/test-chore",
           "type": "link",
         },
@@ -146,7 +146,7 @@ exports[`Chore Renders a chore with frequency 0 1`] = `
           "type": "button",
         },
         Object {
-          "text": "I fogot to log this",
+          "text": "I forgot to log this",
           "to": "/chores/log/test-chore",
           "type": "link",
         },
