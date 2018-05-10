@@ -161,8 +161,6 @@ const mapDispatchToProps = dispatch => ({
 const authCondition = authUser => !!authUser;
 const isLoading = state => !state.choresLoaded;
 
-export { ChoreChain };
-
 export default compose(
   withAuthorization(authCondition, isLoading),
   withRouter,
