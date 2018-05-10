@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { LogChoreCompletion } from './index';
+import { LogChoreCompletion } from './LogChoreCompletion';
 
 const testTime = new Date('2018-02-18').getTime();
 const chores = {
