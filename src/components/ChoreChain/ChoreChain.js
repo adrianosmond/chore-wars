@@ -36,12 +36,6 @@ class ChoreChain extends Component {
     };
   }
 
-  componentWillMount() {
-    if (!this.props.chores) {
-      this.props.loadChores(this.props.game);
-    }
-  }
-
   componentWillReceiveProps(newProps) {
     if (this.props.chores !== newProps.chores) {
       this.setState({

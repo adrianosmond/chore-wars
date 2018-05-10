@@ -24,7 +24,9 @@ const store = mockStore({
     [slug]: chore,
   },
   session: {
-    authUser: 'test-user',
+    authUser: {
+      uid: 'test-user',
+    },
     game: {
       gameId: 'test-game',
     },
