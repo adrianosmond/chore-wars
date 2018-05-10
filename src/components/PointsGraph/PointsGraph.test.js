@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { PointsGraph } from './index';
+import { PointsGraph } from './PointsGraph';
 import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
 
 describe('PointsGraph', () => {

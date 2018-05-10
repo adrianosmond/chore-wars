@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { NewChore } from './index';
+import { NewChore } from './NewChore';
 
 describe('Edit Chore', () => {
   const testTime = new Date('2018-02-18').getTime();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import PopUpMenu from './index';
+import PopUpMenu from './PopUpMenu';
 
 describe('Popup Menu', () => {
   const mockButtonClick = jest.fn();

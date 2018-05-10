@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ChoreForm from './index';
+import ChoreForm from './ChoreForm';
 
 const choreTime = new Date('2018-02-18').getTime();
 const choreToEdit = {
