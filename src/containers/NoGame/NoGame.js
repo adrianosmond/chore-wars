@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import withAuthorization from '../withAuthorization';
+import withAuthorization from '../../components/withAuthorization';
 
 import { setGame } from '../../actions/sessionActions';
 

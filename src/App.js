@@ -5,15 +5,15 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import NoGame from './components/NoGame';
-import Chores from './components/Chores';
-import NewChore from './components/NewChore';
-import EditChore from './components/EditChore';
-import LogChoreCompletion from './components/LogChoreCompletion';
-import ChoreChain from './components/ChoreChain';
-import ProfileEditor from './components/ProfileEditor';
+import Login from './containers/Login';
+import SignUp from './containers/SignUp';
+import NoGame from './containers/NoGame';
+import Chores from './containers/Chores';
+import NewChore from './containers/NewChore';
+import EditChore from './containers/EditChore';
+import LogChoreCompletion from './containers/LogChoreCompletion';
+import ChoreChain from './containers/ChoreChain';
+import ProfileEditor from './containers/ProfileEditor';
 
 import * as routes from './constants/routes';
 

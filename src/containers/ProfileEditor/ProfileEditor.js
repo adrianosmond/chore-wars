@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import Avatar from 'avataaars';
 
-import AvatarGrid from '../AvatarGrid';
-import withAuthorization from '../withAuthorization';
+import AvatarGrid from '../../components/AvatarGrid';
+import withAuthorization from '../../components/withAuthorization';
 
 import { updateUser } from '../../actions/pointActions';
 

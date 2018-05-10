@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import ChoreForm from '../ChoreForm';
+import ChoreForm from '../../components/ChoreForm';
 import withAuthorization from '../../components/withAuthorization';
 
 import { addChore } from '../../actions/choreActions';
@@ -52,8 +52,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   addChore: (chore, game, slug) => dispatch(addChore(chore, game, slug)),
 });
-
-export { NewChore };
 
 export default compose(
   withAuthorization(authCondition, isLoading),
