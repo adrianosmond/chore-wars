@@ -51,7 +51,7 @@ const PointsGraph = (props) => {
           const playerName = <div className="points-graph__person-name">{player.name}</div>;
           if (playerId === props.user) {
             return (
-              <Link to={routes.PROFILE_EDITOR} className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
+              <Link to={routes.EDIT_PROFILE} className={`points-graph__person points-graph__person--${idx + 1}`} key={playerId}>
                 {playerPicture}
                 {playerName}
               </Link>

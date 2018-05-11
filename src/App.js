@@ -11,9 +11,9 @@ import NoGame from './containers/NoGame';
 import Chores from './containers/Chores';
 import NewChore from './containers/NewChore';
 import EditChore from './containers/EditChore';
-import LogChoreCompletion from './containers/LogChoreCompletion';
-import Chain from './containers/Chain';
-import ProfileEditor from './containers/ProfileEditor';
+import LogPastCompletion from './containers/LogPastCompletion';
+import NewChain from './containers/NewChain';
+import EditProfile from './containers/EditProfile';
 
 import * as routes from './constants/routes';
 
@@ -26,9 +26,9 @@ const App = () => (
       <Route exact path={routes.CHORES} component={Chores} />
       <Route exact path={routes.NEW_CHORE} component={NewChore} />
       <Route exact path={`${routes.EDIT_CHORE}/:slug`} component={EditChore} />
-      <Route exact path={`${routes.LOG_PAST_COMPLETION}/:slug`} component={LogChoreCompletion} />
-      <Route exact path={routes.NEW_CHAIN} component={Chain} />
-      <Route exact path={routes.PROFILE_EDITOR} component={ProfileEditor} />
+      <Route exact path={`${routes.LOG_PAST_COMPLETION}/:slug`} component={LogPastCompletion} />
+      <Route exact path={routes.NEW_CHAIN} component={NewChain} />
+      <Route exact path={routes.EDIT_PROFILE} component={EditProfile} />
     </Switch>
   </Router>
 );

@@ -11,7 +11,7 @@ import { loadChores, completeChore } from '../../actions/choreActions';
 import * as routes from '../../constants/routes';
 import { computedChoreProperties } from '../../constants/utils';
 
-class LogChoreCompletion extends Component {
+class LogPastCompletion extends Component {
   constructor(props) {
     super(props);
 
@@ -89,4 +89,4 @@ export default compose(
   withAuthorization(authCondition, isLoading),
   connect(mapStateToProps, mapDispatchToProps),
   withRouter,
-)(LogChoreCompletion);
+)(LogPastCompletion);

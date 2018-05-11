@@ -13,7 +13,7 @@ import { editorOrder, isEditable, labels } from '../../constants/avatars';
 import * as routes from '../../constants/routes';
 import { MAX_NAME_LENGTH } from '../../constants/constants';
 
-import './ProfileEditor.css';
+import './EditProfile.css';
 
 class ProfileEditor extends Component {
   constructor(props) {
@@ -52,42 +52,41 @@ class ProfileEditor extends Component {
     if (!avatar) return null;
     return (
       <div className="app profile-editor">
-          { !editing ?
-            <div>
-              <div className="profile-editor__avatar">
-                <Avatar { ...avatar } />
-              </div>
-              <div style={{ marginTop: '1rem' }}>
-                <label htmlFor="name">Name:</label>
-                <input className="form__input" id="name" placeholder="Name" type="text" maxLength={MAX_NAME_LENGTH} onChange={event => this.setState({ name: event.target.value })} value={this.state.name} />
-              </div>
-              {Object.keys(avatar)
-                .sort((a, b) => editorOrder.indexOf(a) - editorOrder.indexOf(b))
-                .map((key) => {
-                  if (editorOrder.indexOf(key) >= 0 && isEditable[key](avatar)) {
-                    return <button className="form__button form__button--tertiary" onClick={() =>
-                      this.setState({ editing: key })} key={key}>{labels[key]}</button>;
-                  }
-                  return null;
-                })}
-              <div className="form__button-holder form__button-holder--tight">
-                <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
-                <button className="form__button form__button"
-                  onClick={this.saveUser.bind(this)}>Save</button>
-              </div>
+        { !editing ?
+          <div>
+            <div className="profile-editor__avatar">
+              <Avatar { ...avatar } />
             </div>
-          : <div>
-              <button className="form__button form__button--secondary"
-                onClick={() => this.setState({ editing: null })}>Back</button>
-              <AvatarGrid avatar={avatar} editing={editing}
-                updateAvatar={(property, value) => {
-                  this.updateAvatar(property, value);
-                  this.setState({ editing: null });
-                }} />
-              <button className="form__button form__button--secondary"
-                onClick={() => this.setState({ editing: null })}>Back</button>
-            </div>}
-
+            <div style={{ marginTop: '1rem' }}>
+              <label htmlFor="name">Name:</label>
+              <input className="form__input" id="name" placeholder="Name" type="text" maxLength={MAX_NAME_LENGTH} onChange={event => this.setState({ name: event.target.value })} value={this.state.name} />
+            </div>
+            {Object.keys(avatar)
+              .sort((a, b) => editorOrder.indexOf(a) - editorOrder.indexOf(b))
+              .map((key) => {
+                if (editorOrder.indexOf(key) >= 0 && isEditable[key](avatar)) {
+                  return <button className="form__button form__button--tertiary" onClick={() =>
+                    this.setState({ editing: key })} key={key}>{labels[key]}</button>;
+                }
+                return null;
+              })}
+            <div className="form__button-holder form__button-holder--tight">
+              <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
+              <button className="form__button form__button"
+                onClick={this.saveUser.bind(this)}>Save</button>
+            </div>
+          </div>
+        : <div>
+            <button className="form__button form__button--secondary"
+              onClick={() => this.setState({ editing: null })}>Back</button>
+            <AvatarGrid avatar={avatar} editing={editing}
+              updateAvatar={(property, value) => {
+                this.updateAvatar(property, value);
+                this.setState({ editing: null });
+              }} />
+            <button className="form__button form__button--secondary"
+              onClick={() => this.setState({ editing: null })}>Back</button>
+          </div>}
       </div>
     );
   }

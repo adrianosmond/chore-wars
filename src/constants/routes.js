@@ -6,4 +6,4 @@ export const NEW_CHORE = '/chores/new';
 export const EDIT_CHORE = '/chores/edit';
 export const LOG_PAST_COMPLETION = '/chores/log';
 export const NEW_CHAIN = '/chain/new';
-export const PROFILE_EDITOR = '/edit-profile';
+export const EDIT_PROFILE = '/edit-profile';
