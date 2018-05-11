@@ -8,29 +8,22 @@ import PointsGraph from '../../components/PointsGraph';
 import ChoresList from '../../components/ChoresList';
 import Actions from '../../components/Actions';
 
-import { convertChoresToArray } from '../../constants/utils';
+import { getFilteredChoresArray } from '../../constants/utils';
 
 class Chores extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chores: null,
+      chores: getFilteredChoresArray(props.chores),
     };
   }
 
-  componentWillMount() {
-    this.setChores(this.props.chores);
-  }
-
-  setChores(chores) {
-    this.setState({
-      chores: convertChoresToArray(chores).filter(chore => !chore.isWaiting),
-    });
-  }
 
   componentWillReceiveProps(newProps) {
     if (newProps.chores !== this.props.chores) {
-      this.setChores(newProps.chores);
+      this.setState({
+        chores: getFilteredChoresArray(newProps.chores),
+      });
     }
   }
 

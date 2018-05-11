@@ -12,7 +12,7 @@ import Chores from './containers/Chores';
 import NewChore from './containers/NewChore';
 import EditChore from './containers/EditChore';
 import LogChoreCompletion from './containers/LogChoreCompletion';
-import ChoreChain from './containers/ChoreChain';
+import Chain from './containers/Chain';
 import ProfileEditor from './containers/ProfileEditor';
 
 import * as routes from './constants/routes';
@@ -27,7 +27,7 @@ const App = () => (
       <Route exact path={routes.NEW_CHORE} component={NewChore} />
       <Route exact path={`${routes.EDIT_CHORE}/:slug`} component={EditChore} />
       <Route exact path={`${routes.LOG_PAST_COMPLETION}/:slug`} component={LogChoreCompletion} />
-      <Route exact path={routes.NEW_CHAIN} component={ChoreChain} />
+      <Route exact path={routes.NEW_CHAIN} component={Chain} />
       <Route exact path={routes.PROFILE_EDITOR} component={ProfileEditor} />
     </Switch>
   </Router>

@@ -29,12 +29,16 @@ const convertChoresToArray = (choresObj, now = new Date().getTime()) =>
     .map(slug => processChore(choresObj[slug], slug, now))
     .sort(sortByCurrentPoints);
 
+const getFilteredChoresArray = chores =>
+  convertChoresToArray(chores).filter(chore => !chore.isWaiting);
+
 const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
 
 export {
-  sortByCurrentPoints,
   computedChoreProperties,
-  processChore,
   convertChoresToArray,
+  getFilteredChoresArray,
   makeSlug,
+  processChore,
+  sortByCurrentPoints,
 };
