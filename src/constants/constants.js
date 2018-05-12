@@ -11,6 +11,21 @@ const MAX_POINT_DIFFERENCE = 500;
 const MAX_NAME_LENGTH = 10;
 const JOIN_CODE_LENGTH = 8;
 
+const DefaultAvatar = {
+  accessoriesType: 'Blank',
+  avatarStyle: 'Transparent',
+  clotheColor: 'Blue03',
+  clotheType: 'BlazerShirt',
+  eyeType: 'Default',
+  eyebrowType: 'Default',
+  facialHairColor: 'BrownDark',
+  facialHairType: 'Blank',
+  hairColor: 'BrownDark',
+  mouthType: 'Twinkle',
+  skinColor: 'Light',
+  topType: 'LongHairStraight',
+};
+
 const ActionTypes = {
   addChore: 'ADD_CHORE',
   resetChoreDoneDate: 'RESET_CHORE_DONE_DATE',
@@ -44,4 +59,5 @@ export {
   DATE_FORMAT,
   MAX_POINT_DIFFERENCE,
   ActionTypes,
+  DefaultAvatar,
 };

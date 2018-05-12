@@ -1,4 +1,4 @@
-import { TIME_UNIT } from './constants';
+import { TIME_UNIT, JOIN_CODE_LENGTH, DefaultAvatar } from './constants';
 
 const sortByCurrentPoints = (a, b) => b.currentPoints - a.currentPoints;
 
@@ -34,9 +34,22 @@ const getFilteredChoresArray = chores =>
 
 const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
 
+const createJoinCode = () => new Array(JOIN_CODE_LENGTH).fill(97).map(x =>
+  String.fromCharCode(x + Math.round(Math.random() * 25))).join('');
+
+const generatePlayerData = (playerName, joinCode = null) => ({
+  name: playerName,
+  isOwed: 0,
+  points: 0,
+  joinCode,
+  avatar: DefaultAvatar,
+});
+
 export {
   computedChoreProperties,
   convertChoresToArray,
+  createJoinCode,
+  generatePlayerData,
   getFilteredChoresArray,
   makeSlug,
   processChore,

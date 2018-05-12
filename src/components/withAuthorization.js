@@ -31,7 +31,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
         } else {
           database.ref(`users/${authUser.uid}`).once('value', (result) => {
             const game = result.val();
-            if (process.env.NODE_ENV === 'development') game.gameId = '-TEST';
+            // if (process.env.NODE_ENV === 'development') game.gameId = '-TEST';
             if (game && game.gameId) {
               const { gameId } = game;
               if (gameId) {
@@ -54,6 +54,10 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
           choresLoaded: newProps.choresLoaded,
         }),
       });
+      // When we've got a game, we can redirect to the chores page
+      if (!this.props.game && newProps.game) {
+        this.props.history.push(routes.CHORES);
+      }
     }
 
     render() {
