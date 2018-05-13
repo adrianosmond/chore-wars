@@ -10,3 +10,7 @@
   padding: 1rem;
   background-color: #fff;
 }
+
+.profile-editor__field {
+  margin-top: 1rem;
+}

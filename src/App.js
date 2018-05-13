@@ -28,7 +28,7 @@ const App = () => (
       <Route exact path={`${routes.EDIT_CHORE}/:slug`} component={EditChore} />
       <Route exact path={`${routes.LOG_PAST_COMPLETION}/:slug`} component={LogPastCompletion} />
       <Route exact path={routes.NEW_CHAIN} component={NewChain} />
-      <Route exact path={routes.EDIT_PROFILE} component={EditProfile} />
+      <Route path={routes.EDIT_PROFILE} component={EditProfile} />
     </Switch>
   </Router>
 );

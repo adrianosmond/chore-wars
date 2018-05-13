@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
 import { avatarOptions } from '../../constants/avatars';
+import * as routes from '../../constants/routes';
 
 import './AvatarGrid.css';
 
-const AvatarGrid = ({ editing, avatar, updateAvatar }) =>
+const AvatarGrid = ({ editing, avatar, onSelect }) =>
   <ul className="avatar-grid">
     {avatarOptions[editing].map((option, idx) => {
       const avatarProps = {
@@ -13,10 +15,10 @@ const AvatarGrid = ({ editing, avatar, updateAvatar }) =>
         [editing]: option,
       };
       return (
-        <li className="avatar-grid__option" key={idx} onClick={() => {
-          updateAvatar(editing, option);
-        }}>
-          <Avatar { ...avatarProps} style={{ width: '100%', height: '100%' }} />
+        <li className="avatar-grid__option" key={idx}>
+          <Link to={routes.EDIT_PROFILE} onClick={() => { onSelect(option); }}>
+            <Avatar { ...avatarProps} style={{ width: '100%', height: '100%' }} />
+          </Link>
         </li>
       );
     })}
