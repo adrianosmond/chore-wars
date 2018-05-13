@@ -15,22 +15,7 @@ const session = {
 };
 
 describe('Actions', () => {
-  it('Renders the actions', () => {
-    const store = mockStore({
-      chores: {
-        past: [],
-        present: {
-          'test-chore-1': {},
-          'test-chore-2': {},
-          'test-chore-3': {},
-        },
-      },
-      session,
-    });
-    expect(shallow(<Actions store={store} />)).toMatchSnapshot();
-  });
-
-  it('Renders the actions when undoing is possible', () => {
+  it('Renders', () => {
     const store = mockStore({
       chores: {
         past: [{}, {}],
@@ -42,19 +27,130 @@ describe('Actions', () => {
       },
       session,
     });
-    expect(shallow(<Actions store={store} />)).toMatchSnapshot();
+
+    const actionsComponent = shallow(<Actions store={store} />).dive();
+    expect(actionsComponent).toMatchSnapshot();
   });
 
-  it('Renders the actions when creating a chain is impossible', () => {
-    const store = mockStore({
-      chores: {
-        past: [{}, {}],
-        present: {
-          'test-chore-1': {},
+  describe('Undoing', () => {
+    it('is enabled when there is a history', () => {
+      const store = mockStore({
+        chores: {
+          past: [{}, {}],
+          present: {
+            'test-chore-1': {},
+          },
         },
-      },
-      session,
+        session,
+      });
+
+      const actionsComponent = shallow(<Actions store={store} />).dive();
+      const undoButton = actionsComponent.find('#actions-undo');
+      expect(undoButton.prop('disabled')).toBe(false);
     });
-    expect(shallow(<Actions store={store} />)).toMatchSnapshot();
+
+    it('calls undo and saves the state when it is clicked', () => {
+      const store = mockStore({
+        chores: {
+          past: [{}, {}],
+          present: {
+            'test-chore-1': {},
+          },
+        },
+        session,
+      });
+
+      const actionsComponent = shallow(<Actions store={store} />).dive();
+      const undoButton = actionsComponent.find('#actions-undo');
+
+      const undo = jest.fn();
+      const saveStatePostUndo = jest.fn();
+      actionsComponent.setProps({
+        undo,
+        saveStatePostUndo,
+      });
+
+      expect(undo).not.toHaveBeenCalled();
+      expect(saveStatePostUndo).not.toHaveBeenCalled();
+      undoButton.simulate('click');
+      expect(undo).toHaveBeenCalledTimes(1);
+      expect(saveStatePostUndo).toHaveBeenCalledTimes(1);
+    });
+
+    it('is disabled when there is no history', () => {
+      const store = mockStore({
+        chores: {
+          past: [],
+          present: {
+            'test-chore-1': {},
+          },
+        },
+        session,
+      });
+
+      const actionsComponent = shallow(<Actions store={store} />).dive();
+      const undoButton = actionsComponent.find('#actions-undo');
+      expect(undoButton.prop('disabled')).toBe(true);
+    });
+  });
+
+  describe('Creating a chain', () => {
+    it('is disabled when there are fewer than 2 chores', () => {
+      const store = mockStore({
+        chores: {
+          past: [],
+          present: {
+            'test-chore-1': {},
+          },
+        },
+        session,
+      });
+
+      const actionsComponent = shallow(<Actions store={store} />).dive();
+      const chainButton = actionsComponent.find('#actions-create-chain');
+      expect(chainButton.length).toBe(0);
+    });
+
+    it('is enabled when there are 2 chores', () => {
+      const store = mockStore({
+        chores: {
+          past: [],
+          present: {
+            'test-chore-1': {},
+            'test-chore-2': {},
+          },
+        },
+        session,
+      });
+
+      const actionsComponent = shallow(<Actions store={store} />).dive();
+      const chainButton = actionsComponent.find('#actions-create-chain');
+      expect(chainButton.length).toBe(1);
+    });
+  });
+
+  describe('Signing out', () => {
+    it('calls doSignOut when clicked', () => {
+      const store = mockStore({
+        chores: {
+          past: [],
+          present: {},
+        },
+        session,
+      });
+
+      const actionsComponent = shallow(<Actions store={store} />).dive();
+      const signOutButton = actionsComponent.find('#actions-sign-out');
+      expect(signOutButton.length).toBe(1);
+
+      const doSignOut = jest.fn();
+      actionsComponent.setProps({
+        doSignOut,
+      });
+
+      expect(doSignOut).not.toHaveBeenCalled();
+      signOutButton.simulate('click');
+      expect(doSignOut).toHaveBeenCalledTimes(1);
+    });
   });
 });

@@ -34,15 +34,17 @@ class Actions extends Component {
         <button className="actions__toggle-button" onClick={this.toggleMenu.bind(this)}>Toggle menu</button>
         <div className="actions__actions">
           <Link to={routes.NEW_CHORE} className="form__button">Add a chore</Link>
-          { this.props.numChores > 1 ?
-          <Link to={routes.NEW_CHAIN} className="form__button">Create a chain</Link> : null }
+          { this.props.numChores > 1 ? <Link to={routes.NEW_CHAIN} className="form__button"
+              id="actions-create-chain">Create a chain</Link> : null }
           <button onClick={() => {
               this.props.undo();
               this.props.saveStatePostUndo(this.props.game);
             }}
             disabled={!this.props.canUndo}
+            id="actions-undo"
             className="form__button form__button--secondary">Undo</button>
           <button onClick={() => { this.props.doSignOut(); }}
+            id="actions-sign-out"
             className="form__button form__button--secondary">Sign out</button>
         </div>
       </div>

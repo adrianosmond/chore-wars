@@ -1,127 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Actions Renders the actions 1`] = `
-<Actions
-  canUndo={false}
-  doSignOut={[Function]}
-  game="test-game"
-  numChores={3}
-  saveStatePostUndo={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-  undo={[Function]}
-/>
-`;
-
-exports[`Actions Renders the actions when creating a chain is impossible 1`] = `
-<Actions
-  canUndo={true}
-  doSignOut={[Function]}
-  game="test-game"
-  numChores={1}
-  saveStatePostUndo={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-  undo={[Function]}
-/>
-`;
-
-exports[`Actions Renders the actions when undoing is possible 1`] = `
-<Actions
-  canUndo={true}
-  doSignOut={[Function]}
-  game="test-game"
-  numChores={3}
-  saveStatePostUndo={[Function]}
-  store={
-    Object {
-      "clearActions": [Function],
-      "dispatch": [Function],
-      "getActions": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-    }
-  }
-  storeSubscription={
-    Subscription {
-      "listeners": Object {
-        "clear": [Function],
-        "get": [Function],
-        "notify": [Function],
-        "subscribe": [Function],
-      },
-      "onStateChange": [Function],
-      "parentSub": undefined,
-      "store": Object {
-        "clearActions": [Function],
-        "dispatch": [Function],
-        "getActions": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-      },
-      "unsubscribe": [Function],
-    }
-  }
-  undo={[Function]}
-/>
+exports[`Actions Renders 1`] = `
+<div
+  className="actions"
+>
+  <button
+    className="actions__toggle-button"
+    onClick={[Function]}
+  >
+    Toggle menu
+  </button>
+  <div
+    className="actions__actions"
+  >
+    <Link
+      className="form__button"
+      replace={false}
+      to="/chores/new"
+    >
+      Add a chore
+    </Link>
+    <Link
+      className="form__button"
+      id="actions-create-chain"
+      replace={false}
+      to="/chain/new"
+    >
+      Create a chain
+    </Link>
+    <button
+      className="form__button form__button--secondary"
+      disabled={false}
+      id="actions-undo"
+      onClick={[Function]}
+    >
+      Undo
+    </button>
+    <button
+      className="form__button form__button--secondary"
+      id="actions-sign-out"
+      onClick={[Function]}
+    >
+      Sign out
+    </button>
+  </div>
+</div>
 `;
