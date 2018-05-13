@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 
-import withAuthorization from '../../components/withAuthorization';
+import withAuthorization from 'components/withAuthorization';
 
-import PointsGraph from '../../components/PointsGraph';
-import ChoresList from '../../components/ChoresList';
-import Actions from '../../components/Actions';
+import PointsGraph from 'components/PointsGraph';
+import ChoresList from 'components/ChoresList';
+import Actions from 'components/Actions';
 
-import { getFilteredChoresArray } from '../../constants/utils';
+import { getFilteredChoresArray } from 'constants/utils';
 
 class Chores extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
+import { ActionTypes } from 'constants/constants';
 import choresReducer from './choresReducer';
-import { ActionTypes } from '../constants/constants';
 
 describe('Chores Reducer', () => {
   it('Should return initial state', () => {

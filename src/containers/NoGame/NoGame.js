@@ -1,7 +1,7 @@
 import React from 'react';
 
-import SetupGame from '../../components/SetupGame';
-import withAuthorization from '../../components/withAuthorization';
+import SetupGame from 'components/SetupGame';
+import withAuthorization from 'components/withAuthorization';
 
 const NoGame = props =>
   <SetupGame history={props.history} />;

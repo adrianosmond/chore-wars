@@ -2,15 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import fecha from 'fecha';
 
-import PopUpMenu from '../PopUpMenu';
+import PopUpMenu from 'components/PopUpMenu';
 
-import { completeChore, removeChore, breakChain } from '../../actions/choreActions';
-import { DATE_FORMAT } from '../../constants/constants';
-import * as routes from '../../constants/routes';
+import { completeChore, removeChore, breakChain } from 'actions/choreActions';
+import { DATE_FORMAT } from 'constants/constants';
+import * as routes from 'constants/routes';
 
+import checkIcon from 'images/check.svg';
 import './Chore.css';
-
-import checkIcon from '../../images/check.svg';
 
 const Chore = ({
   chore, user, game, markChoreComplete, deleteChore, breakChoreChain,

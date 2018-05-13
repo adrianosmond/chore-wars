@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
-import { updateUserName, saveUserName, saveUserAvatar } from '../../actions/pointActions';
+import { updateUserName, saveUserName, saveUserAvatar } from 'actions/pointActions';
 
-import { editorOrder, isEditable, labels } from '../../constants/avatars';
-import * as routes from '../../constants/routes';
-import { MAX_NAME_LENGTH } from '../../constants/constants';
+import { editorOrder, isEditable, labels } from 'constants/avatars';
+import * as routes from 'constants/routes';
+import { MAX_NAME_LENGTH } from 'constants/constants';
 
 import './Profile.css';
 

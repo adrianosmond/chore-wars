@@ -2,7 +2,7 @@ import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { shallow } from 'enzyme';
-import { processChore, makeSlug } from '../../constants/utils';
+import { processChore, makeSlug } from 'constants/utils';
 import Chore from './Chore';
 
 const choreTime = new Date('2018-02-18').getTime();

@@ -1,6 +1,6 @@
-import { ActionTypes } from '../constants/constants';
-import { generatePlayerData, createJoinCode } from '../constants/utils';
-import { auth, database } from '../lib/firebase';
+import { ActionTypes } from 'constants/constants';
+import { generatePlayerData, createJoinCode } from 'constants/utils';
+import { auth, database } from 'lib/firebase';
 
 export function setAuthUser(authUser) {
   return {

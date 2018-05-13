@@ -2,8 +2,8 @@ import React from 'react';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { shallow } from 'enzyme';
+import { MAX_POINT_DIFFERENCE } from 'constants/constants';
 import PointsGraph from './PointsGraph';
-import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
 
 const mockStore = configureMockStore([thunk]);
 

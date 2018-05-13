@@ -3,12 +3,12 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import ChoreForm from '../../components/ChoreForm';
-import withAuthorization from '../../components/withAuthorization';
+import ChoreForm from 'components/ChoreForm';
+import withAuthorization from 'components/withAuthorization';
 
-import { addChore } from '../../actions/choreActions';
+import { addChore } from 'actions/choreActions';
 
-import * as routes from '../../constants/routes';
+import * as routes from 'constants/routes';
 
 class NewChore extends Component {
   constructor(props) {

@@ -5,17 +5,17 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Login from './containers/Login';
-import SignUp from './containers/SignUp';
-import NoGame from './containers/NoGame';
-import Chores from './containers/Chores';
-import NewChore from './containers/NewChore';
-import EditChore from './containers/EditChore';
-import LogPastCompletion from './containers/LogPastCompletion';
-import NewChain from './containers/NewChain';
-import EditProfile from './containers/EditProfile';
+import Login from 'containers/Login';
+import SignUp from 'containers/SignUp';
+import NoGame from 'containers/NoGame';
+import Chores from 'containers/Chores';
+import NewChore from 'containers/NewChore';
+import EditChore from 'containers/EditChore';
+import LogPastCompletion from 'containers/LogPastCompletion';
+import NewChain from 'containers/NewChain';
+import EditProfile from 'containers/EditProfile';
 
-import * as routes from './constants/routes';
+import * as routes from 'constants/routes';
 
 const App = () => (
   <Router>

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import fecha from 'fecha';
 
-import * as routes from '../../constants/routes';
-import { makeSlug } from '../../constants/utils';
-import { MIN_CHORE_FREQUENCY, MAX_CHORE_FREQUENCY, MIN_CHORE_POINTS, MAX_CHORE_POINTS } from '../../constants/constants';
+import * as routes from 'constants/routes';
+import { makeSlug } from 'constants/utils';
+import { MIN_CHORE_FREQUENCY, MAX_CHORE_FREQUENCY, MIN_CHORE_POINTS, MAX_CHORE_POINTS } from 'constants/constants';
 
 import './ChoreForm.css';
 

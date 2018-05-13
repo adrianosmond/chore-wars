@@ -1,7 +1,7 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
 
-import Chore from '../Chore';
+import Chore from 'components/Chore';
 
 import './ChoresList.css';
 

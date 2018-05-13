@@ -3,12 +3,12 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import ChoreChain from '../../components/ChoreChain';
-import withAuthorization from '../../components/withAuthorization';
+import ChoreChain from 'components/ChoreChain';
+import withAuthorization from 'components/withAuthorization';
 
-import { makeChain } from '../../actions/choreActions';
-import { convertChoresToArray } from '../../constants/utils';
-import * as routes from '../../constants/routes';
+import { makeChain } from 'actions/choreActions';
+import { convertChoresToArray } from 'constants/utils';
+import * as routes from 'constants/routes';
 
 const filterAndSortChores = (chores) => {
   if (!chores) return null;

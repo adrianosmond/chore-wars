@@ -1,4 +1,4 @@
-import { TIME_UNIT, JOIN_CODE_LENGTH, DefaultAvatar } from './constants';
+import { TIME_UNIT, JOIN_CODE_LENGTH, DefaultAvatar } from 'constants/constants';
 
 const sortByCurrentPoints = (a, b) => b.currentPoints - a.currentPoints;
 

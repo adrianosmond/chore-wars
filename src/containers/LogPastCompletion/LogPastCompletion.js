@@ -3,13 +3,13 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 
-import withAuthorization from '../../components/withAuthorization';
-import ChoreForm from '../../components/ChoreForm';
+import withAuthorization from 'components/withAuthorization';
+import ChoreForm from 'components/ChoreForm';
 
-import { loadChores, completeChore } from '../../actions/choreActions';
+import { loadChores, completeChore } from 'actions/choreActions';
 
-import * as routes from '../../constants/routes';
-import { computedChoreProperties } from '../../constants/utils';
+import * as routes from 'constants/routes';
+import { computedChoreProperties } from 'constants/utils';
 
 class LogPastCompletion extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
-import { database } from '../lib/firebase';
-import { ActionTypes } from '../constants/constants';
+import { database } from 'lib/firebase';
+import { ActionTypes } from 'constants/constants';
 
 export default function choresReducer(state = { }, action) {
   const newState = JSON.parse(JSON.stringify(state));

@@ -1,4 +1,4 @@
-import { ActionTypes } from '../constants/constants';
+import { ActionTypes } from 'constants/constants';
 
 export default function sessionReducer(state = {
   authUser: null, game: null, pointsLoaded: false, choresLoaded: false,

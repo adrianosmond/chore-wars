@@ -1,7 +1,7 @@
-import { database } from '../lib/firebase';
+import { database } from 'lib/firebase';
 import { addPointsToUser } from './pointActions';
 import { setChoresLoaded } from './sessionActions';
-import { ActionTypes } from '../constants/constants';
+import { ActionTypes } from 'constants/constants';
 
 export function addChore(newChore, game, slug) {
   return {

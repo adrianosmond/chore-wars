@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FlipMove from 'react-flip-move';
 
-import * as routes from '../../constants/routes';
+import * as routes from 'constants/routes';
 
+import checkIcon from 'images/check.svg';
 import './ChoreChain.css';
-import checkIcon from '../../images/check.svg';
 
 const ChainSelect = props => (
   <div className="chore-chain__section">

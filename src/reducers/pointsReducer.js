@@ -1,5 +1,5 @@
-import { database } from '../lib/firebase';
-import { ActionTypes, MAX_POINT_DIFFERENCE } from '../constants/constants';
+import { database } from 'lib/firebase';
+import { ActionTypes, MAX_POINT_DIFFERENCE } from 'constants/constants';
 
 export default function pointsReducer(state = { }, action) {
   const newState = JSON.parse(JSON.stringify(state));

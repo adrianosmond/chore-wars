@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ActionCreators } from 'redux-undo';
 
-import * as routes from '../../constants/routes';
-import { ActionTypes } from '../../constants/constants';
-import { signOut } from '../../actions/sessionActions';
+import * as routes from 'constants/routes';
+import { ActionTypes } from 'constants/constants';
+import { signOut } from 'actions/sessionActions';
 
 import './Actions.css';
 

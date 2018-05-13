@@ -1,5 +1,5 @@
+import { ActionTypes, MAX_POINT_DIFFERENCE } from 'constants/constants';
 import pointsReducer from './pointsReducer';
-import { ActionTypes, MAX_POINT_DIFFERENCE } from '../constants/constants';
 
 describe('Points Reducer', () => {
   it('Should return initial state', () => {
@@ -40,7 +40,7 @@ describe('Points Reducer', () => {
       },
     });
   });
-  
+
   it('Should be able to claim a prize', () => {
     expect(pointsReducer({
       test1: {

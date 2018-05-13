@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { auth } from '../../lib/firebase';
-import * as routes from '../../constants/routes';
+import { auth } from 'lib/firebase';
+import * as routes from 'constants/routes';
 
 const INITIAL_STATE = {
   email: '',

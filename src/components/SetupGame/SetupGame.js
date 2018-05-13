@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { createGame, joinGame } from '../../actions/sessionActions';
+import { createGame, joinGame } from 'actions/sessionActions';
 
-import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from '../../constants/constants';
+import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from 'constants/constants';
 
 class NoGame extends Component {
   constructor(props) {
@@ -36,7 +36,8 @@ class NoGame extends Component {
 
         <h2>Create a game</h2>
         <p>Alternatively, if you want create a new game and invite someone else...</p>
-        <button onClick={() => this.props.createGame(this.props.user, this.state.gameToJoin, this.state.playerName)}
+        <button onClick={() =>
+          this.props.createGame(this.props.user, this.state.gameToJoin, this.state.playerName)}
           disabled={this.state.playerName.trim().length === 0 ||
             this.state.gameToJoin.trim().length > 0}
           className="form__button form__button--secondary">Create a game</button>

@@ -1,6 +1,6 @@
-import { database } from '../lib/firebase';
+import { database } from 'lib/firebase';
+import { ActionTypes } from 'constants/constants';
 import { setPointsLoaded } from './sessionActions';
-import { ActionTypes } from '../constants/constants';
 
 export function addPointsToUser(user, points, game) {
   return {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { auth } from '../../lib/firebase';
-import * as routes from '../../constants/routes';
+import { auth } from 'lib/firebase';
+import * as routes from 'constants/routes';
 
-import Loading from '../../components/Loading';
-import LoginForm from '../../components/LoginForm';
+import Loading from 'components/Loading';
+import LoginForm from 'components/LoginForm';
 
 class Login extends Component {
   constructor(props) {

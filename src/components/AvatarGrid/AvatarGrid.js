@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
-import { avatarOptions } from '../../constants/avatars';
-import * as routes from '../../constants/routes';
+import { avatarOptions } from 'constants/avatars';
+import * as routes from 'constants/routes';
 
 import './AvatarGrid.css';
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Profile from '../../components/Profile';
-import EditAvatarProperty from '../../components/EditAvatarProperty';
-import withAuthorization from '../../components/withAuthorization';
+import Profile from 'components/Profile';
+import EditAvatarProperty from 'components/EditAvatarProperty';
+import withAuthorization from 'components/withAuthorization';
 
-import * as routes from '../../constants/routes';
+import * as routes from 'constants/routes';
 
 const EditProfile = () =>
   <div className="app profile-editor">

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import undoable, { includeAction } from 'redux-undo';
-import { ActionTypes } from '../constants/constants';
+import { ActionTypes } from 'constants/constants';
 import choresReducer from './choresReducer';
 import pointsReducer from './pointsReducer';
 import sessionReducer from './sessionReducer';

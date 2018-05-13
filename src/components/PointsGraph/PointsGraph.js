@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import Avatar from 'avataaars';
 import Confetti from 'react-dom-confetti';
 
-import PopUpMenu from '../PopUpMenu';
+import PopUpMenu from 'components/PopUpMenu';
 
-import { claimPrize, paidDebt } from '../../actions/pointActions';
+import { claimPrize, paidDebt } from 'actions/pointActions';
 
-import { MAX_POINT_DIFFERENCE } from '../../constants/constants';
-import * as routes from '../../constants/routes';
+import { MAX_POINT_DIFFERENCE } from 'constants/constants';
+import * as routes from 'constants/routes';
 
 import './PointsGraph.css';
 
