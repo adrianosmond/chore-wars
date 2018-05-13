@@ -54,9 +54,12 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
           choresLoaded: newProps.choresLoaded,
         }),
       });
-      // When we've got a game, we can redirect to the chores page
-      if (!this.props.game && newProps.game) {
-        this.props.history.push(routes.CHORES);
+
+      if (this.props.history.location.pathName === routes.NO_GAME) {
+        // When we've got a game, we can redirect to the chores page
+        if (!this.props.game && newProps.game) {
+          this.props.history.push(routes.CHORES);
+        }
       }
     }
 

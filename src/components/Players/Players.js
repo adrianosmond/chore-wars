@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Avatar from 'avataaars';
 
@@ -7,12 +6,10 @@ import PopUpMenu from 'components/PopUpMenu';
 
 import { paidDebt } from 'actions/pointActions';
 
-import * as routes from 'constants/routes';
-
 import './Players.css';
 
 const Players = ({
-  players, user, gameId, debtPaid,
+  players, gameId, debtPaid,
 }) =>
   <div className="players">
     {players.map((player, idx) => (
@@ -31,9 +28,7 @@ const Players = ({
               { player.isOwed > 1 ? <span className="players__owed-multiple">{player.isOwed}</span> : null }
             </PopUpMenu> : null}
         </div>
-        { player.id === user ?
-            <Link to={routes.EDIT_PROFILE} className="players__player-name">{player.name}</Link> :
-            <div className="players__player-name">{player.name}</div> }
+        <div className="players__player-name">{player.name}</div>
       </div>
     ))}
     { players.length < 2 ?
@@ -47,7 +42,6 @@ const Players = ({
 
 const mapStateToProps = state => ({
   gameId: state.session.game.gameId,
-  user: state.session.authUser.uid,
 });
 
 const matchDispatchToProps = dispatch => ({

@@ -14,3 +14,18 @@
 .profile-editor__field {
   margin-top: 1rem;
 }
+
+@media screen and (min-width: 37.5em) {
+  .profile-editor {
+    display: grid;
+    grid-template-columns: 1fr  1fr;
+    grid-column-gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .profile-editor__avatar {
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

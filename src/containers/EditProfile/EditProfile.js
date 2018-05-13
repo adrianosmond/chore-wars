@@ -8,7 +8,7 @@ import withAuthorization from 'components/withAuthorization';
 import * as routes from 'constants/routes';
 
 const EditProfile = () =>
-  <div className="app profile-editor">
+  <div className="app">
     <Switch>
       <Route exact path={routes.EDIT_PROFILE} component={Profile} />
       <Route path={`${routes.EDIT_PROFILE}/:propertyToEdit`} component={EditAvatarProperty} />

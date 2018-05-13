@@ -128,29 +128,4 @@ describe('Actions', () => {
       expect(chainButton.length).toBe(1);
     });
   });
-
-  describe('Signing out', () => {
-    it('calls doSignOut when clicked', () => {
-      const store = mockStore({
-        chores: {
-          past: [],
-          present: {},
-        },
-        session,
-      });
-
-      const actionsComponent = shallow(<Actions store={store} />).dive();
-      const signOutButton = actionsComponent.find('#actions-sign-out');
-      expect(signOutButton.length).toBe(1);
-
-      const doSignOut = jest.fn();
-      actionsComponent.setProps({
-        doSignOut,
-      });
-
-      expect(doSignOut).not.toHaveBeenCalled();
-      signOutButton.simulate('click');
-      expect(doSignOut).toHaveBeenCalledTimes(1);
-    });
-  });
 });

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
 import { updateUserName, saveUserName, saveUserAvatar } from 'actions/pointActions';
+import { signOut } from 'actions/sessionActions';
 
 import { editorOrder, isEditable, labels } from 'constants/avatars';
 import * as routes from 'constants/routes';
@@ -51,8 +52,8 @@ class Profile extends Component {
     const { avatar } = this.state;
     if (!avatar) return null;
     return (
-      <div className="app profile-editor">
-        <div>
+      <div className="profile-editor">
+        <div className="profile-editor__column">
           <div className="profile-editor__avatar">
             <Avatar { ...avatar } />
           </div>
@@ -62,13 +63,19 @@ class Profile extends Component {
               maxLength={MAX_NAME_LENGTH}
               onChange={event => this.setState({ name: event.target.value })}
               value={this.state.name} />
+            <div className="form__button-holder form__button-holder--tight">
+              <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
+              <Link to={routes.CHORES} className="form__button form__button"
+                onClick={this.saveUser.bind(this)}>Save</Link>
+            </div>
+            <button onClick={() => { this.props.doSignOut(); }}
+              id="profile-sign-out"
+              className="form__button form__button--tertiary">Sign out</button>
           </div>
+        </div>
+        <div className="profile-editor__column">
+          <p className="profile-editor__field">Appearance:</p>
           <EditAvatarLinks avatar={avatar} />
-          <div className="form__button-holder form__button-holder--tight">
-            <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
-            <Link to={routes.CHORES} className="form__button form__button"
-              onClick={this.saveUser.bind(this)}>Save</Link>
-          </div>
         </div>
       </div>
     );
@@ -85,6 +92,7 @@ const mapDispatchToProps = dispatch => ({
   updateUserName: (user, name, game) => dispatch(updateUserName(user, name, game)),
   saveUserName: (user, name, game) => dispatch(saveUserName(user, name, game)),
   saveUserAvatar: (user, avatar, game) => dispatch(saveUserAvatar(user, avatar, game)),
+  doSignOut: () => dispatch(signOut),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
