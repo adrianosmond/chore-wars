@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import withAuthorization from 'components/withAuthorization';
 
-import PointsGraph from 'components/PointsGraph';
+import GameHeader from 'components/GameHeader';
 import ChoresList from 'components/ChoresList';
 import Actions from 'components/Actions';
 
@@ -31,7 +31,7 @@ class Chores extends Component {
     const { chores } = this.state;
     return (
       <div className="app">
-        <PointsGraph />
+        <GameHeader />
         <div className="app__chores">
           { chores ? <ChoresList chores={chores} /> : null }
           <Actions />

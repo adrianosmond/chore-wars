@@ -1,4 +1,5 @@
-import { TIME_UNIT, JOIN_CODE_LENGTH, DefaultAvatar } from 'constants/constants';
+import { TIME_UNIT, JOIN_CODE_LENGTH } from 'constants/constants';
+import { DefaultAvatar } from 'constants/avatars';
 
 const sortByCurrentPoints = (a, b) => b.currentPoints - a.currentPoints;
 
@@ -45,12 +46,18 @@ const generatePlayerData = (playerName, joinCode = null) => ({
   avatar: DefaultAvatar,
 });
 
+const makePlayersArray = points => Object.keys(points).map(player => ({
+  ...points[player],
+  id: player,
+}));
+
 export {
   computedChoreProperties,
   convertChoresToArray,
   createJoinCode,
   generatePlayerData,
   getFilteredChoresArray,
+  makePlayersArray,
   makeSlug,
   processChore,
   sortByCurrentPoints,

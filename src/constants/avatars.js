@@ -185,3 +185,19 @@ export const isEditable = {
   clotheType: () => true,
   clotheColor: options => !options.clotheType.startsWith('Blazer'),
 };
+
+
+export const DefaultAvatar = {
+  accessoriesType: 'Blank',
+  avatarStyle: 'Transparent',
+  clotheColor: 'Blue03',
+  clotheType: 'BlazerShirt',
+  eyeType: 'Default',
+  eyebrowType: 'Default',
+  facialHairColor: 'BrownDark',
+  facialHairType: 'Blank',
+  hairColor: 'BrownDark',
+  mouthType: 'Twinkle',
+  skinColor: 'Light',
+  topType: 'LongHairStraight',
+};

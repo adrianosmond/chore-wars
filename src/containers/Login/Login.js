@@ -12,6 +12,7 @@ class Login extends Component {
       loading: true,
     };
   }
+
   componentDidMount() {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
