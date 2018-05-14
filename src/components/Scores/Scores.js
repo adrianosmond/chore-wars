@@ -50,8 +50,8 @@ const mapStateToProps = state => ({
   gameId: state.session.game.gameId,
 });
 
-const matchDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
   claimPrize: (player, game) => dispatch(claimPrize(player, game)),
 });
 
-export default connect(mapStateToProps, matchDispatchToProps)(Scores);
+export default connect(mapStateToProps, mapDispatchToProps)(Scores);

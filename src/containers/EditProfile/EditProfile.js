@@ -16,6 +16,6 @@ const EditProfile = () =>
   </div>;
 
 const authCondition = authUser => !!authUser;
-const isLoading = state => !state.pointsLoaded;
+const isLoading = state => !state.playersLoaded;
 
 export default withAuthorization(authCondition, isLoading)(EditProfile);

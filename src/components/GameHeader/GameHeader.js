@@ -8,8 +8,8 @@ import { makePlayersArray } from 'constants/utils';
 
 import './GameHeader.css';
 
-const GameHeader = ({ points }) => {
-  const playersArray = makePlayersArray(points);
+const GameHeader = ({ players }) => {
+  const playersArray = makePlayersArray(players);
   return (
     <div className="game-header">
       <h1 className="game-header__title">Chore Wars</h1>
@@ -24,7 +24,7 @@ const GameHeader = ({ points }) => {
 };
 
 const mapStateToProps = state => ({
-  points: state.points.present,
+  players: state.players,
 });
 
 export default connect(mapStateToProps)(GameHeader);

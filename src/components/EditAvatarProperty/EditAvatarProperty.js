@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AvatarGrid from 'components/AvatarGrid';
 
-import { updateUserAvatar } from 'actions/pointActions';
+import { setPlayerAvatar } from 'actions/playerActions';
 
 import * as routes from 'constants/routes';
 
 const EditAvatarProperty = (props) => {
-  const { user, gameId, points } = props;
-  const { avatar } = points[user];
+  const { user, gameId, player } = props;
+  const { avatar } = player;
   const { propertyToEdit } = props.match.params;
   return (
     <div>
@@ -17,7 +17,7 @@ const EditAvatarProperty = (props) => {
       <AvatarGrid avatar={avatar}
         editing={propertyToEdit}
         onSelect={(newValue) => {
-          props.updateUserAvatar(user, {
+          props.setPlayerAvatar(user, {
             ...avatar,
             [propertyToEdit]: newValue,
           }, gameId);
@@ -30,11 +30,11 @@ const EditAvatarProperty = (props) => {
 const mapStateToProps = state => ({
   gameId: state.session.game.gameId,
   user: state.session.authUser.uid,
-  points: state.points.present,
+  player: state.players[state.session.authUser.uid],
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUserAvatar: (user, avatar, game) => dispatch(updateUserAvatar(user, avatar, game)),
+  setPlayerAvatar: (user, avatar, game) => dispatch(setPlayerAvatar(user, avatar, game)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditAvatarProperty);

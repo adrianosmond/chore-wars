@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
-import { updateUserName, saveUserName, saveUserAvatar } from 'actions/pointActions';
+import { setPlayerName, savePlayerName, savePlayerAvatar } from 'actions/playerActions';
 import { signOut } from 'actions/sessionActions';
 
 import { editorOrder, isEditable, labels } from 'constants/avatars';
@@ -27,21 +27,21 @@ const EditAvatarLinks = ({ avatar }) =>
 class Profile extends Component {
   constructor(props) {
     super(props);
-    const { avatar, name } = props.points[props.user];
+    const { avatar, name } = props.player;
     this.state = {
       name,
       avatar,
     };
   }
 
-  saveUser(event) {
+  savePlayer(event) {
     const { user, gameId } = this.props;
     const { avatar, name } = this.state;
     const trimmedName = name.trim();
     if (trimmedName.length > 0 && trimmedName.length <= MAX_NAME_LENGTH) {
-      this.props.updateUserName(user, name.trim(), gameId);
-      this.props.saveUserName(user, name.trim(), gameId);
-      this.props.saveUserAvatar(user, avatar, gameId);
+      this.props.setPlayerName(user, name.trim(), gameId);
+      this.props.savePlayerName(user, name.trim(), gameId);
+      this.props.savePlayerAvatar(user, avatar, gameId);
     } else {
       event.preventDefault();
       // TODO: validation
@@ -66,7 +66,7 @@ class Profile extends Component {
             <div className="form__button-holder form__button-holder--tight">
               <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
               <Link to={routes.CHORES} className="form__button form__button"
-                onClick={this.saveUser.bind(this)}>Save</Link>
+                onClick={this.savePlayer.bind(this)}>Save</Link>
             </div>
             <button onClick={() => { this.props.doSignOut(); }}
               id="profile-sign-out"
@@ -85,14 +85,14 @@ class Profile extends Component {
 const mapStateToProps = state => ({
   gameId: state.session.game.gameId,
   user: state.session.authUser.uid,
-  points: state.points.present,
+  player: state.players[state.session.authUser.uid],
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUserName: (user, name, game) => dispatch(updateUserName(user, name, game)),
-  saveUserName: (user, name, game) => dispatch(saveUserName(user, name, game)),
-  saveUserAvatar: (user, avatar, game) => dispatch(saveUserAvatar(user, avatar, game)),
-  doSignOut: () => dispatch(signOut),
+  setPlayerName: (player, name, game) => dispatch(setPlayerName(player, name, game)),
+  savePlayerName: (player, name, game) => dispatch(savePlayerName(player, name, game)),
+  savePlayerAvatar: (player, avatar, game) => dispatch(savePlayerAvatar(player, avatar, game)),
+  doSignOut: () => dispatch(signOut()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

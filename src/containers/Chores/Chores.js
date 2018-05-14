@@ -42,7 +42,7 @@ class Chores extends Component {
 }
 
 const authCondition = authUser => !!authUser;
-const isLoading = state => !state.pointsLoaded || !state.choresLoaded;
+const isLoading = state => !state.pointsLoaded || !state.choresLoaded || !state.playersLoaded;
 
 const mapStateToProps = state => ({
   chores: state.chores.present,

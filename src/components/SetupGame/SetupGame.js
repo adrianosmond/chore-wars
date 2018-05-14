@@ -30,14 +30,14 @@ class NoGame extends Component {
         <input type="text" placeholder="e.g. abcdwxyz" className="form__input" value={this.state.gameToJoin}
           onChange={(event) => { this.setState({ gameToJoin: event.target.value }); }}
           maxLength={JOIN_CODE_LENGTH} />
-        <button onClick={() => this.props.joinGame(this.props.user, this.state.playerName)}
+        <button onClick={() => this.props.joinGame(this.props.user, this.state.gameToJoin, this.state.playerName)}
           disabled={this.state.playerName.trim().length === 0 || this.state.gameToJoin.length !== 8}
           className="form__button">Join game</button>
 
         <h2>Create a game</h2>
         <p>Alternatively, if you want create a new game and invite someone else...</p>
         <button onClick={() =>
-          this.props.createGame(this.props.user, this.state.gameToJoin, this.state.playerName)}
+          this.props.createGame(this.props.user, this.state.playerName)}
           disabled={this.state.playerName.trim().length === 0 ||
             this.state.gameToJoin.trim().length > 0}
           className="form__button form__button--secondary">Create a game</button>

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import undoable, { includeAction } from 'redux-undo';
 import { ActionTypes } from 'constants/constants';
 import choresReducer from './choresReducer';
+import playersReducer from './playersReducer';
 import pointsReducer from './pointsReducer';
 import sessionReducer from './sessionReducer';
 
@@ -23,5 +24,6 @@ export default combineReducers({
   points: undoable(pointsReducer, {
     filter: includeAction(undoableActions),
   }),
+  players: playersReducer,
   session: sessionReducer,
 });

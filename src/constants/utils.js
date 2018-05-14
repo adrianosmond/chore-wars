@@ -39,15 +39,13 @@ const createJoinCode = () => new Array(JOIN_CODE_LENGTH).fill(97).map(x =>
   String.fromCharCode(x + Math.round(Math.random() * 25))).join('');
 
 const generatePlayerData = (playerName, joinCode = null) => ({
-  name: playerName,
-  isOwed: 0,
-  points: 0,
-  joinCode,
   avatar: DefaultAvatar,
+  joinCode,
+  name: playerName,
 });
 
-const makePlayersArray = points => Object.keys(points).map(player => ({
-  ...points[player],
+const makePlayersArray = players => Object.keys(players).map(player => ({
+  ...players[player],
   id: player,
 }));
 

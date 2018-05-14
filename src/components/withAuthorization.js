@@ -7,8 +7,9 @@ import Loading from 'components/Loading';
 
 import { auth, database } from 'lib/firebase';
 import { setAuthUser, setGame } from 'actions/sessionActions';
-import { loadChores } from 'actions/choreActions';
+import { loadPlayers } from 'actions/playerActions';
 import { loadPoints } from 'actions/pointActions';
+import { loadChores } from 'actions/choreActions';
 import * as routes from 'constants/routes';
 
 const withAuthorization = (authCondition, componentIsLoading) => (Component) => {
@@ -17,6 +18,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
       super(props);
       this.state = {
         loading: componentIsLoading({
+          playersLoaded: props.playersLoaded,
           pointsLoaded: props.pointsLoaded,
           choresLoaded: props.choresLoaded,
         }),
@@ -31,13 +33,14 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
         } else {
           database.ref(`users/${authUser.uid}`).once('value', (result) => {
             const game = result.val();
-            if (game && process.env.NODE_ENV === 'development') game.gameId = '-TEST';
+            // if (game && process.env.NODE_ENV === 'development') game.gameId = '-TEST';
             if (game && game.gameId) {
               const { gameId } = game;
               if (gameId) {
                 this.props.setGame(game);
-                this.props.loadChores(gameId);
+                this.props.loadPlayers(gameId);
                 this.props.loadPoints(gameId);
+                this.props.loadChores(gameId);
               }
             } else {
               this.props.history.push(routes.NO_GAME);
@@ -50,14 +53,15 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
     componentWillReceiveProps(newProps) {
       this.setState({
         loading: componentIsLoading({
+          playersLoaded: newProps.playersLoaded,
           pointsLoaded: newProps.pointsLoaded,
           choresLoaded: newProps.choresLoaded,
         }),
       });
 
-      if (this.props.history.location.pathName === routes.NO_GAME) {
+      if (this.props.location.pathname === routes.NO_GAME) {
         // When we've got a game, we can redirect to the chores page
-        if (!this.props.game && newProps.game) {
+        if (newProps.game && newProps.game.gameId) {
           this.props.history.push(routes.CHORES);
         }
       }
@@ -79,6 +83,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
   const mapStateToProps = state => ({
     authUser: state.session.authUser,
     game: state.session.game,
+    playersLoaded: state.session.playersLoaded,
     pointsLoaded: state.session.pointsLoaded,
     choresLoaded: state.session.choresLoaded,
   });
@@ -86,8 +91,9 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
   const mapDispatchToProps = dispatch => ({
     setAuthUser: authUser => dispatch(setAuthUser(authUser)),
     setGame: game => dispatch(setGame(game)),
-    loadChores: game => dispatch(loadChores(game)),
+    loadPlayers: game => dispatch(loadPlayers(game)),
     loadPoints: game => dispatch(loadPoints(game)),
+    loadChores: game => dispatch(loadChores(game)),
   });
 
   return compose(

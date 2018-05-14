@@ -27,42 +27,6 @@ export function paidDebt(user, game) {
   };
 }
 
-export function updateUserName(user, name, game) {
-  return {
-    type: ActionTypes.updateUserName,
-    user,
-    name,
-    game,
-  };
-}
-
-export function updateUserAvatar(user, avatar, game) {
-  return {
-    type: ActionTypes.updateUserAvatar,
-    user,
-    avatar,
-    game,
-  };
-}
-
-export function saveUserName(user, name, game) {
-  return {
-    type: ActionTypes.saveUserName,
-    user,
-    name,
-    game,
-  };
-}
-
-export function saveUserAvatar(user, avatar, game) {
-  return {
-    type: ActionTypes.saveUserAvatar,
-    user,
-    avatar,
-    game,
-  };
-}
-
 export function setPoints(points) {
   return {
     type: ActionTypes.setPoints,
