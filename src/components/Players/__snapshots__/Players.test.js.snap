@@ -32,6 +32,29 @@ exports[`Players Renders players 1`] = `
         }
         topType="LongHairStraight"
       />
+      <Connect(OwedBadge)
+        idx={0}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "player1",
+            "name": "Player 1",
+          }
+        }
+      />
     </div>
     <div
       className="players__player-name"
@@ -66,6 +89,29 @@ exports[`Players Renders players 1`] = `
           }
         }
         topType="LongHairStraight"
+      />
+      <Connect(OwedBadge)
+        idx={1}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "player2",
+            "name": "Player 2",
+          }
+        }
       />
     </div>
     <div
@@ -108,6 +154,30 @@ exports[`Players With one player Renders and displays the join code 1`] = `
           }
         }
         topType="LongHairStraight"
+      />
+      <Connect(OwedBadge)
+        idx={0}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "player1",
+            "joinCode": "abcdefgh",
+            "name": "Player 1",
+          }
+        }
       />
     </div>
     <div
@@ -166,32 +236,29 @@ exports[`Players With players being owed Renders players with p1 being owed > 1 
         }
         topType="LongHairStraight"
       />
-      <PopUpMenu
-        extraClasses="players__paid-button players__paid-button--1"
-        options={
-          Array [
-            Object {
-              "onClick": [Function],
-              "text": "Player 1 was paid back",
-              "type": "button",
+      <Connect(OwedBadge)
+        idx={0}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
             },
-          ]
+            "id": "player1",
+            "name": "Player 1",
+          }
         }
-        side="left"
-      >
-        <span
-          aria-labelledby="Player 1 is owed"
-          className="players__player-owed"
-          role="img"
-        >
-          🌟
-        </span>
-        <span
-          className="players__owed-multiple"
-        >
-          2
-        </span>
-      </PopUpMenu>
+      />
     </div>
     <div
       className="players__player-name"
@@ -226,6 +293,29 @@ exports[`Players With players being owed Renders players with p1 being owed > 1 
           }
         }
         topType="LongHairStraight"
+      />
+      <Connect(OwedBadge)
+        idx={1}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "player2",
+            "name": "Player 2",
+          }
+        }
       />
     </div>
     <div
@@ -269,27 +359,29 @@ exports[`Players With players being owed Renders players with p1 being owed 1`] 
         }
         topType="LongHairStraight"
       />
-      <PopUpMenu
-        extraClasses="players__paid-button players__paid-button--1"
-        options={
-          Array [
-            Object {
-              "onClick": [Function],
-              "text": "Player 1 was paid back",
-              "type": "button",
+      <Connect(OwedBadge)
+        idx={0}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
             },
-          ]
+            "id": "player1",
+            "name": "Player 1",
+          }
         }
-        side="left"
-      >
-        <span
-          aria-labelledby="Player 1 is owed"
-          className="players__player-owed"
-          role="img"
-        >
-          🌟
-        </span>
-      </PopUpMenu>
+      />
     </div>
     <div
       className="players__player-name"
@@ -324,6 +416,29 @@ exports[`Players With players being owed Renders players with p1 being owed 1`] 
           }
         }
         topType="LongHairStraight"
+      />
+      <Connect(OwedBadge)
+        idx={1}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "player2",
+            "name": "Player 2",
+          }
+        }
       />
     </div>
     <div
@@ -367,6 +482,29 @@ exports[`Players With players being owed Renders players with p2 being owed > 1 
         }
         topType="LongHairStraight"
       />
+      <Connect(OwedBadge)
+        idx={0}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "player1",
+            "name": "Player 1",
+          }
+        }
+      />
     </div>
     <div
       className="players__player-name"
@@ -402,32 +540,29 @@ exports[`Players With players being owed Renders players with p2 being owed > 1 
         }
         topType="LongHairStraight"
       />
-      <PopUpMenu
-        extraClasses="players__paid-button players__paid-button--2"
-        options={
-          Array [
-            Object {
-              "onClick": [Function],
-              "text": "Player 2 was paid back",
-              "type": "button",
+      <Connect(OwedBadge)
+        idx={1}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
             },
-          ]
+            "id": "player2",
+            "name": "Player 2",
+          }
         }
-        side="right"
-      >
-        <span
-          aria-labelledby="Player 2 is owed"
-          className="players__player-owed"
-          role="img"
-        >
-          🌟
-        </span>
-        <span
-          className="players__owed-multiple"
-        >
-          2
-        </span>
-      </PopUpMenu>
+      />
     </div>
     <div
       className="players__player-name"
@@ -470,6 +605,29 @@ exports[`Players With players being owed Renders players with p2 being owed 1`] 
         }
         topType="LongHairStraight"
       />
+      <Connect(OwedBadge)
+        idx={0}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "player1",
+            "name": "Player 1",
+          }
+        }
+      />
     </div>
     <div
       className="players__player-name"
@@ -505,27 +663,29 @@ exports[`Players With players being owed Renders players with p2 being owed 1`] 
         }
         topType="LongHairStraight"
       />
-      <PopUpMenu
-        extraClasses="players__paid-button players__paid-button--2"
-        options={
-          Array [
-            Object {
-              "onClick": [Function],
-              "text": "Player 2 was paid back",
-              "type": "button",
+      <Connect(OwedBadge)
+        idx={1}
+        player={
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
             },
-          ]
+            "id": "player2",
+            "name": "Player 2",
+          }
         }
-        side="right"
-      >
-        <span
-          aria-labelledby="Player 2 is owed"
-          className="players__player-owed"
-          role="img"
-        >
-          🌟
-        </span>
-      </PopUpMenu>
+      />
     </div>
     <div
       className="players__player-name"

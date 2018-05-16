@@ -36,13 +36,13 @@ exports[`Actions Renders 1`] = `
     >
       Undo
     </button>
-    <button
-      className="form__button form__button--secondary"
-      id="actions-sign-out"
-      onClick={[Function]}
+    <Link
+      className="form__button form__button--tertiary"
+      replace={false}
+      to="/edit-profile"
     >
-      Sign out
-    </button>
+      My Profile
+    </Link>
   </div>
 </div>
 `;
