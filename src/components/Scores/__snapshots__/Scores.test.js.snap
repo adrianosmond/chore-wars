@@ -152,17 +152,7 @@ exports[`Scores Renders an equal points graph 1`] = `
         "width": "0%",
       }
     }
-  >
-    <div
-      className="scores__difference scores__difference--1"
-      onClick={null}
-    >
-      <Confetti
-        active={true}
-      />
-      0
-    </div>
-  </div>
+  />
   <div
     className="scores__bar scores__bar--2"
     key="player2"

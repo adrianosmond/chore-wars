@@ -30,7 +30,7 @@ const Scores = (props) => {
           <div className={`scores__bar scores__bar--${idx + 1}${winning ? ' scores__bar--winning' : ''}`}
             style={{ width: `${Math.min(50, (playerBar / MAX_POINT_DIFFERENCE) * 50)}%` }}
             key={playerId}>
-            { playerBar || scoresTied ?
+            { playerBar || (scoresTied && idx) ?
             <div className={`scores__difference scores__difference--${idx + 1}${winning ? ' scores__difference--winning' : ''}`}
               onClick={winning ? () => props.claimPrize(playerId, props.gameId) : null}>
               <Confetti active={!winning} />
