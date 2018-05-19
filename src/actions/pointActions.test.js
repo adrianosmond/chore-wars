@@ -15,7 +15,7 @@ const points = {
 const game = 'test-game';
 
 describe('Point Actions', () => {
-  test('addPointsToUser', () => {
+  it('can dispatch addPointsToUser', () => {
     expect(pointActions.addPointsToUser(user, 100, game)).toEqual({
       type: ActionTypes.addPoints,
       user,
@@ -24,7 +24,7 @@ describe('Point Actions', () => {
     });
   });
 
-  test('claimPrize', () => {
+  it('can dispatch claimPrize', () => {
     expect(pointActions.claimPrize(user, game)).toEqual({
       type: ActionTypes.claimPrize,
       user,
@@ -32,7 +32,7 @@ describe('Point Actions', () => {
     });
   });
 
-  test('paidDebt', () => {
+  it('can dispatch paidDebt', () => {
     expect(pointActions.paidDebt(user, game)).toEqual({
       type: ActionTypes.paidDebt,
       user,
@@ -40,14 +40,14 @@ describe('Point Actions', () => {
     });
   });
 
-  test('setPoints', () => {
+  it('can dispatch setPoints', () => {
     expect(pointActions.setPoints(points)).toEqual({
       type: ActionTypes.setPoints,
       points,
     });
   });
 
-  test('loadPoints', () => {
+  it('can dispatch loadPoints', () => {
     // expect(pointActions.loadPoints(game)).toEqual({
     //   database.ref(`games/${game}/points`).once('value', (result) => {
     //     dispatch(setPoints(result.val()));

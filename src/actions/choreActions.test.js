@@ -13,7 +13,7 @@ describe('Chore Actions', () => {
     title: 'Test Chore',
   };
 
-  test('addChore', () => {
+  it('can dispatch addChore', () => {
     expect(choreActions.addChore(chore, game, slug)).toEqual({
       type: ActionTypes.addChore,
       newChore: chore,
@@ -22,7 +22,7 @@ describe('Chore Actions', () => {
     });
   });
 
-  test('resetDoneDate', () => {
+  it('can dispatch resetDoneDate', () => {
     expect(choreActions.resetDoneDate(game, slug, time)).toEqual({
       type: ActionTypes.resetChoreDoneDate,
       game,
@@ -31,7 +31,7 @@ describe('Chore Actions', () => {
     });
   });
 
-  test('blockChore', () => {
+  it('can dispatch blockChore', () => {
     expect(choreActions.blockChore(game, slug)).toEqual({
       type: ActionTypes.blockChore,
       game,
@@ -39,7 +39,7 @@ describe('Chore Actions', () => {
     });
   });
 
-  test('unblockChore', () => {
+  it('can dispatch unblockChore', () => {
     expect(choreActions.unblockChore(game, slug)).toEqual({
       type: ActionTypes.unblockChore,
       game,
@@ -47,7 +47,7 @@ describe('Chore Actions', () => {
     });
   });
 
-  test('updateChore', () => {
+  it('can dispatch updateChore', () => {
     expect(choreActions.updateChore(slug, chore, 'new-chore', game)).toEqual({
       type: ActionTypes.updateChore,
       slug,
@@ -57,7 +57,7 @@ describe('Chore Actions', () => {
     });
   });
 
-  test('makeChain', () => {
+  it('can dispatch makeChain', () => {
     expect(choreActions.makeChain(game, ['chore-1', 'chore-2'])).toEqual({
       type: ActionTypes.makeChain,
       game,
@@ -65,7 +65,7 @@ describe('Chore Actions', () => {
     });
   });
 
-  test('breakChain', () => {
+  it('can dispatch breakChain', () => {
     expect(choreActions.breakChain(game, slug)).toEqual({
       type: ActionTypes.breakChain,
       game,
@@ -73,20 +73,20 @@ describe('Chore Actions', () => {
     });
   });
 
-  test('setChores', () => {
+  it('can dispatch setChores', () => {
     expect(choreActions.setChores({ chore1: chore, chore2: chore })).toEqual({
       type: ActionTypes.setChores,
       chores: { chore1: chore, chore2: chore },
     });
   });
 
-  // test('loadChores', () => {
+  it test('can dispatch loadChores', () => {
   //   expect(choreActions.loadChores()).toEqual({
 
   //   });
   // });
 
-  // test('completeChore', () => {
+  it test('can dispatch completeChore', () => {
   //   expect(choreActions.completeChore()).toEqual({
 
   //   });

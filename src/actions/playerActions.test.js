@@ -19,7 +19,7 @@ const player = players.player1;
 const avatar = DefaultAvatar;
 
 describe('Player Actions', () => {
-  test('setPlayerName', () => {
+  it('can dispatch setPlayerName', () => {
     expect(playerActions.setPlayerName(player, name, game)).toEqual({
       type: ActionTypes.setPlayerName,
       player,
@@ -28,7 +28,7 @@ describe('Player Actions', () => {
     });
   });
 
-  test('setPlayerAvatar', () => {
+  it('can dispatch setPlayerAvatar', () => {
     expect(playerActions.setPlayerAvatar(player, avatar, game)).toEqual({
       type: ActionTypes.setPlayerAvatar,
       player,
@@ -37,7 +37,7 @@ describe('Player Actions', () => {
     });
   });
 
-  test('savePlayerName', () => {
+  it('can dispatch savePlayerName', () => {
     expect(playerActions.savePlayerName(player, name, game)).toEqual({
       type: ActionTypes.savePlayerName,
       player,
@@ -46,7 +46,7 @@ describe('Player Actions', () => {
     });
   });
 
-  test('savePlayerAvatar', () => {
+  it('can dispatch savePlayerAvatar', () => {
     expect(playerActions.savePlayerAvatar(player, avatar, game)).toEqual({
       type: ActionTypes.savePlayerAvatar,
       player,
@@ -55,14 +55,14 @@ describe('Player Actions', () => {
     });
   });
 
-  test('setPlayers', () => {
+  it('can dispatch setPlayers', () => {
     expect(playerActions.setPlayers(players)).toEqual({
       type: ActionTypes.setPlayers,
       players,
     });
   });
 
-  test('loadPlayers', () => {
+  it('can dispatch loadPlayers', () => {
     // expect(playerActions.loadPlayers(game)).toEqual({
     // return (dispatch) => {
     //   database.ref(`games/${game}/players`).once('value', (result) => {

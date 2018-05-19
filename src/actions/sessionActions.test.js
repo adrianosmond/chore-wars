@@ -1,58 +1,78 @@
 import { ActionTypes } from 'constants/constants';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { auth } from 'lib/firebase';
 import * as sessionActions from './sessionActions';
 
 const authUser = 'fake-auth-user';
 const game = 'fake-game';
+const mockStore = configureMockStore([thunk]);
 
-test('setAuthUser', () => {
-  expect(sessionActions.setAuthUser(authUser)).toEqual({
-    type: ActionTypes.setAuthUser,
-    authUser,
+describe('Session Actions', () => {
+  it('can dispatch setAuthUser', () => {
+    expect(sessionActions.setAuthUser(authUser)).toEqual({
+      type: ActionTypes.setAuthUser,
+      authUser,
+    });
   });
-});
 
-test('setGame', () => {
-  expect(sessionActions.setGame(game)).toEqual({
-    type: ActionTypes.setGame,
-    game,
+  it('can dispatch setGame', () => {
+    expect(sessionActions.setGame(game)).toEqual({
+      type: ActionTypes.setGame,
+      game,
+    });
   });
-});
 
-test('setPlayersLoaded', () => {
-  expect(sessionActions.setPlayersLoaded(true)).toEqual({
-    type: ActionTypes.setPlayersLoaded,
-    playersLoaded: true,
+  it('can dispatch setPlayersLoaded', () => {
+    expect(sessionActions.setPlayersLoaded(true)).toEqual({
+      type: ActionTypes.setPlayersLoaded,
+      playersLoaded: true,
+    });
   });
-});
 
-test('setPointsLoaded', () => {
-  expect(sessionActions.setPointsLoaded(true)).toEqual({
-    type: ActionTypes.setPointsLoaded,
-    pointsLoaded: true,
+  it('can dispatch setPointsLoaded', () => {
+    expect(sessionActions.setPointsLoaded(true)).toEqual({
+      type: ActionTypes.setPointsLoaded,
+      pointsLoaded: true,
+    });
   });
-});
 
-test('setChoresLoaded', () => {
-  expect(sessionActions.setChoresLoaded(true)).toEqual({
-    type: ActionTypes.setChoresLoaded,
-    choresLoaded: true,
+  it('can dispatch setChoresLoaded', () => {
+    expect(sessionActions.setChoresLoaded(true)).toEqual({
+      type: ActionTypes.setChoresLoaded,
+      choresLoaded: true,
+    });
   });
-});
 
-test('signOut', () => {
-  // expect(sessionActions.signOut()).toEqual({
-  // return (dispatch) => {
-  //   dispatch(setGame(null));
-  //   dispatch(setChoresLoaded(false));
-  //   dispatch(setPlayersLoaded(false));
-  //   dispatch(setPointsLoaded(false));
-  //   auth.signOut();
-  // };
-  // });
-});
+  it('can dispatch signOut', () => {
+    const store = mockStore({
+      session: {
+        authUser,
+        game,
+        playersLoaded: true,
+        pointsLoaded: true,
+        choresLoaded: true,
+      },
+    });
+
+    const expectedActions = [
+      { type: ActionTypes.setGame, game: null },
+      { type: ActionTypes.setChoresLoaded, choresLoaded: false },
+      { type: ActionTypes.setPlayersLoaded, playersLoaded: false },
+      { type: ActionTypes.setPointsLoaded, pointsLoaded: false },
+    ];
+
+    jest.spyOn(auth, 'signOut').mockReturnValue();
+    expect(auth.signOut).toHaveBeenCalledTimes(0);
+
+    store.dispatch(sessionActions.signOut());
+
+    expect(store.getActions()).toEqual(expectedActions);
+    expect(auth.signOut).toHaveBeenCalledTimes(1);
+  });
 
 
-test('createGame', () => {
+  it('can dispatch createGame', () => {
   // expect(sessionActions.createGame(userId)).toEqual({
   // return (dispatch) => {
   //   const joinCode = createJoinCode();
@@ -79,9 +99,9 @@ test('createGame', () => {
   //   });
   // };
   // });
-});
+  });
 
-test('joinGame', () => {
+  it('can dispatch joinGame', () => {
   // expect(sessionActions.joinGame(userId)).toEqual({
   // return (dispatch) => {
   //   database.ref(`joinCodes/${gameToJoin}`).once('value', (result) => {
@@ -107,4 +127,5 @@ test('joinGame', () => {
   //   });
   // };
   // });
+  });
 });
