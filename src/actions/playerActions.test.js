@@ -1,3 +1,6 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { database } from 'lib/firebase';
 import { ActionTypes } from 'constants/constants';
 import { DefaultAvatar } from 'constants/avatars';
 import * as playerActions from './playerActions';
@@ -12,6 +15,20 @@ const players = {
     avatar: DefaultAvatar,
   },
 };
+
+const gameId = 'test1';
+const data = {
+  games: {
+    [gameId]: {
+      players,
+      points: {},
+      chores: {},
+    },
+    test2: {},
+  },
+};
+
+const mockStore = configureMockStore([thunk]);
 
 const name = 'Player 1';
 const game = 'test-game';
@@ -63,13 +80,13 @@ describe('Player Actions', () => {
   });
 
   it('can dispatch loadPlayers', () => {
-    // expect(playerActions.loadPlayers(game)).toEqual({
-    // return (dispatch) => {
-    //   database.ref(`games/${game}/players`).once('value', (result) => {
-    //     dispatch(setPlayers(result.val()));
-    //     dispatch(setPlayersLoaded(true));
-    //   });
-    // };
-    // });
+    database.ref().set(data);
+    const store = mockStore();
+    return store.dispatch(playerActions.loadPlayers(gameId)).then(() => {
+      expect(store.getActions()).toEqual([
+        { type: ActionTypes.setPlayers, players },
+        { type: ActionTypes.setPlayersLoaded, playersLoaded: true },
+      ]);
+    });
   });
 });

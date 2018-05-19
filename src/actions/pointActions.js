@@ -35,10 +35,9 @@ export function setPoints(points) {
 }
 
 export function loadPoints(game) {
-  return (dispatch) => {
+  return dispatch =>
     database.ref(`games/${game}/points`).once('value', (result) => {
       dispatch(setPoints(result.val()));
       dispatch(setPointsLoaded(true));
     });
-  };
 }

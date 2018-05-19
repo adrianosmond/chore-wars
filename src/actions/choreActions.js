@@ -63,7 +63,6 @@ export function breakChain(game, slug) {
   };
 }
 
-
 export function removeChore(game, slug) {
   return (dispatch) => {
     dispatch(breakChain(game, slug));
@@ -83,13 +82,11 @@ export function setChores(chores) {
 }
 
 export function loadChores(game) {
-  return (dispatch) => {
-    database.ref(`games/${game}/chores`).once('value', (result) => {
-      const chores = result.val() || {};
-      dispatch(setChores(chores));
-      dispatch(setChoresLoaded(true));
-    });
-  };
+  return dispatch => database.ref(`games/${game}/chores`).once('value', (result) => {
+    const chores = result.val() || {};
+    dispatch(setChores(chores));
+    dispatch(setChoresLoaded(true));
+  });
 }
 
 export function completeChore(chore, user, game, time = new Date().getTime()) {

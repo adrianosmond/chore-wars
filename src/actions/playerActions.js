@@ -46,10 +46,8 @@ export function setPlayers(players) {
 }
 
 export function loadPlayers(game) {
-  return (dispatch) => {
-    database.ref(`games/${game}/players`).once('value', (result) => {
-      dispatch(setPlayers(result.val()));
-      dispatch(setPlayersLoaded(true));
-    });
-  };
+  return dispatch => database.ref(`games/${game}/players`).once('value', (result) => {
+    dispatch(setPlayers(result.val()));
+    dispatch(setPlayersLoaded(true));
+  });
 }

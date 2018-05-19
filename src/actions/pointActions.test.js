@@ -1,3 +1,6 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { database } from 'lib/firebase';
 import { ActionTypes } from 'constants/constants';
 import * as pointActions from './pointActions';
 
@@ -13,6 +16,18 @@ const points = {
   },
 };
 const game = 'test-game';
+const data = {
+  games: {
+    [game]: {
+      players: {},
+      points,
+      chores: {},
+    },
+    test2: {},
+  },
+};
+
+const mockStore = configureMockStore([thunk]);
 
 describe('Point Actions', () => {
   it('can dispatch addPointsToUser', () => {
@@ -48,12 +63,13 @@ describe('Point Actions', () => {
   });
 
   it('can dispatch loadPoints', () => {
-    // expect(pointActions.loadPoints(game)).toEqual({
-    //   database.ref(`games/${game}/points`).once('value', (result) => {
-    //     dispatch(setPoints(result.val()));
-    //     dispatch(setPointsLoaded(true));
-    //   });
-    // };
-    // });
+    database.ref().set(data);
+    const store = mockStore();
+    return store.dispatch(pointActions.loadPoints(game)).then(() => {
+      expect(store.getActions()).toEqual([
+        { type: ActionTypes.setPoints, points },
+        { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
+      ]);
+    });
   });
 });

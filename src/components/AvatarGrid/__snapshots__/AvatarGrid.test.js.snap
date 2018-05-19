@@ -1,0 +1,1093 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvatarGrid Renders 1`] = `
+<ul
+  className="avatar-grid"
+>
+  <li
+    className="avatar-grid__option"
+    key="0"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="NoHair"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="1"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="Eyepatch"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="2"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="Hat"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="3"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="Hijab"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="4"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="Turban"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="5"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="WinterHat1"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="6"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="WinterHat2"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="7"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="WinterHat3"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="8"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="WinterHat4"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="9"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairBigHair"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="10"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairBob"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="11"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairBun"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="12"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairCurly"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="13"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairCurvy"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="14"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairDreads"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="15"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairFrida"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="16"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairFro"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="17"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairFroBand"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="18"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairNotTooLong"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="19"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairShavedSides"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="20"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairMiaWallace"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="21"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairStraight"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="22"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairStraight2"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="23"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="LongHairStraightStrand"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="24"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairDreads01"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="25"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairDreads02"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="26"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairFrizzle"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="27"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairShaggyMullet"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="28"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairShortCurly"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="29"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairShortFlat"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="30"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairShortRound"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="31"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairShortWaved"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="32"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairSides"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="33"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairTheCaesar"
+      />
+    </Link>
+  </li>
+  <li
+    className="avatar-grid__option"
+    key="34"
+  >
+    <Link
+      onClick={[Function]}
+      replace={false}
+      to="/edit-profile"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        style={
+          Object {
+            "height": "100%",
+            "width": "100%",
+          }
+        }
+        topType="ShortHairTheCaesarSidePart"
+      />
+    </Link>
+  </li>
+</ul>
+`;

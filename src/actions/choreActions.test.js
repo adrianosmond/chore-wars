@@ -1,18 +1,62 @@
-// import { database } from 'lib/firebase';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { database } from 'lib/firebase';
 import { ActionTypes } from 'constants/constants';
 import * as choreActions from './choreActions';
 
-describe('Chore Actions', () => {
-  const game = 'my-game';
-  const slug = 'test-chore';
-  const time = new Date().getTime();
-  const chore = {
-    frequency: 1,
-    lastDone: time,
-    pointsPerTime: 100,
-    title: 'Test Chore',
-  };
+const game = 'my-game';
+const chores = {
+  first: {
+    frequency: 7,
+    lastDone: 0,
+    pointsPerTime: 50,
+    title: 'First',
+  },
+  second: {
+    frequency: 0,
+    lastDone: 10,
+    pointsPerTime: 10,
+    title: 'Second',
+  },
+};
 
+const data = {
+  games: {
+    [game]: {
+      players: {},
+      points: {},
+      chores,
+    },
+    test2: {},
+  },
+};
+
+const mockStore = configureMockStore([thunk]);
+
+const user = 'test-user';
+const slug = 'test-chore';
+const time = new Date().getTime();
+const chore = {
+  frequency: 1,
+  lastDone: time,
+  pointsPerTime: 100,
+  title: 'Test Chore',
+};
+
+const processedChore = {
+  ...chore,
+  slug,
+  currentPoints: 100,
+};
+
+const processedEnablingChore = {
+  ...chore,
+  enables: 'chore-2',
+  slug,
+  currentPoints: 100,
+};
+
+describe('Chore Actions', () => {
   it('can dispatch addChore', () => {
     expect(choreActions.addChore(chore, game, slug)).toEqual({
       type: ActionTypes.addChore,
@@ -72,6 +116,15 @@ describe('Chore Actions', () => {
       slug,
     });
   });
+  
+  it('can dispatch removeChore', () => {
+    const store = mockStore();
+    store.dispatch(choreActions.removeChore(game, slug));
+    expect(store.getActions()).toEqual([
+      { type: ActionTypes.breakChain, game, slug },
+      { type: ActionTypes.removeChore, game, slug },
+    ]);
+  });
 
   it('can dispatch setChores', () => {
     expect(choreActions.setChores({ chore1: chore, chore2: chore })).toEqual({
@@ -80,15 +133,74 @@ describe('Chore Actions', () => {
     });
   });
 
-  // it('can dispatch loadChores', () => {
-  //   expect(choreActions.loadChores()).toEqual({
+  it('can dispatch loadChores', () => {
+    database.ref().set(data);
+    const store = mockStore();
+    return store.dispatch(choreActions.loadChores(game)).then(() => {
+      expect(store.getActions()).toEqual([
+        { type: ActionTypes.setChores, chores },
+        { type: ActionTypes.setChoresLoaded, choresLoaded: true },
+      ]);
+    });
+  });
 
-  //   });
-  // });
+  it('can dispatch loadChores when there are no chores', () => {
+    const dataWithoutChores = JSON.parse(JSON.stringify(data));
+    delete dataWithoutChores.games[game].chores;
+    database.ref().set(dataWithoutChores);
+    const store = mockStore();
+    return store.dispatch(choreActions.loadChores(game)).then(() => {
+      expect(store.getActions()).toEqual([
+        { type: ActionTypes.setChores, chores: {} },
+        { type: ActionTypes.setChoresLoaded, choresLoaded: true },
+      ]);
+    });
+  });
 
-  // it('can dispatch completeChore', () => {
-  //   expect(choreActions.completeChore()).toEqual({
+  it('can dispatch completeChore', () => {
+    const store = mockStore();
+    store.dispatch(choreActions.completeChore(processedChore, user, game, time));
+    expect(store.getActions()).toEqual([
+      {
+        type: ActionTypes.resetChoreDoneDate, game, slug, time,
+      },
+      {
+        type: ActionTypes.addPoints, user, points: 100, game,
+      },
+    ]);
+  });
 
-  //   });
-  // });
+  it('can dispatch completeChore without a time', () => {
+    const store = mockStore();
+    store.dispatch(choreActions.completeChore(processedChore, user, game));
+    const actions = store.getActions();
+    expect(actions).toHaveLength(2);
+    expect(actions[0].type).toBe(ActionTypes.resetChoreDoneDate);
+    expect(actions[0].game).toBe(game);
+    expect(actions[0].slug).toBe(slug);
+    expect(actions[0]).toHaveProperty('time');
+    expect(typeof actions[0].time).toBe('number');
+    expect(actions[1]).toEqual({
+      type: ActionTypes.addPoints, user, points: 100, game,
+    });
+  });
+
+  it('can dispatch completeChore for an enabling chore', () => {
+    const store = mockStore();
+    store.dispatch(choreActions.completeChore(processedEnablingChore, user, game, time));
+    expect(store.getActions()).toEqual([
+      {
+        type: ActionTypes.resetChoreDoneDate, game, slug, time,
+      },
+      {
+        type: ActionTypes.blockChore, game, slug,
+      },
+      {
+        type: ActionTypes.unblockChore, game, slug: processedEnablingChore.enables,
+      },
+      {
+        type: ActionTypes.addPoints, user, points: 100, game,
+      },
+    ]);
+  });
 });

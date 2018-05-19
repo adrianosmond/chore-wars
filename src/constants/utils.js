@@ -38,11 +38,16 @@ const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replac
 const createJoinCode = () => new Array(JOIN_CODE_LENGTH).fill(97).map(x =>
   String.fromCharCode(x + Math.round(Math.random() * 25))).join('');
 
-const generatePlayerData = (playerName, joinCode = null) => ({
-  avatar: DefaultAvatar,
-  joinCode,
-  name: playerName,
-});
+const generatePlayerData = (playerName, joinCode) => {
+  const data = {
+    avatar: DefaultAvatar,
+    name: playerName,
+  };
+  if (joinCode) {
+    data.joinCode = joinCode;
+  }
+  return data;
+};
 
 const makePlayersArray = players => Object.keys(players).map(player => ({
   ...players[player],
