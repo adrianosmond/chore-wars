@@ -80,16 +80,15 @@ describe('Chore Actions', () => {
     });
   });
 
-  it test('can dispatch loadChores', () => {
+  // it('can dispatch loadChores', () => {
   //   expect(choreActions.loadChores()).toEqual({
 
   //   });
   // });
 
-  it test('can dispatch completeChore', () => {
+  // it('can dispatch completeChore', () => {
   //   expect(choreActions.completeChore()).toEqual({
 
   //   });
   // });
 });
-
