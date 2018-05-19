@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm Renders 1`] = `
+<div
+  className="login"
+>
+  <div
+    className="login__widget"
+  >
+    <h1
+      className="login__title"
+    >
+      Chore Wars
+    </h1>
+    <p>
+      Please enter your email and password to log in
+    </p>
+    <form
+      className="form form--contained"
+      onSubmit={[Function]}
+    >
+      <label
+        className="form__label form__label--small"
+        htmlFor="email"
+      >
+        Email
+      </label>
+      <input
+        className="form__input"
+        id="email"
+        onChange={[Function]}
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+      <label
+        className="form__label form__label--small"
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        className="form__input"
+        id="password"
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      <button
+        className="form__button"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+    <p
+      className="login__link"
+    >
+      <Link
+        replace={false}
+        to="/sign-up"
+      >
+        Create an account
+      </Link>
+    </p>
+  </div>
+</div>
+`;

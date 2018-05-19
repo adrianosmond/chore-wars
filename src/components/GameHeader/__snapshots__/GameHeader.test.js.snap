@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameHeader Renders 1`] = `
+<div
+  className="game-header"
+>
+  <h1
+    className="game-header__title"
+  >
+    Chore Wars
+  </h1>
+  <div
+    className="game-header__players"
+  >
+    <Players
+      players={
+        Array [
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "test-user",
+            "name": "Player 1",
+          },
+          Object {
+            "avatar": Object {
+              "accessoriesType": "Blank",
+              "avatarStyle": "Transparent",
+              "clotheColor": "Blue03",
+              "clotheType": "BlazerShirt",
+              "eyeType": "Default",
+              "eyebrowType": "Default",
+              "facialHairColor": "BrownDark",
+              "facialHairType": "Blank",
+              "hairColor": "BrownDark",
+              "mouthType": "Twinkle",
+              "skinColor": "Light",
+              "topType": "LongHairStraight",
+            },
+            "id": "test-user-2",
+            "name": "Player 2",
+          },
+        ]
+      }
+    />
+  </div>
+  <div
+    className="game-header__scores"
+  >
+    <Connect(Scores) />
+  </div>
+</div>
+`;

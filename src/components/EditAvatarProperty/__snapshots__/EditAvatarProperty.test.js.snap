@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditAvatarProperty Renders 1`] = `
+<div>
+  <Link
+    className="form__button form__button--secondary"
+    replace={false}
+    to="/edit-profile"
+  >
+    Back
+  </Link>
+  <AvatarGrid
+    avatar={
+      Object {
+        "accessoriesType": "Blank",
+        "avatarStyle": "Transparent",
+        "clotheColor": "Blue03",
+        "clotheType": "BlazerShirt",
+        "eyeType": "Default",
+        "eyebrowType": "Default",
+        "facialHairColor": "BrownDark",
+        "facialHairType": "Blank",
+        "hairColor": "BrownDark",
+        "mouthType": "Twinkle",
+        "skinColor": "Light",
+        "topType": "LongHairStraight",
+      }
+    }
+    editing="topType"
+    onSelect={[Function]}
+  />
+  <Link
+    className="form__button form__button--secondary"
+    replace={false}
+    to="/edit-profile"
+  >
+    Back
+  </Link>
+</div>
+`;
