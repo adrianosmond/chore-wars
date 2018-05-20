@@ -1,3 +1,5 @@
+import { MockFirebase } from 'firebase-mock';
+import { database } from 'lib/firebase';
 import { ActionTypes } from 'constants/constants';
 import choresReducer from './choresReducer';
 
@@ -355,5 +357,40 @@ describe('Chores Reducer', () => {
         title: 'Test Chore 3',
       },
     });
+  });
+
+  it('Should save state after an undo', () => {
+    jest.spyOn(MockFirebase.prototype, 'set');
+    jest.spyOn(database, 'ref');
+    const state = {
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        isWaiting: true,
+        enables: 'test-chore-2',
+      },
+      'test-chore-2': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 2',
+        isWaiting: false,
+        enables: 'test-chore',
+      },
+      'test-chore-3': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore 3',
+      },
+    };
+    expect(choresReducer(state, {
+      type: ActionTypes.saveStatePostUndo,
+      game: 'fake-game',
+    })).toEqual(state);
+    expect(database.ref).toHaveBeenCalledWith('games/fake-game/chores/');
+    expect(MockFirebase.prototype.set).toHaveBeenCalledWith(state);
   });
 });

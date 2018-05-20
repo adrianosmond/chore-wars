@@ -1,4 +1,6 @@
 import { ActionTypes, MAX_POINT_DIFFERENCE } from 'constants/constants';
+import { MockFirebase } from 'firebase-mock';
+import { database } from 'lib/firebase';
 import pointsReducer from './pointsReducer';
 
 describe('Points Reducer', () => {
@@ -20,6 +22,23 @@ describe('Points Reducer', () => {
         points: 100,
       },
     });
+  });
+
+  it('Should be able to set points', () => {
+    const points = {
+      player1: {
+        isOwed: 1,
+        points: 0,
+      },
+      player2: {
+        isOwed: 0,
+        points: 100,
+      },
+    };
+    expect(pointsReducer({}, {
+      type: ActionTypes.setPoints,
+      points,
+    })).toEqual(points);
   });
 
   it('Should be able to add points', () => {
@@ -75,5 +94,22 @@ describe('Points Reducer', () => {
         isOwed: 0,
       },
     });
+  });
+
+  it('Should save state after an undo', () => {
+    jest.spyOn(MockFirebase.prototype, 'set');
+    jest.spyOn(database, 'ref');
+    const state = {
+      test1: {
+        isOwed: 0,
+        points: 100,
+      },
+    };
+    expect(pointsReducer(state, {
+      type: ActionTypes.saveStatePostUndo,
+      game: 'fake-game',
+    })).toEqual(state);
+    expect(database.ref).toHaveBeenCalledWith('games/fake-game/points/');
+    expect(MockFirebase.prototype.set).toHaveBeenCalledWith(state);
   });
 });

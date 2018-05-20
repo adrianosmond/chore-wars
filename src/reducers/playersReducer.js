@@ -19,14 +19,6 @@ export default function playersReducer(state = { }, action) {
       newState[player].avatar = action.avatar;
       return newState;
 
-    case ActionTypes.savePlayerName:
-      database.ref(`games/${game}/players/${player}/name`).set(action.name);
-      return state;
-
-    case ActionTypes.savePlayerAvatar:
-      database.ref(`games/${game}/players/${player}/avatar`).set(action.avatar);
-      return state;
-
     default:
       return state;
   }

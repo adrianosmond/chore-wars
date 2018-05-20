@@ -1,8 +1,10 @@
 import { ActionTypes } from 'constants/constants';
 
-export default function sessionReducer(state = {
+export const INITIAL_STATE = {
   authUser: null, game: null, playersLoaded: false, pointsLoaded: false, choresLoaded: false,
-}, action) {
+};
+
+export default function sessionReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case ActionTypes.setAuthUser:
       return {

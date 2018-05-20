@@ -8,7 +8,7 @@ import { setPlayerAvatar } from 'actions/playerActions';
 import * as routes from 'constants/routes';
 
 const EditAvatarProperty = (props) => {
-  const { user, gameId, player } = props;
+  const { user, player } = props;
   const { avatar } = player;
   const { propertyToEdit } = props.match.params;
   return (
@@ -20,7 +20,7 @@ const EditAvatarProperty = (props) => {
           props.setPlayerAvatar(user, {
             ...avatar,
             [propertyToEdit]: newValue,
-          }, gameId);
+          });
         }} />
       <Link to={routes.EDIT_PROFILE} className="form__button form__button--secondary">Back</Link>
     </div>
@@ -28,13 +28,12 @@ const EditAvatarProperty = (props) => {
 };
 
 const mapStateToProps = state => ({
-  gameId: state.session.game.gameId,
   user: state.session.authUser.uid,
   player: state.players[state.session.authUser.uid],
 });
 
 const mapDispatchToProps = dispatch => ({
-  setPlayerAvatar: (user, avatar, game) => dispatch(setPlayerAvatar(user, avatar, game)),
+  setPlayerAvatar: (user, avatar) => dispatch(setPlayerAvatar(user, avatar)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditAvatarProperty);

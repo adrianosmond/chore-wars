@@ -39,7 +39,7 @@ class Profile extends Component {
     const { avatar, name } = this.state;
     const trimmedName = name.trim();
     if (trimmedName.length > 0 && trimmedName.length <= MAX_NAME_LENGTH) {
-      this.props.setPlayerName(user, name.trim(), gameId);
+      this.props.setPlayerName(user, name.trim());
       this.props.savePlayerName(user, name.trim(), gameId);
       this.props.savePlayerAvatar(user, avatar, gameId);
     } else {
@@ -89,7 +89,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setPlayerName: (player, name, game) => dispatch(setPlayerName(player, name, game)),
+  setPlayerName: (player, name) => dispatch(setPlayerName(player, name)),
   savePlayerName: (player, name, game) => dispatch(savePlayerName(player, name, game)),
   savePlayerAvatar: (player, avatar, game) => dispatch(savePlayerAvatar(player, avatar, game)),
   doSignOut: () => dispatch(signOut()),

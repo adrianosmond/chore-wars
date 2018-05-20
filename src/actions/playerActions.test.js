@@ -30,52 +30,55 @@ const data = {
 
 const mockStore = configureMockStore([thunk]);
 
-const name = 'Player 1';
+const name = 'Jeff';
 const game = 'test-game';
-const player = players.player1;
-const avatar = DefaultAvatar;
+const player = Object.keys(players)[0];
+const avatar = {
+  ...DefaultAvatar,
+  topType: 'NoHair',
+};
 
 describe('Player Actions', () => {
-  it('can dispatch setPlayerName', () => {
-    expect(playerActions.setPlayerName(player, name, game)).toEqual({
-      type: ActionTypes.setPlayerName,
-      player,
-      name,
-      game,
-    });
-  });
-
-  it('can dispatch setPlayerAvatar', () => {
-    expect(playerActions.setPlayerAvatar(player, avatar, game)).toEqual({
-      type: ActionTypes.setPlayerAvatar,
-      player,
-      avatar,
-      game,
-    });
-  });
-
-  it('can dispatch savePlayerName', () => {
-    expect(playerActions.savePlayerName(player, name, game)).toEqual({
-      type: ActionTypes.savePlayerName,
-      player,
-      name,
-      game,
-    });
-  });
-
-  it('can dispatch savePlayerAvatar', () => {
-    expect(playerActions.savePlayerAvatar(player, avatar, game)).toEqual({
-      type: ActionTypes.savePlayerAvatar,
-      player,
-      avatar,
-      game,
-    });
-  });
-
   it('can dispatch setPlayers', () => {
     expect(playerActions.setPlayers(players)).toEqual({
       type: ActionTypes.setPlayers,
       players,
+    });
+  });
+
+  it('can dispatch setPlayerName', () => {
+    expect(playerActions.setPlayerName(player, name)).toEqual({
+      type: ActionTypes.setPlayerName,
+      player,
+      name,
+    });
+  });
+
+  it('can dispatch setPlayerAvatar', () => {
+    expect(playerActions.setPlayerAvatar(player, avatar)).toEqual({
+      type: ActionTypes.setPlayerAvatar,
+      player,
+      avatar,
+    });
+  });
+
+  it('can dispatch savePlayerName', () => {
+    database.ref().set(data);
+    const store = mockStore();
+    return store.dispatch(playerActions.savePlayerName(player, name, game)).then(() => {
+      expect(store.getActions()).toEqual([]);
+      const newData = database.ref(`games/${game}/players/${player}/name`).getData();
+      expect(newData).toEqual(name);
+    });
+  });
+
+  it('can dispatch savePlayerAvatar', () => {
+    database.ref().set(data);
+    const store = mockStore();
+    return store.dispatch(playerActions.savePlayerAvatar(player, avatar, game)).then(() => {
+      expect(store.getActions()).toEqual([]);
+      const newData = database.ref(`games/${game}/players/${player}/avatar`).getData();
+      expect(newData).toEqual(avatar);
     });
   });
 
