@@ -54,10 +54,22 @@ const makePlayersArray = players => Object.keys(players).map(player => ({
   id: player,
 }));
 
+const filterAndSortChores = (chores) => {
+  if (!chores) return null;
+  return convertChoresToArray(chores)
+    .sort((a, b) => {
+      if (a.slug < b.slug) return -1;
+      if (b.slug < a.slug) return 1;
+      return 0;
+    })
+    .filter(chore => !chore.enables);
+};
+
 export {
   computedChoreProperties,
   convertChoresToArray,
   createJoinCode,
+  filterAndSortChores,
   generatePlayerData,
   getFilteredChoresArray,
   makePlayersArray,

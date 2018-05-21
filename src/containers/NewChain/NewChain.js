@@ -7,19 +7,8 @@ import ChoreChain from 'components/ChoreChain';
 import withAuthorization from 'components/withAuthorization';
 
 import { makeChain } from 'actions/choreActions';
-import { convertChoresToArray } from 'constants/utils';
+import { filterAndSortChores } from 'constants/utils';
 import * as routes from 'constants/routes';
-
-const filterAndSortChores = (chores) => {
-  if (!chores) return null;
-  return convertChoresToArray(chores)
-    .sort((a, b) => {
-      if (a.slug < b.slug) return -1;
-      if (b.slug < a.slug) return 1;
-      return 0;
-    })
-    .filter(chore => !chore.enables);
-};
 
 class Chain extends Component {
   constructor(props) {
