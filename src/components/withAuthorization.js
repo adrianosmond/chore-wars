@@ -68,8 +68,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
     }
 
     render() {
-      if (!this.props.authUser) return null;
-      if (this.state.loading) {
+      if (!this.props.authUser || this.state.loading) {
         return (
           <Loading />
         );

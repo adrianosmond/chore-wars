@@ -8,6 +8,7 @@ configure({ adapter: new Adapter() });
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
 
 const mockAuth = new firebaseMock.MockAuthentication();
+mockAuth.autoFlush();
 const mockDatabase = new firebaseMock.MockFirebase();
 mockDatabase.autoFlush();
 
