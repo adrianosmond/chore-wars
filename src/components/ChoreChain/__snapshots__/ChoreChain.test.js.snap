@@ -1,0 +1,383 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chore Chain Class Renders Selection 1`] = `
+<div
+  className="chore-chain"
+>
+  <h1
+    className="chore-chain__title"
+  >
+    Create a Chain
+  </h1>
+  <Component
+    canSave={false}
+    chain={Array []}
+    chooseChore={[Function]}
+    chores={
+      Array [
+        Object {
+          "currentPoints": Infinity,
+          "due": 604800000,
+          "frequency": 7,
+          "lastDone": 0,
+          "percentage": 100,
+          "pointsPerTime": 50,
+          "slug": "first",
+          "title": "First",
+        },
+        Object {
+          "currentPoints": Infinity,
+          "due": 86400100,
+          "frequency": 1,
+          "lastDone": 100,
+          "percentage": 100,
+          "pointsPerTime": 100,
+          "slug": "fourth",
+          "title": "Fourth",
+        },
+        Object {
+          "currentPoints": 10,
+          "due": 10,
+          "frequency": 0,
+          "lastDone": 10,
+          "percentage": 100,
+          "pointsPerTime": 10,
+          "slug": "second",
+          "title": "Second",
+        },
+        Object {
+          "currentPoints": 20,
+          "due": 0,
+          "frequency": 0,
+          "lastDone": 0,
+          "percentage": 100,
+          "pointsPerTime": 20,
+          "slug": "third",
+          "title": "Third",
+        },
+      ]
+    }
+    nextStage={[Function]}
+  />
+</div>
+`;
+
+exports[`Chore Chain Class Renders Sorting 1`] = `
+<div
+  className="chore-chain"
+>
+  <h1
+    className="chore-chain__title"
+  >
+    Create a Chain
+  </h1>
+  <Component
+    canSave={true}
+    chain={
+      Array [
+        Object {
+          "currentPoints": Infinity,
+          "due": 604800000,
+          "frequency": 7,
+          "lastDone": 0,
+          "percentage": 100,
+          "pointsPerTime": 50,
+          "slug": "first",
+          "title": "First",
+        },
+        Object {
+          "currentPoints": Infinity,
+          "due": 86400100,
+          "frequency": 1,
+          "lastDone": 100,
+          "percentage": 100,
+          "pointsPerTime": 100,
+          "slug": "fourth",
+          "title": "Fourth",
+        },
+      ]
+    }
+    moveChoreDown={[Function]}
+    moveChoreUp={[Function]}
+    prevStage={[Function]}
+  />
+</div>
+`;
+
+exports[`Chore Chain Selection Renders 1`] = `
+<div
+  className="chore-chain__section"
+>
+  <p>
+    Select all the chores that are part of this chain
+  </p>
+  <ul
+    className="chore-chain__options"
+  >
+    <li
+      key="first"
+    >
+      <label
+        className="chore-chain__option"
+      >
+        <input
+          checked={false}
+          className="chore-chain__checkbox"
+          name="first"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="chore-chain__chore-title"
+        >
+          First
+        </span>
+        <div
+          className="chore-chain__status"
+        >
+          <img
+            alt="Include chore in chain"
+            className="chore-chain__status-icon"
+            src="check.svg"
+          />
+        </div>
+      </label>
+    </li>
+    <li
+      key="fourth"
+    >
+      <label
+        className="chore-chain__option"
+      >
+        <input
+          checked={false}
+          className="chore-chain__checkbox"
+          name="fourth"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="chore-chain__chore-title"
+        >
+          Fourth
+        </span>
+        <div
+          className="chore-chain__status"
+        >
+          <img
+            alt="Include chore in chain"
+            className="chore-chain__status-icon"
+            src="check.svg"
+          />
+        </div>
+      </label>
+    </li>
+    <li
+      key="second"
+    >
+      <label
+        className="chore-chain__option"
+      >
+        <input
+          checked={false}
+          className="chore-chain__checkbox"
+          name="second"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="chore-chain__chore-title"
+        >
+          Second
+        </span>
+        <div
+          className="chore-chain__status"
+        >
+          <img
+            alt="Include chore in chain"
+            className="chore-chain__status-icon"
+            src="check.svg"
+          />
+        </div>
+      </label>
+    </li>
+    <li
+      key="third"
+    >
+      <label
+        className="chore-chain__option"
+      >
+        <input
+          checked={false}
+          className="chore-chain__checkbox"
+          name="third"
+          onChange={[Function]}
+          type="checkbox"
+        />
+        <span
+          className="chore-chain__chore-title"
+        >
+          Third
+        </span>
+        <div
+          className="chore-chain__status"
+        >
+          <img
+            alt="Include chore in chain"
+            className="chore-chain__status-icon"
+            src="check.svg"
+          />
+        </div>
+      </label>
+    </li>
+  </ul>
+  <div
+    className="form__button-holder"
+  >
+    <Link
+      className="form__button form__button--secondary"
+      replace={false}
+      to="/chores"
+    >
+      Cancel
+    </Link>
+    <button
+      className="form__button"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Next
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Chore Chain Sorting Renders 1`] = `
+<div
+  className="chore-chain__section"
+>
+  <p>
+    Choose the order that the chores should be done in
+  </p>
+  <ul
+    className="chore-chain__options"
+  >
+    <FlipMovePropConverter
+      delay={0}
+      disableAllAnimations={false}
+      duration={350}
+      easing="ease-in-out"
+      enterAnimation="elevator"
+      getPosition={[Function]}
+      leaveAnimation="elevator"
+      maintainContainerHeight={false}
+      staggerDelayBy={0}
+      staggerDurationBy={0}
+      typeName="div"
+      verticalAlignment="top"
+    >
+      <li
+        className="chore-chain__option"
+        key="first"
+      >
+        <span
+          className="chore-chain__chore-title"
+        >
+          First
+        </span>
+        <div
+          className="chore-chain__sort-buttons"
+        >
+          <button
+            className="chore-chain__sort-button"
+            disabled={true}
+            onClick={[Function]}
+          >
+            ↑
+          </button>
+          <button
+            className="chore-chain__sort-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            ↓
+          </button>
+        </div>
+      </li>
+      <li
+        className="chore-chain__option"
+        key="fourth"
+      >
+        <span
+          className="chore-chain__chore-title"
+        >
+          Fourth
+        </span>
+        <div
+          className="chore-chain__sort-buttons"
+        >
+          <button
+            className="chore-chain__sort-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            ↑
+          </button>
+          <button
+            className="chore-chain__sort-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            ↓
+          </button>
+        </div>
+      </li>
+      <li
+        className="chore-chain__option"
+        key="second"
+      >
+        <span
+          className="chore-chain__chore-title"
+        >
+          Second
+        </span>
+        <div
+          className="chore-chain__sort-buttons"
+        >
+          <button
+            className="chore-chain__sort-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            ↑
+          </button>
+          <button
+            className="chore-chain__sort-button"
+            disabled={true}
+            onClick={[Function]}
+          >
+            ↓
+          </button>
+        </div>
+      </li>
+    </FlipMovePropConverter>
+  </ul>
+  <div
+    className="form__button-holder"
+  >
+    <button
+      className="form__button form__button--secondary"
+      onClick={[Function]}
+    >
+      Back
+    </button>
+    <button
+      className="form__button"
+      disabled={false}
+      onClick={[Function]}
+    >
+      Save
+    </button>
+  </div>
+</div>
+`;
