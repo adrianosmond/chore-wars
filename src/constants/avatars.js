@@ -186,7 +186,6 @@ export const isEditable = {
   clotheColor: options => !options.clotheType.startsWith('Blazer'),
 };
 
-
 export const DefaultAvatar = {
   accessoriesType: 'Blank',
   avatarStyle: 'Transparent',

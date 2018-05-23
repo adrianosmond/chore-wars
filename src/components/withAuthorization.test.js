@@ -3,7 +3,7 @@ import { Router } from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { auth, database } from 'lib/firebase';
 import Loading from 'components/Loading';
 import { ActionTypes } from 'constants/constants';

@@ -7,7 +7,7 @@ import * as routes from 'constants/routes';
 import checkIcon from 'images/check.svg';
 import './ChoreChain.css';
 
-export const ChainSelect = props => (
+const ChainSelect = props => (
   <div className="chore-chain__section">
     <p>Select all the chores that are part of this chain</p>
     <ul className="chore-chain__options">
@@ -32,7 +32,7 @@ export const ChainSelect = props => (
   </div>
 );
 
-export const ChainOrder = props => (
+const ChainOrder = props => (
   <div className="chore-chain__section">
     <p>Choose the order that the chores should be done in</p>
     <ul className="chore-chain__options">
@@ -122,5 +122,7 @@ class ChoreChain extends Component {
     );
   }
 }
+
+export { ChainSelect, ChainOrder };
 
 export default ChoreChain;

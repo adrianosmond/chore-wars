@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
+import { auth, database } from 'lib/firebase';
 
 import Loading from 'components/Loading';
 
-import { auth, database } from 'lib/firebase';
 import { setAuthUser, setGame } from 'actions/sessionActions';
 import { loadPlayers } from 'actions/playerActions';
 import { loadPoints } from 'actions/pointActions';

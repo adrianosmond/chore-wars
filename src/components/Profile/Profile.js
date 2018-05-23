@@ -95,4 +95,6 @@ const mapDispatchToProps = dispatch => ({
   doSignOut: () => dispatch(signOut()),
 });
 
+export { EditAvatarLinks };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

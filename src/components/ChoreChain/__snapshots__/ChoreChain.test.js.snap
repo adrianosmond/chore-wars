@@ -9,7 +9,7 @@ exports[`Chore Chain Class Renders Selection 1`] = `
   >
     Create a Chain
   </h1>
-  <Component
+  <ChainSelect
     canSave={false}
     chain={Array []}
     chooseChore={[Function]}
@@ -71,7 +71,7 @@ exports[`Chore Chain Class Renders Sorting 1`] = `
   >
     Create a Chain
   </h1>
-  <Component
+  <ChainOrder
     canSave={true}
     chain={
       Array [

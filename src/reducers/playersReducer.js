@@ -1,9 +1,8 @@
-import { database } from 'lib/firebase';
 import { ActionTypes } from 'constants/constants';
 
 export default function playersReducer(state = { }, action) {
   const newState = JSON.parse(JSON.stringify(state));
-  const { player, game } = action;
+  const { player } = action;
 
   switch (action.type) {
     case ActionTypes.setPlayers:
