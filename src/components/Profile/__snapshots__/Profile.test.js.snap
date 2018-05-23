@@ -82,13 +82,13 @@ exports[`Profile Renders 1`] = `
       className="profile-editor__field"
     >
       <label
-        htmlFor="name"
+        htmlFor="profile-name"
       >
         Name:
       </label>
       <input
         className="form__input"
-        id="name"
+        id="profile-name"
         maxLength={10}
         onChange={[Function]}
         placeholder="Name"
@@ -107,6 +107,7 @@ exports[`Profile Renders 1`] = `
         </Link>
         <Link
           className="form__button form__button"
+          id="profile-save-player"
           onClick={[Function]}
           replace={false}
           to="/chores"

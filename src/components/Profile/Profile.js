@@ -58,15 +58,15 @@ class Profile extends Component {
             <Avatar { ...avatar } />
           </div>
           <div className="profile-editor__field">
-            <label htmlFor="name">Name:</label>
-            <input className="form__input" id="name" placeholder="Name" type="text"
+            <label htmlFor="profile-name">Name:</label>
+            <input className="form__input" id="profile-name" placeholder="Name" type="text"
               maxLength={MAX_NAME_LENGTH}
               onChange={event => this.setState({ name: event.target.value })}
               value={this.state.name} />
             <div className="form__button-holder form__button-holder--tight">
               <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
               <Link to={routes.CHORES} className="form__button form__button"
-                onClick={this.savePlayer.bind(this)}>Save</Link>
+                id="profile-save-player" onClick={this.savePlayer.bind(this)}>Save</Link>
             </div>
             <button onClick={() => { this.props.doSignOut(); }}
               id="profile-sign-out"
