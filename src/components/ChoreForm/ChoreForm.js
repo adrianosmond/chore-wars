@@ -226,4 +226,6 @@ class ChoreForm extends Component {
   }
 }
 
+export { FormQuestion };
+
 export default ChoreForm;
