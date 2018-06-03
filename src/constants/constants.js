@@ -22,7 +22,7 @@ const ActionTypes = {
   setChores: 'SET_CHORES',
   makeChain: 'MAKE_CHAIN',
   breakChain: 'BREAK_CHAIN',
-  addToChorePausedTime: 'SET_CHORE_HOLIDAY_TIME',
+  addToChorePausedTime: 'ADD_TO_CHORE_PAUSED_TIME',
   addPoints: 'ADD_POINTS',
   claimPrize: 'CLAIM_PRIZE',
   paidDebt: 'PAID_DEBT',
