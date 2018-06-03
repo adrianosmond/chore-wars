@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import { database, auth } from 'lib/firebase';
 import * as utils from 'constants/utils';
 import { ActionTypes, DEFAULT_POINTS_DATA } from 'constants/constants';
-import { DefaultAvatar } from 'constants/avatars';
 import * as sessionActions from './sessionActions';
 
 const authUser = 'fake-auth-user';
@@ -47,11 +46,99 @@ describe('Session Actions', () => {
     });
   });
 
+  it('can dispatch setHoliday', () => {
+    expect(sessionActions.setHoliday(true)).toEqual({
+      type: ActionTypes.setHoliday,
+      holiday: true,
+    });
+  });
+
+  it('can dispatch loadHoliday', () => {
+    const holiday = new Date().getTime();
+    database.ref().set({
+      games: {
+        [game]: {
+          holiday,
+        },
+      },
+    });
+
+    const store = mockStore();
+    return store.dispatch(sessionActions.loadHoliday(game)).then(() => {
+      expect(store.getActions()).toEqual([
+        { type: ActionTypes.setHoliday, holiday },
+      ]);
+    });
+  });
+
+  it('can dispatch startHoliday', () => {
+    const holiday = new Date().getTime();
+    database.ref().set({
+      games: {
+        [game]: {},
+      },
+    });
+
+    const store = mockStore();
+    return store.dispatch(sessionActions.startHoliday(game, holiday)).then(() => {
+      expect(store.getActions()).toEqual([
+        { type: ActionTypes.setHoliday, holiday },
+      ]);
+
+      const data = database.ref(`games/${game}`).getData();
+      expect(data).toHaveProperty('holiday');
+      expect(data.holiday).toBe(holiday);
+    });
+  });
+
+  it('can dispatch stopHoliday', () => {
+    const holiday = new Date().getTime() - 10000;
+    database.ref().set({
+      games: {
+        [game]: {
+          holiday,
+          chores: {
+            'chore-1': {
+              frequency: 1,
+              timePaused: 0,
+            },
+            'chore-2': {
+              frequency: 0,
+            },
+          },
+        },
+      },
+    });
+
+    const store = mockStore();
+    return store.dispatch(sessionActions.stopHoliday(game, holiday, holiday + 10000)).then(() => {
+      const data = database.ref().getData();
+
+      const gameData = data.games[game];
+      expect(gameData).not.toHaveProperty('holiday');
+      expect(gameData).toHaveProperty('chores');
+
+      const gameChores = gameData.chores;
+      expect(gameChores).toHaveProperty('chore-1');
+      expect(gameChores['chore-1']).toHaveProperty('timePaused');
+      expect(gameChores).toHaveProperty('chore-2');
+      expect(gameChores['chore-2']).not.toHaveProperty('timePaused');
+
+      expect(store.getActions()).toEqual([
+        {
+          type: ActionTypes.addToChorePausedTime, game, slug: 'chore-1', timePaused: 10000,
+        },
+        { type: ActionTypes.setHoliday, holiday: false },
+      ]);
+    });
+  });
+
   it('can dispatch signOut', () => {
     const store = mockStore({
       session: {
         authUser,
         game,
+        holiday: true,
         playersLoaded: true,
         pointsLoaded: true,
         choresLoaded: true,
@@ -60,6 +147,7 @@ describe('Session Actions', () => {
 
     const expectedActions = [
       { type: ActionTypes.setGame, game: null },
+      { type: ActionTypes.setHoliday, holiday: false },
       { type: ActionTypes.setChoresLoaded, choresLoaded: false },
       { type: ActionTypes.setPlayersLoaded, playersLoaded: false },
       { type: ActionTypes.setPointsLoaded, pointsLoaded: false },

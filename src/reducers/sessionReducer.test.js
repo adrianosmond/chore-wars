@@ -1,5 +1,6 @@
 import { ActionTypes } from 'constants/constants';
 import sessionReducer, { INITIAL_STATE } from './sessionReducer';
+
 const authUser = {
   uid: 'fake-user',
 };
@@ -73,6 +74,16 @@ describe('Session Reducer', () => {
     })).toEqual({
       ...INITIAL_STATE,
       playersLoaded: true,
+    });
+  });
+
+  it('Should be able to set a holiday', () => {
+    expect(sessionReducer(INITIAL_STATE, {
+      type: ActionTypes.setHoliday,
+      holiday: true,
+    })).toEqual({
+      ...INITIAL_STATE,
+      holiday: true,
     });
   });
 });

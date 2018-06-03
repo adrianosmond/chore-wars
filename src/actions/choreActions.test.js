@@ -49,6 +49,13 @@ const processedChore = {
   currentPoints: 100,
 };
 
+const processedPausedChore = {
+  ...chore,
+  timePaused: 1000,
+  slug,
+  currentPoints: 100,
+};
+
 const processedEnablingChore = {
   ...chore,
   enables: 'chore-2',
@@ -72,6 +79,14 @@ describe('Chore Actions', () => {
       game,
       slug,
       time,
+    });
+  });
+
+  it('can dispatch resetTimePaused', () => {
+    expect(choreActions.resetTimePaused(game, slug)).toEqual({
+      type: ActionTypes.resetChoreTimePaused,
+      game,
+      slug,
     });
   });
 
@@ -116,7 +131,7 @@ describe('Chore Actions', () => {
       slug,
     });
   });
-  
+
   it('can dispatch removeChore', () => {
     const store = mockStore();
     store.dispatch(choreActions.removeChore(game, slug));
@@ -130,6 +145,16 @@ describe('Chore Actions', () => {
     expect(choreActions.setChores({ chore1: chore, chore2: chore })).toEqual({
       type: ActionTypes.setChores,
       chores: { chore1: chore, chore2: chore },
+    });
+  });
+
+  it('can dispatch addToTimePaused', () => {
+    const timePaused = 1000;
+    expect(choreActions.addToTimePaused(game, slug, timePaused)).toEqual({
+      type: ActionTypes.addToChorePausedTime,
+      game,
+      slug,
+      timePaused,
     });
   });
 
@@ -197,6 +222,22 @@ describe('Chore Actions', () => {
       },
       {
         type: ActionTypes.unblockChore, game, slug: processedEnablingChore.enables,
+      },
+      {
+        type: ActionTypes.addPoints, user, points: 100, game,
+      },
+    ]);
+  });
+
+  it('can dispatch completeChore for a chore than has been paused', () => {
+    const store = mockStore();
+    store.dispatch(choreActions.completeChore(processedPausedChore, user, game, time));
+    expect(store.getActions()).toEqual([
+      {
+        type: ActionTypes.resetChoreDoneDate, game, slug, time,
+      },
+      {
+        type: ActionTypes.resetChoreTimePaused, game, slug,
       },
       {
         type: ActionTypes.addPoints, user, points: 100, game,

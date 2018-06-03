@@ -48,42 +48,40 @@ export function setHoliday(holiday) {
 }
 
 export function loadHoliday(gameId) {
-  return (dispatch) => {
+  return dispatch =>
     database.ref(`games/${gameId}/holiday`).once('value', (ref) => {
       const holiday = ref.val() || false;
       dispatch(setHoliday(holiday));
     });
-  };
 }
 
 export function startHoliday(gameId, holidayStartTime) {
-  return (dispatch) => {
+  return dispatch =>
     database.ref(`games/${gameId}/holiday`).set(holidayStartTime).then(() => {
       dispatch(setHoliday(holidayStartTime));
     });
-  };
 }
 
 export function stopHoliday(gameId, holidayStartTime, holidayEndTime) {
-  return (dispatch) => {
+  const holidayTime = holidayEndTime - holidayStartTime;
+  return dispatch => Promise.all([
     database.ref(`games/${gameId}/holiday`).set(null).then(() => {
       dispatch(setHoliday(false));
-    });
-    const holidayTime = holidayEndTime - holidayStartTime;
-    database.ref(`games/${gameId}/chores`).orderByChild('timePaused').once('value', (result) => {
+    }),
+    database.ref(`games/${gameId}/chores`).once('value', result =>
       result.forEach((choreRef) => {
         const chore = choreRef.val();
         if ('timePaused' in chore) {
           dispatch(addToTimePaused(gameId, choreRef.key, holidayTime));
         }
-      });
-    });
-  };
+      })),
+  ]);
 }
 
 export function signOut() {
   return (dispatch) => {
     dispatch(setGame(null));
+    dispatch(setHoliday(false));
     dispatch(setChoresLoaded(false));
     dispatch(setPlayersLoaded(false));
     dispatch(setPointsLoaded(false));

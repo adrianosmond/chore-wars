@@ -211,6 +211,56 @@ describe('Chores Reducer', () => {
     });
   });
 
+  it('Should be able to add time that a chore was paused', () => {
+    const timePaused = 1000;
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        timePaused: 0,
+      },
+    }, {
+      type: ActionTypes.addToChorePausedTime,
+      slug: 'test-chore',
+      game: 'testgame',
+      timePaused,
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        timePaused,
+      },
+    });
+  });
+
+  it('Should be able to reset time that a chore was paused', () => {
+    expect(choresReducer({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        timePaused: 1000,
+      },
+    }, {
+      type: ActionTypes.resetChoreTimePaused,
+      slug: 'test-chore',
+      game: 'testgame',
+    })).toEqual({
+      'test-chore': {
+        lastDone: 0,
+        frequency: 10,
+        pointsPerTime: 100,
+        title: 'Test Chore',
+        timePaused: 0,
+      },
+    });
+  });
+
   it('Should be able to mark as blocked', () => {
     expect(choresReducer({
       'test-chore': {
