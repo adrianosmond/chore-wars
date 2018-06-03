@@ -166,6 +166,54 @@ exports[`Chore Form Renders a new chore 1`] = `
     <FormQuestion
       currentQuestionId="title"
       error={false}
+      id="canBePaused"
+      label="Should this chore pause when you go on holiday?"
+      noLabel={true}
+    >
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row"
+        >
+          <input
+            checked={false}
+            name="affected-by-holiday"
+            onChange={[Function]}
+            type="radio"
+            value="yes"
+          />
+          <span
+            className="form__row-item"
+          >
+            Yes
+          </span>
+        </div>
+      </label>
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row form__row--inactive"
+        >
+          <input
+            checked={true}
+            name="affected-by-holiday"
+            onChange={[Function]}
+            type="radio"
+            value="no"
+          />
+          <span
+            className="form__row-item"
+          >
+            No
+          </span>
+        </div>
+      </label>
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
       id="lastDone"
       label="When was this chore last done?"
     >
@@ -323,6 +371,54 @@ exports[`Chore Form Renders a specified question 1`] = `
     <FormQuestion
       currentQuestionId="forgotToLog"
       error={false}
+      id="canBePaused"
+      label="Should this chore pause when you go on holiday?"
+      noLabel={true}
+    >
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row"
+        >
+          <input
+            checked={false}
+            name="affected-by-holiday"
+            onChange={[Function]}
+            type="radio"
+            value="yes"
+          />
+          <span
+            className="form__row-item"
+          >
+            Yes
+          </span>
+        </div>
+      </label>
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row form__row--inactive"
+        >
+          <input
+            checked={true}
+            name="affected-by-holiday"
+            onChange={[Function]}
+            type="radio"
+            value="no"
+          />
+          <span
+            className="form__row-item"
+          >
+            No
+          </span>
+        </div>
+      </label>
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="forgotToLog"
+      error={false}
       id="lastDone"
       label="When was this chore last done?"
     >
@@ -476,6 +572,54 @@ exports[`Chore Form Renders an existing chore 1`] = `
         type="number"
         value={100}
       />
+    </FormQuestion>
+    <FormQuestion
+      currentQuestionId="title"
+      error={false}
+      id="canBePaused"
+      label="Should this chore pause when you go on holiday?"
+      noLabel={true}
+    >
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row"
+        >
+          <input
+            checked={false}
+            name="affected-by-holiday"
+            onChange={[Function]}
+            type="radio"
+            value="yes"
+          />
+          <span
+            className="form__row-item"
+          >
+            Yes
+          </span>
+        </div>
+      </label>
+      <label
+        className="form__option"
+      >
+        <div
+          className="form__row form__row--inactive"
+        >
+          <input
+            checked={true}
+            name="affected-by-holiday"
+            onChange={[Function]}
+            type="radio"
+            value="no"
+          />
+          <span
+            className="form__row-item"
+          >
+            No
+          </span>
+        </div>
+      </label>
     </FormQuestion>
     <FormQuestion
       currentQuestionId="title"

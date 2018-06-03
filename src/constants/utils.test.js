@@ -93,12 +93,32 @@ describe('Computed chore properties', () => {
     }, now).percentage).toBe(50);
   });
 
-  it('Should set not have a percentage over 100', () => {
+  it('Should not have a percentage over 100', () => {
     expect(utils.computedChoreProperties({
       ...basicChore,
       lastDone: 0,
     }, now).percentage)
       .toBe(100);
+  });
+
+  describe('Paused chores', () => {
+    const pausedChore = utils.computedChoreProperties({
+      ...basicChore,
+      lastDone: now - (basicChore.frequency * TIME_UNIT),
+      timePaused: (basicChore.frequency * TIME_UNIT * 0.5),
+    }, now);
+
+    it('should correctly update the percentage', () => {
+      expect(pausedChore.percentage).toBe(50);
+    });
+
+    it('should correctly update the points', () => {
+      expect(pausedChore.currentPoints).toBe(35);
+    });
+
+    it('should correctly update the due date', () => {
+      expect(pausedChore.due).toBe(now + (basicChore.frequency * TIME_UNIT * 0.5));
+    });
   });
 });
 

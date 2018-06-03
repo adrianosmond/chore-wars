@@ -117,6 +117,12 @@ exports[`Profile Renders 1`] = `
       </div>
       <button
         className="form__button form__button--tertiary"
+        onClick={[Function]}
+      >
+        Start holiday
+      </button>
+      <button
+        className="form__button form__button--tertiary"
         id="profile-sign-out"
         onClick={[Function]}
       >

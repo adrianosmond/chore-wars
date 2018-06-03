@@ -37,7 +37,7 @@ describe('withAuthorization', () => {
         choresLoaded: false,
       },
     });
-    
+
     const history = {
       push: pushFn,
       location: {
@@ -150,16 +150,17 @@ describe('withAuthorization', () => {
         { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
         { type: ActionTypes.setChores, chores },
         { type: ActionTypes.setChoresLoaded, choresLoaded: true },
+        { type: ActionTypes.setHoliday, holiday: false },
       ]);
       expect(component.html()).toBe(loadingComponent);
     });
   });
 
   describe('After Authorisation', () => {
-    let state = {
+    const state = {
       session: {
         authUser,
-        game: null,
+        game: gameId,
         playersLoaded: true,
         pointsLoaded: true,
         choresLoaded: true,
