@@ -155,6 +155,7 @@ export function copyDummyData() {
           dispatch(loadPlayers('-TEST'));
           dispatch(loadPoints('-TEST'));
           dispatch(loadChores('-TEST'));
+          dispatch(loadHoliday('-TEST'));
         });
       });
     };

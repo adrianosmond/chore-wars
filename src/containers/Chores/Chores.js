@@ -29,11 +29,15 @@ class Chores extends Component {
 
   render() {
     const { chores } = this.state;
+    const { holiday } = this.props;
     return (
       <div className="app">
         <GameHeader />
         <div className="app__chores">
-          { chores ? <ChoresList chores={chores} /> : null }
+          { chores && !holiday ? <ChoresList chores={chores} /> : null }
+          { holiday ? <p>Your game is set to holiday mode. If you're back from your break you can
+            change this setting in your profile. Otherwise, enjoy yourselves and don't worry about
+            chores!</p> : null }
           <Actions />
         </div>
       </div>
@@ -46,6 +50,7 @@ const isLoading = state => !state.pointsLoaded || !state.choresLoaded || !state.
 
 const mapStateToProps = state => ({
   chores: state.chores.present,
+  holiday: state.session.holiday,
 });
 
 export default compose(
