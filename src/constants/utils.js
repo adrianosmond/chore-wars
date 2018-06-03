@@ -4,12 +4,13 @@ import { DefaultAvatar } from 'constants/avatars';
 const sortByCurrentPoints = (a, b) => b.currentPoints - a.currentPoints;
 
 const computedChoreProperties = (chore, now) => {
-  const timeSinceChore = (now - chore.lastDone) / TIME_UNIT;
+  const timePaused = chore.timePaused || 0;
+  const timeSinceChore = (now - (chore.lastDone + timePaused)) / TIME_UNIT;
   const timeRemaining = timeSinceChore - chore.frequency;
   const percentage = chore.frequency === 0 ? 100 :
     Math.min((100 * timeSinceChore) / chore.frequency, 100);
   const multiplier = chore.frequency === 0 ? 1 : 1 + (1 / chore.frequency);
-  const due = chore.lastDone + (chore.frequency * TIME_UNIT);
+  const due = chore.lastDone + timePaused + (chore.frequency * TIME_UNIT);
   const currentPoints = chore.frequency === 0 ? chore.pointsPerTime :
     Math.round((percentage / 100) * chore.pointsPerTime * (multiplier ** timeRemaining));
   return {
