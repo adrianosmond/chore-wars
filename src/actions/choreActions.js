@@ -21,6 +21,14 @@ export function resetDoneDate(game, slug, time) {
   };
 }
 
+export function resetTimePaused(game, slug) {
+  return {
+    type: ActionTypes.resetChoreTimePaused,
+    game,
+    slug,
+  };
+}
+
 export function blockChore(game, slug) {
   return {
     type: ActionTypes.blockChore,
@@ -101,6 +109,9 @@ export function loadChores(game) {
 export function completeChore(chore, user, game, time = new Date().getTime()) {
   return (dispatch) => {
     dispatch(resetDoneDate(game, chore.slug, time));
+    if (chore.timePaused) {
+      dispatch(resetTimePaused(game, chore.slug));
+    }
     if (chore.enables) {
       dispatch(blockChore(game, chore.slug));
       dispatch(unblockChore(game, chore.enables));

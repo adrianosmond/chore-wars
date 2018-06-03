@@ -14,6 +14,7 @@ const JOIN_CODE_LENGTH = 8;
 const ActionTypes = {
   addChore: 'ADD_CHORE',
   resetChoreDoneDate: 'RESET_CHORE_DONE_DATE',
+  resetChoreTimePaused: 'RESET_CHORE_TIME_PAUSED',
   blockChore: 'BLOCK_CHORE',
   unblockChore: 'UNBLOCK_CHORE',
   removeChore: 'REMOVE_CHORE',

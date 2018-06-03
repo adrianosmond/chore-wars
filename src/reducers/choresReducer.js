@@ -18,6 +18,11 @@ export default function choresReducer(state = { }, action) {
       database.ref(`games/${action.game}/chores/${action.slug}/lastDone`).set(action.time);
       return newState;
 
+    case ActionTypes.resetChoreTimePaused:
+      newState[action.slug].timePaused = 0;
+      database.ref(`games/${action.game}/chores/${action.slug}/timePaused`).set(0);
+      return newState;
+
     case ActionTypes.blockChore:
       newState[action.slug].isWaiting = true;
       database.ref(`games/${action.game}/chores/${action.slug}/isWaiting`).set(true);
