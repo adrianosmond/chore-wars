@@ -1,6 +1,9 @@
+import { auth, database } from 'lib/firebase';
 import { ActionTypes, DEFAULT_POINTS_DATA } from 'constants/constants';
 import { generatePlayerData, createJoinCode } from 'constants/utils';
-import { auth, database } from 'lib/firebase';
+import { loadPlayers } from 'actions/playerActions';
+import { loadPoints } from 'actions/pointActions';
+import { loadChores, addToTimePaused } from 'actions/choreActions';
 
 export function setAuthUser(authUser) {
   return {
@@ -34,6 +37,47 @@ export function setChoresLoaded(choresLoaded) {
   return {
     type: ActionTypes.setChoresLoaded,
     choresLoaded,
+  };
+}
+
+export function setHoliday(holiday) {
+  return {
+    type: ActionTypes.setHoliday,
+    holiday,
+  };
+}
+
+export function loadHoliday(gameId) {
+  return (dispatch) => {
+    database.ref(`games/${gameId}/holiday`).once('value', (ref) => {
+      const holiday = ref.val() || false;
+      dispatch(setHoliday(holiday));
+    });
+  };
+}
+
+export function startHoliday(gameId, holidayStartTime) {
+  return (dispatch) => {
+    database.ref(`games/${gameId}/holiday`).set(holidayStartTime).then(() => {
+      dispatch(setHoliday(holidayStartTime));
+    });
+  };
+}
+
+export function stopHoliday(gameId, holidayStartTime, holidayEndTime) {
+  return (dispatch) => {
+    database.ref(`games/${gameId}/holiday`).set(null).then(() => {
+      dispatch(setHoliday(false));
+    });
+    const holidayTime = holidayEndTime - holidayStartTime;
+    database.ref(`games/${gameId}/chores`).orderByChild('timePaused').once('value', (result) => {
+      result.forEach((choreRef) => {
+        const chore = choreRef.val();
+        if ('timePaused' in chore) {
+          dispatch(addToTimePaused(gameId, choreRef.key, holidayTime));
+        }
+      });
+    });
   };
 }
 
@@ -100,4 +144,22 @@ export function joinGame(userId, joinCode, playerName) {
     .then(setUserData)
     .then(addUserAndCleanUp)
     .then(() => dispatch(setGame(userData)));
+}
+
+export function copyDummyData() {
+  if (process.env.NODE_ENV === 'development') {
+    return (dispatch) => {
+      database.ref(`users/${auth.currentUser.uid}`).once('value', (result) => {
+        const game = result.val();
+        const { gameId } = game;
+        database.ref(`games/${gameId}/`).once('value', (ref) => {
+          database.ref('games/-TEST/').set(ref.val());
+          dispatch(loadPlayers('-TEST'));
+          dispatch(loadPoints('-TEST'));
+          dispatch(loadChores('-TEST'));
+        });
+      });
+    };
+  }
+  return null;
 }

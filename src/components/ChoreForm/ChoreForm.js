@@ -23,7 +23,7 @@ const FormQuestion = (props) => {
   );
 };
 
-const defaultQuestions = ['title', 'frequency', 'pointsPerTime', 'lastDone'];
+const defaultQuestions = ['title', 'frequency', 'pointsPerTime', 'canBePaused', 'lastDone'];
 
 class ChoreForm extends Component {
   constructor(props) {
@@ -37,6 +37,7 @@ class ChoreForm extends Component {
       frequency: chore.frequency === 0 ? 7 : chore.frequency,
       doneDate: fecha.format(chore.lastDone, 'YYYY-MM-DD'),
       choreFrequency: chore.frequency === 0 ? 'as-and-when' : 'with-regularity',
+      canBePaused: chore.timePaused === undefined ? 'no' : 'yes',
       currentQuestionId: questions[0],
       questions,
       currentTime: props.currentTime,
@@ -135,6 +136,7 @@ class ChoreForm extends Component {
       frequency: this.state.choreFrequency === 'as-and-when' ? 0 : parseInt(this.state.frequency, 10),
       pointsPerTime: parseInt(this.state.pointsPerTime, 10),
       lastDone: this.state.lastDone,
+      timePaused: this.state.canBePaused === 'yes' ? 0 : null,
     };
 
     this.props.onSubmit(chore, this.state.slug);
@@ -168,7 +170,7 @@ class ChoreForm extends Component {
               </div>
             </label>
             <label className="form__option">
-            <div className="form__row form__row--inactive">
+              <div className="form__row form__row--inactive">
                 <input type="radio" name="frequency-type"
                   value="as-and-when"
                   checked={this.state.choreFrequency === 'as-and-when'}
@@ -185,6 +187,26 @@ class ChoreForm extends Component {
               maxLength={MAX_CHORE_POINTS.toString().length}
               value={this.state.pointsPerTime}
               onChange={(event) => { this.setState({ pointsPerTime: event.target.value }); }} />
+          </FormQuestion>
+          <FormQuestion id="canBePaused" currentQuestionId={this.state.currentQuestionId}
+            label="Should this chore pause when you go on holiday?" error={this.state.error}
+            noLabel={true}>
+            <label className="form__option">
+              <div className="form__row">
+                <input type="radio" name="affected-by-holiday"
+                  value="yes" checked={this.state.canBePaused === 'yes'}
+                  onChange={() => this.setState({ canBePaused: 'yes' })} />
+                <span className="form__row-item">Yes</span>
+              </div>
+            </label>
+            <label className="form__option">
+              <div className="form__row form__row--inactive">
+                <input type="radio" name="affected-by-holiday"
+                  value="no" checked={this.state.canBePaused === 'no'}
+                  onChange={() => this.setState({ canBePaused: 'no' })} />
+                <span className="form__row-item">No</span>
+              </div>
+            </label>
           </FormQuestion>
           <FormQuestion id="lastDone" currentQuestionId={this.state.currentQuestionId}
             label="When was this chore last done?" error={this.state.error}>

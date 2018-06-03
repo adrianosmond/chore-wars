@@ -21,6 +21,7 @@ const ActionTypes = {
   setChores: 'SET_CHORES',
   makeChain: 'MAKE_CHAIN',
   breakChain: 'BREAK_CHAIN',
+  addToChorePausedTime: 'SET_CHORE_HOLIDAY_TIME',
   addPoints: 'ADD_POINTS',
   claimPrize: 'CLAIM_PRIZE',
   paidDebt: 'PAID_DEBT',
@@ -32,6 +33,7 @@ const ActionTypes = {
   savePlayerAvatar: 'SAVE_PLAYER_AVATAR',
   setAuthUser: 'SET_AUTH_USER',
   setGame: 'SET_GAME',
+  setHoliday: 'SET_HOLIDAY',
   setPlayersLoaded: 'SET_PLAYERS_LOADED',
   setPointsLoaded: 'SET_POINTS_LOADED',
   setChoresLoaded: 'SET_CHORES_LOADED',
@@ -41,7 +43,7 @@ const ActionTypes = {
 const DEFAULT_POINTS_DATA = {
   isOwed: 0,
   points: 0,
-}
+};
 
 export {
   TIME_UNIT,

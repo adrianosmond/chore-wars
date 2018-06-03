@@ -6,7 +6,7 @@ import { auth, database } from 'lib/firebase';
 
 import Loading from 'components/Loading';
 
-import { setAuthUser, setGame } from 'actions/sessionActions';
+import { setAuthUser, setGame, loadHoliday } from 'actions/sessionActions';
 import { loadPlayers } from 'actions/playerActions';
 import { loadPoints } from 'actions/pointActions';
 import { loadChores } from 'actions/choreActions';
@@ -33,7 +33,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
         } else {
           database.ref(`users/${authUser.uid}`).once('value', (result) => {
             const game = result.val();
-            // if (game && process.env.NODE_ENV === 'development') game.gameId = '-TEST';
+            if (game && process.env.NODE_ENV === 'development') game.gameId = '-TEST';
             if (game && game.gameId) {
               const { gameId } = game;
               if (gameId) {
@@ -41,6 +41,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
                 this.props.loadPlayers(gameId);
                 this.props.loadPoints(gameId);
                 this.props.loadChores(gameId);
+                this.props.loadHoliday(gameId);
               }
             } else {
               this.props.history.push(routes.NO_GAME);
@@ -68,7 +69,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
     }
 
     render() {
-      if (!this.props.authUser || this.state.loading) {
+      if (!this.props.authUser || !this.props.game || this.state.loading) {
         return (
           <Loading />
         );
@@ -93,6 +94,7 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
     loadPlayers: game => dispatch(loadPlayers(game)),
     loadPoints: game => dispatch(loadPoints(game)),
     loadChores: game => dispatch(loadChores(game)),
+    loadHoliday: game => dispatch(loadHoliday(game)),
   });
 
   return compose(

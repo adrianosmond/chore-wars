@@ -81,6 +81,15 @@ export function setChores(chores) {
   };
 }
 
+export function addToTimePaused(game, slug, timePaused) {
+  return {
+    type: ActionTypes.addToChorePausedTime,
+    game,
+    slug,
+    timePaused,
+  };
+}
+
 export function loadChores(game) {
   return dispatch => database.ref(`games/${game}/chores`).once('value', (result) => {
     const chores = result.val() || {};

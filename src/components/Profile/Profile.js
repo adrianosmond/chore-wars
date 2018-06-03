@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
 import { setPlayerName, savePlayerName, savePlayerAvatar } from 'actions/playerActions';
-import { signOut } from 'actions/sessionActions';
+import { startHoliday, stopHoliday, signOut, copyDummyData } from 'actions/sessionActions';
 
 import { editorOrder, isEditable, labels } from 'constants/avatars';
 import * as routes from 'constants/routes';
@@ -50,6 +50,7 @@ class Profile extends Component {
 
   render() {
     const { avatar } = this.state;
+    const { gameId, holidayStartTime } = this.props;
     if (!avatar) return null;
     return (
       <div className="profile-editor">
@@ -68,6 +69,22 @@ class Profile extends Component {
               <Link to={routes.CHORES} className="form__button form__button"
                 id="profile-save-player" onClick={this.savePlayer.bind(this)}>Save</Link>
             </div>
+            {
+              process.env.NODE_ENV === 'development' ?
+              <button onClick={() => { this.props.copyData(); }}
+                className="form__button form__button--secondary">Clone Data</button>
+              : null
+            }
+            {
+              holidayStartTime ?
+                <button onClick={() => {
+                  this.props.stopHoliday(gameId, holidayStartTime, new Date().getTime());
+                }} className="form__button form__button--tertiary">Stop holiday</button>
+              :
+                <button onClick={() => {
+                  this.props.startHoliday(gameId, new Date().getTime());
+                }} className="form__button form__button--tertiary">Start holiday</button>
+            }
             <button onClick={() => { this.props.doSignOut(); }}
               id="profile-sign-out"
               className="form__button form__button--tertiary">Sign out</button>
@@ -84,6 +101,7 @@ class Profile extends Component {
 
 const mapStateToProps = state => ({
   gameId: state.session.game.gameId,
+  holidayStartTime: state.session.holiday,
   user: state.session.authUser.uid,
   player: state.players[state.session.authUser.uid],
 });
@@ -92,7 +110,10 @@ const mapDispatchToProps = dispatch => ({
   setPlayerName: (player, name) => dispatch(setPlayerName(player, name)),
   savePlayerName: (player, name, game) => dispatch(savePlayerName(player, name, game)),
   savePlayerAvatar: (player, avatar, game) => dispatch(savePlayerAvatar(player, avatar, game)),
+  startHoliday: (game, startTime) => dispatch(startHoliday(game, startTime)),
+  stopHoliday: (game, startTime, endTime) => dispatch(stopHoliday(game, startTime, endTime)),
   doSignOut: () => dispatch(signOut()),
+  copyData: () => dispatch(copyDummyData()),
 });
 
 export { EditAvatarLinks };
