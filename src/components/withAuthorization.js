@@ -69,7 +69,9 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
     }
 
     render() {
-      if (!this.props.authUser || !this.props.game || this.state.loading) {
+      if (!this.props.authUser ||
+        (!this.props.game && this.props.location.pathname !== routes.NO_GAME) ||
+        this.state.loading) {
         return (
           <Loading />
         );
