@@ -99,10 +99,11 @@ export function addToTimePaused(game, slug, timePaused) {
 }
 
 export function loadChores(game) {
-  return dispatch => database.ref(`games/${game}/chores`).once('value', (result) => {
-    const chores = result.val() || {};
-    dispatch(setChores(chores));
-    dispatch(setChoresLoaded(true));
+  return dispatch => database.ref(`games/${game}/chores`).on('value', (result) => {
+    requestAnimationFrame(() => {
+      dispatch(setChores(result.val() || {}));
+      dispatch(setChoresLoaded(true));
+    });
   });
 }
 
