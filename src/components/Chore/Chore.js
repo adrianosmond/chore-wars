@@ -15,7 +15,6 @@ const Chore = ({
   chore, user, game, markChoreComplete, deleteChore, breakChoreChain,
 }) => {
   const bonusPoints = chore.currentPoints > chore.pointsPerTime;
-  const timeSinceChore = (new Date().getTime() - chore.lastDone);
   const menuOptions = [
     { type: 'link', to: `${routes.EDIT_CHORE}/${chore.slug}`, text: 'Edit' },
     { type: 'button', onClick: () => deleteChore(game, chore.slug), text: 'Delete' },
@@ -44,9 +43,7 @@ const Chore = ({
         <span>Due: <span className={`${bonusPoints ? 'chore__last-done--overdue' : ''}`}>{fecha.format(new Date(chore.due), DATE_FORMAT)}</span></span>
         : null }
     </div>
-    <button className="chore__complete-button"
-      onClick={markChoreComplete.bind(null, chore, user, game)}
-      disabled={timeSinceChore < 60000}>
+    <button className="chore__complete-button" onClick={markChoreComplete.bind(null, chore, user, game)}>
       <img src={checkIcon} alt="Mark as complete" />
     </button>
     <PopUpMenu extraClasses="chore__extra-options"
