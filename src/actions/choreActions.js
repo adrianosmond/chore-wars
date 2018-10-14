@@ -115,7 +115,8 @@ export function completeChore(chore, user, game, time = new Date().getTime()) {
     }
     if (chore.enables) {
       dispatch(blockChore(game, chore.slug));
-      dispatch(unblockChore(game, chore.enables));
+      // Work around a bug in FlipMove
+      setTimeout(() => dispatch(unblockChore(game, chore.enables)), 300);
     }
     dispatch(addPointsToUser(user, chore.currentPoints, game));
   };

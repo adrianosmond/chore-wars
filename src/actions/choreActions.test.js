@@ -4,6 +4,8 @@ import { database } from 'lib/firebase';
 import { ActionTypes } from 'constants/constants';
 import * as choreActions from './choreActions';
 
+jest.useFakeTimers();
+
 const game = 'my-game';
 const chores = {
   first: {
@@ -64,6 +66,14 @@ const processedEnablingChore = {
 };
 
 describe('Chore Actions', () => {
+  beforeEach(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+  });
+
+  afterEach(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
+
   it('can dispatch addChore', () => {
     expect(choreActions.addChore(chore, game, slug)).toEqual({
       type: ActionTypes.addChore,
@@ -161,12 +171,11 @@ describe('Chore Actions', () => {
   it('can dispatch loadChores', () => {
     database.ref().set(data);
     const store = mockStore();
-    return store.dispatch(choreActions.loadChores(game)).then(() => {
-      expect(store.getActions()).toEqual([
-        { type: ActionTypes.setChores, chores },
-        { type: ActionTypes.setChoresLoaded, choresLoaded: true },
-      ]);
-    });
+    store.dispatch(choreActions.loadChores(game));
+    expect(store.getActions()).toEqual([
+      { type: ActionTypes.setChores, chores },
+      { type: ActionTypes.setChoresLoaded, choresLoaded: true },
+    ]);
   });
 
   it('can dispatch loadChores when there are no chores', () => {
@@ -174,12 +183,11 @@ describe('Chore Actions', () => {
     delete dataWithoutChores.games[game].chores;
     database.ref().set(dataWithoutChores);
     const store = mockStore();
-    return store.dispatch(choreActions.loadChores(game)).then(() => {
-      expect(store.getActions()).toEqual([
-        { type: ActionTypes.setChores, chores: {} },
-        { type: ActionTypes.setChoresLoaded, choresLoaded: true },
-      ]);
-    });
+    store.dispatch(choreActions.loadChores(game));
+    expect(store.getActions()).toEqual([
+      { type: ActionTypes.setChores, chores: {} },
+      { type: ActionTypes.setChoresLoaded, choresLoaded: true },
+    ]);
   });
 
   it('can dispatch completeChore', () => {
@@ -213,6 +221,7 @@ describe('Chore Actions', () => {
   it('can dispatch completeChore for an enabling chore', () => {
     const store = mockStore();
     store.dispatch(choreActions.completeChore(processedEnablingChore, user, game, time));
+    jest.runAllTimers();
     expect(store.getActions()).toEqual([
       {
         type: ActionTypes.resetChoreDoneDate, game, slug, time,
@@ -221,10 +230,10 @@ describe('Chore Actions', () => {
         type: ActionTypes.blockChore, game, slug,
       },
       {
-        type: ActionTypes.unblockChore, game, slug: processedEnablingChore.enables,
+        type: ActionTypes.addPoints, user, points: 100, game,
       },
       {
-        type: ActionTypes.addPoints, user, points: 100, game,
+        type: ActionTypes.unblockChore, game, slug: processedEnablingChore.enables,
       },
     ]);
   });
