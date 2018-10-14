@@ -54,10 +54,15 @@ describe('withAuthorization', () => {
       </Provider>
     ));
 
+    beforeEach(() => {
+      jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+    });
+
     afterEach(() => {
       auth.signOut();
       pushFn.mockClear();
       store.clearActions();
+      window.requestAnimationFrame.mockRestore();
     });
 
     it('Should not render the Login component before auth happens', () => {

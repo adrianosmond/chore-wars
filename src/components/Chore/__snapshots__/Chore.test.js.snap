@@ -44,7 +44,6 @@ exports[`Chore Renders a basic chore 1`] = `
   </div>
   <button
     className="chore__complete-button"
-    disabled={false}
     onClick={[Function]}
   >
     <img
@@ -123,7 +122,6 @@ exports[`Chore Renders a chore with frequency 0 1`] = `
   </div>
   <button
     className="chore__complete-button"
-    disabled={false}
     onClick={[Function]}
   >
     <img

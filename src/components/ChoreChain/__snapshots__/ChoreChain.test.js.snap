@@ -244,7 +244,7 @@ exports[`Chore Chain Selection Renders 1`] = `
     <button
       className="form__button"
       disabled={false}
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       Next
     </button>
@@ -367,7 +367,7 @@ exports[`Chore Chain Sorting Renders 1`] = `
   >
     <button
       className="form__button form__button--secondary"
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       Back
     </button>

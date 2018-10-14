@@ -58,7 +58,7 @@ describe('Chore Form', () => {
 
     it('Should have a back button that links back to the chores page', () => {
       expect(prevQuestion).not.toHaveBeenCalled();
-      const button = shallowForm.find('.form__button .form__button--secondary');
+      const button = shallowForm.find('.form__button--secondary');
       expect(button.prop('to')).toBe(routes.CHORES);
       button.simulate('click');
       expect(prevQuestion).not.toHaveBeenCalled();
@@ -87,7 +87,7 @@ describe('Chore Form', () => {
 
     it('Should have a back button that goes back to the previous question', () => {
       expect(prevQuestion).not.toHaveBeenCalled();
-      const button = shallowForm.find('.form__button .form__button--secondary');
+      const button = shallowForm.find('.form__button--secondary');
       expect(button.text()).toBe('Back');
       button.simulate('click');
       expect(prevQuestion).toHaveBeenCalledTimes(1);
@@ -116,7 +116,7 @@ describe('Chore Form', () => {
 
     it('Should have a back button that goes back to the previous question', () => {
       expect(prevQuestion).not.toHaveBeenCalled();
-      const button = shallowForm.find('.form__button .form__button--secondary');
+      const button = shallowForm.find('.form__button--secondary');
       expect(button.text()).toBe('Back');
       button.simulate('click');
       expect(prevQuestion).toHaveBeenCalledTimes(1);

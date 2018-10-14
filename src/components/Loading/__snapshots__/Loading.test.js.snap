@@ -5,27 +5,23 @@ exports[`Loading Renders 1`] = `
   className="loading"
 >
   <div
-    className="loading__logo"
+    className="loading__image-wrapper"
   >
-    <div
-      className="loading__image-wrapper"
-    >
-      <img
-        alt=""
-        className="loading__image loading__image--1"
-        src="loading1.png"
-      />
-      <img
-        alt=""
-        className="loading__image loading__image--2"
-        src="loading2.png"
-      />
-    </div>
-    <h1
-      className="loading__text"
-    >
-      Loading
-    </h1>
+    <img
+      alt=""
+      className="loading__image loading__image--1"
+      src="loading1.png"
+    />
+    <img
+      alt=""
+      className="loading__image loading__image--2"
+      src="loading2.png"
+    />
   </div>
+  <h1
+    className="loading__text"
+  >
+    Loading
+  </h1>
 </div>
 `;

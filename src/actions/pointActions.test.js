@@ -30,6 +30,14 @@ const data = {
 const mockStore = configureMockStore([thunk]);
 
 describe('Point Actions', () => {
+  beforeEach(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+  });
+
+  afterEach(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
+
   it('can dispatch addPointsToUser', () => {
     expect(pointActions.addPointsToUser(user, 100, game)).toEqual({
       type: ActionTypes.addPoints,
@@ -65,11 +73,10 @@ describe('Point Actions', () => {
   it('can dispatch loadPoints', () => {
     database.ref().set(data);
     const store = mockStore();
-    return store.dispatch(pointActions.loadPoints(game)).then(() => {
-      expect(store.getActions()).toEqual([
-        { type: ActionTypes.setPoints, points },
-        { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
-      ]);
-    });
+    store.dispatch(pointActions.loadPoints(game));
+    expect(store.getActions()).toEqual([
+      { type: ActionTypes.setPoints, points },
+      { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
+    ]);
   });
 });
