@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from 'lib/firebase';
+import { auth } from 'utils/database';
 import * as routes from 'constants/routes';
 
 import './LoginForm.css';

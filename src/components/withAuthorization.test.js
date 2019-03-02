@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
-import { auth, database } from 'lib/firebase';
+import { auth, database } from 'utils/database';
 import Loading from 'components/Loading';
 import { ActionTypes } from 'constants/constants';
 import * as routes from 'constants/routes';

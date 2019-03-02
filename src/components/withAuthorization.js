@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import { auth, database } from 'lib/firebase';
+import { auth, database } from 'utils/database';
 
 import Loading from 'components/Loading';
 

@@ -6,7 +6,8 @@ import { compose } from 'recompose';
 import withAuthorization from 'components/withAuthorization';
 import ChoreForm from 'components/ChoreForm';
 
-import { loadChores, updateChore } from 'actions/choreActions';
+import { loadChores } from 'actions/choreActions';
+import { updateChore } from 'utils/database';
 
 import * as routes from 'constants/routes';
 
@@ -47,7 +48,7 @@ class EditChore extends Component {
   }
 
   onSubmit(chore, slug) {
-    this.props.updateChore(this.state.slug, chore, slug, this.props.game);
+    updateChore(this.state.slug, chore, slug, this.props.game, this.props.chores);
     this.props.history.push(routes.CHORES);
   }
 
@@ -73,8 +74,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadChores: game => dispatch(loadChores(game)),
-  updateChore: (slug, newChore, newSlug, game) =>
-    dispatch(updateChore(slug, newChore, newSlug, game)),
 });
 
 export default compose(

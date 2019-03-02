@@ -1,5 +1,5 @@
 import { MockFirebase } from 'firebase-mock';
-import { database } from 'lib/firebase';
+import { database } from 'utils/database';
 import { ActionTypes } from 'constants/constants';
 import choresReducer from './choresReducer';
 

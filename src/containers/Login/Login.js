@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { auth } from 'lib/firebase';
+import { auth } from 'utils/database';
 import * as routes from 'constants/routes';
 
 import Loading from 'components/Loading';

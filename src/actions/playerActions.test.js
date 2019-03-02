@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { database } from 'lib/firebase';
+import { database } from 'utils/database';
 import { ActionTypes } from 'constants/constants';
 import { DefaultAvatar } from 'constants/avatars';
 import * as playerActions from './playerActions';

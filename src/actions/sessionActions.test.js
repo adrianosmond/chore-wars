@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { database, auth } from 'lib/firebase';
+import { database, auth } from 'utils/database';
 import * as utils from 'constants/utils';
 import { ActionTypes, DEFAULT_POINTS_DATA } from 'constants/constants';
 import * as sessionActions from './sessionActions';

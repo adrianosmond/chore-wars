@@ -6,7 +6,7 @@ import { compose } from 'recompose';
 import ChoreForm from 'components/ChoreForm';
 import withAuthorization from 'components/withAuthorization';
 
-import { addChore } from 'actions/choreActions';
+import { addChore } from 'utils/database';
 
 import * as routes from 'constants/routes';
 
@@ -27,7 +27,7 @@ class NewChore extends Component {
   }
 
   onSubmit(chore, slug) {
-    this.props.addChore(chore, this.props.game, slug);
+    addChore(chore, this.props.game, slug);
     this.props.history.push(routes.CHORES);
   }
 
@@ -49,12 +49,8 @@ const mapStateToProps = state => ({
   game: state.session.game.gameId,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addChore: (chore, game, slug) => dispatch(addChore(chore, game, slug)),
-});
-
 export default compose(
   withAuthorization(authCondition, isLoading),
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps),
   withRouter,
 )(NewChore);

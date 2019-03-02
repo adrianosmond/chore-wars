@@ -6,7 +6,8 @@ import { compose } from 'recompose';
 import withAuthorization from 'components/withAuthorization';
 import ChoreForm from 'components/ChoreForm';
 
-import { loadChores, completeChore } from 'actions/choreActions';
+import { loadChores } from 'actions/choreActions';
+import { completeChore } from 'utils/database';
 
 import * as routes from 'constants/routes';
 import { computedChoreProperties } from 'constants/utils';
@@ -53,7 +54,7 @@ class LogPastCompletion extends Component {
       slug,
       ...computedChoreProperties(this.state.chore, chore.lastDone),
     };
-    this.props.completeChore(completedChore, this.props.user, this.props.game, chore.lastDone);
+    completeChore(completedChore, this.props.user, this.props.game, chore.lastDone);
     this.props.history.push(routes.CHORES);
   }
 
@@ -81,8 +82,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadChores: game => dispatch(loadChores(game)),
-  completeChore: (chore, user, game, time) =>
-    dispatch(completeChore(chore, user, game, time)),
 });
 
 export default compose(

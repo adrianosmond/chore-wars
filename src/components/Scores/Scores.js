@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Confetti from 'react-dom-confetti';
 
-import { claimPrize } from 'actions/pointActions';
+import { claimPrize } from 'utils/database';
 
 import { MAX_POINT_DIFFERENCE } from 'constants/constants';
 
@@ -32,7 +32,7 @@ const Scores = (props) => {
             key={playerId}>
             { playerBar || (scoresTied && idx) ?
             <div className={`scores__difference scores__difference--${idx + 1}${winning ? ' scores__difference--winning' : ''}`}
-              onClick={winning ? () => props.claimPrize(playerId, props.gameId) : null}>
+              onClick={winning ? () => claimPrize(playerId, props.gameId) : null}>
               <Confetti active={!winning} />
               {playerBar}
               </div>
@@ -50,8 +50,4 @@ const mapStateToProps = state => ({
   gameId: state.session.game.gameId,
 });
 
-const mapDispatchToProps = dispatch => ({
-  claimPrize: (player, game) => dispatch(claimPrize(player, game)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Scores);
+export default connect(mapStateToProps)(Scores);

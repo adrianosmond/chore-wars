@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
-import { setPlayerName, savePlayerName, savePlayerAvatar } from 'actions/playerActions';
+import { setPlayerName } from 'actions/playerActions';
 import { startHoliday, stopHoliday, signOut, copyDummyData } from 'actions/sessionActions';
 
+import { savePlayerName, savePlayerAvatar } from 'utils/database';
 import { editorOrder, isEditable, labels } from 'constants/avatars';
 import * as routes from 'constants/routes';
 import { MAX_NAME_LENGTH } from 'constants/constants';
@@ -35,13 +36,13 @@ class Profile extends Component {
   }
 
   savePlayer(event) {
-    const { user, gameId } = this.props;
+    const { user, gameId, setName } = this.props;
     const { avatar, name } = this.state;
     const trimmedName = name.trim();
     if (trimmedName.length > 0 && trimmedName.length <= MAX_NAME_LENGTH) {
-      this.props.setPlayerName(user, name.trim());
-      this.props.savePlayerName(user, name.trim(), gameId);
-      this.props.savePlayerAvatar(user, avatar, gameId);
+      setName(user, name.trim());
+      savePlayerName(user, name.trim(), gameId);
+      savePlayerAvatar(user, avatar, gameId);
     } else {
       event.preventDefault();
       // TODO: validation
@@ -107,9 +108,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setPlayerName: (player, name) => dispatch(setPlayerName(player, name)),
-  savePlayerName: (player, name, game) => dispatch(savePlayerName(player, name, game)),
-  savePlayerAvatar: (player, avatar, game) => dispatch(savePlayerAvatar(player, avatar, game)),
+  setName: (player, name) => dispatch(setPlayerName(player, name)),
   startHoliday: (game, startTime) => dispatch(startHoliday(game, startTime)),
   stopHoliday: (game, startTime, endTime) => dispatch(stopHoliday(game, startTime, endTime)),
   doSignOut: () => dispatch(signOut()),

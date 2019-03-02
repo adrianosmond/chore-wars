@@ -1,6 +1,6 @@
 import { ActionTypes, MAX_POINT_DIFFERENCE } from 'constants/constants';
 import { MockFirebase } from 'firebase-mock';
-import { database } from 'lib/firebase';
+import { database } from 'utils/database';
 import pointsReducer from './pointsReducer';
 
 describe('Points Reducer', () => {
