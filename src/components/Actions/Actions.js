@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import * as routes from 'constants/routes';
 
 import './Actions.css';
 
 class Actions extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
+  state = {
+    visible: false,
+  };
+
+  static propTypes = {
+    numChores: PropTypes.number.isRequired,
   }
 
   toggleMenu = () => {

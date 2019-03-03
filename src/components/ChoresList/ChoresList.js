@@ -1,5 +1,6 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
+import PropTypes from 'prop-types';
 
 import Chore from 'components/Chore';
 
@@ -28,6 +29,13 @@ const ChoresList = ({
       </FlipMove>
     </ul>
   );
+};
+
+ChoresList.propTypes = {
+  chores: PropTypes.arrayOf(PropTypes.object).isRequired,
+  user: PropTypes.string.isRequired,
+  game: PropTypes.string.isRequired,
+  allChores: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default ChoresList;

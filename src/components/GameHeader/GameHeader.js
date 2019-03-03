@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Players from 'components/Players';
 import Scores from 'components/Scores';
@@ -20,6 +21,12 @@ const GameHeader = ({ players, points, gameId }) => {
       </div>
     </div>
   );
+};
+
+GameHeader.propTypes = {
+  players: PropTypes.objectOf(PropTypes.any).isRequired,
+  points: PropTypes.objectOf(PropTypes.any).isRequired,
+  gameId: PropTypes.string.isRequired,
 };
 
 export default GameHeader;

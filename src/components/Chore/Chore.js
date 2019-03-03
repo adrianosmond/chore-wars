@@ -1,5 +1,6 @@
 import React from 'react';
 import fecha from 'fecha';
+import PropTypes from 'prop-types';
 
 import PopUpMenu from 'components/PopUpMenu';
 
@@ -73,6 +74,13 @@ const Chore = ({
       </PopUpMenu>
     </div>
   );
+};
+
+Chore.propTypes = {
+  chore: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.string.isRequired,
+  game: PropTypes.string.isRequired,
+  allChores: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default Chore;

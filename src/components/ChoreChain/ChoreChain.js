@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FlipMove from 'react-flip-move';
+import PropTypes from 'prop-types';
 
 import * as routes from 'constants/routes';
 
@@ -44,6 +45,14 @@ const ChainSelect = ({
     </div>
   </div>
 );
+
+ChainSelect.propTypes = {
+  chores: PropTypes.arrayOf(PropTypes.object).isRequired,
+  chain: PropTypes.arrayOf(PropTypes.object).isRequired,
+  chooseChore: PropTypes.func.isRequired,
+  canSave: PropTypes.bool.isRequired,
+  nextStage: PropTypes.func.isRequired,
+};
 
 const ChainOrder = ({
   chain, moveChoreDown, moveChoreUp, prevStage, canSave, saveChain,
@@ -97,13 +106,24 @@ const ChainOrder = ({
   </div>
 );
 
+ChainOrder.propTypes = {
+  chain: PropTypes.arrayOf(PropTypes.object).isRequired,
+  moveChoreUp: PropTypes.func.isRequired,
+  moveChoreDown: PropTypes.func.isRequired,
+  saveChain: PropTypes.func.isRequired,
+  canSave: PropTypes.bool.isRequired,
+  prevStage: PropTypes.func.isRequired,
+};
+
 class ChoreChain extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      chain: [],
-      stage: 'selection',
-    };
+  state = {
+    chain: [],
+    stage: 'selection',
+  };
+
+  static propTypes = {
+    chores: PropTypes.arrayOf(PropTypes.object).isRequired,
+    saveChain: PropTypes.func.isRequired,
   }
 
   chooseChore = (chosenChore) => {

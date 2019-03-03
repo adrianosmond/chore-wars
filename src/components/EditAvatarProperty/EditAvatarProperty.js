@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import AvatarGrid from 'components/AvatarGrid';
 
 import { setPlayerAvatar } from 'state/reducers/playersReducer';
@@ -28,6 +30,13 @@ const EditAvatarProperty = ({
       <Link to={routes.EDIT_PROFILE} className="form__button form__button--secondary">Back</Link>
     </div>
   );
+};
+
+EditAvatarProperty.propTypes = {
+  user: PropTypes.string.isRequired,
+  player: PropTypes.objectOf(PropTypes.any).isRequired,
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+  doSetPlayerAvatar: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

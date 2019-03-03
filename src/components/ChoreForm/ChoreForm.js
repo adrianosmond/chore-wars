@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import fecha from 'fecha';
+import PropTypes from 'prop-types';
 
 import * as routes from 'constants/routes';
 import { makeSlug } from 'constants/utils';
@@ -27,14 +28,33 @@ const FormQuestion = ({
   );
 };
 
+FormQuestion.propTypes = {
+  id: PropTypes.number.isRequired,
+  currentQuestionId: PropTypes.number.isRequired,
+  noLabel: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
+  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
 const defaultQuestions = ['title', 'frequency', 'pointsPerTime', 'canBePaused', 'lastDone'];
 
 class ChoreForm extends Component {
+  static propTypes = {
+    chore: PropTypes.objectOf(PropTypes.any).isRequired,
+    questions: PropTypes.arrayOf(PropTypes.string),
+    currentTime: PropTypes.number.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    questions: defaultQuestions,
+  }
+
   constructor(props) {
     super(props);
 
-    const { chore } = props;
-    const questions = props.questions || defaultQuestions;
+    const { chore, questions, currentTime } = props;
     this.state = {
       ...chore,
       slug: makeSlug(chore.title),
@@ -44,7 +64,7 @@ class ChoreForm extends Component {
       canBePaused: chore.timePaused === undefined ? 'no' : 'yes',
       currentQuestionId: questions[0],
       questions,
-      currentTime: props.currentTime,
+      currentTime,
       error: false,
     };
   }
