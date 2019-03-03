@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
 
-import { setPlayerName } from 'actions/playerActions';
+import { setPlayerName } from 'state/reducers/playersReducer';
 import {
   startHoliday, stopHoliday, signOut, copyDummyData,
-} from 'actions/sessionActions';
+} from 'state/reducers/sessionReducer';
 
 import { savePlayerName, savePlayerAvatar } from 'utils/database';
 import { editorOrder, isEditable, labels } from 'constants/avatars';

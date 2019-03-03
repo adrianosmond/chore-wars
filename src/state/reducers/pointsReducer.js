@@ -1,6 +1,6 @@
-import { database } from 'utils/database';
 import { ActionTypes } from 'constants/constants';
-import { setPointsLoaded } from './sessionActions';
+import { database } from 'utils/database';
+import { setPointsLoaded } from './sessionReducer';
 
 export const setPoints = points => ({
   type: ActionTypes.setPoints,
@@ -15,3 +15,17 @@ export const loadPoints = game => (dispatch) => {
     dispatch(setPoints(result.val()));
   });
 };
+
+export default function pointsReducer(state = { }, action) {
+  const { points } = action;
+
+  switch (action.type) {
+    case ActionTypes.setPoints:
+      return {
+        ...points,
+      };
+
+    default:
+      return state;
+  }
+}

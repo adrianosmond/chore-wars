@@ -1,7 +1,60 @@
 import { ActionTypes, MAX_POINT_DIFFERENCE } from 'constants/constants';
 import { MockFirebase } from 'firebase-mock';
 import { database } from 'utils/database';
-import pointsReducer from './pointsReducer';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import pointsReducer, { setPoints, loadPoints } from './pointsReducer';
+
+const points = {
+  test1: {
+    points: 100,
+    isOwed: 0,
+  },
+  test2: {
+    points: 100,
+    isOwed: 1,
+  },
+};
+const game = 'test-game';
+const data = {
+  games: {
+    [game]: {
+      players: {},
+      points,
+      chores: {},
+    },
+    test2: {},
+  },
+};
+
+const mockStore = configureMockStore([thunk]);
+
+describe('Point Actions', () => {
+  beforeEach(() => {
+    jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
+  });
+
+  afterEach(() => {
+    window.requestAnimationFrame.mockRestore();
+  });
+
+  it('can dispatch setPoints', () => {
+    expect(setPoints(points)).toEqual({
+      type: ActionTypes.setPoints,
+      points,
+    });
+  });
+
+  it('can dispatch loadPoints', () => {
+    database.ref().set(data);
+    const store = mockStore();
+    store.dispatch(loadPoints(game));
+    expect(store.getActions()).toEqual([
+      { type: ActionTypes.setPoints, points },
+      { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
+    ]);
+  });
+});
 
 describe('Points Reducer', () => {
   it('Should return initial state', () => {
@@ -25,16 +78,6 @@ describe('Points Reducer', () => {
   });
 
   it('Should be able to set points', () => {
-    const points = {
-      player1: {
-        isOwed: 1,
-        points: 0,
-      },
-      player2: {
-        isOwed: 0,
-        points: 100,
-      },
-    };
     expect(pointsReducer({}, {
       type: ActionTypes.setPoints,
       points,

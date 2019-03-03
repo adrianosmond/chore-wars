@@ -6,7 +6,7 @@ import { compose } from 'recompose';
 import withAuthorization from 'components/withAuthorization';
 import ChoreForm from 'components/ChoreForm';
 
-import { loadChores } from 'actions/choreActions';
+import { loadChores } from 'state/reducers/choresReducer';
 import { updateChore } from 'utils/database';
 
 import * as routes from 'constants/routes';

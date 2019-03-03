@@ -12,20 +12,7 @@ const MAX_NAME_LENGTH = 10;
 const JOIN_CODE_LENGTH = 8;
 
 const ActionTypes = {
-  addChore: 'ADD_CHORE',
-  resetChoreDoneDate: 'RESET_CHORE_DONE_DATE',
-  resetChoreTimePaused: 'RESET_CHORE_TIME_PAUSED',
-  blockChore: 'BLOCK_CHORE',
-  unblockChore: 'UNBLOCK_CHORE',
-  removeChore: 'REMOVE_CHORE',
-  updateChore: 'UPDATE_CHORE',
   setChores: 'SET_CHORES',
-  makeChain: 'MAKE_CHAIN',
-  breakChain: 'BREAK_CHAIN',
-  addToChorePausedTime: 'ADD_TO_CHORE_PAUSED_TIME',
-  addPoints: 'ADD_POINTS',
-  claimPrize: 'CLAIM_PRIZE',
-  paidDebt: 'PAID_DEBT',
   setPoints: 'SET_POINTS',
   setPlayers: 'SET_PLAYERS',
   setPlayerName: 'SET_PLAYER_NAME',
@@ -38,7 +25,6 @@ const ActionTypes = {
   setPlayersLoaded: 'SET_PLAYERS_LOADED',
   setPointsLoaded: 'SET_POINTS_LOADED',
   setChoresLoaded: 'SET_CHORES_LOADED',
-  saveStatePostUndo: 'SAVE_STATE_POST_UNDO',
 };
 
 const DEFAULT_POINTS_DATA = {

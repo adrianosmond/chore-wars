@@ -1,6 +1,6 @@
 import { database } from 'utils/database';
 import { ActionTypes } from 'constants/constants';
-import { setChoresLoaded } from './sessionActions';
+import { setChoresLoaded } from './sessionReducer';
 
 export const setChores = chores => ({
   type: ActionTypes.setChores,
@@ -15,3 +15,15 @@ export const loadChores = game => (dispatch) => {
     dispatch(setChores(result.val() || {}));
   });
 };
+
+export default function choresReducer(state = { }, action) {
+  switch (action.type) {
+    case ActionTypes.setChores:
+      return {
+        ...action.chores,
+      };
+
+    default:
+      return state;
+  }
+}

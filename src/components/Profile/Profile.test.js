@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { DefaultAvatar } from 'constants/avatars';
 import { auth } from 'utils/database';
-import * as playerActions from 'actions/playerActions';
+import * as playerActions from 'state/reducers/playersReducer';
 import Profile, { EditAvatarLinks } from './Profile';
 
 const mockStore = configureMockStore([thunk]);

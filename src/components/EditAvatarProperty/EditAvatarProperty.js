@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import AvatarGrid from 'components/AvatarGrid';
 
-import { setPlayerAvatar } from 'actions/playerActions';
+import { setPlayerAvatar } from 'state/reducers/playersReducer';
 
 import * as routes from 'constants/routes';
 

@@ -6,10 +6,10 @@ import { auth, database } from 'utils/database';
 
 import Loading from 'components/Loading';
 
-import { setAuthUser, setGame, loadHoliday } from 'actions/sessionActions';
-import { loadPlayers } from 'actions/playerActions';
-import { loadPoints } from 'actions/pointActions';
-import { loadChores } from 'actions/choreActions';
+import { setAuthUser, setGame, loadHoliday } from 'state/reducers/sessionReducer';
+import { loadPlayers } from 'state/reducers/playersReducer';
+import { loadPoints } from 'state/reducers/pointsReducer';
+import { loadChores } from 'state/reducers/choresReducer';
 import * as routes from 'constants/routes';
 
 const withAuthorization = (authCondition, componentIsLoading) => (Component) => {

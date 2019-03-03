@@ -5,7 +5,7 @@ import { compose } from 'recompose';
 import SetupGame from 'components/SetupGame';
 import withAuthorization from 'components/withAuthorization';
 
-import { createGame, joinGame } from 'actions/sessionActions';
+import { createGame, joinGame } from 'state/reducers/sessionReducer';
 
 const NoGame = ({
   history, user, doCreateGame, doJoinGame,

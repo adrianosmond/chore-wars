@@ -1,4 +1,29 @@
 import { ActionTypes } from 'constants/constants';
+import { database } from 'utils/database';
+import { setPlayersLoaded } from './sessionReducer';
+
+export const setPlayers = players => ({
+  type: ActionTypes.setPlayers,
+  players,
+});
+
+export const setPlayerName = (player, name) => ({
+  type: ActionTypes.setPlayerName,
+  player,
+  name,
+});
+
+export const setPlayerAvatar = (player, avatar) => ({
+  type: ActionTypes.setPlayerAvatar,
+  player,
+  avatar,
+});
+
+export const loadPlayers = game => dispatch => database.ref(`games/${game}/players`)
+  .once('value', (result) => {
+    dispatch(setPlayers(result.val()));
+    dispatch(setPlayersLoaded(true));
+  });
 
 export default function playersReducer(state = { }, action) {
   const { player } = action;

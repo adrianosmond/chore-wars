@@ -1,53 +1,72 @@
+import { ActionTypes, DEFAULT_POINTS_DATA } from 'constants/constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { database, auth } from 'utils/database';
 import * as utils from 'constants/utils';
-import { ActionTypes, DEFAULT_POINTS_DATA } from 'constants/constants';
-import * as sessionActions from './sessionActions';
+import sessionReducer, {
+  INITIAL_STATE, setAuthUser, setGame, setPlayersLoaded, setPointsLoaded, setChoresLoaded,
+  setHoliday, loadHoliday, startHoliday, stopHoliday,
+  signOut, createGame, joinGame,
+} from './sessionReducer';
 
-const authUser = 'fake-auth-user';
-const game = 'fake-game';
+const authUser = {
+  uid: 'fake-user',
+};
+const game = {
+  gameId: 'fake-game',
+};
+const gameState = {
+  ...INITIAL_STATE,
+  authUser,
+  game,
+  playersLoaded: true,
+  pointsLoaded: true,
+  choresLoaded: true,
+};
+
+// const authUser = 'fake-auth-user';
+// const game = 'fake-game';
 const joinCode = 'joinCode';
 const mockStore = configureMockStore([thunk]);
 
 describe('Session Actions', () => {
   it('can dispatch setAuthUser', () => {
-    expect(sessionActions.setAuthUser(authUser)).toEqual({
+    expect(setAuthUser(authUser)).toEqual({
       type: ActionTypes.setAuthUser,
       authUser,
     });
   });
 
   it('can dispatch setGame', () => {
-    expect(sessionActions.setGame(game)).toEqual({
+    expect(setGame(game)).toEqual({
       type: ActionTypes.setGame,
       game,
     });
   });
 
   it('can dispatch setPlayersLoaded', () => {
-    expect(sessionActions.setPlayersLoaded(true)).toEqual({
+    expect(setPlayersLoaded(true)).toEqual({
       type: ActionTypes.setPlayersLoaded,
       playersLoaded: true,
     });
   });
 
   it('can dispatch setPointsLoaded', () => {
-    expect(sessionActions.setPointsLoaded(true)).toEqual({
+    expect(setPointsLoaded(true)).toEqual({
       type: ActionTypes.setPointsLoaded,
       pointsLoaded: true,
     });
   });
 
   it('can dispatch setChoresLoaded', () => {
-    expect(sessionActions.setChoresLoaded(true)).toEqual({
+    expect(setChoresLoaded(true)).toEqual({
       type: ActionTypes.setChoresLoaded,
       choresLoaded: true,
     });
   });
 
   it('can dispatch setHoliday', () => {
-    expect(sessionActions.setHoliday(true)).toEqual({
+    expect(setHoliday(true)).toEqual({
       type: ActionTypes.setHoliday,
       holiday: true,
     });
@@ -64,7 +83,7 @@ describe('Session Actions', () => {
     });
 
     const store = mockStore();
-    return store.dispatch(sessionActions.loadHoliday(game)).then(() => {
+    return store.dispatch(loadHoliday(game)).then(() => {
       expect(store.getActions()).toEqual([
         { type: ActionTypes.setHoliday, holiday },
       ]);
@@ -80,7 +99,7 @@ describe('Session Actions', () => {
     });
 
     const store = mockStore();
-    return store.dispatch(sessionActions.startHoliday(game, holiday)).then(() => {
+    return store.dispatch(startHoliday(game, holiday)).then(() => {
       expect(store.getActions()).toEqual([
         { type: ActionTypes.setHoliday, holiday },
       ]);
@@ -111,7 +130,7 @@ describe('Session Actions', () => {
     });
 
     const store = mockStore();
-    return store.dispatch(sessionActions.stopHoliday(game, holiday, holiday + 10000)).then(() => {
+    return store.dispatch(stopHoliday(game, holiday, holiday + 10000)).then(() => {
       const data = database.ref().getData();
 
       const gameData = data.games[game];
@@ -156,7 +175,7 @@ describe('Session Actions', () => {
     jest.spyOn(auth, 'signOut').mockReturnValue();
     expect(auth.signOut).toHaveBeenCalledTimes(0);
 
-    store.dispatch(sessionActions.signOut());
+    store.dispatch(signOut());
 
     expect(store.getActions()).toEqual(expectedActions);
     expect(auth.signOut).toHaveBeenCalledTimes(1);
@@ -175,7 +194,7 @@ describe('Session Actions', () => {
       users: {},
     });
 
-    return store.dispatch(sessionActions.createGame(userId, playerName)).then(() => {
+    return store.dispatch(createGame(userId, playerName)).then(() => {
       const data = database.ref().getData();
       expect(data).toHaveProperty('games');
       expect(Object.keys(data.games)).toHaveLength(1);
@@ -241,7 +260,7 @@ describe('Session Actions', () => {
       },
     });
 
-    return store.dispatch(sessionActions.joinGame(userId, joinCode, playerName)).then(() => {
+    return store.dispatch(joinGame(userId, joinCode, playerName)).then(() => {
       expect(store.getActions()).toEqual([
         { type: ActionTypes.setGame, game: { gameId: game } },
       ]);
@@ -275,6 +294,78 @@ describe('Session Actions', () => {
           gameId: gameKey,
         },
       });
+    });
+  });
+});
+
+describe('Session Reducer', () => {
+  it('Should return initial state', () => {
+    expect(sessionReducer(undefined, {})).toEqual(INITIAL_STATE);
+  });
+
+  it('Should return state if it gets an unknown action', () => {
+    expect(sessionReducer(gameState, {
+      type: 'UNKNOWN_ACTION',
+    })).toEqual(gameState);
+  });
+
+  it('Should be able to set a user', () => {
+    expect(sessionReducer(INITIAL_STATE, {
+      type: ActionTypes.setAuthUser,
+      authUser,
+    })).toEqual({
+      ...INITIAL_STATE,
+      authUser,
+    });
+  });
+
+  it('Should be able to set a game', () => {
+    expect(sessionReducer(INITIAL_STATE, {
+      type: ActionTypes.setGame,
+      game,
+    })).toEqual({
+      ...INITIAL_STATE,
+      game,
+    });
+  });
+
+  it('Should be able to set chores loaded', () => {
+    expect(sessionReducer(INITIAL_STATE, {
+      type: ActionTypes.setChoresLoaded,
+      choresLoaded: true,
+    })).toEqual({
+      ...INITIAL_STATE,
+      choresLoaded: true,
+    });
+  });
+
+  it('Should be able to set points loaded', () => {
+    expect(sessionReducer(INITIAL_STATE, {
+      type: ActionTypes.setPointsLoaded,
+      pointsLoaded: true,
+    })).toEqual({
+      ...INITIAL_STATE,
+      pointsLoaded: true,
+    });
+  });
+
+  it('Should be able to set players loaded', () => {
+    expect(sessionReducer(INITIAL_STATE, {
+      type: ActionTypes.setPlayersLoaded,
+      playersLoaded: true,
+    })).toEqual({
+      ...INITIAL_STATE,
+      playersLoaded: true,
+    });
+  });
+
+  it('Should be able to set a holiday', () => {
+    expect(sessionReducer(INITIAL_STATE, {
+      type: ActionTypes.setHoliday,
+      holiday: true,
+    })).toEqual({
+      ...INITIAL_STATE,
+      holiday: true,
     });
   });
 });

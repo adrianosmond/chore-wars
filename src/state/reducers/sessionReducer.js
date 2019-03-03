@@ -1,9 +1,9 @@
-import { auth, database, addToTimePaused } from 'utils/database';
 import { ActionTypes, DEFAULT_POINTS_DATA } from 'constants/constants';
+import { auth, database, addToTimePaused } from 'utils/database';
 import { generatePlayerData, createJoinCode } from 'constants/utils';
-import { loadPlayers } from 'actions/playerActions';
-import { loadPoints } from 'actions/pointActions';
-import { loadChores } from 'actions/choreActions';
+import { loadPlayers } from './playersReducer';
+import { loadPoints } from './pointsReducer';
+import { loadChores } from './choresReducer';
 
 export const setAuthUser = authUser => ({
   type: ActionTypes.setAuthUser,
@@ -144,3 +144,55 @@ export const copyDummyData = () => (dispatch) => {
   }
   return Promise.resolve();
 };
+
+export const INITIAL_STATE = {
+  authUser: null,
+  game: null,
+  holiday: null,
+  playersLoaded: false,
+  pointsLoaded: false,
+  choresLoaded: false,
+};
+
+export default function sessionReducer(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case ActionTypes.setAuthUser:
+      return {
+        ...state,
+        authUser: action.authUser,
+      };
+
+    case ActionTypes.setGame:
+      return {
+        ...state,
+        game: action.game,
+      };
+
+    case ActionTypes.setPlayersLoaded:
+      return {
+        ...state,
+        playersLoaded: action.playersLoaded,
+      };
+
+    case ActionTypes.setPointsLoaded:
+      return {
+        ...state,
+        pointsLoaded: action.pointsLoaded,
+      };
+
+    case ActionTypes.setChoresLoaded:
+      return {
+        ...state,
+        choresLoaded: action.choresLoaded,
+      };
+
+    case ActionTypes.setHoliday:
+      return {
+        ...state,
+        holiday: action.holiday,
+      };
+
+    default:
+      return state;
+  }
+}
