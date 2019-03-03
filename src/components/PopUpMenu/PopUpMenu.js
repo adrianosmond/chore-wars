@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './PopUpMenu.css';
 
@@ -14,8 +15,9 @@ const makeButton = (child, idx, onClick) => (
 class PopUpMenu extends Component {
   constructor(props) {
     super(props);
+    const { side } = props;
     this.state = {
-      side: props.side || 'right',
+      side: side || 'right',
       visible: false,
     };
   }
@@ -57,5 +59,18 @@ class PopUpMenu extends Component {
     );
   }
 }
+
+PopUpMenu.propTypes = {
+  side: PropTypes.string,
+  extraClasses: PropTypes.string,
+  children: PropTypes.node,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+PopUpMenu.defaultProps = {
+  side: 'right',
+  extraClasses: '',
+  children: null,
+};
 
 export default PopUpMenu;

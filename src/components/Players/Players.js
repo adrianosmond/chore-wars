@@ -1,5 +1,6 @@
 import React from 'react';
 import Avatar from 'avataaars';
+import PropTypes from 'prop-types';
 
 import OwedBadge from 'components/OwedBadge';
 
@@ -25,5 +26,11 @@ const Players = ({ players, points, gameId }) => (
     ) : null }
   </div>
 );
+
+Players.propTypes = {
+  players: PropTypes.arrayOf(PropTypes.object).isRequired,
+  points: PropTypes.objectOf(PropTypes.any).isRequired,
+  gameId: PropTypes.string.isRequired,
+};
 
 export default Players;

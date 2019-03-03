@@ -1,5 +1,6 @@
 import React from 'react';
 import Confetti from 'react-dom-confetti';
+import PropTypes from 'prop-types';
 
 import { claimPrize } from 'utils/database';
 
@@ -32,6 +33,9 @@ const Scores = ({ points, gameId }) => {
           >
             { playerBar || (scoresTied && idx) ? (
               <div
+                role="button"
+                tabIndex="0"
+                onKeyPress={winning ? () => claimPrize(playerId, gameId) : null}
                 className={`scores__difference scores__difference--${idx + 1}${winning ? ' scores__difference--winning' : ''}`}
                 onClick={winning ? () => claimPrize(playerId, gameId) : null}
               >
@@ -44,6 +48,11 @@ const Scores = ({ points, gameId }) => {
       })}
     </div>
   );
+};
+
+Scores.propTypes = {
+  points: PropTypes.objectOf(PropTypes.any).isRequired,
+  gameId: PropTypes.string.isRequired,
 };
 
 export default Scores;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Avatar from 'avataaars';
+import PropTypes from 'prop-types';
 
 import { setPlayerName } from 'state/reducers/playersReducer';
 import {
@@ -28,10 +29,30 @@ const EditAvatarLinks = ({ avatar }) => (
   </div>
 );
 
+EditAvatarLinks.propTypes = {
+  avatar: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
 class Profile extends Component {
+  static propTypes = {
+    player: PropTypes.objectOf(PropTypes.any).isRequired,
+    user: PropTypes.string.isRequired,
+    gameId: PropTypes.string.isRequired,
+    setName: PropTypes.func.isRequired,
+    holidayStartTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+    copyData: PropTypes.func.isRequired,
+    doSignOut: PropTypes.func.isRequired,
+    doStartHoliday: PropTypes.func.isRequired,
+    doStopHoliday: PropTypes.func.isRequired,
+  };
+
+  static defaultProps = {
+    holidayStartTime: null,
+  }
+
   constructor(props) {
     super(props);
-    const { avatar, name } = props.player;
+    const { player: { avatar, name } } = props;
     this.state = {
       name,
       avatar,
@@ -104,7 +125,6 @@ class Profile extends Component {
                 className="form__button form__button--tertiary"
               >
                 Stop holiday
-
               </button>
             ) : (
               <button

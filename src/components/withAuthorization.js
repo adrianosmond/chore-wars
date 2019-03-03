@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import { auth, database } from 'utils/database';
 
 import Loading from 'components/Loading';
@@ -14,6 +16,27 @@ import * as routes from 'constants/routes';
 
 const withAuthorization = (authCondition, componentIsLoading) => (Component) => {
   class WithAuthorization extends React.Component {
+    static propTypes = {
+      history: PropTypes.objectOf(PropTypes.any).isRequired,
+      playersLoaded: PropTypes.bool.isRequired,
+      pointsLoaded: PropTypes.bool.isRequired,
+      choresLoaded: PropTypes.bool.isRequired,
+      doSetAuthUser: PropTypes.func.isRequired,
+      doSetGame: PropTypes.func.isRequired,
+      doLoadPlayers: PropTypes.func.isRequired,
+      doLoadPoints: PropTypes.func.isRequired,
+      doLoadChores: PropTypes.func.isRequired,
+      doLoadHoliday: PropTypes.func.isRequired,
+      game: PropTypes.objectOf(PropTypes.any),
+      authUser: PropTypes.objectOf(PropTypes.any),
+      location: PropTypes.objectOf(PropTypes.any).isRequired,
+    }
+
+    static defaultProps = {
+      game: null,
+      authUser: null,
+    }
+
     constructor(props) {
       super(props);
       const { playersLoaded, pointsLoaded, choresLoaded } = props;

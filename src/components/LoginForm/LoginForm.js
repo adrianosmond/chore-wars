@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import { auth } from 'utils/database';
 import * as routes from 'constants/routes';
 
@@ -12,9 +14,10 @@ const INITIAL_STATE = {
 };
 
 class LoginForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = INITIAL_STATE;
+  state = INITIAL_STATE;
+
+  static propTypes = {
+    loggedIn: PropTypes.func.isRequired,
   }
 
   onSubmit = (event) => {

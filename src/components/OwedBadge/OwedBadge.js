@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import PopUpMenu from 'components/PopUpMenu';
 
@@ -23,6 +24,13 @@ const OwedBadge = ({
       { playerPoints.isOwed > 1 ? <span className="players__owed-multiple">{playerPoints.isOwed}</span> : null }
     </PopUpMenu>
   );
+};
+
+OwedBadge.propTypes = {
+  player: PropTypes.objectOf(PropTypes.any).isRequired,
+  idx: PropTypes.number.isRequired,
+  gameId: PropTypes.string.isRequired,
+  points: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default OwedBadge;

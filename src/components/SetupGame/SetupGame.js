@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from 'constants/constants';
 
@@ -55,6 +56,12 @@ const SetupGame = ({ user, doCreateGame, doJoinGame }) => {
       </button>
     </div>
   );
+};
+
+SetupGame.propTypes = {
+  user: PropTypes.string.isRequired,
+  doCreateGame: PropTypes.func.isRequired,
+  doJoinGame: PropTypes.func.isRequired,
 };
 
 export default SetupGame;
