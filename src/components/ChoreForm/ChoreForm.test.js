@@ -22,31 +22,47 @@ const submitHandler = jest.fn();
 
 describe('Chore Form', () => {
   it('Renders a new chore', () => {
-    expect(shallow(<ChoreForm chore={newChore} onSubmit={submitHandler}
-      currentTime={choreTime} />)).toMatchSnapshot();
+    expect(shallow(<ChoreForm
+      chore={newChore}
+      onSubmit={submitHandler}
+      currentTime={choreTime}
+    />)).toMatchSnapshot();
   });
 
   it('Renders an existing chore', () => {
-    expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
-      currentTime={choreTime} />)).toMatchSnapshot();
+    expect(shallow(<ChoreForm
+      chore={choreToEdit}
+      onSubmit={submitHandler}
+      currentTime={choreTime}
+    />)).toMatchSnapshot();
   });
 
   it('Renders a specified question', () => {
-    expect(shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
-      currentTime={choreTime} questions={['forgotToLog']} />)).toMatchSnapshot();
+    expect(shallow(<ChoreForm
+      chore={choreToEdit}
+      onSubmit={submitHandler}
+      currentTime={choreTime}
+      questions={['forgotToLog']}
+    />)).toMatchSnapshot();
   });
 
   it('Handles button clicks', () => {
     const fakeEvent = { preventDefault: () => {} };
-    const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
-      currentTime={choreTime} />);
+    const shallowForm = shallow(<ChoreForm
+      chore={choreToEdit}
+      onSubmit={submitHandler}
+      currentTime={choreTime}
+    />);
     shallowForm.find('form').simulate('submit', fakeEvent);
     expect(submitHandler).toHaveBeenCalled();
   });
 
   describe('First Question', () => {
-    const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
-      currentTime={choreTime} />);
+    const shallowForm = shallow(<ChoreForm
+      chore={choreToEdit}
+      onSubmit={submitHandler}
+      currentTime={choreTime}
+    />);
     const prevQuestion = jest.fn();
     const nextQuestion = jest.fn();
     shallowForm.instance().prevQuestion = prevQuestion;
@@ -74,8 +90,11 @@ describe('Chore Form', () => {
   });
 
   describe('In between Questions', () => {
-    const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
-      currentTime={choreTime} />);
+    const shallowForm = shallow(<ChoreForm
+      chore={choreToEdit}
+      onSubmit={submitHandler}
+      currentTime={choreTime}
+    />);
     const prevQuestion = jest.fn();
     const nextQuestion = jest.fn();
     shallowForm.instance().prevQuestion = prevQuestion;
@@ -103,8 +122,11 @@ describe('Chore Form', () => {
   });
 
   describe('Last Question', () => {
-    const shallowForm = shallow(<ChoreForm chore={choreToEdit} onSubmit={submitHandler}
-      currentTime={choreTime} />);
+    const shallowForm = shallow(<ChoreForm
+      chore={choreToEdit}
+      onSubmit={submitHandler}
+      currentTime={choreTime}
+    />);
     const prevQuestion = jest.fn();
     const nextQuestion = jest.fn();
     shallowForm.instance().prevQuestion = prevQuestion;
@@ -132,29 +154,65 @@ describe('Chore Form', () => {
   });
 
   describe('FormQuestion', () => {
-    const questionChildren = <p id='test-child'>Child</p>;
+    const questionChildren = <p id="test-child">Child</p>;
     it('Does not render if the question is not the current question', () => {
       expect(shallow(<FormQuestion id="test" currentQuestionId="not-test" />).html()).toBe(null);
     });
 
     it('Renders with a label', () => {
-      expect(shallow(<FormQuestion id="test" currentQuestionId="test" noLabel={true}
-        error={false} label="label" children={questionChildren} />)).toMatchSnapshot();
+      expect(shallow(
+        <FormQuestion
+          id="test"
+          currentQuestionId="test"
+          noLabel
+          error={false}
+          label="label"
+        >
+          {questionChildren}
+        </FormQuestion>,
+      )).toMatchSnapshot();
     });
 
     it('Renders with a div', () => {
-      expect(shallow(<FormQuestion id="test" currentQuestionId="test" noLabel={false}
-        error={false} label="label" children={questionChildren} />)).toMatchSnapshot();
+      expect(shallow(
+        <FormQuestion
+          id="test"
+          currentQuestionId="test"
+          noLabel={false}
+          error={false}
+          label="label"
+        >
+          {questionChildren}
+        </FormQuestion>,
+      )).toMatchSnapshot();
     });
 
     it('Can display an error', () => {
-      expect(shallow(<FormQuestion id="test" currentQuestionId="test" noLabel={true}
-        error={true} label="label" children={questionChildren} />)).toMatchSnapshot();
+      expect(shallow(
+        <FormQuestion
+          id="test"
+          currentQuestionId="test"
+          noLabel
+          error
+          label="label"
+        >
+          {questionChildren}
+        </FormQuestion>,
+      )).toMatchSnapshot();
     });
 
     it('Renders children', () => {
-      const component = shallow(<FormQuestion id="test" currentQuestionId="test" noLabel={true}
-        error={true} label="label" children={questionChildren} />);
+      const component = shallow(
+        <FormQuestion
+          id="test"
+          currentQuestionId="test"
+          noLabel
+          error
+          label="label"
+        >
+          {questionChildren}
+        </FormQuestion>,
+      );
       const children = component.find('#test-child');
       expect(children.html()).toEqual(shallow(questionChildren).html());
     });

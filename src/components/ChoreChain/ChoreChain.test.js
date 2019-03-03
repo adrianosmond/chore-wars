@@ -71,8 +71,13 @@ describe('Chore Chain', () => {
   describe('Selection', () => {
     const chooseChore = jest.fn();
     const nextStage = jest.fn();
-    const component = shallow(<ChainSelect chores={chores} chain={[]}
-      chooseChore={chooseChore} canSave={true} nextStage={nextStage} />);
+    const component = shallow(<ChainSelect
+      chores={chores}
+      chain={[]}
+      chooseChore={chooseChore}
+      canSave
+      nextStage={nextStage}
+    />);
 
     it('Renders', () => {
       expect(component).toMatchSnapshot();
@@ -96,9 +101,15 @@ describe('Chore Chain', () => {
     const moveChoreDown = jest.fn();
     const prevStage = jest.fn();
     const saveChain = jest.fn();
-    const component = shallow(<ChainOrder chores={chores} chain={[chores[0], chores[1], chores[2]]}
-       canSave={true} prevStage={prevStage} saveChain={saveChain}
-      moveChoreDown={moveChoreDown} moveChoreUp={moveChoreUp} />);
+    const component = shallow(<ChainOrder
+      chores={chores}
+      chain={[chores[0], chores[1], chores[2]]}
+      canSave
+      prevStage={prevStage}
+      saveChain={saveChain}
+      moveChoreDown={moveChoreDown}
+      moveChoreUp={moveChoreUp}
+    />);
 
     it('Renders', () => {
       expect(component).toMatchSnapshot();

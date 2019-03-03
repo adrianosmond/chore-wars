@@ -106,34 +106,37 @@ class ChoreChain extends Component {
     };
   }
 
-  chooseChore(chosenChore) {
-    let chain = this.state.chain.slice();
-    const newChain = chain.filter(chore => chore.slug !== chosenChore.slug);
-    if (chain.length === newChain.length) {
-      chain.push(chosenChore);
+  chooseChore = (chosenChore) => {
+    const { chain } = this.state;
+    let chainClone = chain.slice();
+    const newChain = chainClone.filter(chore => chore.slug !== chosenChore.slug);
+    if (chainClone.length === newChain.length) {
+      chainClone.push(chosenChore);
     } else {
-      chain = newChain;
+      chainClone = newChain;
     }
     this.setState({
-      chain,
+      chain: chainClone,
     });
   }
 
-  moveChoreUp(idx) {
-    const chain = this.state.chain.slice();
-    if (chain.length === 1 || idx === 0) return;
-    [chain[idx], chain[idx - 1]] = [chain[idx - 1], chain[idx]];
+  moveChoreUp = (idx) => {
+    const { chain } = this.state;
+    const chainClone = chain.slice();
+    if (chainClone.length === 1 || idx === 0) return;
+    [chainClone[idx], chainClone[idx - 1]] = [chainClone[idx - 1], chainClone[idx]];
     this.setState({
-      chain,
+      chain: chainClone,
     });
   }
 
-  moveChoreDown(idx) {
-    const chain = this.state.chain.slice();
-    if (chain.length === 1 || idx === chain.length - 1) return;
-    [chain[idx], chain[idx + 1]] = [chain[idx + 1], chain[idx]];
+  moveChoreDown = (idx) => {
+    const { chain } = this.state;
+    const chainClone = chain.slice();
+    if (chainClone.length === 1 || idx === chainClone.length - 1) return;
+    [chainClone[idx], chainClone[idx + 1]] = [chainClone[idx + 1], chainClone[idx]];
     this.setState({
-      chain,
+      chain: chainClone,
     });
   }
 
@@ -151,7 +154,7 @@ class ChoreChain extends Component {
               chores={chores}
               chain={chain}
               canSave={canSave}
-              chooseChore={this.chooseChore.bind(this)}
+              chooseChore={this.chooseChore}
               nextStage={() => { this.setState({ stage: 'sorting' }); }}
             />
           )
@@ -161,8 +164,8 @@ class ChoreChain extends Component {
             <ChainOrder
               chain={chain}
               canSave={canSave}
-              moveChoreUp={this.moveChoreUp.bind(this)}
-              moveChoreDown={this.moveChoreDown.bind(this)}
+              moveChoreUp={this.moveChoreUp}
+              moveChoreDown={this.moveChoreDown}
               prevStage={() => { this.setState({ stage: 'selection' }); }}
               saveChain={saveChain}
             />

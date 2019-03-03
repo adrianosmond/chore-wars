@@ -13,8 +13,9 @@ import { getFilteredChoresArray } from 'constants/utils';
 class Chores extends Component {
   constructor(props) {
     super(props);
+    const { chores } = this.props;
     this.state = {
-      chores: getFilteredChoresArray(props.chores),
+      filteredChores: getFilteredChoresArray(chores),
     };
   }
 
@@ -22,28 +23,30 @@ class Chores extends Component {
     const { chores } = this.props;
     if (newProps.chores !== chores) {
       this.setState({
-        chores: getFilteredChoresArray(newProps.chores),
+        filteredChores: getFilteredChoresArray(newProps.chores),
       });
     }
   }
 
   render() {
     const {
-      holiday, user, game, players, points,
+      holiday, user, game, players, points, chores,
     } = this.props;
-    const { chores } = this.state;
+    const { filteredChores } = this.state;
     return (
       <div className="app">
         <GameHeader players={players} points={points} gameId={game} />
         <div className="app__chores">
           { holiday ? (
             <p>
-              Your game is set to holiday mode. If you're back from your break you can
+              Your game is set to holiday mode. If you&#39;re back from your break you can
               change this setting in your profile. Otherwise, enjoy yourselves and
-              don't worry about chores!
+              don&#39;t worry about chores!
             </p>
-          ) : chores && <ChoresList chores={chores} user={user} game={game} /> }
-          <Actions numChores={Object.keys(chores).length} />
+          ) : filteredChores && (
+            <ChoresList chores={filteredChores} user={user} game={game} allChores={chores} />
+          )}
+          <Actions numChores={filteredChores.length} />
         </div>
       </div>
     );

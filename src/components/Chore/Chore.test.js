@@ -35,7 +35,7 @@ const store = mockStore({
 
 describe('Chore', () => {
   it('Renders a basic chore', () => {
-    expect(shallow(<Chore store={store} { ...choreProps } />).dive()).toMatchSnapshot();
+    expect(shallow(<Chore store={store} {...choreProps} />).dive()).toMatchSnapshot();
   });
 
   it('Renders a chore with frequency 0', () => {
@@ -46,11 +46,11 @@ describe('Chore', () => {
         frequency: 0,
       }, slug, choreTime),
     };
-    expect(shallow(<Chore store={store} { ...props } />).dive()).toMatchSnapshot();
+    expect(shallow(<Chore store={store} {...props} />).dive()).toMatchSnapshot();
   });
 
   it('Should handle clicks on the complete button', () => {
-    const mountedChore = shallow(<Chore store={store} { ...choreProps } />).dive();
+    const mountedChore = shallow(<Chore store={store} {...choreProps} />).dive();
 
     const completeFn = jest.fn();
     mountedChore.setProps({

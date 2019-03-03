@@ -5,7 +5,9 @@ import Chore from 'components/Chore';
 
 import './ChoresList.css';
 
-const ChoresList = ({ chores, user, game }) => {
+const ChoresList = ({
+  chores, user, game, allChores,
+}) => {
   const now = new Date().getTime();
   return (
     <ul className="chores-list">
@@ -20,7 +22,7 @@ const ChoresList = ({ chores, user, game }) => {
       <FlipMove>
         {chores.filter(chore => now - chore.lastDone >= 60000).map(chore => (
           <li className="chores-list__item" key={chore.title}>
-            <Chore chore={chore} chores={chores} user={user} game={game} />
+            <Chore chore={chore} allChores={allChores} user={user} game={game} />
           </li>
         ))}
       </FlipMove>

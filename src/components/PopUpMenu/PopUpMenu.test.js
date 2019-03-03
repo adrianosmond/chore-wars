@@ -4,7 +4,8 @@ import PopUpMenu from './PopUpMenu';
 
 describe('Popup Menu', () => {
   const mockButtonClick = jest.fn();
-  const popUpMenu = shallow(<PopUpMenu options={[
+  const popUpMenu = shallow(
+    <PopUpMenu options={[
       {
         type: 'link',
         to: '/link/address',
@@ -15,7 +16,11 @@ describe('Popup Menu', () => {
         onClick: mockButtonClick,
         text: 'link',
       },
-    ]}>TRIGGER</PopUpMenu>);
+    ]}
+    >
+      TRIGGER
+    </PopUpMenu>,
+  );
   const toggleButton = popUpMenu.find('[data-test="toggle-menu"]');
 
   it('Renders a new chore menu', () => {

@@ -52,14 +52,15 @@ class LogPastCompletion extends Component {
     }
   }
 
-  onSubmit = (chore, slug) => {
+  onSubmit = (updatedChore, slug) => {
     const { user, game, history } = this.props;
+    const { chore } = this.state;
     const completedChore = {
-      ...this.state.chore,
+      ...chore,
       slug,
-      ...computedChoreProperties(this.state.chore, chore.lastDone),
+      ...computedChoreProperties(chore, updatedChore.lastDone),
     };
-    completeChore(completedChore, user, game, chore.lastDone);
+    completeChore(completedChore, user, game, updatedChore.lastDone);
     history.push(routes.CHORES);
   }
 

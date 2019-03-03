@@ -11,18 +11,18 @@ import checkIcon from 'images/check.svg';
 import './Chore.css';
 
 const Chore = ({
-  chore, user, game, chores,
+  chore, user, game, allChores,
 }) => {
   const bonusPoints = chore.currentPoints > chore.pointsPerTime;
   const menuOptions = [
     { type: 'link', to: `${routes.EDIT_CHORE}/${chore.slug}`, text: 'Edit' },
-    { type: 'button', onClick: () => removeChore(game, chore.slug, chores), text: 'Delete' },
+    { type: 'button', onClick: () => removeChore(game, chore.slug, allChores), text: 'Delete' },
     { type: 'link', to: `${routes.LOG_PAST_COMPLETION}/${chore.slug}`, text: 'I forgot to log this' },
   ];
   if (chore.enables) {
     menuOptions.push({
       type: 'button',
-      onClick: () => breakChain(game, chore.slug, chores),
+      onClick: () => breakChain(game, chore.slug, allChores),
       text: 'Break Chain',
     });
   }

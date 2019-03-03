@@ -26,7 +26,9 @@ describe('EditAvatarProperty', () => {
   });
 
   it('Renders', () => {
-    expect(shallow(<EditAvatarProperty store={store}
-      match={{ params: { propertyToEdit: 'topType' } }}/>).dive()).toMatchSnapshot();
+    expect(shallow(<EditAvatarProperty
+      store={store}
+      match={{ params: { propertyToEdit: 'topType' } }}
+    />).dive()).toMatchSnapshot();
   });
 });
