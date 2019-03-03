@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import withAuthorization from 'components/withAuthorization';
 
@@ -11,6 +12,19 @@ import Actions from 'components/Actions';
 import { getFilteredChoresArray } from 'constants/utils';
 
 class Chores extends Component {
+  static propTypes = {
+    holiday: PropTypes.bool,
+    user: PropTypes.string.isRequired,
+    game: PropTypes.string.isRequired,
+    players: PropTypes.objectOf(PropTypes.any).isRequired,
+    points: PropTypes.objectOf(PropTypes.any).isRequired,
+    chores: PropTypes.objectOf(PropTypes.any).isRequired,
+  }
+
+  static defaultProps = {
+    holiday: null,
+  }
+
   constructor(props) {
     super(props);
     const { chores } = this.props;

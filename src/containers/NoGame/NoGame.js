@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import PropTypes from 'prop-types';
 
 import SetupGame from 'components/SetupGame';
 import withAuthorization from 'components/withAuthorization';
@@ -12,6 +13,13 @@ const NoGame = ({
 }) => (
   <SetupGame history={history} user={user} doCreateGame={doCreateGame} doJoinGame={doJoinGame} />
 );
+
+NoGame.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  user: PropTypes.string.isRequired,
+  doCreateGame: PropTypes.func.isRequired,
+  doJoinGame: PropTypes.func.isRequired,
+};
 
 const authCondition = authUser => !!authUser;
 const isLoading = () => false;

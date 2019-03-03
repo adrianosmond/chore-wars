@@ -29,12 +29,16 @@ const FormQuestion = ({
 };
 
 FormQuestion.propTypes = {
-  id: PropTypes.number.isRequired,
-  currentQuestionId: PropTypes.number.isRequired,
-  noLabel: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  currentQuestionId: PropTypes.string.isRequired,
+  noLabel: PropTypes.bool,
   error: PropTypes.bool.isRequired,
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+};
+
+FormQuestion.defaultProps = {
+  noLabel: false,
 };
 
 const defaultQuestions = ['title', 'frequency', 'pointsPerTime', 'canBePaused', 'lastDone'];

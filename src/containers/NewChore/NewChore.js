@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import PropTypes from 'prop-types';
 
 import ChoreForm from 'components/ChoreForm';
 import withAuthorization from 'components/withAuthorization';
@@ -11,6 +12,16 @@ import { addChore } from 'utils/database';
 import * as routes from 'constants/routes';
 
 class NewChore extends Component {
+  static propTypes = {
+    history: PropTypes.objectOf(PropTypes.any).isRequired,
+    currentTime: PropTypes.number,
+    game: PropTypes.string.isRequired,
+  }
+
+  static defaultProps = {
+    currentTime: null,
+  }
+
   constructor(props) {
     super(props);
 

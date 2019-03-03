@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import PropTypes from 'prop-types';
 
 import ChoreChain from 'components/ChoreChain';
 import withAuthorization from 'components/withAuthorization';
@@ -11,6 +12,12 @@ import { filterAndSortChores } from 'constants/utils';
 import * as routes from 'constants/routes';
 
 class Chain extends Component {
+  static propTypes = {
+    history: PropTypes.objectOf(PropTypes.any).isRequired,
+    chores: PropTypes.objectOf(PropTypes.any).isRequired,
+    game: PropTypes.string.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.state = {

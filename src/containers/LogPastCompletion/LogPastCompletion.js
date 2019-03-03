@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import PropTypes from 'prop-types';
 
 import withAuthorization from 'components/withAuthorization';
 import ChoreForm from 'components/ChoreForm';
@@ -13,6 +14,20 @@ import * as routes from 'constants/routes';
 import { computedChoreProperties } from 'constants/utils';
 
 class LogPastCompletion extends Component {
+  static propTypes = {
+    match: PropTypes.objectOf(PropTypes.any).isRequired,
+    currentTime: PropTypes.number,
+    chores: PropTypes.objectOf(PropTypes.any).isRequired,
+    game: PropTypes.string.isRequired,
+    user: PropTypes.string.isRequired,
+    doLoadChores: PropTypes.func.isRequired,
+    history: PropTypes.objectOf(PropTypes.any).isRequired,
+  }
+
+  static defaultProps = {
+    currentTime: null,
+  }
+
   constructor(props) {
     super(props);
 
@@ -88,7 +103,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadChores: game => dispatch(loadChores(game)),
+  doLoadChores: game => dispatch(loadChores(game)),
 });
 
 export default compose(

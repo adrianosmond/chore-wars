@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { auth } from 'utils/database';
 import * as routes from 'constants/routes';
 
@@ -14,9 +16,10 @@ const isInvalid = ({ email, password, password2 }) => password.length === 0
   || email.indexOf('@') === -1;
 
 class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = INITIAL_STATE;
+  state = INITIAL_STATE
+
+  static propTypes = {
+    history: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   componentDidMount() {

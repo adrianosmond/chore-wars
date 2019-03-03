@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { auth } from 'utils/database';
 import * as routes from 'constants/routes';
 
@@ -6,11 +8,12 @@ import Loading from 'components/Loading';
 import LoginForm from 'components/LoginForm';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-    };
+  state = {
+    loading: true,
+  };
+
+  static propTypes = {
+    history: PropTypes.objectOf(PropTypes.any).isRequired,
   }
 
   componentDidMount() {
