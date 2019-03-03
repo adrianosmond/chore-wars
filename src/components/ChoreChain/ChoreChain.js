@@ -7,53 +7,92 @@ import * as routes from 'constants/routes';
 import checkIcon from 'images/check.svg';
 import './ChoreChain.css';
 
-const ChainSelect = props => (
+const ChainSelect = ({
+  chores, chain, chooseChore, canSave, nextStage,
+}) => (
   <div className="chore-chain__section">
     <p>Select all the chores that are part of this chain</p>
     <ul className="chore-chain__options">
-      {props.chores.map(chore =>
-      <li key={chore.slug}>
-        <label className="chore-chain__option">
-          <input className="chore-chain__checkbox" type="checkbox" name={chore.slug}
-            onChange={() => props.chooseChore(chore)}
-            checked={props.chain.findIndex(item => item.slug === chore.slug) >= 0} />
-          <span className="chore-chain__chore-title">{chore.title}</span>
-          <div className="chore-chain__status">
-            <img className="chore-chain__status-icon" src={checkIcon} alt="Include chore in chain" />
-          </div>
-        </label>
-      </li>)}
+      {chores.map(chore => (
+        <li key={chore.slug}>
+          <label className="chore-chain__option">
+            <input
+              className="chore-chain__checkbox"
+              type="checkbox"
+              name={chore.slug}
+              onChange={() => chooseChore(chore)}
+              checked={chain.findIndex(item => item.slug === chore.slug) >= 0}
+            />
+            <span className="chore-chain__chore-title">{chore.title}</span>
+            <div className="chore-chain__status">
+              <img className="chore-chain__status-icon" src={checkIcon} alt="Include chore in chain" />
+            </div>
+          </label>
+        </li>
+      ))}
     </ul>
     <div className="form__button-holder">
       <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
-      <button disabled={!props.canSave} className="form__button"
-        onClick={props.nextStage}>Next</button>
+      <button
+        type="button"
+        disabled={!canSave}
+        className="form__button"
+        onClick={nextStage}
+      >
+        Next
+      </button>
     </div>
   </div>
 );
 
-const ChainOrder = props => (
+const ChainOrder = ({
+  chain, moveChoreDown, moveChoreUp, prevStage, canSave, saveChain,
+}) => (
   <div className="chore-chain__section">
     <p>Choose the order that the chores should be done in</p>
     <ul className="chore-chain__options">
       <FlipMove>
-      {props.chain.map((chore, idx) =>
-      <li key={chore.slug} className="chore-chain__option">
-        <span className="chore-chain__chore-title">{chore.title}</span>
-        <div className="chore-chain__sort-buttons">
-          <button className="chore-chain__sort-button" onClick={() => props.moveChoreUp(idx)}
-            disabled={idx === 0}>&uarr;</button>
-          <button className="chore-chain__sort-button" onClick={() => props.moveChoreDown(idx)}
-            disabled={idx === props.chain.length - 1}>&darr;</button>
-        </div>
-      </li>)}
+        {chain.map((chore, idx) => (
+          <li key={chore.slug} className="chore-chain__option">
+            <span className="chore-chain__chore-title">{chore.title}</span>
+            <div className="chore-chain__sort-buttons">
+              <button
+                type="button"
+                className="chore-chain__sort-button"
+                onClick={() => moveChoreUp(idx)}
+                disabled={idx === 0}
+              >
+                &uarr;
+              </button>
+              <button
+                type="button"
+                className="chore-chain__sort-button"
+                onClick={() => moveChoreDown(idx)}
+                disabled={idx === chain.length - 1}
+              >
+                &darr;
+              </button>
+            </div>
+          </li>
+        ))}
       </FlipMove>
     </ul>
     <div className="form__button-holder">
-      <button className="form__button form__button--secondary"
-        onClick={props.prevStage}>Back</button>
-      <button disabled={!props.canSave} className="form__button"
-        onClick={() => props.saveChain(props.chain)}>Save</button>
+      <button
+        type="button"
+        className="form__button form__button--secondary"
+        onClick={prevStage}
+      >
+        Back
+      </button>
+      <button
+        type="button"
+        disabled={!canSave}
+        className="form__button"
+        onClick={() => saveChain(chain)}
+      >
+        Save
+      </button>
     </div>
   </div>
 );
@@ -106,18 +145,29 @@ class ChoreChain extends Component {
     return (
       <div className="chore-chain">
         <h1 className="chore-chain__title">Create a Chain</h1>
-        { stage === 'selection' ?
-          <ChainSelect chores={chores} chain={chain} canSave={canSave}
-            chooseChore={this.chooseChore.bind(this)}
-            nextStage={() => { this.setState({ stage: 'sorting' }); }} />
-        : null }
-        { stage === 'sorting' ?
-          <ChainOrder chain={chain} canSave={canSave}
-            moveChoreUp={this.moveChoreUp.bind(this)}
-            moveChoreDown={this.moveChoreDown.bind(this)}
-            prevStage={() => { this.setState({ stage: 'selection' }); }}
-            saveChain={saveChain} />
-        : null }
+        { stage === 'selection'
+          ? (
+            <ChainSelect
+              chores={chores}
+              chain={chain}
+              canSave={canSave}
+              chooseChore={this.chooseChore.bind(this)}
+              nextStage={() => { this.setState({ stage: 'sorting' }); }}
+            />
+          )
+          : null }
+        { stage === 'sorting'
+          ? (
+            <ChainOrder
+              chain={chain}
+              canSave={canSave}
+              moveChoreUp={this.moveChoreUp.bind(this)}
+              moveChoreDown={this.moveChoreDown.bind(this)}
+              prevStage={() => { this.setState({ stage: 'selection' }); }}
+              saveChain={saveChain}
+            />
+          )
+          : null }
       </div>
     );
   }

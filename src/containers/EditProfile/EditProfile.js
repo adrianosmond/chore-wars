@@ -7,13 +7,14 @@ import withAuthorization from 'components/withAuthorization';
 
 import * as routes from 'constants/routes';
 
-const EditProfile = () =>
+const EditProfile = () => (
   <div className="app">
     <Switch>
       <Route exact path={routes.EDIT_PROFILE} component={Profile} />
       <Route path={`${routes.EDIT_PROFILE}/:propertyToEdit`} component={EditAvatarProperty} />
     </Switch>
-  </div>;
+  </div>
+);
 
 const authCondition = authUser => !!authUser;
 const isLoading = state => !state.playersLoaded;

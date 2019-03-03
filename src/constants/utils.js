@@ -7,12 +7,12 @@ const computedChoreProperties = (chore, now) => {
   const timePaused = chore.timePaused || 0;
   const timeSinceChore = (now - (chore.lastDone + timePaused)) / TIME_UNIT;
   const timeRemaining = timeSinceChore - chore.frequency;
-  const percentage = chore.frequency === 0 ? 100 :
-    Math.min((100 * timeSinceChore) / chore.frequency, 100);
+  const percentage = chore.frequency === 0 ? 100
+    : Math.min((100 * timeSinceChore) / chore.frequency, 100);
   const multiplier = chore.frequency === 0 ? 1 : 1 + (1 / chore.frequency);
   const due = chore.lastDone + timePaused + (chore.frequency * TIME_UNIT);
-  const currentPoints = chore.frequency === 0 ? chore.pointsPerTime :
-    Math.round((percentage / 100) * chore.pointsPerTime * (multiplier ** timeRemaining));
+  const currentPoints = chore.frequency === 0 ? chore.pointsPerTime
+    : Math.round((percentage / 100) * chore.pointsPerTime * (multiplier ** timeRemaining));
   return {
     currentPoints,
     percentage,
@@ -26,18 +26,18 @@ const processChore = (chore, slug, now) => ({
   ...computedChoreProperties(chore, now),
 });
 
-const convertChoresToArray = (choresObj, now = new Date().getTime()) =>
-  Object.keys(choresObj)
-    .map(slug => processChore(choresObj[slug], slug, now))
-    .sort(sortByCurrentPoints);
+const convertChoresToArray = (choresObj, now = new Date().getTime()) => Object.keys(choresObj)
+  .map(slug => processChore(choresObj[slug], slug, now))
+  .sort(sortByCurrentPoints);
 
-const getFilteredChoresArray = chores =>
-  convertChoresToArray(chores).filter(chore => !chore.isWaiting);
+const getFilteredChoresArray = chores => convertChoresToArray(chores)
+  .filter(chore => !chore.isWaiting);
 
 const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
 
-const createJoinCode = () => new Array(JOIN_CODE_LENGTH).fill(97).map(x =>
-  String.fromCharCode(x + Math.round(Math.random() * 25))).join('');
+const createJoinCode = () => new Array(JOIN_CODE_LENGTH)
+  .fill(97)
+  .map(x => String.fromCharCode(x + Math.round(Math.random() * 25))).join('');
 
 const generatePlayerData = (playerName, joinCode) => {
   const data = {

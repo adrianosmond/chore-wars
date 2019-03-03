@@ -7,10 +7,6 @@ export default function choresReducer(state = { }, action) {
         ...action.chores,
       };
 
-      // case ActionTypes.saveStatePostUndo:
-      //   database.ref(`games/${action.game}/chores/`).set(state);
-      //   return state;
-
     default:
       return state;
   }

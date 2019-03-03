@@ -16,57 +16,63 @@ class LogPastCompletion extends Component {
   constructor(props) {
     super(props);
 
+    const { match, currentTime } = props;
+
     this.state = {
-      slug: this.props.match.params.slug,
-      currentTime: props.currentTime || new Date().getTime(),
+      slug: match.params.slug,
+      currentTime: currentTime || new Date().getTime(),
       chore: null,
     };
   }
 
   componentWillMount() {
+    const { chores, game, doLoadChores } = this.props;
     const { slug } = this.state;
-    if (this.props.chores && this.props.chores[slug]) {
+    if (chores && chores[slug]) {
       this.setState({
-        chore: this.props.chores[slug],
+        chore: chores[slug],
       });
     } else {
-      this.props.loadChores(this.props.game);
+      doLoadChores(game);
     }
   }
 
   componentWillReceiveProps(newProps) {
+    const { chores, history } = this.props;
     const { slug } = this.state;
-    if (newProps.chores !== this.props.chores) {
+    if (newProps.chores !== chores) {
       if (newProps.chores && newProps.chores[slug]) {
         this.setState({
           chore: newProps.chores[slug],
         });
       } else {
         // Chore not found, so redirect
-        this.props.history.push(routes.CHORES);
+        history.push(routes.CHORES);
       }
     }
   }
 
-  onSubmit(chore, slug) {
+  onSubmit = (chore, slug) => {
+    const { user, game, history } = this.props;
     const completedChore = {
       ...this.state.chore,
       slug,
       ...computedChoreProperties(this.state.chore, chore.lastDone),
     };
-    completeChore(completedChore, this.props.user, this.props.game, chore.lastDone);
-    this.props.history.push(routes.CHORES);
+    completeChore(completedChore, user, game, chore.lastDone);
+    history.push(routes.CHORES);
   }
 
   render() {
-    const { chore } = this.state;
+    const { chore, currentTime } = this.state;
     if (!chore) return null;
     return (
       <ChoreForm
-        onSubmit={this.onSubmit.bind(this)}
-        currentTime={this.state.currentTime}
+        onSubmit={this.onSubmit}
+        currentTime={currentTime}
         questions={['forgotToLog']}
-        chore={chore} />
+        chore={chore}
+      />
     );
   }
 }
@@ -77,7 +83,7 @@ const isLoading = state => !state.choresLoaded;
 const mapStateToProps = state => ({
   user: state.session.authUser.uid,
   game: state.session.game.gameId,
-  chores: state.chores.present,
+  chores: state.chores,
 });
 
 const mapDispatchToProps = dispatch => ({

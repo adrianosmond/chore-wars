@@ -19,8 +19,8 @@ export const setPlayerAvatar = (player, avatar) => ({
   avatar,
 });
 
-export const loadPlayers = game => dispatch =>
-  database.ref(`games/${game}/players`).once('value', (result) => {
+export const loadPlayers = game => dispatch => database.ref(`games/${game}/players`)
+  .once('value', (result) => {
     dispatch(setPlayers(result.val()));
     dispatch(setPlayersLoaded(true));
   });

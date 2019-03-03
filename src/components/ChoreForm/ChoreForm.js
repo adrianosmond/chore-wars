@@ -4,20 +4,24 @@ import fecha from 'fecha';
 
 import * as routes from 'constants/routes';
 import { makeSlug } from 'constants/utils';
-import { MIN_CHORE_FREQUENCY, MAX_CHORE_FREQUENCY, MIN_CHORE_POINTS, MAX_CHORE_POINTS } from 'constants/constants';
+import {
+  MIN_CHORE_FREQUENCY, MAX_CHORE_FREQUENCY, MIN_CHORE_POINTS, MAX_CHORE_POINTS,
+} from 'constants/constants';
 
 import './ChoreForm.css';
 
-const FormQuestion = (props) => {
-  if (props.id !== props.currentQuestionId) return null;
-  const TagName = props.noLabel ? 'div' : 'label';
+const FormQuestion = ({
+  id, currentQuestionId, noLabel, error, label, children,
+}) => {
+  if (id !== currentQuestionId) return null;
+  const TagName = noLabel ? 'div' : 'label';
   return (
     <div className="form__question">
       <TagName>
-        <span className={`form__label${props.error ? ' form__label--error' : ''}`}>
-          {props.label}
+        <span className={`form__label${error ? ' form__label--error' : ''}`}>
+          {label}
         </span>
-        {props.children}
+        {children}
       </TagName>
     </div>
   );
@@ -45,18 +49,44 @@ class ChoreForm extends Component {
     };
   }
 
+  onSubmit(event) {
+    event.preventDefault();
+
+    const {
+      title, choreFrequency, frequency, pointsPerTime, lastDone, canBePaused, slug,
+    } = this.state;
+
+    const { onSubmit } = this.props;
+
+    if (!this.formIsValid()) return false;
+
+    const chore = {
+      title,
+      frequency: choreFrequency === 'as-and-when' ? 0 : parseInt(frequency, 10),
+      pointsPerTime: parseInt(pointsPerTime, 10),
+      lastDone,
+      timePaused: canBePaused === 'yes' ? 0 : null,
+    };
+
+    onSubmit(chore, slug);
+    return false;
+  }
+
   formIsValid() {
-    if (this.state.currentQuestionId === 'title') {
-      if (this.state.title.trim().length === 0) {
+    const {
+      currentQuestionId, currentTime, title, frequency, choreFrequency, pointsPerTime, lastDone,
+    } = this.state;
+    if (currentQuestionId === 'title') {
+      if (title.trim().length === 0) {
         this.setState({
           error: true,
         });
         return false;
       }
     }
-    if (this.state.currentQuestionId === 'frequency') {
-      if (this.state.choreFrequency === 'with-regularity') {
-        const freq = parseInt(this.state.frequency, 10);
+    if (currentQuestionId === 'frequency') {
+      if (choreFrequency === 'with-regularity') {
+        const freq = parseInt(frequency, 10);
         if (typeof freq !== 'number' || freq < MIN_CHORE_FREQUENCY || freq > MAX_CHORE_FREQUENCY) {
           this.setState({
             error: true,
@@ -65,8 +95,8 @@ class ChoreForm extends Component {
         }
       }
     }
-    if (this.state.currentQuestionId === 'pointsPerTime') {
-      const points = parseInt(this.state.pointsPerTime, 10);
+    if (currentQuestionId === 'pointsPerTime') {
+      const points = parseInt(pointsPerTime, 10);
       if (typeof points !== 'number' || points < 0 || points > 200) {
         this.setState({
           error: true,
@@ -74,18 +104,18 @@ class ChoreForm extends Component {
         return false;
       }
     }
-    if (this.state.currentQuestionId === 'doneDate') {
-      const date = parseInt(this.state.lastDone, 10);
-      if (typeof date !== 'number' || date < 0 || date > this.props.currentTime) {
+    if (currentQuestionId === 'doneDate') {
+      const date = parseInt(lastDone, 10);
+      if (typeof date !== 'number' || date < 0 || date > currentTime) {
         this.setState({
           error: true,
         });
         return false;
       }
     }
-    if (this.state.currentQuestionId === 'forgotToLog') {
-      const date = parseInt(this.state.currentTime, 10);
-      if (typeof date !== 'number' || date < 0 || date > this.props.currentTime) {
+    if (currentQuestionId === 'forgotToLog') {
+      const date = parseInt(currentTime, 10);
+      if (typeof date !== 'number' || date < 0 || date > currentTime) {
         this.setState({
           error: true,
         });
@@ -126,120 +156,167 @@ class ChoreForm extends Component {
     });
   }
 
-  onSubmit(event) {
-    event.preventDefault();
-
-    if (!this.formIsValid()) return false;
-
-    const chore = {
-      title: this.state.title,
-      frequency: this.state.choreFrequency === 'as-and-when' ? 0 : parseInt(this.state.frequency, 10),
-      pointsPerTime: parseInt(this.state.pointsPerTime, 10),
-      lastDone: this.state.lastDone,
-      timePaused: this.state.canBePaused === 'yes' ? 0 : null,
-    };
-
-    this.props.onSubmit(chore, this.state.slug);
-    return false;
-  }
-
   render() {
+    const {
+      currentQuestionId, error, choreFrequency, title, frequency, pointsPerTime,
+      canBePaused, doneDate, currentTime,
+    } = this.state;
     return (
       <div className="chore-form">
         <form onSubmit={this.onSubmit.bind(this)} className="form">
-          <FormQuestion id="title" currentQuestionId={this.state.currentQuestionId}
-            label="What is the name of this chore?" error={this.state.error}>
-            <input className="form__input" id="title" type="text" value={this.state.title} onChange={(event) => { this.setState({ title: event.target.value, slug: makeSlug(event.target.value) }); }} />
+          <FormQuestion
+            id="title"
+            currentQuestionId={currentQuestionId}
+            label="What is the name of this chore?"
+            error={error}
+          >
+            <input className="form__input" id="title" type="text" value={title} onChange={(event) => { this.setState({ title: event.target.value, slug: makeSlug(event.target.value) }); }} />
           </FormQuestion>
-          <FormQuestion id="frequency" currentQuestionId={this.state.currentQuestionId}
-            label="How often do you need to do this chore?" error={this.state.error}
-            noLabel={true}>
+          <FormQuestion
+            id="frequency"
+            currentQuestionId={currentQuestionId}
+            label="How often do you need to do this chore?"
+            error={error}
+            noLabel
+          >
             <label className="form__option">
               <div className="form__row">
-                <input type="radio" name="frequency-type" value="with-regularity"
-                  checked={this.state.choreFrequency === 'with-regularity'}
-                  onChange={() => this.setState({ choreFrequency: 'with-regularity' })} />
+                <input
+                  type="radio"
+                  name="frequency-type"
+                  value="with-regularity"
+                  checked={choreFrequency === 'with-regularity'}
+                  onChange={() => this.setState({ choreFrequency: 'with-regularity' })}
+                />
                 <span className="form__row-item">Every </span>
-                <input className="form__row-item form__input" id="frequency" type="number" pattern="[0-9]*"
-                  min={MIN_CHORE_FREQUENCY} max={MAX_CHORE_FREQUENCY}
+                <input
+                  className="form__row-item form__input"
+                  id="frequency"
+                  type="number"
+                  pattern="[0-9]*"
+                  min={MIN_CHORE_FREQUENCY}
+                  max={MAX_CHORE_FREQUENCY}
                   maxLength={MAX_CHORE_FREQUENCY.toString().length}
-                  value={this.state.frequency}
+                  value={frequency}
                   onChange={(event) => { this.setState({ frequency: event.target.value }); }}
-                  onClick={() => this.setState({ choreFrequency: 'with-regularity' })} />
+                  onClick={() => this.setState({ choreFrequency: 'with-regularity' })}
+                />
                 <span className="form__row-item">days</span>
               </div>
             </label>
             <label className="form__option">
               <div className="form__row form__row--inactive">
-                <input type="radio" name="frequency-type"
+                <input
+                  type="radio"
+                  name="frequency-type"
                   value="as-and-when"
-                  checked={this.state.choreFrequency === 'as-and-when'}
-                  onChange={() => this.setState({ choreFrequency: 'as-and-when' })} />
+                  checked={choreFrequency === 'as-and-when'}
+                  onChange={() => this.setState({ choreFrequency: 'as-and-when' })}
+                />
                 <span className="form__row-item">Whenever it needs doing</span>
               </div>
             </label>
           </FormQuestion>
-          <FormQuestion id="pointsPerTime" currentQuestionId={this.state.currentQuestionId}
-            label="How many points should this chore be worth?" error={this.state.error}>
-            <p></p>
-            <input className="form__input" id="pointsPerTime" type="number" pattern="[0-9]*"
-              min={MIN_CHORE_POINTS} max={MAX_CHORE_POINTS}
+          <FormQuestion
+            id="pointsPerTime"
+            currentQuestionId={currentQuestionId}
+            label="How many points should this chore be worth?"
+            error={error}
+          >
+            <p />
+            <input
+              className="form__input"
+              id="pointsPerTime"
+              type="number"
+              pattern="[0-9]*"
+              min={MIN_CHORE_POINTS}
+              max={MAX_CHORE_POINTS}
               maxLength={MAX_CHORE_POINTS.toString().length}
-              value={this.state.pointsPerTime}
-              onChange={(event) => { this.setState({ pointsPerTime: event.target.value }); }} />
+              value={pointsPerTime}
+              onChange={(event) => { this.setState({ pointsPerTime: event.target.value }); }}
+            />
           </FormQuestion>
-          <FormQuestion id="canBePaused" currentQuestionId={this.state.currentQuestionId}
-            label="Should this chore pause when you go on holiday?" error={this.state.error}
-            noLabel={true}>
+          <FormQuestion
+            id="canBePaused"
+            currentQuestionId={currentQuestionId}
+            label="Should this chore pause when you go on holiday?"
+            error={error}
+            noLabel
+          >
             <label className="form__option">
               <div className="form__row">
-                <input type="radio" name="affected-by-holiday"
-                  value="yes" checked={this.state.canBePaused === 'yes'}
-                  onChange={() => this.setState({ canBePaused: 'yes' })} />
+                <input
+                  type="radio"
+                  name="affected-by-holiday"
+                  value="yes"
+                  checked={canBePaused === 'yes'}
+                  onChange={() => this.setState({ canBePaused: 'yes' })}
+                />
                 <span className="form__row-item">Yes</span>
               </div>
             </label>
             <label className="form__option">
               <div className="form__row form__row--inactive">
-                <input type="radio" name="affected-by-holiday"
-                  value="no" checked={this.state.canBePaused === 'no'}
-                  onChange={() => this.setState({ canBePaused: 'no' })} />
+                <input
+                  type="radio"
+                  name="affected-by-holiday"
+                  value="no"
+                  checked={canBePaused === 'no'}
+                  onChange={() => this.setState({ canBePaused: 'no' })}
+                />
                 <span className="form__row-item">No</span>
               </div>
             </label>
           </FormQuestion>
-          <FormQuestion id="lastDone" currentQuestionId={this.state.currentQuestionId}
-            label="When was this chore last done?" error={this.state.error}>
-            <input className="form__input" id="doneDate" type="date"
-              value={this.state.doneDate}
+          <FormQuestion
+            id="lastDone"
+            currentQuestionId={currentQuestionId}
+            label="When was this chore last done?"
+            error={error}
+          >
+            <input
+              className="form__input"
+              id="doneDate"
+              type="date"
+              value={doneDate}
               max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
               onChange={(event) => {
                 this.setState({
                   doneDate: event.target.value,
                   lastDone: new Date(event.target.value).getTime(),
                 });
-              }} />
+              }}
+            />
           </FormQuestion>
-          <FormQuestion id="forgotToLog" currentQuestionId={this.state.currentQuestionId}
-            label="When did you do this chore?" error={this.state.error}>
-            <input className="form__input" id="doneDate" type="datetime-local"
-              value={fecha.format(this.state.currentTime, 'YYYY-MM-DDTHH:mm')} max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
+          <FormQuestion
+            id="forgotToLog"
+            currentQuestionId={currentQuestionId}
+            label="When did you do this chore?"
+            error={error}
+          >
+            <input
+              className="form__input"
+              id="doneDate"
+              type="datetime-local"
+              value={fecha.format(currentTime, 'YYYY-MM-DDTHH:mm')}
+              max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
               onChange={(event) => {
-                const currentTime = new Date(event.target.value).getTime();
-                if (currentTime) {
+                const newTime = new Date(event.target.value).getTime();
+                if (newTime) {
                   const offset = new Date().getTimezoneOffset() * 60000;
                   this.setState({
-                    currentTime,
-                    lastDone: currentTime - offset,
+                    currentTime: newTime,
+                    lastDone: newTime - offset,
                   });
                 }
-              }} />
+              }}
+            />
           </FormQuestion>
 
           <div className="form__button-holder">
             { this.isFirstQuestion() ? <Link className="form__button form__button--secondary" to={routes.CHORES}>Cancel</Link> : null }
-            { !this.isFirstQuestion() ? <button className="form__button form__button--secondary" onClick={this.prevQuestion.bind(this)}>Back</button> : null }
-            { !this.isLastQuestion() ? <button className="form__button" onClick={this.nextQuestion.bind(this)}>Continue</button> : null }
+            { !this.isFirstQuestion() ? <button type="button" className="form__button form__button--secondary" onClick={this.prevQuestion.bind(this)}>Back</button> : null }
+            { !this.isLastQuestion() ? <button type="button" className="form__button" onClick={this.nextQuestion.bind(this)}>Continue</button> : null }
             { this.isLastQuestion() ? <button className="form__button" type="submit">Save Chore</button> : null }
           </div>
         </form>

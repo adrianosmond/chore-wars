@@ -15,34 +15,34 @@ class Chain extends Component {
     super(props);
     this.state = {
       chores: filterAndSortChores(props.chores),
-      chain: [],
-      stage: 'selection',
     };
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.chores !== newProps.chores) {
+    const { chores } = this.props;
+    if (chores !== newProps.chores) {
       this.setState({
         chores: filterAndSortChores(newProps.chores),
       });
     }
   }
 
-  saveChain(chain) {
-    makeChain(this.props.game, chain.map(chore => chore.slug));
-    this.props.history.push(routes.CHORES);
+  saveChain = (chain) => {
+    const { game, history } = this.props;
+    makeChain(game, chain.map(chore => chore.slug));
+    history.push(routes.CHORES);
   }
 
   render() {
     const { chores } = this.state;
     if (!chores) return null;
-    return <ChoreChain chores={chores} saveChain={this.saveChain.bind(this)} />;
+    return <ChoreChain chores={chores} saveChain={this.saveChain} />;
   }
 }
 
 const mapStateToProps = state => ({
   game: state.session.game.gameId,
-  chores: state.chores.present,
+  chores: state.chores,
 });
 
 const authCondition = authUser => !!authUser;

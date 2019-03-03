@@ -9,10 +9,6 @@ export default function pointsReducer(state = { }, action) {
         ...points,
       };
 
-      // case ActionTypes.saveStatePostUndo:
-      //   database.ref(`games/${game}/points/`).set(state);
-      //   return state;
-
     default:
       return state;
   }

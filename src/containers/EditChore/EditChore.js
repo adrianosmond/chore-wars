@@ -14,52 +14,58 @@ import * as routes from 'constants/routes';
 class EditChore extends Component {
   constructor(props) {
     super(props);
+    const { currentTime, match } = this.props;
 
     this.state = {
-      slug: this.props.match.params.slug,
-      currentTime: props.currentTime || new Date().getTime(),
+      slug: match.params.slug,
+      currentTime: currentTime || new Date().getTime(),
       chore: null,
     };
   }
 
   componentWillMount() {
+    const { chores, game, doLoadChores } = this.props;
     const { slug } = this.state;
-    if (this.props.chores && this.props.chores[slug]) {
+    if (chores && chores[slug]) {
       this.setState({
-        chore: this.props.chores[slug],
+        chore: chores[slug],
       });
     } else {
-      this.props.loadChores(this.props.game);
+      doLoadChores(game);
     }
   }
 
   componentWillReceiveProps(newProps) {
+    const { chores, history } = this.props;
     const { slug } = this.state;
-    if (newProps.chores !== this.props.chores) {
+    if (newProps.chores !== chores) {
       if (newProps.chores && newProps.chores[slug]) {
         this.setState({
           chore: newProps.chores[slug],
         });
       } else {
         // Chore not found, so redirect
-        this.props.history.push(routes.CHORES);
+        history.push(routes.CHORES);
       }
     }
   }
 
-  onSubmit(chore, slug) {
-    updateChore(this.state.slug, chore, slug, this.props.game, this.props.chores);
-    this.props.history.push(routes.CHORES);
+  onSubmit = (chore, oldSlug) => {
+    const { game, chores, history } = this.props;
+    const { slug } = this.state;
+    updateChore(slug, chore, oldSlug, game, chores);
+    history.push(routes.CHORES);
   }
 
   render() {
-    const { chore } = this.state;
+    const { chore, currentTime } = this.state;
     if (!chore) return null;
     return (
       <ChoreForm
-        onSubmit={this.onSubmit.bind(this)}
-        currentTime={this.state.currentTime}
-        chore={chore} />
+        onSubmit={this.onSubmit}
+        currentTime={currentTime}
+        chore={chore}
+      />
     );
   }
 }
@@ -69,11 +75,11 @@ const isLoading = state => !state.choresLoaded;
 
 const mapStateToProps = state => ({
   game: state.session.game.gameId,
-  chores: state.chores.present,
+  chores: state.chores,
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadChores: game => dispatch(loadChores(game)),
+  doLoadChores: game => dispatch(loadChores(game)),
 });
 
 export default compose(

@@ -26,18 +26,20 @@ class NewChore extends Component {
     };
   }
 
-  onSubmit(chore, slug) {
-    addChore(chore, this.props.game, slug);
-    this.props.history.push(routes.CHORES);
+  onSubmit = (chore, slug) => {
+    const { game, history } = this.props;
+    addChore(chore, game, slug);
+    history.push(routes.CHORES);
   }
 
   render() {
     const { chore, currentTime } = this.state;
     return (
       <ChoreForm
-        onSubmit={this.onSubmit.bind(this)}
+        onSubmit={this.onSubmit}
         currentTime={currentTime}
-        chore={chore} />
+        chore={chore}
+      />
     );
   }
 }

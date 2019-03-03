@@ -1,7 +1,6 @@
 import { ActionTypes } from 'constants/constants';
 
 export default function playersReducer(state = { }, action) {
-  const newState = JSON.parse(JSON.stringify(state));
   const { player } = action;
 
   switch (action.type) {
@@ -11,12 +10,22 @@ export default function playersReducer(state = { }, action) {
       };
 
     case ActionTypes.setPlayerName:
-      newState[player].name = action.name;
-      return newState;
+      return {
+        ...state,
+        [player]: {
+          ...state[player],
+          name: action.name,
+        },
+      };
 
     case ActionTypes.setPlayerAvatar:
-      newState[player].avatar = action.avatar;
-      return newState;
+      return {
+        ...state,
+        [player]: {
+          ...state[player],
+          name: action.name,
+        },
+      };
 
     default:
       return state;

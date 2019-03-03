@@ -1,4 +1,7 @@
-import * as firebase from 'firebase';
+import app from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+
 import { MAX_POINT_DIFFERENCE } from 'constants/constants';
 
 const config = {
@@ -10,10 +13,10 @@ const config = {
   messagingSenderId: '344287360518',
 };
 
-firebase.initializeApp(config);
+app.initializeApp(config);
 
-export const database = firebase.database();
-export const auth = firebase.auth();
+export const database = app.database();
+export const auth = app.auth();
 
 export const addPointsToUser = (userId, points, game) => {
   database.ref(`games/${game}/points/${userId}/points`).once('value', (result) => {

@@ -7,7 +7,7 @@ import * as routes from 'constants/routes';
 
 import './AvatarGrid.css';
 
-const AvatarGrid = ({ editing, avatar, onSelect }) =>
+const AvatarGrid = ({ editing, avatar, onSelect }) => (
   <ul className="avatar-grid">
     {avatarOptions[editing].map((option, idx) => {
       const avatarProps = {
@@ -17,11 +17,12 @@ const AvatarGrid = ({ editing, avatar, onSelect }) =>
       return (
         <li className="avatar-grid__option" key={idx}>
           <Link to={routes.EDIT_PROFILE} onClick={() => { onSelect(option); }}>
-            <Avatar { ...avatarProps} style={{ width: '100%', height: '100%' }} />
+            <Avatar {...avatarProps} style={{ width: '100%', height: '100%' }} />
           </Link>
         </li>
       );
     })}
-  </ul>;
+  </ul>
+);
 
 export default AvatarGrid;

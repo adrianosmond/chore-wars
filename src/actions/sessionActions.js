@@ -35,14 +35,16 @@ export const setHoliday = holiday => ({
   holiday,
 });
 
-export const loadHoliday = gameId => dispatch =>
-  database.ref(`games/${gameId}/holiday`).once('value', (ref) => {
+export const loadHoliday = gameId => dispatch => database.ref(`games/${gameId}/holiday`)
+  .once('value', (ref) => {
     const holiday = ref.val() || false;
     dispatch(setHoliday(holiday));
   });
 
-export const startHoliday = (gameId, holidayStartTime) => dispatch =>
-  database.ref(`games/${gameId}/holiday`).set(holidayStartTime).then(() => {
+export const startHoliday = (gameId, holidayStartTime) => dispatch => database
+  .ref(`games/${gameId}/holiday`)
+  .set(holidayStartTime)
+  .then(() => {
     dispatch(setHoliday(holidayStartTime));
   });
 
@@ -53,13 +55,12 @@ export const stopHoliday = (gameId, holidayStartTime, holidayEndTime) => (dispat
       .then(() => {
         dispatch(setHoliday(false));
       }),
-    database.ref(`games/${gameId}/chores`).once('value', result =>
-      result.forEach((choreRef) => {
-        const chore = choreRef.val();
-        if ('timePaused' in chore) {
-          addToTimePaused(gameId, choreRef.key, chore.timePaused, holidayTime);
-        }
-      })),
+    database.ref(`games/${gameId}/chores`).once('value', result => result.forEach((choreRef) => {
+      const chore = choreRef.val();
+      if ('timePaused' in chore) {
+        addToTimePaused(gameId, choreRef.key, chore.timePaused, holidayTime);
+      }
+    })),
   ]);
 };
 

@@ -25,14 +25,18 @@ class Login extends Component {
     });
   }
 
-  loggedIn() {
-    this.props.history.push(routes.CHORES);
+  loggedIn = () => {
+    const { history } = this.props;
+    history.push(routes.CHORES);
   }
 
   render() {
-    return this.state.loading ?
-        <Loading /> :
-        <LoginForm loggedIn={this.loggedIn.bind(this)} />;
+    const { loading } = this.state;
+    return loading ? (
+      <Loading />
+    ) : (
+      <LoginForm loggedIn={this.loggedIn} />
+    );
   }
 }
 

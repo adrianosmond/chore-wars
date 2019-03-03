@@ -16,20 +16,24 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
   class WithAuthorization extends React.Component {
     constructor(props) {
       super(props);
+      const { playersLoaded, pointsLoaded, choresLoaded } = props;
       this.state = {
         loading: componentIsLoading({
-          playersLoaded: props.playersLoaded,
-          pointsLoaded: props.pointsLoaded,
-          choresLoaded: props.choresLoaded,
+          playersLoaded,
+          pointsLoaded,
+          choresLoaded,
         }),
       };
     }
 
     componentDidMount() {
+      const {
+        history, doSetAuthUser, doSetGame, doLoadPlayers, doLoadPoints, doLoadChores, doLoadHoliday,
+      } = this.props;
       auth.onAuthStateChanged((authUser) => {
-        this.props.setAuthUser(authUser);
+        doSetAuthUser(authUser);
         if (!authCondition(authUser)) {
-          this.props.history.push(routes.LOGIN);
+          history.push(routes.LOGIN);
         } else {
           database.ref(`users/${authUser.uid}`).once('value', (result) => {
             const game = result.val();
@@ -37,14 +41,14 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
             if (game && game.gameId) {
               const { gameId } = game;
               if (gameId) {
-                this.props.setGame(game);
-                this.props.loadPlayers(gameId);
-                this.props.loadPoints(gameId);
-                this.props.loadChores(gameId);
-                this.props.loadHoliday(gameId);
+                doSetGame(game);
+                doLoadPlayers(gameId);
+                doLoadPoints(gameId);
+                doLoadChores(gameId);
+                doLoadHoliday(gameId);
               }
             } else {
-              this.props.history.push(routes.NO_GAME);
+              history.push(routes.NO_GAME);
             }
           });
         }
@@ -52,26 +56,31 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
     }
 
     componentWillReceiveProps(newProps) {
+      const {
+        playersLoaded, pointsLoaded, choresLoaded, location, history,
+      } = newProps;
+
       this.setState({
         loading: componentIsLoading({
-          playersLoaded: newProps.playersLoaded,
-          pointsLoaded: newProps.pointsLoaded,
-          choresLoaded: newProps.choresLoaded,
+          playersLoaded,
+          pointsLoaded,
+          choresLoaded,
         }),
       });
 
-      if (this.props.location.pathname === routes.NO_GAME) {
+      if (location.pathname === routes.NO_GAME) {
         // When we've got a game, we can redirect to the chores page
         if (newProps.game && newProps.game.gameId) {
-          this.props.history.push(routes.CHORES);
+          history.push(routes.CHORES);
         }
       }
     }
 
     render() {
-      if (!this.props.authUser ||
-        (!this.props.game && this.props.location.pathname !== routes.NO_GAME) ||
-        this.state.loading) {
+      const { authUser, game, location } = this.props;
+      const { loading } = this.state;
+
+      if (!authUser || (!game && location.pathname !== routes.NO_GAME) || loading) {
         return (
           <Loading />
         );
@@ -91,12 +100,12 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
   });
 
   const mapDispatchToProps = dispatch => ({
-    setAuthUser: authUser => dispatch(setAuthUser(authUser)),
-    setGame: game => dispatch(setGame(game)),
-    loadPlayers: game => dispatch(loadPlayers(game)),
-    loadPoints: game => dispatch(loadPoints(game)),
-    loadChores: game => dispatch(loadChores(game)),
-    loadHoliday: game => dispatch(loadHoliday(game)),
+    doSetAuthUser: authUser => dispatch(setAuthUser(authUser)),
+    doSetGame: game => dispatch(setGame(game)),
+    doLoadPlayers: game => dispatch(loadPlayers(game)),
+    doLoadPoints: game => dispatch(loadPoints(game)),
+    doLoadChores: game => dispatch(loadChores(game)),
+    doLoadHoliday: game => dispatch(loadHoliday(game)),
   });
 
   return compose(

@@ -17,13 +17,14 @@ class LoginForm extends Component {
     this.state = INITIAL_STATE;
   }
 
-  onSubmit(event) {
+  onSubmit = (event) => {
     event.preventDefault();
     const { email, password } = this.state;
+    const { loggedIn } = this.props;
     auth.signInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
-        this.props.loggedIn();
+        loggedIn();
       })
       .catch((error) => {
         this.setState({
@@ -33,16 +34,31 @@ class LoginForm extends Component {
   }
 
   render() {
+    const { error, email, password } = this.state;
     return (
       <div className="login">
         <div className="login__widget">
           <h1 className="login__title">Chore Wars</h1>
-          <p>{this.state.error ? this.state.error : 'Please enter your email and password to log in'}</p>
-          <form onSubmit={this.onSubmit.bind(this)} className="form form--contained">
+          <p>{error || 'Please enter your email and password to log in'}</p>
+          <form onSubmit={this.onSubmit} className="form form--contained">
             <label className="form__label form__label--small" htmlFor="email">Email</label>
-            <input className="form__input" id="email" placeholder="Email" type="email" onChange={event => this.setState({ email: event.target.value })} value={this.state.email} />
+            <input
+              className="form__input"
+              id="email"
+              placeholder="Email"
+              type="email"
+              onChange={event => this.setState({ email: event.target.value })}
+              value={email}
+            />
             <label className="form__label form__label--small" htmlFor="password">Password</label>
-            <input className="form__input" id="password" placeholder="Password" type="password" onChange={event => this.setState({ password: event.target.value })} value={this.state.password} />
+            <input
+              className="form__input"
+              id="password"
+              placeholder="Password"
+              type="password"
+              onChange={event => this.setState({ password: event.target.value })}
+              value={password}
+            />
             <button type="submit" className="form__button">Login</button>
           </form>
           <p className="login__link">

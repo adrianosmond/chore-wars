@@ -18,9 +18,9 @@ class Chores extends Component {
     };
   }
 
-
   componentWillReceiveProps(newProps) {
-    if (newProps.chores !== this.props.chores) {
+    const { chores } = this.props;
+    if (newProps.chores !== chores) {
       this.setState({
         chores: getFilteredChoresArray(newProps.chores),
       });
@@ -28,17 +28,22 @@ class Chores extends Component {
   }
 
   render() {
+    const {
+      holiday, user, game, players, points,
+    } = this.props;
     const { chores } = this.state;
-    const { holiday } = this.props;
     return (
       <div className="app">
-        <GameHeader />
+        <GameHeader players={players} points={points} gameId={game} />
         <div className="app__chores">
-          { chores && !holiday ? <ChoresList chores={chores} /> : null }
-          { holiday ? <p>Your game is set to holiday mode. If you're back from your break you can
-            change this setting in your profile. Otherwise, enjoy yourselves and don't worry about
-            chores!</p> : null }
-          <Actions />
+          { holiday ? (
+            <p>
+              Your game is set to holiday mode. If you're back from your break you can
+              change this setting in your profile. Otherwise, enjoy yourselves and
+              don't worry about chores!
+            </p>
+          ) : chores && <ChoresList chores={chores} user={user} game={game} /> }
+          <Actions numChores={Object.keys(chores).length} />
         </div>
       </div>
     );
@@ -49,8 +54,12 @@ const authCondition = authUser => !!authUser;
 const isLoading = state => !state.pointsLoaded || !state.choresLoaded || !state.playersLoaded;
 
 const mapStateToProps = state => ({
-  chores: state.chores.present,
+  players: state.players,
+  chores: state.chores,
+  user: state.session.authUser.uid,
+  game: state.session.game.gameId,
   holiday: state.session.holiday,
+  points: state.points,
 });
 
 export default compose(

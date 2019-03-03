@@ -7,21 +7,24 @@ import { setPlayerAvatar } from 'actions/playerActions';
 
 import * as routes from 'constants/routes';
 
-const EditAvatarProperty = (props) => {
-  const { user, player } = props;
+const EditAvatarProperty = ({
+  user, player, match, doSetPlayerAvatar,
+}) => {
   const { avatar } = player;
-  const { propertyToEdit } = props.match.params;
+  const { propertyToEdit } = match.params;
   return (
     <div>
       <Link to={routes.EDIT_PROFILE} className="form__button form__button--secondary">Back</Link>
-      <AvatarGrid avatar={avatar}
+      <AvatarGrid
+        avatar={avatar}
         editing={propertyToEdit}
         onSelect={(newValue) => {
-          props.setPlayerAvatar(user, {
+          doSetPlayerAvatar(user, {
             ...avatar,
             [propertyToEdit]: newValue,
           });
-        }} />
+        }}
+      />
       <Link to={routes.EDIT_PROFILE} className="form__button form__button--secondary">Back</Link>
     </div>
   );
@@ -33,7 +36,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setPlayerAvatar: (user, avatar) => dispatch(setPlayerAvatar(user, avatar)),
+  doSetPlayerAvatar: (user, avatar) => dispatch(setPlayerAvatar(user, avatar)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditAvatarProperty);
