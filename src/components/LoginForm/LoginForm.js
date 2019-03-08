@@ -6,6 +6,7 @@ import { auth } from 'utils/database';
 import * as routes from 'constants/routes';
 
 import './LoginForm.css';
+import Button from 'components/Button';
 
 const INITIAL_STATE = {
   email: '',
@@ -62,7 +63,7 @@ class LoginForm extends Component {
               onChange={event => this.setState({ password: event.target.value })}
               value={password}
             />
-            <button type="submit" className="form__button">Login</button>
+            <Button type="submit">Login</Button>
           </form>
           <p className="login__link">
             <Link to={routes.SIGN_UP}>Create an account</Link>

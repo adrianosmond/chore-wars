@@ -19,6 +19,8 @@ const Scores = ({ points, gameId }) => {
     ? points[players[0]].points === points[players[1]].points
     : true;
 
+  /* eslint-disable jsx-a11y/click-events-have-key-events,
+  jsx-a11y/no-static-element-interactions */
   return (
     <div className="scores">
       {players.map((playerId, idx) => {
@@ -33,9 +35,6 @@ const Scores = ({ points, gameId }) => {
           >
             { playerBar || (scoresTied && idx) ? (
               <div
-                role="button"
-                tabIndex="0"
-                onKeyPress={winning ? () => claimPrize(playerId, gameId) : null}
                 className={`scores__difference scores__difference--${idx + 1}${winning ? ' scores__difference--winning' : ''}`}
                 onClick={winning ? () => claimPrize(playerId, gameId) : null}
               >
@@ -48,6 +47,7 @@ const Scores = ({ points, gameId }) => {
       })}
     </div>
   );
+  /* eslint-enable */
 };
 
 Scores.propTypes = {

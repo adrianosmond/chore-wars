@@ -81,48 +81,6 @@
   margin-top: 0;
 }
 
-.form__button {
-  display: block;
-  margin: 0;
-  margin-top: 1rem;
-  padding: 1rem;
-  border: none;
-  border-bottom: 2px solid rgba(0,0,0,0.3);
-  width: 100%;
-  background-color: darkcyan;
-  color: #fff;
-  font: inherit;
-  text-align: center;
-  text-decoration: none;
-  line-height: 1;
-  border-radius: 0.25rem;
-  outline-color: #ccc;
-  cursor: pointer;
-}
-
-.form__button:active {
-  border-bottom: none;
-  border-top: 2px solid transparent;
-}
-
-.form__button:disabled {
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-.form__button--secondary {
-  background-color: darkslateblue;
-}
-
-.form__button--tertiary {
-  background-color: dodgerblue;
-}
-
-.form__button--quaternary {
-  background-color:#fff;
-  color: darkslateblue;
-}
-
 @media screen and (min-width: 37.5em) {
   .form {
     padding: 1rem;

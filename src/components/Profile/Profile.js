@@ -14,6 +14,8 @@ import { editorOrder, isEditable, labels } from 'constants/avatars';
 import * as routes from 'constants/routes';
 import { MAX_NAME_LENGTH } from 'constants/constants';
 
+import Button from 'components/Button';
+
 import './Profile.css';
 
 const EditAvatarLinks = ({ avatar }) => (
@@ -24,7 +26,7 @@ const EditAvatarLinks = ({ avatar }) => (
         if (editorOrder.indexOf(key) < 0 || !isEditable[key](avatar)) {
           return null;
         }
-        return <Link to={`${routes.EDIT_PROFILE}/${key}`} className="form__button form__button--tertiary" key={key}>{labels[key]}</Link>;
+        return <Button to={`${routes.EDIT_PROFILE}/${key}`} variant="tertiary" key={key}>{labels[key]}</Button>;
       }) }
   </div>
 );
@@ -97,54 +99,36 @@ class Profile extends Component {
               value={name}
             />
             <div className="form__button-holder form__button-holder--tight">
-              <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
-              <Link
-                to={routes.CHORES}
-                className="form__button form__button"
-                id="profile-save-player"
-                onClick={this.savePlayer}
-              >
+              <Button to={routes.CHORES} variant="secondary">Cancel</Button>
+              <Button to={routes.CHORES} id="profile-save-player" onClick={this.savePlayer}>
                 Save
-              </Link>
+              </Button>
             </div>
             { process.env.NODE_ENV === 'development' ? (
-              <button
-                type="button"
-                onClick={copyData}
-                className="form__button form__button--secondary"
-              >
-                Clone Data
-              </button>
+              <Button variant="secondary" onClick={copyData}>Clone Data</Button>
             ) : null }
             { holidayStartTime ? (
-              <button
-                type="button"
-                onClick={() => {
-                  doStopHoliday(gameId, holidayStartTime, new Date().getTime());
-                }}
-                className="form__button form__button--tertiary"
+              <Button
+                onClick={() => doStopHoliday(gameId, holidayStartTime, new Date().getTime())}
+                variant="tertiary"
               >
                 Stop holiday
-              </button>
+              </Button>
             ) : (
-              <button
-                type="button"
-                onClick={() => {
-                  doStartHoliday(gameId, new Date().getTime());
-                }}
-                className="form__button form__button--tertiary"
+              <Button
+                onClick={() => doStartHoliday(gameId, new Date().getTime())}
+                variant="tertiary"
               >
                 Start holiday
-              </button>
+              </Button>
             )}
-            <button
-              type="button"
+            <Button
               onClick={doSignOut}
               id="profile-sign-out"
-              className="form__button form__button--tertiary"
+              variant="tertiary"
             >
               Sign out
-            </button>
+            </Button>
           </div>
         </div>
         <div className="profile-editor__column">

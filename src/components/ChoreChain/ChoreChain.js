@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 import * as routes from 'constants/routes';
 
+import Button from 'components/Button';
+
 import checkIcon from 'images/check.svg';
 import './ChoreChain.css';
 
@@ -33,15 +35,10 @@ const ChainSelect = ({
       ))}
     </ul>
     <div className="form__button-holder">
-      <Link to={routes.CHORES} className="form__button form__button--secondary">Cancel</Link>
-      <button
-        type="button"
-        disabled={!canSave}
-        className="form__button"
-        onClick={nextStage}
-      >
+      <Button to={routes.CHORES} variant="secondary">Cancel</Button>
+      <Button disabled={!canSave} onClick={nextStage}>
         Next
-      </button>
+      </Button>
     </div>
   </div>
 );
@@ -87,21 +84,12 @@ const ChainOrder = ({
       </FlipMove>
     </ul>
     <div className="form__button-holder">
-      <button
-        type="button"
-        className="form__button form__button--secondary"
-        onClick={prevStage}
-      >
+      <Button variant="secondary" onClick={prevStage}>
         Back
-      </button>
-      <button
-        type="button"
-        disabled={!canSave}
-        className="form__button"
-        onClick={() => saveChain(chain)}
-      >
+      </Button>
+      <Button disabled={!canSave} onClick={() => saveChain(chain)}>
         Save
-      </button>
+      </Button>
     </div>
   </div>
 );

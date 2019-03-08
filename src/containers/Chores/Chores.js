@@ -10,6 +10,7 @@ import ChoresList from 'components/ChoresList';
 import Actions from 'components/Actions';
 
 import { getFilteredChoresArray } from 'constants/utils';
+import HolidayMessage from 'components/HolidayMessage';
 
 class Chores extends Component {
   static propTypes = {
@@ -52,11 +53,7 @@ class Chores extends Component {
         <GameHeader players={players} points={points} gameId={game} />
         <div className="app__chores">
           { holiday ? (
-            <p>
-              Your game is set to holiday mode. If you&#39;re back from your break you can
-              change this setting in your profile. Otherwise, enjoy yourselves and
-              don&#39;t worry about chores!
-            </p>
+            <HolidayMessage />
           ) : filteredChores && (
             <ChoresList chores={filteredChores} user={user} game={game} allChores={chores} />
           )}

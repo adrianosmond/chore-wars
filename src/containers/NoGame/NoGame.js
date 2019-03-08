@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import PropTypes from 'prop-types';
 
@@ -11,7 +12,12 @@ import { createGame, joinGame } from 'state/reducers/sessionReducer';
 const NoGame = ({
   history, user, doCreateGame, doJoinGame,
 }) => (
-  <SetupGame history={history} user={user} doCreateGame={doCreateGame} doJoinGame={doJoinGame} />
+  <SetupGame
+    history={history}
+    user={user}
+    doCreateGame={doCreateGame}
+    doJoinGame={doJoinGame}
+  />
 );
 
 NoGame.propTypes = {
@@ -36,4 +42,5 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   withAuthorization(authCondition, isLoading),
   connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
 )(NoGame);

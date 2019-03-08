@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import * as routes from 'constants/routes';
+
+import Button from '../Button';
 
 import './Actions.css';
 
@@ -35,17 +36,16 @@ class Actions extends Component {
           Toggle menu
         </button>
         <div className="actions__actions">
-          <Link to={routes.NEW_CHORE} className="form__button">Add a chore</Link>
+          <Button to={routes.NEW_CHORE}>Add a chore</Button>
           { numChores > 1 ? (
-            <Link
+            <Button
               to={routes.NEW_CHAIN}
-              className="form__button"
               id="actions-create-chain"
             >
               Create a chain
-            </Link>
+            </Button>
           ) : null }
-          <Link to={routes.EDIT_PROFILE} className="form__button form__button--tertiary">My Profile</Link>
+          <Button to={routes.EDIT_PROFILE} variant="tertiary">My Profile</Button>
         </div>
       </div>
     );

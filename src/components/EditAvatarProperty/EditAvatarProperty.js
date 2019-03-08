@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import AvatarGrid from 'components/AvatarGrid';
+import Button from 'components/Button';
 
 import { setPlayerAvatar } from 'state/reducers/playersReducer';
 
 import * as routes from 'constants/routes';
+
 
 const EditAvatarProperty = ({
   user, player, match, doSetPlayerAvatar,
@@ -16,7 +18,7 @@ const EditAvatarProperty = ({
   const { propertyToEdit } = match.params;
   return (
     <div>
-      <Link to={routes.EDIT_PROFILE} className="form__button form__button--secondary">Back</Link>
+      <Button to={routes.EDIT_PROFILE} variant="secondary">Back</Button>
       <AvatarGrid
         avatar={avatar}
         editing={propertyToEdit}
@@ -27,7 +29,7 @@ const EditAvatarProperty = ({
           });
         }}
       />
-      <Link to={routes.EDIT_PROFILE} className="form__button form__button--secondary">Back</Link>
+      <Button to={routes.EDIT_PROFILE} variant="secondary">Back</Button>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import fecha from 'fecha';
 import PropTypes from 'prop-types';
 
@@ -8,6 +7,8 @@ import { makeSlug } from 'constants/utils';
 import {
   MIN_CHORE_FREQUENCY, MAX_CHORE_FREQUENCY, MIN_CHORE_POINTS, MAX_CHORE_POINTS,
 } from 'constants/constants';
+
+import Button from 'components/Button';
 
 import './ChoreForm.css';
 
@@ -73,7 +74,28 @@ class ChoreForm extends Component {
     };
   }
 
-  onSubmit(event) {
+  nextQuestion = (event) => {
+    event.preventDefault();
+    if (!this.formIsValid()) return;
+    const { currentQuestionId, questions } = this.state;
+    const currentIndex = questions.indexOf(currentQuestionId);
+    this.setState({
+      error: false,
+      currentQuestionId: questions[currentIndex + 1],
+    });
+  }
+
+  prevQuestion = (event) => {
+    event.preventDefault();
+    const { currentQuestionId, questions } = this.state;
+    const currentIndex = questions.indexOf(currentQuestionId);
+    this.setState({
+      error: false,
+      currentQuestionId: questions[currentIndex - 1],
+    });
+  }
+
+  onSubmit = (event) => {
     event.preventDefault();
 
     const {
@@ -94,6 +116,16 @@ class ChoreForm extends Component {
 
     onSubmit(chore, slug);
     return false;
+  }
+
+  isFirstQuestion() {
+    const { currentQuestionId, questions } = this.state;
+    return questions.indexOf(currentQuestionId) === 0;
+  }
+
+  isLastQuestion() {
+    const { currentQuestionId, questions } = this.state;
+    return questions.indexOf(currentQuestionId) === questions.length - 1;
   }
 
   formIsValid() {
@@ -149,41 +181,10 @@ class ChoreForm extends Component {
     return true;
   }
 
-  isFirstQuestion() {
-    const { currentQuestionId, questions } = this.state;
-    return questions.indexOf(currentQuestionId) === 0;
-  }
-
-  isLastQuestion() {
-    const { currentQuestionId, questions } = this.state;
-    return questions.indexOf(currentQuestionId) === questions.length - 1;
-  }
-
-  nextQuestion(event) {
-    event.preventDefault();
-    if (!this.formIsValid()) return;
-    const { currentQuestionId, questions } = this.state;
-    const currentIndex = questions.indexOf(currentQuestionId);
-    this.setState({
-      error: false,
-      currentQuestionId: questions[currentIndex + 1],
-    });
-  }
-
-  prevQuestion(event) {
-    event.preventDefault();
-    const { currentQuestionId, questions } = this.state;
-    const currentIndex = questions.indexOf(currentQuestionId);
-    this.setState({
-      error: false,
-      currentQuestionId: questions[currentIndex - 1],
-    });
-  }
-
   render() {
     const {
       currentQuestionId, error, choreFrequency, title, frequency, pointsPerTime,
-      canBePaused, doneDate, currentTime,
+      canBePaused, doneDate, currentTime: timeDone,
     } = this.state;
     return (
       <div className="chore-form">
@@ -194,7 +195,16 @@ class ChoreForm extends Component {
             label="What is the name of this chore?"
             error={error}
           >
-            <input className="form__input" id="title" type="text" value={title} onChange={(event) => { this.setState({ title: event.target.value, slug: makeSlug(event.target.value) }); }} />
+            <input
+              className="form__input"
+              id="title"
+              type="text"
+              value={title}
+              onChange={event => this.setState({
+                title: event.target.value,
+                slug: makeSlug(event.target.value),
+              })}
+            />
           </FormQuestion>
           <FormQuestion
             id="frequency"
@@ -247,7 +257,6 @@ class ChoreForm extends Component {
             label="How many points should this chore be worth?"
             error={error}
           >
-            <p />
             <input
               className="form__input"
               id="pointsPerTime"
@@ -322,7 +331,7 @@ class ChoreForm extends Component {
               className="form__input"
               id="doneDate"
               type="datetime-local"
-              value={fecha.format(currentTime, 'YYYY-MM-DDTHH:mm')}
+              value={fecha.format(timeDone, 'YYYY-MM-DDTHH:mm')}
               max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
               onChange={(event) => {
                 const newTime = new Date(event.target.value).getTime();
@@ -338,10 +347,18 @@ class ChoreForm extends Component {
           </FormQuestion>
 
           <div className="form__button-holder">
-            { this.isFirstQuestion() ? <Link className="form__button form__button--secondary" to={routes.CHORES}>Cancel</Link> : null }
-            { !this.isFirstQuestion() ? <button type="button" className="form__button form__button--secondary" onClick={this.prevQuestion.bind(this)}>Back</button> : null }
-            { !this.isLastQuestion() ? <button type="button" className="form__button" onClick={this.nextQuestion.bind(this)}>Continue</button> : null }
-            { this.isLastQuestion() ? <button className="form__button" type="submit">Save Chore</button> : null }
+            { this.isFirstQuestion() ? (
+              <Button variant="secondary" to={routes.CHORES}>Cancel</Button>
+            ) : null }
+            { !this.isFirstQuestion() ? (
+              <Button variant="secondary" onClick={this.prevQuestion}>Back</Button>
+            ) : null }
+            { !this.isLastQuestion() ? (
+              <Button onClick={this.nextQuestion}>Continue</Button>
+            ) : null }
+            { this.isLastQuestion() ? (
+              <Button type="submit">Save Chore</Button>
+            ) : null }
           </div>
         </form>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from 'constants/constants';
+import Button from 'components/Button';
 
 const SetupGame = ({ user, doCreateGame, doJoinGame }) => {
   const [playerName, setPlayerName] = useState('');
@@ -35,25 +36,22 @@ const SetupGame = ({ user, doCreateGame, doJoinGame }) => {
         onChange={event => setGameToJoin(event.target.value)}
         maxLength={JOIN_CODE_LENGTH}
       />
-      <button
-        type="button"
+      <Button
         onClick={() => doJoinGame(user, gameToJoin, playerName)}
         disabled={playerName.trim().length === 0 || gameToJoin.length !== 8}
-        className="form__button"
       >
         Join game
-      </button>
+      </Button>
 
       <h2>Create a game</h2>
       <p>Alternatively, if you want create a new game and invite someone else...</p>
-      <button
-        type="button"
+      <Button
+        variant="secondary"
         onClick={() => doCreateGame(user, playerName)}
         disabled={playerName.trim().length === 0 || gameToJoin.trim().length > 0}
-        className="form__button form__button--secondary"
       >
         Create a game
-      </button>
+      </Button>
     </div>
   );
 };
