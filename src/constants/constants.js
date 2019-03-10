@@ -1,17 +1,18 @@
-const TIME_UNIT = 1000 * 60 * 60 * 24; // 1 day
-const MIN_CHORE_FREQUENCY = 1;
-const MAX_CHORE_FREQUENCY = 365;
-const MIN_CHORE_POINTS = 1;
-const MAX_CHORE_POINTS = 200;
+export const TIME_UNIT = 1000 * 60 * 60 * 24; // 1 day
+export const MIN_CHORE_FREQUENCY = 1;
+export const MAX_CHORE_FREQUENCY = 365;
+export const MIN_CHORE_POINTS = 1;
+export const MAX_CHORE_POINTS = 200;
+export const MAX_CHORE_CURRENT_POINTS = 1000;
 
-const DATE_FORMAT = 'DD/MM/YYYY';
+export const DATE_FORMAT = 'DD/MM/YYYY';
 
-const MAX_POINT_DIFFERENCE = 500;
+export const MAX_POINT_DIFFERENCE = 500;
 
-const MAX_NAME_LENGTH = 10;
-const JOIN_CODE_LENGTH = 8;
+export const MAX_NAME_LENGTH = 10;
+export const JOIN_CODE_LENGTH = 8;
 
-const ActionTypes = {
+export const ActionTypes = {
   setChores: 'SET_CHORES',
   setPoints: 'SET_POINTS',
   setPlayers: 'SET_PLAYERS',
@@ -27,21 +28,7 @@ const ActionTypes = {
   setChoresLoaded: 'SET_CHORES_LOADED',
 };
 
-const DEFAULT_POINTS_DATA = {
+export const DEFAULT_POINTS_DATA = {
   isOwed: 0,
   points: 0,
-};
-
-export {
-  TIME_UNIT,
-  MIN_CHORE_FREQUENCY,
-  MAX_CHORE_FREQUENCY,
-  MIN_CHORE_POINTS,
-  MAX_CHORE_POINTS,
-  MAX_NAME_LENGTH,
-  JOIN_CODE_LENGTH,
-  DATE_FORMAT,
-  MAX_POINT_DIFFERENCE,
-  ActionTypes,
-  DEFAULT_POINTS_DATA,
 };

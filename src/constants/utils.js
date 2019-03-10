@@ -1,7 +1,7 @@
-import { TIME_UNIT, JOIN_CODE_LENGTH } from 'constants/constants';
+import { TIME_UNIT, JOIN_CODE_LENGTH, MAX_CHORE_CURRENT_POINTS } from 'constants/constants';
 import { DefaultAvatar } from 'constants/avatars';
 
-const sortByCurrentPoints = (a, b) => {
+export const sortByCurrentPoints = (a, b) => {
   const aBonusPts = a.currentPoints > a.pointsPerTime;
   const bBonusPts = b.currentPoints > b.pointsPerTime;
   if (aBonusPts && !bBonusPts) {
@@ -13,16 +13,24 @@ const sortByCurrentPoints = (a, b) => {
   return b.currentPoints - a.currentPoints;
 };
 
-const computedChoreProperties = (chore, now) => {
+export const getCurrentPoints = (chore, timeSinceChore, percentage) => {
+  const multiplier = chore.frequency === 0 ? 1 : 1 + (1 / chore.frequency);
+  const timeRemaining = timeSinceChore - chore.frequency;
+  return Math.min(
+    MAX_CHORE_CURRENT_POINTS,
+    chore.frequency === 0
+      ? chore.pointsPerTime
+      : Math.round((percentage / 100) * chore.pointsPerTime * (multiplier ** timeRemaining)),
+  );
+};
+
+export const computedChoreProperties = (chore, now) => {
   const timePaused = chore.timePaused || 0;
   const timeSinceChore = (now - (chore.lastDone + timePaused)) / TIME_UNIT;
-  const timeRemaining = timeSinceChore - chore.frequency;
   const percentage = chore.frequency === 0 ? 100
     : Math.min((100 * timeSinceChore) / chore.frequency, 100);
-  const multiplier = chore.frequency === 0 ? 1 : 1 + (1 / chore.frequency);
   const due = chore.lastDone + timePaused + (chore.frequency * TIME_UNIT);
-  const currentPoints = chore.frequency === 0 ? chore.pointsPerTime
-    : Math.round((percentage / 100) * chore.pointsPerTime * (multiplier ** timeRemaining));
+  const currentPoints = getCurrentPoints(chore, timeSinceChore, percentage);
   return {
     currentPoints,
     percentage,
@@ -30,26 +38,29 @@ const computedChoreProperties = (chore, now) => {
   };
 };
 
-const processChore = (chore, slug, now) => ({
+export const processChore = (chore, slug, now) => ({
   ...chore,
   slug,
   ...computedChoreProperties(chore, now),
 });
 
-const convertChoresToArray = (choresObj, now = new Date().getTime()) => Object.keys(choresObj)
+export const convertChoresToArray = (
+  choresObj,
+  now = new Date().getTime(),
+) => Object.keys(choresObj)
   .map(slug => processChore(choresObj[slug], slug, now))
   .sort(sortByCurrentPoints);
 
-const getFilteredChoresArray = chores => convertChoresToArray(chores)
-  .filter(chore => !chore.isWaiting);
+export const getFilteredChoresArray = chores => convertChoresToArray(chores)
+  .filter(chore => !chore.isWaiting && (new Date().getTime() - chore.lastDone) >= 60000);
 
-const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
+export const makeSlug = title => title.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
 
-const createJoinCode = () => new Array(JOIN_CODE_LENGTH)
+export const createJoinCode = () => new Array(JOIN_CODE_LENGTH)
   .fill(97)
   .map(x => String.fromCharCode(x + Math.round(Math.random() * 25))).join('');
 
-const generatePlayerData = (playerName, joinCode) => {
+export const generatePlayerData = (playerName, joinCode) => {
   const data = {
     avatar: DefaultAvatar,
     name: playerName,
@@ -60,12 +71,12 @@ const generatePlayerData = (playerName, joinCode) => {
   return data;
 };
 
-const makePlayersArray = players => Object.keys(players).map(player => ({
+export const makePlayersArray = players => Object.keys(players).map(player => ({
   ...players[player],
   id: player,
 }));
 
-const filterAndSortChores = (chores) => {
+export const filterAndSortChores = (chores) => {
   if (!chores) return null;
   return convertChoresToArray(chores)
     .sort((a, b) => {
@@ -74,17 +85,4 @@ const filterAndSortChores = (chores) => {
       return 0;
     })
     .filter(chore => !chore.enables);
-};
-
-export {
-  computedChoreProperties,
-  convertChoresToArray,
-  createJoinCode,
-  filterAndSortChores,
-  generatePlayerData,
-  getFilteredChoresArray,
-  makePlayersArray,
-  makeSlug,
-  processChore,
-  sortByCurrentPoints,
 };
