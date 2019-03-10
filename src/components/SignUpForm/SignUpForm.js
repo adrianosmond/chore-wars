@@ -68,12 +68,12 @@ const SignUpForm = ({ onSubmit, error }) => {
 };
 
 SignUpForm.propTypes = {
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   onSubmit: PropTypes.func.isRequired,
 };
 
 SignUpForm.defaultProps = {
-  error: null,
+  error: false,
 };
 
 export default SignUpForm;
