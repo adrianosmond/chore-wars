@@ -45,29 +45,8 @@
   align-items: baseline;
 }
 
-.form__row--inactive {
-  opacity: 0.8;
-}
-
 .form__row-item:not(:first-child) {
   margin-left: 0.5rem;
-}
-
-.form__input {
-  display: block;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  width: 100%;
-  border: 1px solid #ccc;
-  font: inherit;
-}
-
-.form__input[maxlength="3"] {
-  width: 70px;
-}
-
-.form__input[id="doneDate"] {
-  -webkit-appearance: none;
 }
 
 .form__button-holder {

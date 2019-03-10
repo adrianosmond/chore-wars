@@ -7,6 +7,7 @@ import * as routes from 'constants/routes';
 
 import './LoginForm.css';
 import Button from 'components/Button';
+import Input from 'components/Input';
 
 const INITIAL_STATE = {
   email: '',
@@ -46,8 +47,7 @@ class LoginForm extends Component {
           <p>{error || 'Please enter your email and password to log in'}</p>
           <form onSubmit={this.onSubmit} className="form form--contained">
             <label className="form__label form__label--small" htmlFor="email">Email</label>
-            <input
-              className="form__input"
+            <Input
               id="email"
               placeholder="Email"
               type="email"
@@ -55,8 +55,7 @@ class LoginForm extends Component {
               value={email}
             />
             <label className="form__label form__label--small" htmlFor="password">Password</label>
-            <input
-              className="form__input"
+            <Input
               id="password"
               placeholder="Password"
               type="password"

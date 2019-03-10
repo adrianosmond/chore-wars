@@ -9,7 +9,6 @@ import { setPlayerAvatar } from 'state/reducers/playersReducer';
 
 import * as routes from 'constants/routes';
 
-
 const EditAvatarProperty = ({
   user, player, match, doSetPlayerAvatar,
 }) => {

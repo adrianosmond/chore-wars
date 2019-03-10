@@ -1,0 +1,16 @@
+.input {
+  display: block;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  width: 100%;
+  border: 1px solid #ccc;
+  font: inherit;
+}
+
+.input[maxlength="3"] {
+  width: 70px;
+}
+
+.input[id="doneDate"] {
+  -webkit-appearance: none;
+}

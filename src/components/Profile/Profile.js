@@ -14,6 +14,7 @@ import * as routes from 'constants/routes';
 import { MAX_NAME_LENGTH } from 'constants/constants';
 
 import Button from 'components/Button';
+import Input from 'components/Input';
 
 import './Profile.css';
 
@@ -88,11 +89,9 @@ class Profile extends Component {
           </div>
           <div className="profile-editor__field">
             <label htmlFor="profile-name">Name:</label>
-            <input
-              className="form__input"
+            <Input
               id="profile-name"
               placeholder="Name"
-              type="text"
               maxLength={MAX_NAME_LENGTH}
               onChange={event => this.setState({ name: event.target.value })}
               value={name}

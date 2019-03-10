@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from 'constants/constants';
+
 import Button from 'components/Button';
+import Input from 'components/Input';
 
 const SetupGame = ({ user, doCreateGame, doJoinGame }) => {
   const [playerName, setPlayerName] = useState('');
@@ -15,10 +17,8 @@ const SetupGame = ({ user, doCreateGame, doJoinGame }) => {
         Firstly, please tell us your first name, or whatever you want
         to be called in the game.
       </p>
-      <input
-        type="text"
+      <Input
         placeholder="e.g. Sarah"
-        className="form__input"
         value={playerName}
         onChange={event => setPlayerName(event.target.value)}
         maxLength={MAX_NAME_LENGTH}
@@ -28,10 +28,8 @@ const SetupGame = ({ user, doCreateGame, doJoinGame }) => {
       <p>
         If you have been given a code to join someone else&#39;s game, you can enter it here:
       </p>
-      <input
-        type="text"
+      <Input
         placeholder="e.g. abcdwxyz"
-        className="form__input"
         value={gameToJoin}
         onChange={event => setGameToJoin(event.target.value)}
         maxLength={JOIN_CODE_LENGTH}

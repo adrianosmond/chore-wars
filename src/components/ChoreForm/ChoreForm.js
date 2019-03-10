@@ -9,38 +9,11 @@ import {
 } from 'constants/constants';
 
 import Button from 'components/Button';
+import Input from 'components/Input';
+import Radio from 'components/Radio';
+import FormQuestion from 'components/FormQuestion';
 
 import './ChoreForm.css';
-
-const FormQuestion = ({
-  id, currentQuestionId, noLabel, error, label, children,
-}) => {
-  if (id !== currentQuestionId) return null;
-  const TagName = noLabel ? 'div' : 'label';
-  return (
-    <div className="form__question">
-      <TagName>
-        <span className={`form__label${error ? ' form__label--error' : ''}`}>
-          {label}
-        </span>
-        {children}
-      </TagName>
-    </div>
-  );
-};
-
-FormQuestion.propTypes = {
-  id: PropTypes.string.isRequired,
-  currentQuestionId: PropTypes.string.isRequired,
-  noLabel: PropTypes.bool,
-  error: PropTypes.bool.isRequired,
-  label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-};
-
-FormQuestion.defaultProps = {
-  noLabel: false,
-};
 
 const defaultQuestions = ['title', 'frequency', 'pointsPerTime', 'canBePaused', 'lastDone'];
 
@@ -195,10 +168,8 @@ class ChoreForm extends Component {
             label="What is the name of this chore?"
             error={error}
           >
-            <input
-              className="form__input"
+            <Input
               id="title"
-              type="text"
               value={title}
               onChange={event => this.setState({
                 title: event.target.value,
@@ -215,16 +186,15 @@ class ChoreForm extends Component {
           >
             <label className="form__option">
               <div className="form__row">
-                <input
-                  type="radio"
+                <Radio
                   name="frequency-type"
                   value="with-regularity"
                   checked={choreFrequency === 'with-regularity'}
                   onChange={() => this.setState({ choreFrequency: 'with-regularity' })}
                 />
                 <span className="form__row-item">Every </span>
-                <input
-                  className="form__row-item form__input"
+                <Input
+                  className="form__row-item"
                   id="frequency"
                   type="number"
                   pattern="[0-9]*"
@@ -232,16 +202,15 @@ class ChoreForm extends Component {
                   max={MAX_CHORE_FREQUENCY}
                   maxLength={MAX_CHORE_FREQUENCY.toString().length}
                   value={frequency}
-                  onChange={(event) => { this.setState({ frequency: event.target.value }); }}
+                  onChange={event => this.setState({ frequency: event.target.value })}
                   onClick={() => this.setState({ choreFrequency: 'with-regularity' })}
                 />
                 <span className="form__row-item">days</span>
               </div>
             </label>
             <label className="form__option">
-              <div className="form__row form__row--inactive">
-                <input
-                  type="radio"
+              <div className="form__row">
+                <Radio
                   name="frequency-type"
                   value="as-and-when"
                   checked={choreFrequency === 'as-and-when'}
@@ -257,8 +226,7 @@ class ChoreForm extends Component {
             label="How many points should this chore be worth?"
             error={error}
           >
-            <input
-              className="form__input"
+            <Input
               id="pointsPerTime"
               type="number"
               pattern="[0-9]*"
@@ -266,7 +234,7 @@ class ChoreForm extends Component {
               max={MAX_CHORE_POINTS}
               maxLength={MAX_CHORE_POINTS.toString().length}
               value={pointsPerTime}
-              onChange={(event) => { this.setState({ pointsPerTime: event.target.value }); }}
+              onChange={event => this.setState({ pointsPerTime: event.target.value })}
             />
           </FormQuestion>
           <FormQuestion
@@ -278,8 +246,7 @@ class ChoreForm extends Component {
           >
             <label className="form__option">
               <div className="form__row">
-                <input
-                  type="radio"
+                <Radio
                   name="affected-by-holiday"
                   value="yes"
                   checked={canBePaused === 'yes'}
@@ -289,9 +256,8 @@ class ChoreForm extends Component {
               </div>
             </label>
             <label className="form__option">
-              <div className="form__row form__row--inactive">
-                <input
-                  type="radio"
+              <div className="form__row">
+                <Radio
                   name="affected-by-holiday"
                   value="no"
                   checked={canBePaused === 'no'}
@@ -307,8 +273,7 @@ class ChoreForm extends Component {
             label="When was this chore last done?"
             error={error}
           >
-            <input
-              className="form__input"
+            <Input
               id="doneDate"
               type="date"
               value={doneDate}
@@ -327,8 +292,7 @@ class ChoreForm extends Component {
             label="When did you do this chore?"
             error={error}
           >
-            <input
-              className="form__input"
+            <Input
               id="doneDate"
               type="datetime-local"
               value={fecha.format(timeDone, 'YYYY-MM-DDTHH:mm')}
