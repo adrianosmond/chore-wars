@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from 'components/Button';
-import Input from 'components/Input';
+import InputWithLabel from 'components/InputWithLabel';
 
 const isInvalid = (email, password, password2) => (
   password.length === 0
@@ -33,24 +33,27 @@ const SignUpForm = ({ onSubmit, error }) => {
           {error || 'Please fill out your details to create an account'}
         </p>
         <form onSubmit={submitForm} className="form form--contained">
-          <label className="form__label form__label--small" htmlFor="email">Email</label>
-          <Input
+          <InputWithLabel
+            labelVariant="small"
+            labelText="Email"
             id="email"
             placeholder="Email"
             type="email"
             onChange={event => setEmail(event.target.value)}
             value={email}
           />
-          <label className="form__label form__label--small" htmlFor="password">Password</label>
-          <Input
+          <InputWithLabel
+            labelVariant="small"
+            labelText="Password"
             id="password"
             placeholder="Password"
             type="password"
             onChange={event => setPassword(event.target.value)}
             value={password}
           />
-          <label className="form__label form__label--small" htmlFor="password2">Confirm Password</label>
-          <Input
+          <InputWithLabel
+            labelVariant="small"
+            labelText="Confirm Password"
             id="password2"
             placeholder="Password"
             type="password"

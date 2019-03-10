@@ -5,30 +5,23 @@ import './Input.css';
 
 const Input = ({
   id, type, name, value, onChange, onClick, placeholder,
-  maxLength, min, max, pattern, checked, className,
-}) => {
-  let inputClassName = `${className}`;
-  if (type !== 'radio') {
-    inputClassName += ' input';
-  }
-  return (
-    <input
-      className={inputClassName}
-      id={id}
-      name={name}
-      type={type}
-      value={value}
-      onChange={onChange}
-      onClick={onClick}
-      maxLength={maxLength}
-      checked={checked}
-      pattern={pattern}
-      placeholder={placeholder}
-      min={min}
-      max={max}
-    />
-  );
-};
+  maxLength, min, max, pattern, className,
+}) => (
+  <input
+    className={`${className} input`}
+    id={id}
+    name={name}
+    type={type}
+    value={value}
+    onChange={onChange}
+    onClick={onClick}
+    maxLength={maxLength}
+    pattern={pattern}
+    placeholder={placeholder}
+    min={min}
+    max={max}
+  />
+);
 
 Input.propTypes = {
   id: PropTypes.string,
@@ -42,7 +35,6 @@ Input.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   pattern: PropTypes.string,
-  checked: PropTypes.bool,
   className: PropTypes.string,
 };
 
@@ -55,7 +47,6 @@ Input.defaultProps = {
   min: null,
   max: null,
   pattern: null,
-  checked: null,
   placeholder: '',
   className: '',
 };
