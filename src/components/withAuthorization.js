@@ -60,7 +60,11 @@ const withAuthorization = (authCondition, componentIsLoading) => (Component) => 
         } else {
           database.ref(`users/${authUser.uid}`).once('value', (result) => {
             const game = result.val();
-            if (game && process.env.NODE_ENV === 'development') game.gameId = '-TEST';
+            if (game
+              && game.gameId === '-L4ynLHkGkpkcbDdhKb0'
+              && process.env.NODE_ENV === 'development') {
+              game.gameId = '-TEST';
+            }
             if (game && game.gameId) {
               const { gameId } = game;
               if (gameId) {
