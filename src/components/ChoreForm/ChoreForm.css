@@ -10,34 +10,12 @@
   max-width: 600px;
 }
 
-.form__label {
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  font-family: 'Patua One', sans-serif;
-  font-size: 1.5em;
-}
-
-.form__label--small {
-  margin-bottom: 0.5rem;
-  font-size: 1em;
-  font-weight: 400;
-}
-
 .form__option {
   display: flex;
   align-items: center;
   min-height: 2.5rem;
   margin-top: 0.5rem;
   cursor: pointer;
-}
-
-.form__label--error {
-  color: crimson;
-}
-
-.form__label:first-child {
-  margin-top: 0;
 }
 
 .form__row {

@@ -21,7 +21,7 @@ const InputWithLabel = ({
 
 InputWithLabel.propTypes = {
   id: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'number', 'email', 'password']),
+  type: PropTypes.oneOf(['text', 'email', 'password']),
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,

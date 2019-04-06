@@ -1,0 +1,22 @@
+.label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-family: 'Patua One', sans-serif;
+  font-size: 1.5em;
+}
+
+.label--small {
+  margin-bottom: 0.5rem;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+
+.label--error {
+  color: crimson;
+}
+
+.label:first-child {
+  margin-top: 0;
+}

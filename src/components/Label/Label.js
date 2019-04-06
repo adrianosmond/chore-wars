@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Label.css';
+
 const Label = ({ id, children, variant }) => (
   <label
-    className={`form__label${variant ? ` form__label--${variant}` : ''}`}
+    className={`label${variant ? ` label--${variant}` : ''}`}
     htmlFor={id}
   >
     {children}

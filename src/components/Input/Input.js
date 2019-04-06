@@ -26,14 +26,14 @@ const Input = ({
 Input.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'number', 'email', 'password']),
-  value: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['text', 'number', 'email', 'password', 'date', 'datetime-local']),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
   maxLength: PropTypes.number,
-  min: PropTypes.number,
-  max: PropTypes.number,
+  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   pattern: PropTypes.string,
   className: PropTypes.string,
 };
