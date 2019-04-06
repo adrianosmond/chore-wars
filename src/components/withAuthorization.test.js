@@ -151,10 +151,10 @@ describe('withAuthorization', () => {
         { type: ActionTypes.setGame, game: { gameId } },
         { type: ActionTypes.setPlayers, players },
         { type: ActionTypes.setPlayersLoaded, playersLoaded: true },
-        { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
         { type: ActionTypes.setPoints, points },
-        { type: ActionTypes.setChoresLoaded, choresLoaded: true },
+        { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
         { type: ActionTypes.setChores, chores },
+        { type: ActionTypes.setChoresLoaded, choresLoaded: true },
         { type: ActionTypes.setHoliday, holiday: false },
       ]);
       expect(component.html()).toBe(loadingComponent);

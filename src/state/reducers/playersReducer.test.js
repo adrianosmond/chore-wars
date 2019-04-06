@@ -3,9 +3,7 @@ import { DefaultAvatar } from 'constants/avatars';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { database } from 'utils/database';
-import playersReducer, {
-  setPlayers, setPlayerName, setPlayerAvatar, loadPlayers,
-} from './playersReducer';
+import playersReducer, { setPlayers, loadPlayers } from './playersReducer';
 
 const players = {
   player1: {
@@ -32,34 +30,11 @@ const data = {
 
 const mockStore = configureMockStore([thunk]);
 
-const name = 'Jeff';
-const player = Object.keys(players)[0];
-const avatar = {
-  ...DefaultAvatar,
-  topType: 'NoHair',
-};
-
-describe('Player Actions', () => {
+describe('playersReducer', () => {
   it('can dispatch setPlayers', () => {
     expect(setPlayers(players)).toEqual({
       type: ActionTypes.setPlayers,
       players,
-    });
-  });
-
-  it('can dispatch setPlayerName', () => {
-    expect(setPlayerName(player, name)).toEqual({
-      type: ActionTypes.setPlayerName,
-      player,
-      name,
-    });
-  });
-
-  it('can dispatch setPlayerAvatar', () => {
-    expect(setPlayerAvatar(player, avatar)).toEqual({
-      type: ActionTypes.setPlayerAvatar,
-      player,
-      avatar,
     });
   });
 
