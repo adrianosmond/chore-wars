@@ -1,6 +1,7 @@
 import { database } from 'utils/database';
 import { ActionTypes } from 'constants/constants';
 import { setChoresLoaded } from './sessionReducer';
+import { MAKE_UNDO_STATE } from '.';
 
 export const setChores = chores => ({
   type: ActionTypes.setChores,
@@ -21,6 +22,11 @@ export default function choresReducer(state = { }, action) {
     case ActionTypes.setChores:
       return {
         ...action.chores,
+      };
+
+    case MAKE_UNDO_STATE:
+      return {
+        ...state,
       };
 
     default:

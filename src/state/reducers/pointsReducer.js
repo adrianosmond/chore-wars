@@ -1,6 +1,7 @@
 import { ActionTypes } from 'constants/constants';
 import { database } from 'utils/database';
 import { setPointsLoaded } from './sessionReducer';
+import { MAKE_UNDO_STATE } from '.';
 
 export const setPoints = points => ({
   type: ActionTypes.setPoints,
@@ -23,6 +24,11 @@ export default function pointsReducer(state = { }, action) {
     case ActionTypes.setPoints:
       return {
         ...points,
+      };
+
+    case MAKE_UNDO_STATE:
+      return {
+        ...state,
       };
 
     default:

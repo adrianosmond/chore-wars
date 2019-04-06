@@ -14,6 +14,8 @@ class Actions extends Component {
 
   static propTypes = {
     numChores: PropTypes.number.isRequired,
+    canUndo: PropTypes.bool.isRequired,
+    undo: PropTypes.func.isRequired,
   }
 
   toggleMenu = () => {
@@ -25,7 +27,7 @@ class Actions extends Component {
 
   render() {
     const { visible } = this.state;
-    const { numChores } = this.props;
+    const { numChores, canUndo, undo } = this.props;
     return (
       <div className={`actions${visible ? ' actions--visible' : ''}`}>
         <button
@@ -45,6 +47,13 @@ class Actions extends Component {
               Create a chain
             </Button>
           ) : null }
+          <Button
+            disabled={!canUndo}
+            variant="secondary"
+            onClick={undo}
+          >
+          Undo
+          </Button>
           <Button to={routes.EDIT_PROFILE} variant="tertiary">My Profile</Button>
         </div>
       </div>

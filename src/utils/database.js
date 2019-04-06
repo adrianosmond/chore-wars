@@ -3,6 +3,8 @@ import 'firebase/auth';
 import 'firebase/database';
 
 import { MAX_POINT_DIFFERENCE } from 'constants/constants';
+import store from 'state/store';
+import { MAKE_UNDO_STATE } from 'state/reducers';
 
 const config = {
   apiKey: 'AIzaSyDbbw8FphkN-k6gsLjVTJRnPSnZUGWw_L0',
@@ -12,6 +14,8 @@ const config = {
   storageBucket: 'chore-wars-ba2a9.appspot.com',
   messagingSenderId: '344287360518',
 };
+
+const createUndoState = () => store.dispatch({ type: MAKE_UNDO_STATE });
 
 app.initializeApp(config);
 
@@ -27,20 +31,25 @@ export const addPointsToUser = (userId, points, game) => {
 
 export const claimPrize = (userId, game) => {
   database.ref(`games/${game}/points/${userId}`).once('value', (result) => {
+    createUndoState();
     const user = result.val();
-    database.ref(`games/${game}/points/${userId}/points`).set(user.points - MAX_POINT_DIFFERENCE);
-    database.ref(`games/${game}/points/${userId}/isOwed`).set(user.isOwed + 1);
+    database.ref(`games/${game}/points/${userId}`).update({
+      points: user.points - MAX_POINT_DIFFERENCE,
+      isOwed: user.isOwed + 1,
+    });
   });
 };
 
 export const paidDebt = (userId, game) => {
   database.ref(`games/${game}/points/${userId}/isOwed`).once('value', (result) => {
+    createUndoState();
     const owed = result.val();
     database.ref(`games/${game}/points/${userId}/isOwed`).set(owed - 1);
   });
 };
 
 export const addChore = (newChore, game, slug) => {
+  createUndoState();
   database.ref(`games/${game}/chores/${slug}`).set(newChore);
 };
 
@@ -65,6 +74,7 @@ export const addToTimePaused = (game, slug, existingTimePaused, timePaused) => {
 };
 
 export const updateChore = (slug, newChore, newSlug, game, allChores) => {
+  createUndoState();
   database.ref(`games/${game}/chores/${newSlug}`).set(newChore);
 
   if (slug !== newSlug) {
@@ -80,20 +90,26 @@ export const updateChore = (slug, newChore, newSlug, game, allChores) => {
 };
 
 export const makeChain = (game, chain) => {
+  createUndoState();
   chain.forEach((slug, idx) => {
     const waiting = idx !== 0;
     const enables = chain[(idx + 1) % chain.length];
 
-    database.ref(`games/${game}/chores/${slug}/isWaiting`).set(waiting);
-    database.ref(`games/${game}/chores/${slug}/enables`).set(enables);
+    database.ref(`games/${game}/chores/${slug}`).update({
+      isWaiting: waiting,
+      enables,
+    });
   });
 };
 
 export const breakChain = (game, slug, allChores) => {
+  createUndoState();
   let { enables } = allChores[slug];
   while (enables) {
-    database.ref(`games/${game}/chores/${enables}/enables`).set(null);
-    database.ref(`games/${game}/chores/${enables}/isWaiting`).set(null);
+    database.ref(`games/${game}/chores/${enables}/enables`).update({
+      enables: null,
+      isWaiting: null,
+    });
     if (enables === slug) {
       break;
     }
@@ -102,11 +118,13 @@ export const breakChain = (game, slug, allChores) => {
 };
 
 export const removeChore = (game, slug, allChores) => {
+  // We do want to be able to undo this, but breakChain calls createUndoState, so we don't need to.
   breakChain(game, slug, allChores);
   database.ref(`games/${game}/chores/${slug}`).set(null);
 };
 
 export const completeChore = (chore, user, game, time = new Date().getTime()) => {
+  createUndoState();
   resetDoneDate(game, chore.slug, time);
   if (chore.timePaused) {
     resetTimePaused(game, chore.slug);
@@ -125,4 +143,16 @@ export const savePlayerName = (player, name, game) => {
 
 export const savePlayerAvatar = (player, avatar, game) => {
   database.ref(`games/${game}/players/${player}/avatar`).set(avatar);
+};
+
+export const saveStatePostUndo = () => {
+  const currentState = store.getState();
+  const game = currentState.session.game.gameId;
+  const chores = currentState.chores.present;
+  const points = currentState.points.present;
+  // console.log(game);
+  // console.log(chores);
+  // console.log(points);
+  database.ref(`games/${game}/chores/`).set(chores);
+  database.ref(`games/${game}/points/`).set(points);
 };

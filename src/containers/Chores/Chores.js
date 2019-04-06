@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
+import { ActionCreators } from 'redux-undo';
 import PropTypes from 'prop-types';
 
 import withAuthorization from 'components/withAuthorization';
@@ -11,6 +12,8 @@ import Actions from 'components/Actions';
 
 import { getFilteredChoresArray } from 'constants/utils';
 import HolidayMessage from 'components/HolidayMessage';
+import { canUndoSelector } from 'state/reducers';
+import { saveStatePostUndo } from 'utils/database';
 
 class Chores extends Component {
   static propTypes = {
@@ -20,6 +23,8 @@ class Chores extends Component {
     players: PropTypes.objectOf(PropTypes.any).isRequired,
     points: PropTypes.objectOf(PropTypes.any).isRequired,
     chores: PropTypes.objectOf(PropTypes.any).isRequired,
+    canUndo: PropTypes.bool.isRequired,
+    undo: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -45,7 +50,7 @@ class Chores extends Component {
 
   render() {
     const {
-      holiday, user, game, players, points, chores,
+      holiday, user, game, players, points, chores, undo, canUndo,
     } = this.props;
     const { filteredChores } = this.state;
     return (
@@ -57,7 +62,11 @@ class Chores extends Component {
           ) : filteredChores && (
             <ChoresList chores={filteredChores} user={user} game={game} allChores={chores} />
           )}
-          <Actions numChores={filteredChores.length} />
+          <Actions
+            numChores={filteredChores.length}
+            canUndo={canUndo}
+            undo={undo}
+          />
         </div>
       </div>
     );
@@ -69,14 +78,22 @@ const isLoading = state => !state.pointsLoaded || !state.choresLoaded || !state.
 
 const mapStateToProps = state => ({
   players: state.players,
-  chores: state.chores,
+  chores: state.chores.present,
   user: state.session.authUser.uid,
   game: state.session.game.gameId,
   holiday: state.session.holiday,
-  points: state.points,
+  points: state.points.present,
+  canUndo: canUndoSelector(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  undo: () => {
+    dispatch(ActionCreators.undo());
+    saveStatePostUndo();
+  },
 });
 
 export default compose(
   withAuthorization(authCondition, isLoading),
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 )(Chores);

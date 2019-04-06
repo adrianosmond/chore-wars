@@ -99,7 +99,7 @@ const isLoading = state => !state.choresLoaded;
 const mapStateToProps = state => ({
   user: state.session.authUser.uid,
   game: state.session.game.gameId,
-  chores: state.chores,
+  chores: state.chores.present,
 });
 
 const mapDispatchToProps = dispatch => ({

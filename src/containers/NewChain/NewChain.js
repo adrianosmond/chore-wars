@@ -49,7 +49,7 @@ class Chain extends Component {
 
 const mapStateToProps = state => ({
   game: state.session.game.gameId,
-  chores: state.chores,
+  chores: state.chores.present,
 });
 
 const authCondition = authUser => !!authUser;

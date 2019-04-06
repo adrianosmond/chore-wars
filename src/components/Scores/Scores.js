@@ -24,22 +24,23 @@ const Scores = ({ points, gameId }) => {
   return (
     <div className="scores">
       {players.map((playerId, idx) => {
-        const player = points[playerId];
-        const playerBar = (player.points - minPoints);
-        const winning = playerBar >= MAX_POINT_DIFFERENCE;
+        const playerObj = points[playerId];
+        const playerScore = (playerObj.points - minPoints);
+        const barWidth = Math.min(50, (playerScore / MAX_POINT_DIFFERENCE) * 50);
+        const winning = playerScore >= MAX_POINT_DIFFERENCE;
         return (
           <div
             className={`scores__bar scores__bar--${idx + 1}${winning ? ' scores__bar--winning' : ''}`}
-            style={{ width: `${Math.min(50, (playerBar / MAX_POINT_DIFFERENCE) * 50)}%` }}
+            style={{ width: `${barWidth}%` }}
             key={playerId}
           >
-            { playerBar || (scoresTied && idx) ? (
+            { playerScore || (scoresTied && idx) ? (
               <div
                 className={`scores__difference scores__difference--${idx + 1}${winning ? ' scores__difference--winning' : ''}`}
                 onClick={winning ? () => claimPrize(playerId, gameId) : null}
               >
                 <Confetti active={!winning} />
-                {playerBar}
+                {playerScore}
               </div>
             ) : null }
           </div>
