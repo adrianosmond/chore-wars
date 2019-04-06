@@ -43,4 +43,6 @@ const mapStateToProps = state => ({
   player: state.players[state.session.authUser.uid],
 });
 
+export { EditAvatarProperty as Component };
+
 export default connect(mapStateToProps)(EditAvatarProperty);

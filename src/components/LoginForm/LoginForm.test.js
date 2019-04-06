@@ -4,6 +4,8 @@ import LoginForm from './LoginForm';
 
 describe('LoginForm', () => {
   it('Renders', () => {
-    expect(shallow(<LoginForm />)).toMatchSnapshot();
+    expect(shallow(
+      <LoginForm loggedIn={jest.fn()} />,
+    )).toMatchSnapshot();
   });
 });

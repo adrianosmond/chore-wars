@@ -11,7 +11,9 @@ describe('FormQuestion', () => {
         currentQuestionId="not-test"
         error={false}
         label="label"
-      />,
+      >
+        {questionChildren}
+      </FormQuestion>,
     ).html()).toBe(null);
   });
 

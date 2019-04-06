@@ -26,4 +26,6 @@ jest.mock('./utils/database', () => ({
   completeChore: jest.fn(),
   paidDebt: jest.fn(),
   addToTimePaused: jest.fn(),
+  savePlayerAvatar: jest.fn(),
+  savePlayerName: jest.fn(),
 }));

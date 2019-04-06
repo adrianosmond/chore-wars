@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { DefaultAvatar } from 'constants/avatars';
-import EditAvatarProperty from './EditAvatarProperty';
+import { Component as EditAvatarProperty } from './EditAvatarProperty';
 
 describe('EditAvatarProperty', () => {
   it('Renders', () => {
@@ -12,6 +12,6 @@ describe('EditAvatarProperty', () => {
         doSetPlayerAvatar={jest.fn()}
         match={{ params: { propertyToEdit: 'topType' } }}
       />,
-    ).dive()).toMatchSnapshot();
+    )).toMatchSnapshot();
   });
 });

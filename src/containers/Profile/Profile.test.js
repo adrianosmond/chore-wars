@@ -1,45 +1,42 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import { DefaultAvatar } from 'constants/avatars';
-import { auth } from 'utils/database';
-import * as playerActions from 'state/reducers/playersReducer';
-import Profile, { EditAvatarLinks } from './Profile';
+import { savePlayerAvatar, savePlayerName } from 'utils/database';
+import Button from 'components/Button';
+import { EditAvatarLinks, Component as Profile } from './Profile';
 
-const mockStore = configureMockStore([thunk]);
+const signOutMock = jest.fn();
+const copyDataMock = jest.fn();
+const startHolidayMock = jest.fn();
+const stopHolidayMock = jest.fn();
 
 describe('Profile', () => {
   const playerId = 'player1';
   const gameId = 'fake-game';
-
-  const store = mockStore({
-    session: {
-      game: {
-        gameId,
-      },
-      authUser: {
-        uid: playerId,
-      },
-    },
-    players: {
-      [playerId]: {
+  const component = shallow(
+    <Profile
+      gameId={gameId}
+      user={playerId}
+      player={{
         name: 'Player 1',
         avatar: DefaultAvatar,
-      },
-    },
-  });
-  const component = shallow(<Profile store={store} />).dive();
+      }}
+      doSignOut={signOutMock}
+      doStartHoliday={startHolidayMock}
+      doStopHoliday={stopHolidayMock}
+      copyData={copyDataMock}
+    />,
+  );
+
   it('Renders', () => {
     expect(component).toMatchSnapshot();
   });
 
   it('Can sign out', () => {
-    jest.spyOn(auth, 'signOut');
-    const signOutButton = component.find('#profile-sign-out');
-    expect(auth.signOut).not.toHaveBeenCalled();
+    const signOutButton = component.find(Button).at(3);
+    expect(signOutMock).not.toHaveBeenCalled();
     signOutButton.simulate('click');
-    expect(auth.signOut).toHaveBeenCalledTimes(1);
+    expect(signOutMock).toHaveBeenCalledTimes(1);
   });
 
   it('Can update the player name', () => {
@@ -51,14 +48,10 @@ describe('Profile', () => {
 
   describe('Saving', () => {
     const saveButton = component.find('#profile-save-player');
-    jest.spyOn(playerActions, 'setPlayerName');
-    jest.spyOn(playerActions, 'savePlayerName');
-    jest.spyOn(playerActions, 'savePlayerAvatar');
 
     beforeEach(() => {
-      playerActions.setPlayerName.mockClear();
-      playerActions.savePlayerName.mockClear();
-      playerActions.savePlayerAvatar.mockClear();
+      savePlayerName.mockClear();
+      savePlayerAvatar.mockClear();
     });
 
     it('Can save', () => {
@@ -66,13 +59,11 @@ describe('Profile', () => {
       component.setState({
         name: newName,
       });
-      expect(playerActions.setPlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerAvatar).not.toHaveBeenCalled();
+      expect(savePlayerName).not.toHaveBeenCalled();
+      expect(savePlayerAvatar).not.toHaveBeenCalled();
       saveButton.simulate('click');
-      expect(playerActions.setPlayerName).toHaveBeenCalledWith(playerId, newName);
-      expect(playerActions.savePlayerName).toHaveBeenCalledWith(playerId, newName, gameId);
-      expect(playerActions.savePlayerAvatar).toHaveBeenCalledTimes(1);
+      expect(savePlayerName).toHaveBeenCalledWith(playerId, newName, gameId);
+      expect(savePlayerAvatar).toHaveBeenCalledTimes(1);
     });
 
     it('Will not save an empty name', () => {
@@ -80,13 +71,11 @@ describe('Profile', () => {
         name: '',
       });
       const preventDefault = jest.fn();
-      expect(playerActions.setPlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerAvatar).not.toHaveBeenCalled();
+      expect(savePlayerName).not.toHaveBeenCalled();
+      expect(savePlayerAvatar).not.toHaveBeenCalled();
       saveButton.simulate('click', { preventDefault });
-      expect(playerActions.setPlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerAvatar).not.toHaveBeenCalled();
+      expect(savePlayerName).not.toHaveBeenCalled();
+      expect(savePlayerAvatar).not.toHaveBeenCalled();
       expect(preventDefault).toHaveBeenCalledTimes(1);
     });
 
@@ -95,13 +84,11 @@ describe('Profile', () => {
         name: 'This is a name that is far too long',
       });
       const preventDefault = jest.fn();
-      expect(playerActions.setPlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerAvatar).not.toHaveBeenCalled();
+      expect(savePlayerName).not.toHaveBeenCalled();
+      expect(savePlayerAvatar).not.toHaveBeenCalled();
       saveButton.simulate('click', { preventDefault });
-      expect(playerActions.setPlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerName).not.toHaveBeenCalled();
-      expect(playerActions.savePlayerAvatar).not.toHaveBeenCalled();
+      expect(savePlayerName).not.toHaveBeenCalled();
+      expect(savePlayerAvatar).not.toHaveBeenCalled();
       expect(preventDefault).toHaveBeenCalledTimes(1);
     });
   });

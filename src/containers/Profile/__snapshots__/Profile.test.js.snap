@@ -1,0 +1,178 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile EditAvatarLinks Renders 1`] = `
+<div>
+  <Button
+    disabled={false}
+    key="skinColor"
+    onClick={null}
+    to="/edit-profile/skinColor"
+    type="button"
+    variant="tertiary"
+  >
+    Skin Colour
+  </Button>
+  <Button
+    disabled={false}
+    key="topType"
+    onClick={null}
+    to="/edit-profile/topType"
+    type="button"
+    variant="tertiary"
+  >
+    Hair or Headware
+  </Button>
+  <Button
+    disabled={false}
+    key="hairColor"
+    onClick={null}
+    to="/edit-profile/hairColor"
+    type="button"
+    variant="tertiary"
+  >
+    Hair Colour
+  </Button>
+  <Button
+    disabled={false}
+    key="facialHairType"
+    onClick={null}
+    to="/edit-profile/facialHairType"
+    type="button"
+    variant="tertiary"
+  >
+    Facial Hair Type
+  </Button>
+  <Button
+    disabled={false}
+    key="accessoriesType"
+    onClick={null}
+    to="/edit-profile/accessoriesType"
+    type="button"
+    variant="tertiary"
+  >
+    Glasses
+  </Button>
+  <Button
+    disabled={false}
+    key="clotheType"
+    onClick={null}
+    to="/edit-profile/clotheType"
+    type="button"
+    variant="tertiary"
+  >
+    Clothing Type
+  </Button>
+</div>
+`;
+
+exports[`Profile Renders 1`] = `
+<div
+  className="profile-editor"
+>
+  <div
+    className="profile-editor__column"
+  >
+    <div
+      className="profile-editor__avatar"
+    >
+      <AvatarComponent
+        accessoriesType="Blank"
+        avatarStyle="Transparent"
+        clotheColor="Blue03"
+        clotheType="BlazerShirt"
+        eyeType="Default"
+        eyebrowType="Default"
+        facialHairColor="BrownDark"
+        facialHairType="Blank"
+        hairColor="BrownDark"
+        mouthType="Twinkle"
+        skinColor="Light"
+        topType="LongHairStraight"
+      />
+    </div>
+    <div
+      className="profile-editor__field"
+    >
+      <InputWithLabel
+        id="profile-name"
+        labelText="Name"
+        labelVariant="small"
+        maxLength={10}
+        onChange={[Function]}
+        placeholder="Name"
+        type="text"
+        value="Player 1"
+      />
+      <div
+        className="form__button-holder form__button-holder--tight"
+      >
+        <Button
+          disabled={false}
+          onClick={null}
+          to="/chores"
+          type="button"
+          variant="secondary"
+        >
+          Cancel
+        </Button>
+        <Button
+          disabled={false}
+          id="profile-save-player"
+          onClick={[Function]}
+          to="/chores"
+          type="button"
+          variant={null}
+        >
+          Save
+        </Button>
+      </div>
+      <Button
+        disabled={false}
+        onClick={[Function]}
+        to={null}
+        type="button"
+        variant="tertiary"
+      >
+        Start holiday
+      </Button>
+      <Button
+        disabled={false}
+        id="profile-sign-out"
+        onClick={[MockFunction]}
+        to={null}
+        type="button"
+        variant="tertiary"
+      >
+        Sign out
+      </Button>
+    </div>
+  </div>
+  <div
+    className="profile-editor__column"
+  >
+    <p
+      className="profile-editor__field"
+    >
+      Appearance:
+    </p>
+    <EditAvatarLinks
+      avatar={
+        Object {
+          "accessoriesType": "Blank",
+          "avatarStyle": "Transparent",
+          "clotheColor": "Blue03",
+          "clotheType": "BlazerShirt",
+          "eyeType": "Default",
+          "eyebrowType": "Default",
+          "facialHairColor": "BrownDark",
+          "facialHairType": "Blank",
+          "hairColor": "BrownDark",
+          "mouthType": "Twinkle",
+          "skinColor": "Light",
+          "topType": "LongHairStraight",
+        }
+      }
+    />
+  </div>
+</div>
+`;

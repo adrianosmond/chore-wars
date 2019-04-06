@@ -150,6 +150,6 @@ const mapDispatchToProps = dispatch => ({
   copyData: () => dispatch(copyDummyData()),
 });
 
-export { EditAvatarLinks };
+export { EditAvatarLinks, Profile as Component };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -17,6 +17,7 @@ const choreProps = {
   chore: processedChore,
   user: 'test-user',
   game: 'game',
+  allChores: {},
 };
 
 
