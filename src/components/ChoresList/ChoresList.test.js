@@ -4,9 +4,20 @@ import { processChore } from 'constants/utils';
 
 import ChoresList from './ChoresList';
 
+const choreProps = {
+  user: 'test-user',
+  game: 'game',
+  allChores: {},
+};
+
 describe('ChoresList', () => {
   it('Renders an empty list', () => {
-    const component = shallow(<ChoresList chores={[]} />);
+    const component = shallow(
+      <ChoresList
+        chores={[]}
+        {...choreProps}
+      />,
+    );
     expect(component).toMatchSnapshot();
   });
 
@@ -28,7 +39,12 @@ describe('ChoresList', () => {
       }, 'chore-2', now),
     }];
 
-    const component = shallow(<ChoresList chores={list} />);
+    const component = shallow(
+      <ChoresList
+        chores={list}
+        {...choreProps}
+      />,
+    );
     expect(component).toMatchSnapshot();
   });
 });

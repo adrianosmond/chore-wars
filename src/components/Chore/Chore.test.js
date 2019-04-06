@@ -1,8 +1,7 @@
 import React from 'react';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import { shallow } from 'enzyme';
 import { processChore, makeSlug } from 'constants/utils';
+import { completeChore } from 'utils/database';
 import Chore from './Chore';
 
 const choreTime = new Date('2018-02-18').getTime();
@@ -16,26 +15,18 @@ const slug = makeSlug(chore.title);
 const processedChore = processChore(chore, slug, choreTime);
 const choreProps = {
   chore: processedChore,
+  user: 'test-user',
+  game: 'game',
 };
 
-const mockStore = configureMockStore([thunk]);
-const store = mockStore({
-  chores: {
-    [slug]: chore,
-  },
-  session: {
-    authUser: {
-      uid: 'test-user',
-    },
-    game: {
-      gameId: 'test-game',
-    },
-  },
-});
 
 describe('Chore', () => {
   it('Renders a basic chore', () => {
-    expect(shallow(<Chore store={store} {...choreProps} />).dive()).toMatchSnapshot();
+    expect(shallow(
+      <Chore
+        {...choreProps}
+      />,
+    )).toMatchSnapshot();
   });
 
   it('Renders a chore with frequency 0', () => {
@@ -46,18 +37,22 @@ describe('Chore', () => {
         frequency: 0,
       }, slug, choreTime),
     };
-    expect(shallow(<Chore store={store} {...props} />).dive()).toMatchSnapshot();
+    expect(shallow(
+      <Chore
+        {...props}
+      />,
+    )).toMatchSnapshot();
   });
 
   it('Should handle clicks on the complete button', () => {
-    const mountedChore = shallow(<Chore store={store} {...choreProps} />).dive();
+    const mountedChore = shallow(
+      <Chore
+        {...choreProps}
+      />,
+    );
 
-    const completeFn = jest.fn();
-    mountedChore.setProps({
-      markChoreComplete: completeFn,
-    });
-
+    expect(completeChore).not.toHaveBeenCalled();
     mountedChore.find('.chore__complete-button').simulate('click');
-    expect(completeFn).toHaveBeenCalled();
+    expect(completeChore).toHaveBeenCalledTimes(1);
   });
 });

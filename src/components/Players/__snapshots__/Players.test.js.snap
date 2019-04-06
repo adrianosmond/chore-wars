@@ -32,7 +32,8 @@ exports[`Players Renders players 1`] = `
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={0}
         player={
           Object {
@@ -54,6 +55,7 @@ exports[`Players Renders players 1`] = `
             "name": "Player 1",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -90,7 +92,8 @@ exports[`Players Renders players 1`] = `
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={1}
         player={
           Object {
@@ -112,6 +115,7 @@ exports[`Players Renders players 1`] = `
             "name": "Player 2",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -155,7 +159,8 @@ exports[`Players With one player Renders and displays the join code 1`] = `
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={0}
         player={
           Object {
@@ -178,6 +183,7 @@ exports[`Players With one player Renders and displays the join code 1`] = `
             "name": "Player 1",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -236,7 +242,8 @@ exports[`Players With players being owed Renders players with p1 being owed > 1 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={0}
         player={
           Object {
@@ -258,6 +265,7 @@ exports[`Players With players being owed Renders players with p1 being owed > 1 
             "name": "Player 1",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -294,7 +302,8 @@ exports[`Players With players being owed Renders players with p1 being owed > 1 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={1}
         player={
           Object {
@@ -316,6 +325,7 @@ exports[`Players With players being owed Renders players with p1 being owed > 1 
             "name": "Player 2",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -359,7 +369,8 @@ exports[`Players With players being owed Renders players with p1 being owed 1`] 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={0}
         player={
           Object {
@@ -381,6 +392,7 @@ exports[`Players With players being owed Renders players with p1 being owed 1`] 
             "name": "Player 1",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -417,7 +429,8 @@ exports[`Players With players being owed Renders players with p1 being owed 1`] 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={1}
         player={
           Object {
@@ -439,6 +452,7 @@ exports[`Players With players being owed Renders players with p1 being owed 1`] 
             "name": "Player 2",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -482,7 +496,8 @@ exports[`Players With players being owed Renders players with p2 being owed > 1 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={0}
         player={
           Object {
@@ -504,6 +519,7 @@ exports[`Players With players being owed Renders players with p2 being owed > 1 
             "name": "Player 1",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -540,7 +556,8 @@ exports[`Players With players being owed Renders players with p2 being owed > 1 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={1}
         player={
           Object {
@@ -562,6 +579,7 @@ exports[`Players With players being owed Renders players with p2 being owed > 1 
             "name": "Player 2",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -605,7 +623,8 @@ exports[`Players With players being owed Renders players with p2 being owed 1`] 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={0}
         player={
           Object {
@@ -627,6 +646,7 @@ exports[`Players With players being owed Renders players with p2 being owed 1`] 
             "name": "Player 1",
           }
         }
+        points={Object {}}
       />
     </div>
     <div
@@ -663,7 +683,8 @@ exports[`Players With players being owed Renders players with p2 being owed 1`] 
         }
         topType="LongHairStraight"
       />
-      <Connect(OwedBadge)
+      <OwedBadge
+        gameId="test-game"
         idx={1}
         player={
           Object {
@@ -685,6 +706,7 @@ exports[`Players With players being owed Renders players with p2 being owed 1`] 
             "name": "Player 2",
           }
         }
+        points={Object {}}
       />
     </div>
     <div

@@ -151,10 +151,10 @@ describe('withAuthorization', () => {
         { type: ActionTypes.setGame, game: { gameId } },
         { type: ActionTypes.setPlayers, players },
         { type: ActionTypes.setPlayersLoaded, playersLoaded: true },
-        { type: ActionTypes.setPoints, points },
         { type: ActionTypes.setPointsLoaded, pointsLoaded: true },
-        { type: ActionTypes.setChores, chores },
+        { type: ActionTypes.setPoints, points },
         { type: ActionTypes.setChoresLoaded, choresLoaded: true },
+        { type: ActionTypes.setChores, chores },
         { type: ActionTypes.setHoliday, holiday: false },
       ]);
       expect(component.html()).toBe(loadingComponent);
@@ -165,7 +165,7 @@ describe('withAuthorization', () => {
     const state = {
       session: {
         authUser,
-        game: gameId,
+        game: { gameId },
         playersLoaded: true,
         pointsLoaded: true,
         choresLoaded: true,

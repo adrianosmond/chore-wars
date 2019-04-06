@@ -1,62 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Chore Form FormQuestion Can display an error 1`] = `
-<div
-  className="form__question"
->
-  <div>
-    <span
-      className="form__label form__label--error"
-    >
-      label
-    </span>
-    <p
-      id="test-child"
-    >
-      Child
-    </p>
-  </div>
-</div>
-`;
-
-exports[`Chore Form FormQuestion Renders with a div 1`] = `
-<div
-  className="form__question"
->
-  <label>
-    <span
-      className="form__label"
-    >
-      label
-    </span>
-    <p
-      id="test-child"
-    >
-      Child
-    </p>
-  </label>
-</div>
-`;
-
-exports[`Chore Form FormQuestion Renders with a label 1`] = `
-<div
-  className="form__question"
->
-  <div>
-    <span
-      className="form__label"
-    >
-      label
-    </span>
-    <p
-      id="test-child"
-    >
-      Child
-    </p>
-  </div>
-</div>
-`;
-
 exports[`Chore Form Renders a new chore 1`] = `
 <div
   className="chore-form"
@@ -70,11 +13,19 @@ exports[`Chore Form Renders a new chore 1`] = `
       error={false}
       id="title"
       label="What is the name of this chore?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="title"
+        max={null}
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="text"
         value=""
       />
@@ -92,11 +43,10 @@ exports[`Chore Form Renders a new chore 1`] = `
         <div
           className="form__row"
         >
-          <input
+          <Input
             checked={true}
             name="frequency-type"
             onChange={[Function]}
-            type="radio"
             value="with-regularity"
           />
           <span
@@ -104,15 +54,17 @@ exports[`Chore Form Renders a new chore 1`] = `
           >
             Every 
           </span>
-          <input
-            className="form__row-item form__input"
+          <Input
+            className="form__row-item"
             id="frequency"
             max={365}
             maxLength={3}
             min={1}
+            name={null}
             onChange={[Function]}
             onClick={[Function]}
             pattern="[0-9]*"
+            placeholder=""
             type="number"
             value={7}
           />
@@ -127,13 +79,12 @@ exports[`Chore Form Renders a new chore 1`] = `
         className="form__option"
       >
         <div
-          className="form__row form__row--inactive"
+          className="form__row"
         >
-          <input
+          <Input
             checked={false}
             name="frequency-type"
             onChange={[Function]}
-            type="radio"
             value="as-and-when"
           />
           <span
@@ -149,16 +100,19 @@ exports[`Chore Form Renders a new chore 1`] = `
       error={false}
       id="pointsPerTime"
       label="How many points should this chore be worth?"
+      noLabel={false}
     >
-      <p />
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="pointsPerTime"
         max={200}
         maxLength={3}
         min={1}
+        name={null}
         onChange={[Function]}
+        onClick={null}
         pattern="[0-9]*"
+        placeholder=""
         type="number"
         value={10}
       />
@@ -176,11 +130,10 @@ exports[`Chore Form Renders a new chore 1`] = `
         <div
           className="form__row"
         >
-          <input
+          <Input
             checked={false}
             name="affected-by-holiday"
             onChange={[Function]}
-            type="radio"
             value="yes"
           />
           <span
@@ -194,13 +147,12 @@ exports[`Chore Form Renders a new chore 1`] = `
         className="form__option"
       >
         <div
-          className="form__row form__row--inactive"
+          className="form__row"
         >
-          <input
+          <Input
             checked={true}
             name="affected-by-holiday"
             onChange={[Function]}
-            type="radio"
             value="no"
           />
           <span
@@ -216,12 +168,19 @@ exports[`Chore Form Renders a new chore 1`] = `
       error={false}
       id="lastDone"
       label="When was this chore last done?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="doneDate"
         max="2018-02-18"
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="date"
         value="2018-02-18"
       />
@@ -231,12 +190,19 @@ exports[`Chore Form Renders a new chore 1`] = `
       error={false}
       id="forgotToLog"
       label="When did you do this chore?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="doneDate"
         max="2018-02-18"
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="datetime-local"
         value="2018-02-18T01:00"
       />
@@ -244,19 +210,24 @@ exports[`Chore Form Renders a new chore 1`] = `
     <div
       className="form__button-holder"
     >
-      <Link
-        className="form__button form__button--secondary"
-        replace={false}
+      <Button
+        disabled={false}
+        onClick={null}
         to="/chores"
+        type="button"
+        variant="secondary"
       >
         Cancel
-      </Link>
-      <button
-        className="form__button"
+      </Button>
+      <Button
+        disabled={false}
         onClick={[Function]}
+        to={null}
+        type="button"
+        variant={null}
       >
         Continue
-      </button>
+      </Button>
     </div>
   </form>
 </div>
@@ -275,11 +246,19 @@ exports[`Chore Form Renders a specified question 1`] = `
       error={false}
       id="title"
       label="What is the name of this chore?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="title"
+        max={null}
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="text"
         value="Test Chore"
       />
@@ -297,11 +276,10 @@ exports[`Chore Form Renders a specified question 1`] = `
         <div
           className="form__row"
         >
-          <input
+          <Input
             checked={true}
             name="frequency-type"
             onChange={[Function]}
-            type="radio"
             value="with-regularity"
           />
           <span
@@ -309,15 +287,17 @@ exports[`Chore Form Renders a specified question 1`] = `
           >
             Every 
           </span>
-          <input
-            className="form__row-item form__input"
+          <Input
+            className="form__row-item"
             id="frequency"
             max={365}
             maxLength={3}
             min={1}
+            name={null}
             onChange={[Function]}
             onClick={[Function]}
             pattern="[0-9]*"
+            placeholder=""
             type="number"
             value={1}
           />
@@ -332,13 +312,12 @@ exports[`Chore Form Renders a specified question 1`] = `
         className="form__option"
       >
         <div
-          className="form__row form__row--inactive"
+          className="form__row"
         >
-          <input
+          <Input
             checked={false}
             name="frequency-type"
             onChange={[Function]}
-            type="radio"
             value="as-and-when"
           />
           <span
@@ -354,16 +333,19 @@ exports[`Chore Form Renders a specified question 1`] = `
       error={false}
       id="pointsPerTime"
       label="How many points should this chore be worth?"
+      noLabel={false}
     >
-      <p />
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="pointsPerTime"
         max={200}
         maxLength={3}
         min={1}
+        name={null}
         onChange={[Function]}
+        onClick={null}
         pattern="[0-9]*"
+        placeholder=""
         type="number"
         value={100}
       />
@@ -381,11 +363,10 @@ exports[`Chore Form Renders a specified question 1`] = `
         <div
           className="form__row"
         >
-          <input
+          <Input
             checked={false}
             name="affected-by-holiday"
             onChange={[Function]}
-            type="radio"
             value="yes"
           />
           <span
@@ -399,13 +380,12 @@ exports[`Chore Form Renders a specified question 1`] = `
         className="form__option"
       >
         <div
-          className="form__row form__row--inactive"
+          className="form__row"
         >
-          <input
+          <Input
             checked={true}
             name="affected-by-holiday"
             onChange={[Function]}
-            type="radio"
             value="no"
           />
           <span
@@ -421,12 +401,19 @@ exports[`Chore Form Renders a specified question 1`] = `
       error={false}
       id="lastDone"
       label="When was this chore last done?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="doneDate"
         max="2018-02-18"
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="date"
         value="2018-02-18"
       />
@@ -436,12 +423,19 @@ exports[`Chore Form Renders a specified question 1`] = `
       error={false}
       id="forgotToLog"
       label="When did you do this chore?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="doneDate"
         max="2018-02-18"
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="datetime-local"
         value="2018-02-18T01:00"
       />
@@ -449,19 +443,24 @@ exports[`Chore Form Renders a specified question 1`] = `
     <div
       className="form__button-holder"
     >
-      <Link
-        className="form__button form__button--secondary"
-        replace={false}
+      <Button
+        disabled={false}
+        onClick={null}
         to="/chores"
+        type="button"
+        variant="secondary"
       >
         Cancel
-      </Link>
-      <button
-        className="form__button"
+      </Button>
+      <Button
+        disabled={false}
+        onClick={null}
+        to={null}
         type="submit"
+        variant={null}
       >
         Save Chore
-      </button>
+      </Button>
     </div>
   </form>
 </div>
@@ -480,11 +479,19 @@ exports[`Chore Form Renders an existing chore 1`] = `
       error={false}
       id="title"
       label="What is the name of this chore?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="title"
+        max={null}
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="text"
         value="Test Chore"
       />
@@ -502,11 +509,10 @@ exports[`Chore Form Renders an existing chore 1`] = `
         <div
           className="form__row"
         >
-          <input
+          <Input
             checked={true}
             name="frequency-type"
             onChange={[Function]}
-            type="radio"
             value="with-regularity"
           />
           <span
@@ -514,15 +520,17 @@ exports[`Chore Form Renders an existing chore 1`] = `
           >
             Every 
           </span>
-          <input
-            className="form__row-item form__input"
+          <Input
+            className="form__row-item"
             id="frequency"
             max={365}
             maxLength={3}
             min={1}
+            name={null}
             onChange={[Function]}
             onClick={[Function]}
             pattern="[0-9]*"
+            placeholder=""
             type="number"
             value={1}
           />
@@ -537,13 +545,12 @@ exports[`Chore Form Renders an existing chore 1`] = `
         className="form__option"
       >
         <div
-          className="form__row form__row--inactive"
+          className="form__row"
         >
-          <input
+          <Input
             checked={false}
             name="frequency-type"
             onChange={[Function]}
-            type="radio"
             value="as-and-when"
           />
           <span
@@ -559,16 +566,19 @@ exports[`Chore Form Renders an existing chore 1`] = `
       error={false}
       id="pointsPerTime"
       label="How many points should this chore be worth?"
+      noLabel={false}
     >
-      <p />
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="pointsPerTime"
         max={200}
         maxLength={3}
         min={1}
+        name={null}
         onChange={[Function]}
+        onClick={null}
         pattern="[0-9]*"
+        placeholder=""
         type="number"
         value={100}
       />
@@ -586,11 +596,10 @@ exports[`Chore Form Renders an existing chore 1`] = `
         <div
           className="form__row"
         >
-          <input
+          <Input
             checked={false}
             name="affected-by-holiday"
             onChange={[Function]}
-            type="radio"
             value="yes"
           />
           <span
@@ -604,13 +613,12 @@ exports[`Chore Form Renders an existing chore 1`] = `
         className="form__option"
       >
         <div
-          className="form__row form__row--inactive"
+          className="form__row"
         >
-          <input
+          <Input
             checked={true}
             name="affected-by-holiday"
             onChange={[Function]}
-            type="radio"
             value="no"
           />
           <span
@@ -626,12 +634,19 @@ exports[`Chore Form Renders an existing chore 1`] = `
       error={false}
       id="lastDone"
       label="When was this chore last done?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="doneDate"
         max="2018-02-18"
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="date"
         value="2018-02-18"
       />
@@ -641,12 +656,19 @@ exports[`Chore Form Renders an existing chore 1`] = `
       error={false}
       id="forgotToLog"
       label="When did you do this chore?"
+      noLabel={false}
     >
-      <input
-        className="form__input"
+      <Input
+        className=""
         id="doneDate"
         max="2018-02-18"
+        maxLength={null}
+        min={null}
+        name={null}
         onChange={[Function]}
+        onClick={null}
+        pattern={null}
+        placeholder=""
         type="datetime-local"
         value="2018-02-18T01:00"
       />
@@ -654,19 +676,24 @@ exports[`Chore Form Renders an existing chore 1`] = `
     <div
       className="form__button-holder"
     >
-      <Link
-        className="form__button form__button--secondary"
-        replace={false}
+      <Button
+        disabled={false}
+        onClick={null}
         to="/chores"
+        type="button"
+        variant="secondary"
       >
         Cancel
-      </Link>
-      <button
-        className="form__button"
+      </Button>
+      <Button
+        disabled={false}
         onClick={[Function]}
+        to={null}
+        type="button"
+        variant={null}
       >
         Continue
-      </button>
+      </Button>
     </div>
   </form>
 </div>

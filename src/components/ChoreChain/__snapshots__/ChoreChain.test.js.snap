@@ -16,7 +16,7 @@ exports[`Chore Chain Class Renders Selection 1`] = `
     chores={
       Array [
         Object {
-          "currentPoints": Infinity,
+          "currentPoints": 1000,
           "due": 604800000,
           "frequency": 7,
           "lastDone": 0,
@@ -26,7 +26,7 @@ exports[`Chore Chain Class Renders Selection 1`] = `
           "title": "First",
         },
         Object {
-          "currentPoints": Infinity,
+          "currentPoints": 1000,
           "due": 86400100,
           "frequency": 1,
           "lastDone": 100,
@@ -76,7 +76,7 @@ exports[`Chore Chain Class Renders Sorting 1`] = `
     chain={
       Array [
         Object {
-          "currentPoints": Infinity,
+          "currentPoints": 1000,
           "due": 604800000,
           "frequency": 7,
           "lastDone": 0,
@@ -86,7 +86,7 @@ exports[`Chore Chain Class Renders Sorting 1`] = `
           "title": "First",
         },
         Object {
-          "currentPoints": Infinity,
+          "currentPoints": 1000,
           "due": 86400100,
           "frequency": 1,
           "lastDone": 100,
@@ -100,6 +100,7 @@ exports[`Chore Chain Class Renders Sorting 1`] = `
     moveChoreDown={[Function]}
     moveChoreUp={[Function]}
     prevStage={[Function]}
+    saveChain={[MockFunction]}
   />
 </div>
 `;
@@ -234,20 +235,24 @@ exports[`Chore Chain Selection Renders 1`] = `
   <div
     className="form__button-holder"
   >
-    <Link
-      className="form__button form__button--secondary"
-      replace={false}
+    <Button
+      disabled={false}
+      onClick={null}
       to="/chores"
+      type="button"
+      variant="secondary"
     >
       Cancel
-    </Link>
-    <button
-      className="form__button"
+    </Button>
+    <Button
       disabled={false}
       onClick={[MockFunction]}
+      to={null}
+      type="button"
+      variant={null}
     >
       Next
-    </button>
+    </Button>
   </div>
 </div>
 `;
@@ -292,6 +297,7 @@ exports[`Chore Chain Sorting Renders 1`] = `
             className="chore-chain__sort-button"
             disabled={true}
             onClick={[Function]}
+            type="button"
           >
             ↑
           </button>
@@ -299,6 +305,7 @@ exports[`Chore Chain Sorting Renders 1`] = `
             className="chore-chain__sort-button"
             disabled={false}
             onClick={[Function]}
+            type="button"
           >
             ↓
           </button>
@@ -320,6 +327,7 @@ exports[`Chore Chain Sorting Renders 1`] = `
             className="chore-chain__sort-button"
             disabled={false}
             onClick={[Function]}
+            type="button"
           >
             ↑
           </button>
@@ -327,6 +335,7 @@ exports[`Chore Chain Sorting Renders 1`] = `
             className="chore-chain__sort-button"
             disabled={false}
             onClick={[Function]}
+            type="button"
           >
             ↓
           </button>
@@ -348,6 +357,7 @@ exports[`Chore Chain Sorting Renders 1`] = `
             className="chore-chain__sort-button"
             disabled={false}
             onClick={[Function]}
+            type="button"
           >
             ↑
           </button>
@@ -355,6 +365,7 @@ exports[`Chore Chain Sorting Renders 1`] = `
             className="chore-chain__sort-button"
             disabled={true}
             onClick={[Function]}
+            type="button"
           >
             ↓
           </button>
@@ -365,19 +376,24 @@ exports[`Chore Chain Sorting Renders 1`] = `
   <div
     className="form__button-holder"
   >
-    <button
-      className="form__button form__button--secondary"
+    <Button
+      disabled={false}
       onClick={[MockFunction]}
+      to={null}
+      type="button"
+      variant="secondary"
     >
       Back
-    </button>
-    <button
-      className="form__button"
+    </Button>
+    <Button
       disabled={false}
       onClick={[Function]}
+      to={null}
+      type="button"
+      variant={null}
     >
       Save
-    </button>
+    </Button>
   </div>
 </div>
 `;

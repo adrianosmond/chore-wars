@@ -22,7 +22,8 @@ exports[`ChoresList Renders a list 1`] = `
       className="chores-list__item"
       key="Chore 1"
     >
-      <Connect(Chore)
+      <Chore
+        allChores={Object {}}
         chore={
           Object {
             "currentPoints": 200,
@@ -35,13 +36,16 @@ exports[`ChoresList Renders a list 1`] = `
             "title": "Chore 1",
           }
         }
+        game="game"
+        user="test-user"
       />
     </li>
     <li
       className="chores-list__item"
       key="Chore 2"
     >
-      <Connect(Chore)
+      <Chore
+        allChores={Object {}}
         chore={
           Object {
             "currentPoints": 10,
@@ -54,6 +58,8 @@ exports[`ChoresList Renders a list 1`] = `
             "title": "Chore 2",
           }
         }
+        game="game"
+        user="test-user"
       />
     </li>
   </FlipMovePropConverter>

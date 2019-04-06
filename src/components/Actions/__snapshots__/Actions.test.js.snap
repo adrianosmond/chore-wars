@@ -7,42 +7,50 @@ exports[`Actions Renders 1`] = `
   <button
     className="actions__toggle-button"
     onClick={[Function]}
+    type="button"
   >
     Toggle menu
   </button>
   <div
     className="actions__actions"
   >
-    <Link
-      className="form__button"
-      replace={false}
+    <Button
+      disabled={false}
+      onClick={null}
       to="/chores/new"
+      type="button"
+      variant={null}
     >
       Add a chore
-    </Link>
-    <Link
-      className="form__button"
+    </Button>
+    <Button
+      disabled={false}
       id="actions-create-chain"
-      replace={false}
+      onClick={null}
       to="/chain/new"
+      type="button"
+      variant={null}
     >
       Create a chain
-    </Link>
-    <button
-      className="form__button form__button--secondary"
+    </Button>
+    <Button
       disabled={false}
-      id="actions-undo"
-      onClick={[Function]}
+      onClick={[MockFunction]}
+      to={null}
+      type="button"
+      variant="secondary"
     >
       Undo
-    </button>
-    <Link
-      className="form__button form__button--tertiary"
-      replace={false}
+    </Button>
+    <Button
+      disabled={false}
+      onClick={null}
       to="/edit-profile"
+      type="button"
+      variant="tertiary"
     >
       My Profile
-    </Link>
+    </Button>
   </div>
 </div>
 `;

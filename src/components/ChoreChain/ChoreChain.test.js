@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { filterAndSortChores } from 'constants/utils';
 
+import Button from 'components/Button';
 import ChoreChain, { ChainSelect, ChainOrder } from './ChoreChain';
 
 const chores = filterAndSortChores({
@@ -33,7 +34,12 @@ const chores = filterAndSortChores({
 
 describe('Chore Chain', () => {
   describe('Class', () => {
-    const component = shallow(<ChoreChain chores={chores} />);
+    const component = shallow(
+      <ChoreChain
+        chores={chores}
+        saveChain={jest.fn()}
+      />,
+    );
     it('Renders Selection', () => {
       expect(component).toMatchSnapshot();
     });
@@ -77,6 +83,7 @@ describe('Chore Chain', () => {
       chooseChore={chooseChore}
       canSave
       nextStage={nextStage}
+      saveChain={jest.fn()}
     />);
 
     it('Renders', () => {
@@ -91,7 +98,7 @@ describe('Chore Chain', () => {
 
     it('Can go to the next stage', () => {
       expect(nextStage).not.toHaveBeenCalled();
-      component.find('.form__button').at(1).simulate('click');
+      component.find(Button).at(1).simulate('click');
       expect(nextStage).toHaveBeenCalledTimes(1);
     });
   });
@@ -131,13 +138,13 @@ describe('Chore Chain', () => {
 
     it('Can go to the previous stage', () => {
       expect(prevStage).not.toHaveBeenCalled();
-      component.find('.form__button').first().simulate('click');
+      component.find(Button).first().simulate('click');
       expect(prevStage).toHaveBeenCalledTimes(1);
     });
 
     it('Can save the chain', () => {
       expect(saveChain).not.toHaveBeenCalled();
-      component.find('.form__button').at(1).simulate('click');
+      component.find(Button).at(1).simulate('click');
       expect(saveChain).toHaveBeenCalledTimes(1);
     });
   });

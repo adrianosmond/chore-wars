@@ -19,46 +19,38 @@ exports[`LoginForm Renders 1`] = `
       className="form form--contained"
       onSubmit={[Function]}
     >
-      <label
-        className="form__label form__label--small"
-        htmlFor="email"
-      >
-        Email
-      </label>
-      <input
-        className="form__input"
+      <InputWithLabel
         id="email"
+        labelText="Email"
+        labelVariant="small"
         onChange={[Function]}
         placeholder="Email"
         type="email"
         value=""
       />
-      <label
-        className="form__label form__label--small"
-        htmlFor="password"
-      >
-        Password
-      </label>
-      <input
-        className="form__input"
+      <InputWithLabel
         id="password"
+        labelText="Password"
+        labelVariant="small"
         onChange={[Function]}
         placeholder="Password"
         type="password"
         value=""
       />
-      <button
-        className="form__button"
+      <Button
+        disabled={false}
+        onClick={null}
+        to={null}
         type="submit"
+        variant={null}
       >
         Login
-      </button>
+      </Button>
     </form>
     <p
       className="login__link"
     >
       <Link
-        replace={false}
         to="/sign-up"
       >
         Create an account

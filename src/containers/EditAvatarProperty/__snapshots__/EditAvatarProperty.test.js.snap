@@ -2,13 +2,15 @@
 
 exports[`EditAvatarProperty Renders 1`] = `
 <div>
-  <Link
-    className="form__button form__button--secondary"
-    replace={false}
+  <Button
+    disabled={false}
+    onClick={null}
     to="/edit-profile"
+    type="button"
+    variant="secondary"
   >
     Back
-  </Link>
+  </Button>
   <AvatarGrid
     avatar={
       Object {
@@ -29,12 +31,14 @@ exports[`EditAvatarProperty Renders 1`] = `
     editing="topType"
     onSelect={[Function]}
   />
-  <Link
-    className="form__button form__button--secondary"
-    replace={false}
+  <Button
+    disabled={false}
+    onClick={null}
     to="/edit-profile"
+    type="button"
+    variant="secondary"
   >
     Back
-  </Link>
+  </Button>
 </div>
 `;

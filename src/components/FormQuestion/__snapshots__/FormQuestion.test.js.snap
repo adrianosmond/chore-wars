@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormQuestion Can display an error 1`] = `
+<div
+  className="form__question"
+>
+  <div>
+    <span
+      className="form__label form__label--error"
+    >
+      label
+    </span>
+    <p
+      id="test-child"
+    >
+      Child
+    </p>
+  </div>
+</div>
+`;
+
+exports[`FormQuestion Renders with a div 1`] = `
+<div
+  className="form__question"
+>
+  <label>
+    <span
+      className="form__label"
+    >
+      label
+    </span>
+    <p
+      id="test-child"
+    >
+      Child
+    </p>
+  </label>
+</div>
+`;
+
+exports[`FormQuestion Renders with a label 1`] = `
+<div
+  className="form__question"
+>
+  <div>
+    <span
+      className="form__label"
+    >
+      label
+    </span>
+    <p
+      id="test-child"
+    >
+      Child
+    </p>
+  </div>
+</div>
+`;

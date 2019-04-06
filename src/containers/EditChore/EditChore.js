@@ -77,7 +77,7 @@ class EditChore extends Component {
     return (
       <ChoreForm
         onSubmit={this.onSubmit}
-        currentTime={currentTime}
+        timeNow={currentTime}
         chore={chore}
       />
     );

@@ -17,7 +17,13 @@ describe('Players', () => {
       },
     };
     const players = makePlayersArray(playerPoints);
-    const playersComponent = shallow(<Players players={players} />);
+    const playersComponent = shallow(
+      <Players
+        players={players}
+        points={{}}
+        gameId="test-game"
+      />,
+    );
     expect(playersComponent).toMatchSnapshot();
   });
 
@@ -34,7 +40,13 @@ describe('Players', () => {
         },
       };
       const players = makePlayersArray(playerPoints);
-      const playersComponent = shallow(<Players players={players} />);
+      const playersComponent = shallow(
+        <Players
+          players={players}
+          points={{}}
+          gameId="test-game"
+        />,
+      );
       expect(playersComponent).toMatchSnapshot();
     });
 
@@ -50,7 +62,13 @@ describe('Players', () => {
         },
       };
       const players = makePlayersArray(playerPoints);
-      const playersComponent = shallow(<Players players={players} />);
+      const playersComponent = shallow(
+        <Players
+          players={players}
+          points={{}}
+          gameId="test-game"
+        />,
+      );
       expect(playersComponent).toMatchSnapshot();
     });
 
@@ -66,7 +84,13 @@ describe('Players', () => {
         },
       };
       const players = makePlayersArray(playerPoints);
-      const playersComponent = shallow(<Players players={players} />);
+      const playersComponent = shallow(
+        <Players
+          players={players}
+          points={{}}
+          gameId="test-game"
+        />,
+      );
       expect(playersComponent).toMatchSnapshot();
     });
 
@@ -82,7 +106,13 @@ describe('Players', () => {
         },
       };
       const players = makePlayersArray(playerPoints);
-      const playersComponent = shallow(<Players players={players} />);
+      const playersComponent = shallow(
+        <Players
+          players={players}
+          points={{}}
+          gameId="test-game"
+        />,
+      );
       expect(playersComponent).toMatchSnapshot();
     });
   });
@@ -98,7 +128,13 @@ describe('Players', () => {
         },
       };
       const players = makePlayersArray(playerPoints);
-      const playersComponent = shallow(<Players players={players} />);
+      const playersComponent = shallow(
+        <Players
+          players={players}
+          points={{}}
+          gameId="test-game"
+        />,
+      );
       expect(playersComponent).toMatchSnapshot();
       expect(playersComponent.find('#join-code').text()).toBe(joinCode);
     });

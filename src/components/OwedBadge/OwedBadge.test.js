@@ -1,16 +1,8 @@
 import React from 'react';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import { shallow } from 'enzyme';
 import { DefaultAvatar } from 'constants/avatars';
+import { paidDebt } from 'utils/database';
 import OwedBadge from './OwedBadge';
-
-const mockStore = configureMockStore([thunk]);
-const session = {
-  game: {
-    gameId: 'test-game',
-  },
-};
 
 describe('OwedBadge', () => {
   describe('With player not being owed', () => {
@@ -20,17 +12,18 @@ describe('OwedBadge', () => {
         avatar: DefaultAvatar,
         name: 'Player 1',
       };
-      const store = mockStore({
-        points: {
-          present: {
+      const badgeComponent = shallow(
+        <OwedBadge
+          points={{
             player1: {
               isOwed: 0,
             },
-          },
-        },
-        session,
-      });
-      const badgeComponent = shallow(<OwedBadge store={store} player={player} idx={0} />).dive();
+          }}
+          player={player}
+          gameId="test-game"
+          idx={0}
+        />,
+      );
       expect(badgeComponent).toMatchSnapshot();
     });
 
@@ -40,17 +33,18 @@ describe('OwedBadge', () => {
         avatar: DefaultAvatar,
         name: 'Player 2',
       };
-      const store = mockStore({
-        points: {
-          present: {
+      const badgeComponent = shallow(
+        <OwedBadge
+          player={player}
+          points={{
             player2: {
               isOwed: 0,
             },
-          },
-        },
-        session,
-      });
-      const badgeComponent = shallow(<OwedBadge store={store} player={player} idx={1} />).dive();
+          }}
+          gameId="test-game"
+          idx={1}
+        />,
+      );
       expect(badgeComponent).toMatchSnapshot();
     });
   });
@@ -62,17 +56,18 @@ describe('OwedBadge', () => {
         avatar: DefaultAvatar,
         name: 'Player 1',
       };
-      const store = mockStore({
-        points: {
-          present: {
+      const badgeComponent = shallow(
+        <OwedBadge
+          player={player}
+          points={{
             player1: {
               isOwed: 1,
             },
-          },
-        },
-        session,
-      });
-      const badgeComponent = shallow(<OwedBadge store={store} player={player} idx={0} />).dive();
+          }}
+          gameId="test-game"
+          idx={0}
+        />,
+      );
       expect(badgeComponent).toMatchSnapshot();
     });
 
@@ -82,17 +77,18 @@ describe('OwedBadge', () => {
         avatar: DefaultAvatar,
         name: 'Player 2',
       };
-      const store = mockStore({
-        points: {
-          present: {
+      const badgeComponent = shallow(
+        <OwedBadge
+          player={player}
+          points={{
             player2: {
               isOwed: 1,
             },
-          },
-        },
-        session,
-      });
-      const badgeComponent = shallow(<OwedBadge store={store} player={player} idx={1} />).dive();
+          }}
+          gameId="test-game"
+          idx={1}
+        />,
+      );
       expect(badgeComponent).toMatchSnapshot();
     });
 
@@ -102,17 +98,18 @@ describe('OwedBadge', () => {
         avatar: DefaultAvatar,
         name: 'Player 1',
       };
-      const store = mockStore({
-        points: {
-          present: {
+      const badgeComponent = shallow(
+        <OwedBadge
+          player={player}
+          points={{
             player1: {
               isOwed: 2,
             },
-          },
-        },
-        session,
-      });
-      const badgeComponent = shallow(<OwedBadge store={store} player={player} idx={0} />).dive();
+          }}
+          gameId="test-game"
+          idx={0}
+        />,
+      );
       expect(badgeComponent).toMatchSnapshot();
     });
 
@@ -122,17 +119,18 @@ describe('OwedBadge', () => {
         avatar: DefaultAvatar,
         name: 'Player 2',
       };
-      const store = mockStore({
-        points: {
-          present: {
+      const badgeComponent = shallow(
+        <OwedBadge
+          player={player}
+          points={{
             player2: {
               isOwed: 2,
             },
-          },
-        },
-        session,
-      });
-      const badgeComponent = shallow(<OwedBadge store={store} player={player} idx={1} />).dive();
+          }}
+          gameId="test-game"
+          idx={1}
+        />,
+      );
       expect(badgeComponent).toMatchSnapshot();
     });
 
@@ -142,24 +140,21 @@ describe('OwedBadge', () => {
         avatar: DefaultAvatar,
         name: 'Player 1',
       };
-      const store = mockStore({
-        points: {
-          present: {
+      const badgeComponent = shallow(
+        <OwedBadge
+          player={player}
+          points={{
             player1: {
               isOwed: 1,
             },
-          },
-        },
-        session,
-      });
-      const badgeComponent = shallow(<OwedBadge store={store} player={player} idx={0} />).dive();
-      const paidDebtFn = jest.fn();
-      badgeComponent.setProps({
-        debtPaid: paidDebtFn,
-      });
+          }}
+          gameId="test-game"
+          idx={0}
+        />,
+      );
       // Click the option in the popup menu
       badgeComponent.prop('options')[0].onClick();
-      expect(paidDebtFn).toHaveBeenCalledTimes(1);
+      expect(paidDebt).toHaveBeenCalledTimes(1);
     });
   });
 });

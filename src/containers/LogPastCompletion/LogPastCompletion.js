@@ -85,7 +85,7 @@ class LogPastCompletion extends Component {
     return (
       <ChoreForm
         onSubmit={this.onSubmit}
-        currentTime={currentTime}
+        timeNow={currentTime}
         questions={['forgotToLog']}
         chore={chore}
       />

@@ -21,7 +21,7 @@ class ChoreForm extends Component {
   static propTypes = {
     chore: PropTypes.objectOf(PropTypes.any).isRequired,
     questions: PropTypes.arrayOf(PropTypes.string),
-    currentTime: PropTypes.number.isRequired,
+    timeNow: PropTypes.number.isRequired,
     onSubmit: PropTypes.func.isRequired,
   }
 
@@ -32,7 +32,7 @@ class ChoreForm extends Component {
   constructor(props) {
     super(props);
 
-    const { chore, questions, currentTime } = props;
+    const { chore, questions, timeNow } = props;
     this.state = {
       ...chore,
       slug: makeSlug(chore.title),
@@ -42,7 +42,7 @@ class ChoreForm extends Component {
       canBePaused: chore.timePaused === undefined ? 'no' : 'yes',
       currentQuestionId: questions[0],
       questions,
-      currentTime,
+      currentTime: timeNow,
       error: false,
     };
   }
@@ -159,6 +159,7 @@ class ChoreForm extends Component {
       currentQuestionId, error, choreFrequency, title, frequency, pointsPerTime,
       canBePaused, doneDate, currentTime: timeDone,
     } = this.state;
+    const { timeNow } = this.props;
     return (
       <div className="chore-form">
         <form onSubmit={this.onSubmit.bind(this)} className="form">
@@ -277,7 +278,7 @@ class ChoreForm extends Component {
               id="doneDate"
               type="date"
               value={doneDate}
-              max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
+              max={fecha.format(timeNow, 'YYYY-MM-DD')}
               onChange={(event) => {
                 this.setState({
                   doneDate: event.target.value,
@@ -296,7 +297,7 @@ class ChoreForm extends Component {
               id="doneDate"
               type="datetime-local"
               value={fecha.format(timeDone, 'YYYY-MM-DDTHH:mm')}
-              max={fecha.format(this.props.currentTime, 'YYYY-MM-DD')}
+              max={fecha.format(timeNow, 'YYYY-MM-DD')}
               onChange={(event) => {
                 const newTime = new Date(event.target.value).getTime();
                 if (newTime) {
@@ -329,7 +330,5 @@ class ChoreForm extends Component {
     );
   }
 }
-
-export { FormQuestion };
 
 export default ChoreForm;

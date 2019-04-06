@@ -13,6 +13,7 @@ exports[`GameHeader Renders 1`] = `
     className="game-header__players"
   >
     <Players
+      gameId="game"
       players={
         Array [
           Object {
@@ -53,12 +54,16 @@ exports[`GameHeader Renders 1`] = `
           },
         ]
       }
+      points={Object {}}
     />
   </div>
   <div
     className="game-header__scores"
   >
-    <Connect(Scores) />
+    <Scores
+      gameId="game"
+      points={Object {}}
+    />
   </div>
 </div>
 `;

@@ -20,7 +20,9 @@ const mockSDK = new firebaseMock.MockFirebaseSdk(
   null,
 );
 
-jest.mock('./lib/firebase', () => ({
+jest.mock('./utils/database', () => ({
   auth: mockSDK.auth(),
   database: mockSDK.database(),
+  completeChore: jest.fn(),
+  paidDebt: jest.fn(),
 }));

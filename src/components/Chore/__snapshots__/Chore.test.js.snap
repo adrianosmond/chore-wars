@@ -45,6 +45,7 @@ exports[`Chore Renders a basic chore 1`] = `
   <button
     className="chore__complete-button"
     onClick={[Function]}
+    type="button"
   >
     <img
       alt="Mark as complete"
@@ -72,6 +73,7 @@ exports[`Chore Renders a basic chore 1`] = `
         },
       ]
     }
+    side="right"
   >
     <div
       className="chore__extra-icon"
@@ -123,6 +125,7 @@ exports[`Chore Renders a chore with frequency 0 1`] = `
   <button
     className="chore__complete-button"
     onClick={[Function]}
+    type="button"
   >
     <img
       alt="Mark as complete"
@@ -150,6 +153,7 @@ exports[`Chore Renders a chore with frequency 0 1`] = `
         },
       ]
     }
+    side="right"
   >
     <div
       className="chore__extra-icon"
