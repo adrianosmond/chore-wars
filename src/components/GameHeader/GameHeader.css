@@ -7,6 +7,7 @@
   margin-top: -1rem;
   margin-left: -1rem;
   margin-right: -1rem;
+  overflow: hidden;
 }
 
 /* After 27em (432px) the width of the avatars won't grow any more
