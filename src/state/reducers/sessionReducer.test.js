@@ -1,7 +1,7 @@
 import { ActionTypes, DEFAULT_POINTS_DATA } from 'constants/constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { database, auth } from 'utils/database';
+import { database, auth, addToTimePaused } from 'utils/database';
 import * as utils from 'constants/utils';
 import sessionReducer, {
   INITIAL_STATE, setAuthUser, setGame, setPlayersLoaded, setPointsLoaded, setChoresLoaded,
@@ -12,8 +12,9 @@ import sessionReducer, {
 const authUser = {
   uid: 'fake-user',
 };
+const gameId = 'fake-game';
 const game = {
-  gameId: 'fake-game',
+  gameId,
 };
 const gameState = {
   ...INITIAL_STATE,
@@ -25,11 +26,11 @@ const gameState = {
 };
 
 // const authUser = 'fake-auth-user';
-// const game = 'fake-game';
+
 const joinCode = 'joinCode';
 const mockStore = configureMockStore([thunk]);
 
-describe('Session Actions', () => {
+describe('sessionReducer', () => {
   it('can dispatch setAuthUser', () => {
     expect(setAuthUser(authUser)).toEqual({
       type: ActionTypes.setAuthUser,
@@ -144,11 +145,9 @@ describe('Session Actions', () => {
       expect(gameChores['chore-2']).not.toHaveProperty('timePaused');
 
       expect(store.getActions()).toEqual([
-        {
-          type: ActionTypes.addToChorePausedTime, game, slug: 'chore-1', timePaused: 10000,
-        },
         { type: ActionTypes.setHoliday, holiday: false },
       ]);
+      expect(addToTimePaused).toHaveBeenCalledWith(game, 'chore-1', 0, 10000);
     });
   });
 
@@ -237,12 +236,12 @@ describe('Session Actions', () => {
     const userId = 'player2';
     const playerName = 'Player 2';
     const player1 = {
-      gameId: game,
+      gameId,
     };
 
     database.ref().set({
       games: {
-        [game]: {
+        [gameId]: {
           gameIncomplete: true,
           players: {
             player1: utils.generatePlayerData('Player 1', joinCode),
@@ -253,7 +252,7 @@ describe('Session Actions', () => {
         },
       },
       joinCodes: {
-        [joinCode]: game,
+        [joinCode]: gameId,
       },
       users: {
         player1,
@@ -262,7 +261,7 @@ describe('Session Actions', () => {
 
     return store.dispatch(joinGame(userId, joinCode, playerName)).then(() => {
       expect(store.getActions()).toEqual([
-        { type: ActionTypes.setGame, game: { gameId: game } },
+        { type: ActionTypes.setGame, game: { gameId } },
       ]);
 
       const data = database.ref().getData();

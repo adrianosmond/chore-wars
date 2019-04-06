@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Avatar from 'avataaars';
 import PropTypes from 'prop-types';
 
-import { setPlayerName } from 'state/reducers/playersReducer';
 import {
   startHoliday, stopHoliday, signOut, copyDummyData,
 } from 'state/reducers/sessionReducer';
@@ -40,7 +39,6 @@ class Profile extends Component {
     player: PropTypes.objectOf(PropTypes.any).isRequired,
     user: PropTypes.string.isRequired,
     gameId: PropTypes.string.isRequired,
-    setName: PropTypes.func.isRequired,
     holidayStartTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
     copyData: PropTypes.func.isRequired,
     doSignOut: PropTypes.func.isRequired,
@@ -62,11 +60,10 @@ class Profile extends Component {
   }
 
   savePlayer = (event) => {
-    const { user, gameId, setName } = this.props;
+    const { user, gameId } = this.props;
     const { avatar, name } = this.state;
     const trimmedName = name.trim();
     if (trimmedName.length > 0 && trimmedName.length <= MAX_NAME_LENGTH) {
-      setName(user, name.trim());
       savePlayerName(user, name.trim(), gameId);
       savePlayerAvatar(user, avatar, gameId);
     } else {
@@ -147,7 +144,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setName: (player, name) => dispatch(setPlayerName(player, name)),
   doStartHoliday: (game, startTime) => dispatch(startHoliday(game, startTime)),
   doStopHoliday: (game, startTime, endTime) => dispatch(stopHoliday(game, startTime, endTime)),
   doSignOut: () => dispatch(signOut()),

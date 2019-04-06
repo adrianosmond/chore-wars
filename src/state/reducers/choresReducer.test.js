@@ -43,7 +43,7 @@ const chore = {
   title: 'Test Chore',
 };
 
-describe('Chore Actions', () => {
+describe('choresReducer', () => {
   beforeEach(() => {
     jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => cb());
   });
@@ -51,7 +51,6 @@ describe('Chore Actions', () => {
   afterEach(() => {
     window.requestAnimationFrame.mockRestore();
   });
-
 
   it('can dispatch setChores', () => {
     expect(setChores({ chore1: chore, chore2: chore })).toEqual({

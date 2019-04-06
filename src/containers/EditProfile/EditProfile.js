@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Profile from 'components/Profile';
-import EditAvatarProperty from 'components/EditAvatarProperty';
+import Profile from 'containers/Profile';
+import EditAvatarProperty from 'containers/EditAvatarProperty';
 import withAuthorization from 'components/withAuthorization';
 
 import * as routes from 'constants/routes';

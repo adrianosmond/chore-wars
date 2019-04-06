@@ -150,9 +150,6 @@ export const saveStatePostUndo = () => {
   const game = currentState.session.game.gameId;
   const chores = currentState.chores.present;
   const points = currentState.points.present;
-  // console.log(game);
-  // console.log(chores);
-  // console.log(points);
   database.ref(`games/${game}/chores/`).set(chores);
   database.ref(`games/${game}/points/`).set(points);
 };

@@ -2,7 +2,7 @@ import { ActionTypes } from 'constants/constants';
 import { DefaultAvatar } from 'constants/avatars';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { database, savePlayerName, savePlayerAvatar } from 'utils/database';
+import { database } from 'utils/database';
 import playersReducer, {
   setPlayers, setPlayerName, setPlayerAvatar, loadPlayers,
 } from './playersReducer';
@@ -33,7 +33,6 @@ const data = {
 const mockStore = configureMockStore([thunk]);
 
 const name = 'Jeff';
-const game = 'test-game';
 const player = Object.keys(players)[0];
 const avatar = {
   ...DefaultAvatar,
@@ -64,26 +63,6 @@ describe('Player Actions', () => {
     });
   });
 
-  it('can dispatch savePlayerName', () => {
-    database.ref().set(data);
-    const store = mockStore();
-    return store.dispatch(savePlayerName(player, name, game)).then(() => {
-      expect(store.getActions()).toEqual([]);
-      const newData = database.ref(`games/${game}/players/${player}/name`).getData();
-      expect(newData).toEqual(name);
-    });
-  });
-
-  it('can dispatch savePlayerAvatar', () => {
-    database.ref().set(data);
-    const store = mockStore();
-    return store.dispatch(savePlayerAvatar(player, avatar, game)).then(() => {
-      expect(store.getActions()).toEqual([]);
-      const newData = database.ref(`games/${game}/players/${player}/avatar`).getData();
-      expect(newData).toEqual(avatar);
-    });
-  });
-
   it('can dispatch loadPlayers', () => {
     database.ref().set(data);
     const store = mockStore();
@@ -96,18 +75,7 @@ describe('Player Actions', () => {
   });
 });
 
-describe('Players Reducer', () => {
-  const player2 = {
-    name: 'Player 1',
-    avatar: DefaultAvatar,
-  };
-
-  const newName = 'Jeff';
-  const newAvatar = {
-    ...DefaultAvatar,
-    topType: 'NoHair',
-  };
-
+describe('playersReducer', () => {
   it('Should return initial state', () => {
     expect(playersReducer(undefined, {})).toEqual({});
   });
@@ -123,33 +91,5 @@ describe('Players Reducer', () => {
       type: ActionTypes.setPlayers,
       players,
     })).toEqual(players);
-  });
-
-  it('Should be able to set a player name', () => {
-    expect(playersReducer(players, {
-      type: ActionTypes.setPlayerName,
-      player,
-      name: newName,
-    })).toEqual({
-      player1: {
-        name: newName,
-        avatar: DefaultAvatar,
-      },
-      player2,
-    });
-  });
-
-  it('Should be able to set an avatar', () => {
-    expect(playersReducer(players, {
-      type: ActionTypes.setPlayerAvatar,
-      player,
-      avatar: newAvatar,
-    })).toEqual({
-      player1: {
-        name: 'Player 1',
-        avatar: newAvatar,
-      },
-      player2,
-    });
   });
 });

@@ -25,4 +25,5 @@ jest.mock('./utils/database', () => ({
   database: mockSDK.database(),
   completeChore: jest.fn(),
   paidDebt: jest.fn(),
+  addToTimePaused: jest.fn(),
 }));

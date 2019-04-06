@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import AvatarGrid from 'components/AvatarGrid';
 import Button from 'components/Button';
 
-import { setPlayerAvatar } from 'state/reducers/playersReducer';
+import { savePlayerAvatar } from 'utils/database';
 
 import * as routes from 'constants/routes';
 
 const EditAvatarProperty = ({
-  user, player, match, doSetPlayerAvatar,
+  user, player, match,
 }) => {
   const { avatar } = player;
   const { propertyToEdit } = match.params;
@@ -21,7 +21,7 @@ const EditAvatarProperty = ({
         avatar={avatar}
         editing={propertyToEdit}
         onSelect={(newValue) => {
-          doSetPlayerAvatar(user, {
+          savePlayerAvatar(user, {
             ...avatar,
             [propertyToEdit]: newValue,
           });
@@ -36,7 +36,6 @@ EditAvatarProperty.propTypes = {
   user: PropTypes.string.isRequired,
   player: PropTypes.objectOf(PropTypes.any).isRequired,
   match: PropTypes.objectOf(PropTypes.any).isRequired,
-  doSetPlayerAvatar: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -44,8 +43,4 @@ const mapStateToProps = state => ({
   player: state.players[state.session.authUser.uid],
 });
 
-const mapDispatchToProps = dispatch => ({
-  doSetPlayerAvatar: (user, avatar) => dispatch(setPlayerAvatar(user, avatar)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditAvatarProperty);
+export default connect(mapStateToProps)(EditAvatarProperty);

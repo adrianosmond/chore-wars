@@ -9,11 +9,11 @@ export const setPoints = points => ({
 });
 
 export const loadPoints = game => (dispatch) => {
-  database.ref(`games/${game}/points`).once('value', () => {
-    dispatch(setPointsLoaded(true));
-  });
   database.ref(`games/${game}/points`).on('value', (result) => {
     dispatch(setPoints(result.val()));
+  });
+  database.ref(`games/${game}/points`).once('value', () => {
+    dispatch(setPointsLoaded(true));
   });
 };
 
