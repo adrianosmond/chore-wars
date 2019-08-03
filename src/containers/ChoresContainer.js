@@ -1,8 +1,6 @@
 import React, { useCallback } from 'react';
 import { completeChore } from 'database/chores';
-import { useChores } from 'contexts/chores';
-import { useUser } from 'contexts/user';
-import { useGame } from 'contexts/game';
+import { useUser, useGame, useChores } from 'contexts/game';
 import Chore from 'components/Chore';
 import UnstyledList from 'components/UnstyledList';
 

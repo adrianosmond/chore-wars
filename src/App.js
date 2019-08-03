@@ -6,8 +6,8 @@ import {
   Redirect,
 } from 'react-router-dom';
 
-import { useUser } from 'contexts/user';
-import { useGame } from 'contexts/game';
+import { useUser, useGame } from 'contexts/game';
+
 import routes from 'constants/routes';
 
 import UnauthenticatedPage from 'pages/UnauthenticatedPage';

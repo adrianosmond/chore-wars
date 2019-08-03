@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { stopHoliday } from 'database/game';
-import { useGame } from 'contexts/game';
-import { useHoliday } from 'contexts/holiday';
+import { useGame, useHoliday } from 'contexts/game';
 import LinkButton from 'components/LinkButton';
 
 const HolidayContainer = () => {

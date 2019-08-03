@@ -1,8 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { withRouter } from 'react-router-dom';
 
-import { useUser } from 'contexts/user';
-import { useGame } from 'contexts/game';
+import { useGame, useUser } from 'contexts/game';
 import { ChoreFormProvider } from 'contexts/choreForm';
 import routes from 'constants/routes';
 import useChore from 'hooks/useChore';

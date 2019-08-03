@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GlobalProvider from 'contexts/global';
+import { GameProvider } from 'contexts/game';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <GlobalProvider>
+  <GameProvider>
     <App />
-  </GlobalProvider>,
+  </GameProvider>,
   document.getElementById('root'),
 );
 

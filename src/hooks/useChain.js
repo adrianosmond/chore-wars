@@ -1,6 +1,5 @@
 import { useReducer, useCallback, useMemo } from 'react';
-import { useChores } from 'contexts/chores';
-import { useGame } from 'contexts/game';
+import { useGame, useChores } from 'contexts/game';
 import { makeChain, removeChainFeatures } from 'database/chores';
 
 const createInitialState = chores => {

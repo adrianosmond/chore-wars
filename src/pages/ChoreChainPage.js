@@ -36,7 +36,6 @@ const ChoreChainPage = () => {
         <ChainActionsContainer
           createChain={createChain}
           saveChains={saveChains}
-          chains={chains}
         />
       }
     />

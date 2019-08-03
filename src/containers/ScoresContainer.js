@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePlayers } from 'contexts/players';
+import { usePlayers } from 'contexts/game';
 import Scores from 'components/Scores';
 import { getMinPoints, getMaxPoints } from 'utils/players';
 

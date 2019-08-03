@@ -1,8 +1,5 @@
 import { useMemo, useCallback } from 'react';
-
-import { useUser } from 'contexts/user';
-import { useGame } from 'contexts/game';
-import { useChores } from 'contexts/chores';
+import { useGame, useUser, useChores } from 'contexts/game';
 import { updateChore } from 'database/chores';
 
 export default id => {

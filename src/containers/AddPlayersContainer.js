@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { database } from 'database';
 import { lockGame } from 'database/game';
-import { useGame } from 'contexts/game';
-import { usePlayers } from 'contexts/players';
+import { useGame, usePlayers } from 'contexts/game';
 import Card from 'components/Card';
 import LinkButton from 'components/LinkButton';
 

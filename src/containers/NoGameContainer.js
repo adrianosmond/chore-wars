@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 
 import { createGame, joinGame } from 'database/game';
 import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from 'constants/constants';
-import { useUser } from 'contexts/user';
+import { useUser } from 'contexts/game';
 
 import Button from 'components/Button';
 import Input from 'components/Input';

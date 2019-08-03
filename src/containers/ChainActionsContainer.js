@@ -3,7 +3,7 @@ import Card from 'components/Card';
 import LinkButton from 'components/LinkButton';
 import UnstyledList from 'components/UnstyledList';
 
-const ChainActionsContainer = ({ createChain, saveChains, chains }) => {
+const ChainActionsContainer = ({ createChain, saveChains }) => {
   const saveChainsAndGoHome = useCallback(() => {
     saveChains().then(() => console.log('TODO: Redirect home'));
   }, [saveChains]);
@@ -14,11 +14,9 @@ const ChainActionsContainer = ({ createChain, saveChains, chains }) => {
         <UnstyledList.Item>
           <LinkButton onClick={createChain}>Create a chain</LinkButton>
         </UnstyledList.Item>
-        {chains.length > 0 && (
-          <UnstyledList.Item>
-            <LinkButton onClick={saveChainsAndGoHome}>Save chains</LinkButton>
-          </UnstyledList.Item>
-        )}
+        <UnstyledList.Item>
+          <LinkButton onClick={saveChainsAndGoHome}>Save chains</LinkButton>
+        </UnstyledList.Item>
       </UnstyledList>
     </Card>
   );

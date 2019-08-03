@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHoliday } from 'contexts/holiday';
+import { useHoliday } from 'contexts/game';
 import ChoresContainer from 'containers/ChoresContainer';
 import AddPlayersContainer from 'containers/AddPlayersContainer';
 import ScoresContainer from 'containers/ScoresContainer';
