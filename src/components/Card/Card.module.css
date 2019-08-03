@@ -1,0 +1,30 @@
+.card {
+  position: relative;
+  padding: var(--spacing-s);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  color: var(--color-text);
+}
+
+.title {
+  margin-bottom: var(--spacing-s);
+}
+
+.normal {
+  background-color: var(--color-white);
+}
+
+.primary {
+  background-color: var(--color-primary);
+  --color-text: var(--color-white);
+  --color-text-lighter: var(--color-white);
+  --color-link: var(--color-white);
+}
+
+.spaced {
+  margin-bottom: var(--spacing-s);
+}
+
+.info {
+  background-color: var(--color-yellow-200);
+  font-size: 0.75rem;
+}

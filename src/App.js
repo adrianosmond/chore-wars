@@ -3,34 +3,42 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
 
-import Login from 'containers/Login';
-import SignUp from 'containers/SignUp';
-import NoGame from 'containers/NoGame';
-import Chores from 'containers/Chores';
-import NewChore from 'containers/NewChore';
-import EditChore from 'containers/EditChore';
-import LogPastCompletion from 'containers/LogPastCompletion';
-import NewChain from 'containers/NewChain';
-import EditProfile from 'containers/EditProfile';
+import { useUser } from 'contexts/user';
+import { useGame } from 'contexts/game';
+import routes from 'constants/routes';
 
-import * as routes from 'constants/routes';
+import UnauthenticatedPage from 'pages/UnauthenticatedPage';
+import NoGamePage from 'pages/NoGamePage';
+import ChoresPage from 'pages/ChoresPage';
+import NewChorePage from 'pages/NewChorePage';
+import ChoreChainPage from 'pages/ChoreChainPage';
+import SingleChorePage from 'pages/SingleChorePage';
+import EditChorePage from 'pages/EditChorePage';
+import ForgotToLogPage from 'pages/ForgotToLogPage';
 
-const App = () => (
-  <Router>
-    <Switch>
-      <Route exact path={routes.LOGIN} component={Login} />
-      <Route exact path={routes.SIGN_UP} component={SignUp} />
-      <Route exact path={routes.NO_GAME} component={NoGame} />
-      <Route exact path={routes.CHORES} component={Chores} />
-      <Route exact path={routes.NEW_CHORE} component={NewChore} />
-      <Route exact path={`${routes.EDIT_CHORE}/:slug`} component={EditChore} />
-      <Route exact path={`${routes.LOG_PAST_COMPLETION}/:slug`} component={LogPastCompletion} />
-      <Route exact path={routes.NEW_CHAIN} component={NewChain} />
-      <Route path={routes.EDIT_PROFILE} component={EditProfile} />
-    </Switch>
-  </Router>
-);
+const App = () => {
+  const user = useUser();
+  const game = useGame();
+
+  if (!user) return <UnauthenticatedPage />;
+  if (!game) return <NoGamePage />;
+
+  return (
+    <Router>
+      <Switch>
+        <Route exact path={routes.CHORES} component={ChoresPage} />
+        <Route exact path={routes.NEW_CHORE} component={NewChorePage} />
+        <Route exact path={routes.NEW_CHAIN} component={ChoreChainPage} />
+        <Route exact path={routes.SINGLE_CHORE} component={SingleChorePage} />
+        <Route exact path={routes.EDIT_CHORE} component={EditChorePage} />
+        <Route exact path={routes.FORGOT_TO_LOG} component={ForgotToLogPage} />
+        <Redirect to={routes.CHORES} />
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;

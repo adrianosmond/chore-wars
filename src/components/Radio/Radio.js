@@ -1,28 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import classes from './Radio.module.css';
 
-const Input = ({
-  name, value, onChange, checked,
-}) => (
-  <input
-    name={name}
-    type="radio"
-    value={value}
-    onChange={onChange}
-    checked={checked}
-  />
+const Radio = ({ name = null, value, onChange, checked = false, label }) => (
+  <label className={classes.wrapper}>
+    <input
+      name={name}
+      type="radio"
+      value={value}
+      onChange={onChange}
+      checked={checked}
+      className={classes.radio}
+    />
+    {label && <span className={classes.label}>{label}</span>}
+  </label>
 );
 
-Input.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  checked: PropTypes.bool,
-};
-
-Input.defaultProps = {
-  name: null,
-  checked: null,
-};
-
-export default Input;
+export default Radio;

@@ -1,0 +1,29 @@
+.button {
+  height: 2.5rem;
+  margin: 0;
+  padding: var(--spacing-xs) var(--spacing-s);
+  border: 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  outline: 0;
+}
+
+.primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.button:disabled {
+  background-color: var(--color-gray-500);
+  cursor: auto;
+}
+
+.inverse {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}

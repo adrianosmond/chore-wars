@@ -1,0 +1,23 @@
+.h1 {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  margin-bottom: var(--spacing-s);
+}
+
+.h2 {
+  font-size: var(--font-size-l);
+  font-weight: bold;
+  margin-bottom: var(--spacing-s);
+}
+
+.h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: var(--font-size-s);
+  color: var(--color-text-lighter);
+}
+
+.h4 {
+  font-size: var(--font-size-m);
+  font-weight: bold;
+}

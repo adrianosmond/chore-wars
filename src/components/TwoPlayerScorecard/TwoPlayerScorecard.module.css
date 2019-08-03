@@ -1,0 +1,13 @@
+.players {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: var(--spacing-s);
+}
+
+.bar {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  margin-top: var(--spacing-l);
+}

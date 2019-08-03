@@ -1,0 +1,12 @@
+.question {
+  margin-bottom: var(--spacing-l);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons > :only-child {
+  margin-left: auto;
+}

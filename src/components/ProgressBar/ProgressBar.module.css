@@ -1,0 +1,51 @@
+.outer {
+  display: flex;
+  flex-grow: 1;
+  background-color: var(--color-gray-200);
+}
+
+.inner {
+  position: relative;
+  color: var(--color-white);
+  font-size: 0;
+  height: 4px;
+}
+
+.reverse {
+  justify-content: flex-end;
+}
+
+.label {
+  position: absolute;
+  padding: 6px;
+  top: 0;
+  left: 100%;
+  transform: translateX(-50%) translateY(calc(-100% - 4px));
+  background-color: inherit;
+  border-top-color: inherit;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1;
+  color: inherit;
+  border-radius: 2px;
+}
+
+.label:after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  margin-left: -3px;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-top-color: inherit;
+  border-style: solid;
+  border-width: 3px 3px 0;
+}
+
+.reverse .label {
+  left: auto;
+  right: 100%;
+  transform: translateX(+50%) translateY(calc(-100% - 4px));
+}

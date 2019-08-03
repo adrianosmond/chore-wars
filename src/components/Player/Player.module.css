@@ -1,0 +1,14 @@
+.player {
+  display: flex;
+}
+
+.playerName {
+  width: 50%;
+  flex-shrink: 0;
+}
+
+.pointsBar {
+  display: flex;
+  flex-grow: 1;
+  align-self: center;
+}

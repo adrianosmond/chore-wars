@@ -1,0 +1,14 @@
+.linkButton {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--color-link);
+  outline: 0;
+}
+
+.linkButton:hover {
+  text-decoration: underline;
+}
