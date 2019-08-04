@@ -7,6 +7,7 @@
   left: 50%;
   margin-top: -100px;
   margin-left: -66px;
+  color: var(--color-black);
 }
 
 .inner {
@@ -15,6 +16,7 @@
   height: 119px;
   transform-origin: 50% 100%;
   animation: wobble 2s infinite;
+  margin-bottom: var(--spacing-s);
 }
 
 .image {

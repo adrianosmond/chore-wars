@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
+import Card from 'components/Card';
 import classes from './ChoreChain.module.css';
+import LinkButton from 'components/LinkButton';
 
-const PLACEHOLDER = 'Please select a chore';
+const PLACEHOLDER = 'Please select a chore to add';
 
 const ChoreChain = ({
   chores,
@@ -36,7 +38,7 @@ const ChoreChain = ({
   }, [removeChain, chainId]);
 
   return (
-    <div className={classes.chain}>
+    <Card>
       <div>
         <select value={choreToAdd} onChange={handleSelect}>
           <option value="">{PLACEHOLDER}</option>
@@ -49,17 +51,21 @@ const ChoreChain = ({
         <button onClick={handleAdd} disabled={choreToAdd === ''}>
           +
         </button>
-        <button onClick={handleRemoveChain}>x</button>
       </div>
-      <div>
+      <div className={classes.chain}>
         {chores.map(chore => (
-          <div key={chore.id}>
-            {chore.name}
-            <button onClick={() => handleRemove(chore.id)}>X</button>
+          <div key={chore.id} className={classes.chore}>
+            {chore.name}{' '}
+            <LinkButton onClick={() => handleRemove(chore.id)}>
+              &times;
+            </LinkButton>
           </div>
         ))}
       </div>
-    </div>
+      <div className={classes.remove}>
+        <LinkButton onClick={handleRemoveChain}>Remove</LinkButton>
+      </div>
+    </Card>
   );
 };
 export default ChoreChain;

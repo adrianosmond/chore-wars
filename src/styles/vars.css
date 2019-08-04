@@ -109,6 +109,7 @@
   --color-primary-dark: var(--color-blue-900);
   --color-secondary: var(--color-teal-500);
   --color-warning: var(--color-red-600);
+  --color-border: var(--color-gray-400);
 
   --spacing-xxxs: 0.125rem;
   --spacing-xxs: 0.25rem;

@@ -27,4 +27,8 @@
     flex-basis: 0;
     margin-left: var(--spacing-s);
   }
+
+  .secondarySpaced {
+    padding-top: 4.25rem;
+  }
 }
