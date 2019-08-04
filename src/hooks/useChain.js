@@ -124,7 +124,9 @@ export default () => {
 
   const availableChores = useMemo(() => {
     const chainedChores = state.chains.map(c => c.chores).flat();
-    return chores.filter(chore => !chainedChores.includes(chore));
+    return chores
+      .filter(chore => !chainedChores.includes(chore))
+      .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
   }, [chores, state.chains]);
 
   const saveChains = useCallback(() => {
