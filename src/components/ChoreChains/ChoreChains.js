@@ -8,6 +8,7 @@ const ChoreChains = ({
   addChoreToChain,
   removeChoreFromChain,
   removeChain,
+  reorderChores,
 }) => {
   return (
     <UnstyledList spacing="s">
@@ -21,6 +22,7 @@ const ChoreChains = ({
               addChoreToChain={addChoreToChain}
               removeChoreFromChain={removeChoreFromChain}
               removeChain={removeChain}
+              reorderChores={reorderChores}
             />
           </UnstyledList.Item>
         );

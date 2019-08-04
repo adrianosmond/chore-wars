@@ -15,11 +15,11 @@ const EditChoreContainer = ({
 }) => {
   const [chore, updateChore] = useChore(id);
   const onComplete = useCallback(
-    newChore => updateChore(newChore).then(() => history.push(routes.CHORES)),
+    newChore => updateChore(newChore).then(() => history.push(routes.HOME)),
     [updateChore, history],
   );
 
-  if (!chore) history.replace(routes.CHORES);
+  if (!chore) history.replace(routes.HOME);
 
   return (
     <ChoreFormProvider chore={chore}>

@@ -30,6 +30,7 @@ const actionTypes = {
   REMOVE_CHAIN: 'REMOVE_CHAIN',
   ADD_CHORE_TO_CHAIN: 'ADD_CHORE_TO_CHAIN',
   REMOVE_CHORE_FROM_CHAIN: 'REMOVE_CHORE_FROM_CHAIN',
+  REORDER_CHORES: 'REORDER_CHORES',
 };
 
 const chainReducer = (state, action) => {
@@ -74,6 +75,27 @@ const chainReducer = (state, action) => {
           if (idx !== chainId) return chain;
           return {
             chores: chain.chores.filter(c => c !== chore),
+          };
+        }),
+      };
+    }
+
+    case actionTypes.REORDER_CHORES: {
+      const { chainId, dragIndex, hoverIndex } = action.payload;
+      const fromIdx = Math.min(dragIndex, hoverIndex);
+      const toIdx = Math.max(dragIndex, hoverIndex);
+      return {
+        ...state,
+        chains: state.chains.map((chain, idx) => {
+          if (idx !== chainId) return chain;
+          return {
+            chores: [
+              ...chain.chores.slice(0, fromIdx),
+              ...chain.chores.slice(fromIdx + 1, toIdx),
+              ...chain.chores.slice(toIdx, toIdx + 1),
+              ...chain.chores.slice(fromIdx, fromIdx + 1),
+              ...chain.chores.slice(toIdx + 1),
+            ],
           };
         }),
       };
@@ -136,6 +158,15 @@ export default () => {
     );
   }, [game, state.chains, availableChores]);
 
+  const reorderChores = useCallback(
+    (chainId, dragIndex, hoverIndex) =>
+      dispatch({
+        type: actionTypes.REORDER_CHORES,
+        payload: { chainId, dragIndex, hoverIndex },
+      }),
+    [],
+  );
+
   return {
     ...state,
     availableChores,
@@ -144,5 +175,6 @@ export default () => {
     saveChains,
     addChoreToChain,
     removeChoreFromChain,
+    reorderChores,
   };
 };

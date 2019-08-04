@@ -39,12 +39,12 @@ const ForgotToLogContainer = ({
         chore,
         currentPoints,
         newChore.lastDone,
-      ).then(() => history.push(routes.CHORES));
+      ).then(() => history.push(routes.HOME));
     },
     [chore, game, user, history],
   );
 
-  if (!chore) history.replace(routes.CHORES);
+  if (!chore) history.replace(routes.HOME);
 
   return (
     <ChoreFormProvider chore={modifiedChore}>

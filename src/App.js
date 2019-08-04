@@ -14,7 +14,6 @@ import UnauthenticatedPage from 'pages/UnauthenticatedPage';
 import NoGamePage from 'pages/NoGamePage';
 import ChoresPage from 'pages/ChoresPage';
 import NewChorePage from 'pages/NewChorePage';
-// import ChoreChainPage from 'pages/ChoreChainPage';
 import SingleChorePage from 'pages/SingleChorePage';
 import EditChorePage from 'pages/EditChorePage';
 import ForgotToLogPage from 'pages/ForgotToLogPage';
@@ -33,7 +32,7 @@ const App = () => {
     <Suspense fallback={<Loading />}>
       <Router>
         <Switch>
-          <Route exact path={routes.CHORES} component={ChoresPage} />
+          <Route exact path={routes.HOME} component={ChoresPage} />
           <Route exact path={routes.NEW_CHORE} component={NewChorePage} />
           <Route exact path={routes.MANAGE_CHAINS} component={ChoreChainPage} />
           <Route exact path={routes.SINGLE_CHORE} component={SingleChorePage} />
@@ -43,7 +42,7 @@ const App = () => {
             path={routes.FORGOT_TO_LOG}
             component={ForgotToLogPage}
           />
-          <Redirect to={routes.CHORES} />
+          <Redirect to={routes.HOME} />
         </Switch>
       </Router>
     </Suspense>

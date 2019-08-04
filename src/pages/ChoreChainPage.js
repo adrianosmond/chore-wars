@@ -14,6 +14,7 @@ const ChoreChainPage = () => {
     saveChains,
     chains,
     availableChores,
+    reorderChores,
   } = useChain();
 
   return (
@@ -29,6 +30,7 @@ const ChoreChainPage = () => {
             addChoreToChain={addChoreToChain}
             removeChoreFromChain={removeChoreFromChain}
             removeChain={removeChain}
+            reorderChores={reorderChores}
           />
         </>
       }

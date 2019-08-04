@@ -13,13 +13,6 @@
 
 .chore:first-child {
   border-top: 1px solid var(--color-border);
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-}
-
-.chore:last-child {
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
 }
 
 .remove {

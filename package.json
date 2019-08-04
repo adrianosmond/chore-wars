@@ -7,6 +7,8 @@
     "date-fns": "^1.30.1",
     "firebase": "^6.0.2",
     "react": "^16.8.6",
+    "react-dnd": "^9.3.2",
+    "react-dnd-html5-backend": "^9.3.2",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",

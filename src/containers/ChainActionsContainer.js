@@ -1,13 +1,10 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Card from 'components/Card';
 import LinkButton from 'components/LinkButton';
 import UnstyledList from 'components/UnstyledList';
 
 const ChainActionsContainer = ({ createChain, saveChains }) => {
-  const saveChainsAndGoHome = useCallback(() => {
-    saveChains().then(() => console.log('TODO: Redirect home'));
-  }, [saveChains]);
-
   return (
     <Card title="Actions">
       <UnstyledList spacing="xs">
@@ -15,11 +12,11 @@ const ChainActionsContainer = ({ createChain, saveChains }) => {
           <LinkButton onClick={createChain}>Create a chain</LinkButton>
         </UnstyledList.Item>
         <UnstyledList.Item>
-          <LinkButton onClick={saveChainsAndGoHome}>Save chains</LinkButton>
+          <LinkButton onClick={saveChains}>Save chains</LinkButton>
         </UnstyledList.Item>
       </UnstyledList>
     </Card>
   );
 };
 
-export default ChainActionsContainer;
+export default withRouter(ChainActionsContainer);
