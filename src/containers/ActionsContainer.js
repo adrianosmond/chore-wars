@@ -19,7 +19,7 @@ const ActionsContainer = () => {
           <Link to={routes.NEW_CHORE}>Create a new chore</Link>
         </UnstyledList.Item>
         <UnstyledList.Item>
-          <Link to={routes.NEW_CHAIN}>Manage chains</Link>
+          <Link to={routes.MANAGE_CHAINS}>Manage chains</Link>
         </UnstyledList.Item>
         <UnstyledList.Item>
           <LinkButton onClick={holiday}>We're on holiday</LinkButton>

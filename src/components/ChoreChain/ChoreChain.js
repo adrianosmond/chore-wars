@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
+import Select from 'react-select';
 import Card from 'components/Card';
-import classes from './ChoreChain.module.css';
 import LinkButton from 'components/LinkButton';
+import classes from './ChoreChain.module.css';
 
 const PLACEHOLDER = 'Please select a chore to add';
 
@@ -13,18 +14,12 @@ const ChoreChain = ({
   removeChain,
   removeChoreFromChain,
 }) => {
-  const [choreToAdd, setChoreToAdd] = useState('');
-  const handleSelect = useCallback(e => {
-    const { value } = e.target;
-    if (value !== '') {
-      setChoreToAdd(value);
-    }
-  }, []);
-
-  const handleAdd = useCallback(() => {
-    addChoreToChain(availableChores.find(c => c.id === choreToAdd), chainId);
-    setChoreToAdd('');
-  }, [addChoreToChain, chainId, choreToAdd, availableChores]);
+  const handleSelect = useCallback(
+    e => {
+      addChoreToChain(availableChores.find(c => c.id === e.value), chainId);
+    },
+    [addChoreToChain, availableChores, chainId],
+  );
 
   const handleRemove = useCallback(
     choreId => {
@@ -40,17 +35,15 @@ const ChoreChain = ({
   return (
     <Card>
       <div>
-        <select value={choreToAdd} onChange={handleSelect}>
-          <option value="">{PLACEHOLDER}</option>
-          {availableChores.map(chore => (
-            <option value={chore.id} key={chore.id}>
-              {chore.name}
-            </option>
-          ))}
-        </select>
-        <button onClick={handleAdd} disabled={choreToAdd === ''}>
-          +
-        </button>
+        <Select
+          options={availableChores.map(chore => ({
+            value: chore.id,
+            label: chore.name,
+          }))}
+          onChange={handleSelect}
+          value={null}
+          placeholder={PLACEHOLDER}
+        />
       </div>
       <div className={classes.chain}>
         {chores.map(chore => (
