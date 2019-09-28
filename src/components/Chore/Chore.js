@@ -1,6 +1,7 @@
 import React from 'react';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import { createSingleChoreLink } from 'constants/routes';
 import { DATE_FORMAT } from 'constants/constants';
 import Card from 'components/Card';
@@ -42,7 +43,12 @@ const Chore = ({
           {format(lastDone, DATE_FORMAT)}
         </p>
         {frequency > 0 && (
-          <p className={classes.date}>
+          <p
+            className={classnames({
+              [classes.date]: true,
+              [classes.overdue]: percentage === 100,
+            })}
+          >
             <Typography appearance="h3" as="span">
               Due:
             </Typography>{' '}
@@ -69,4 +75,4 @@ const Chore = ({
   </Card>
 );
 
-export default React.memo(Chore);
+export default Chore;

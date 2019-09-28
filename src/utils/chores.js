@@ -36,3 +36,18 @@ export const makeChoresArray = (chores, now = new Date().getTime()) =>
     id: chore,
     ...computedChoreProperties(chores[chore], now),
   }));
+
+export const choreIsAvailable = chore =>
+  !chore.isWaiting && new Date().getTime() - chore.lastDone >= 10000;
+
+export const sortByCurrentPoints = (a, b) => {
+  const aBonusPts = a.currentPoints > a.pointsPerTime;
+  const bBonusPts = b.currentPoints > b.pointsPerTime;
+  if (aBonusPts && !bBonusPts) {
+    return -1;
+  }
+  if (bBonusPts && !aBonusPts) {
+    return 1;
+  }
+  return b.currentPoints - a.currentPoints;
+};

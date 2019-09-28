@@ -27,6 +27,10 @@
   text-align: right;
 }
 
+.overdue {
+  color: var(--color-warning);
+}
+
 .completeButton {
   width: 2.5rem;
   padding: 0.625rem;
