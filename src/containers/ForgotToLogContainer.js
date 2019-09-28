@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import { useGame, useUser } from 'contexts/game';
 import { ChoreFormProvider } from 'contexts/choreForm';
@@ -11,14 +11,11 @@ import ChoreFormContainer from 'containers/ChoreFormContainer';
 import QuestionLastDone from 'components/ChoreForm/QuestionLastDone';
 import { computedChoreProperties } from 'utils/chores';
 
-const ForgotToLogContainer = ({
-  history,
-  match: {
-    params: { id },
-  },
-}) => {
+const ForgotToLogContainer = () => {
   const game = useGame();
   const user = useUser();
+  const history = useHistory();
+  const { id } = useParams();
   const [chore] = useChore(id);
   const modifiedChore = useMemo(
     () => ({
@@ -56,4 +53,4 @@ const ForgotToLogContainer = ({
   );
 };
 
-export default withRouter(ForgotToLogContainer);
+export default ForgotToLogContainer;

@@ -1,18 +1,14 @@
 import React, { useCallback } from 'react';
-import { withRouter } from 'react-router-dom';
-
+import { useHistory, useParams } from 'react-router-dom';
 import { ChoreFormProvider } from 'contexts/choreForm';
 import routes from 'constants/routes';
 import useChore from 'hooks/useChore';
 
 import ChoreFormContainer from 'containers/ChoreFormContainer';
 
-const EditChoreContainer = ({
-  history,
-  match: {
-    params: { id },
-  },
-}) => {
+const EditChoreContainer = () => {
+  const history = useHistory();
+  const { id } = useParams();
   const [chore, updateChore] = useChore(id);
   const onComplete = useCallback(
     newChore => updateChore(newChore).then(() => history.push(routes.HOME)),
@@ -28,4 +24,4 @@ const EditChoreContainer = ({
   );
 };
 
-export default withRouter(EditChoreContainer);
+export default EditChoreContainer;

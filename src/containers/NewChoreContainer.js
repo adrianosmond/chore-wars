@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { useGame, useUser } from 'contexts/game';
 import { ChoreFormProvider } from 'contexts/choreForm';
@@ -8,9 +8,10 @@ import routes from 'constants/routes';
 
 import ChoreFormContainer from 'containers/ChoreFormContainer';
 
-const NewChoreContainer = ({ history }) => {
+const NewChoreContainer = () => {
   const game = useGame();
   const user = useUser();
+  const history = useHistory();
   const onComplete = useCallback(
     chore => {
       createChore(game, user, chore).then(() => history.push(routes.HOME));
@@ -25,4 +26,4 @@ const NewChoreContainer = ({ history }) => {
   );
 };
 
-export default withRouter(NewChoreContainer);
+export default NewChoreContainer;

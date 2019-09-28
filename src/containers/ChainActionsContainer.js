@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import Card from 'components/Card';
 import LinkButton from 'components/LinkButton';
 import UnstyledList from 'components/UnstyledList';
@@ -19,4 +18,4 @@ const ChainActionsContainer = ({ createChain, saveChains }) => {
   );
 };
 
-export default withRouter(ChainActionsContainer);
+export default ChainActionsContainer;

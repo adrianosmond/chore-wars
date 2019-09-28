@@ -5,7 +5,7 @@ export const MIN_CHORE_POINTS = 1;
 export const MAX_CHORE_POINTS = 200;
 export const MAX_CHORE_CURRENT_POINTS = 1000;
 
-export const DATE_FORMAT = 'DD/MM/YYYY';
+export const DATE_FORMAT = 'dd/MM/yyyy';
 
 export const MAX_POINT_DIFFERENCE = 500;
 

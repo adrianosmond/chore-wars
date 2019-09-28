@@ -22,9 +22,9 @@ const QuestionLastDone = ({ includeTime = false }) => {
         label="When was this chore last done?"
         value={format(
           lastDone,
-          includeTime ? 'YYYY-MM-DDTHH:mm' : 'YYYY-MM-DD',
+          includeTime ? 'yyyy-MM-ddTHH:mm' : 'yyyy-MM-dd',
         )}
-        max={format(new Date(), 'YYYY-MM-DD')}
+        max={format(new Date(), 'yyyy-MM-dd')}
         onChange={updateLastDone}
       />
     </ChoreQuestion>
