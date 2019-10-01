@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { format, parse } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { useChoreForm } from 'contexts/choreForm';
 
 import ChoreQuestion from 'components/ChoreQuestion';
@@ -9,7 +9,7 @@ const QuestionLastDone = ({ includeTime = false }) => {
   const { lastDone, updateLastDone, setHasError } = useChoreForm();
 
   useEffect(() => {
-    const date = parse(lastDone).getTime();
+    const date = parseISO(lastDone).getTime();
     setHasError(
       typeof date !== 'number' || date < 0 || date > new Date().getTime(),
     );

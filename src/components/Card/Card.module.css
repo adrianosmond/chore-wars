@@ -1,6 +1,7 @@
 .card {
   position: relative;
   padding: var(--spacing-s);
+  border: 1px solid rgba(0, 0, 0, 0.075);
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   color: var(--color-text);
 }

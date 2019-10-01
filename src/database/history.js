@@ -1,0 +1,41 @@
+import { database } from './index';
+
+export const getChoreCompletions = (game, id) =>
+  database
+    .ref(`games/${game}/history/${id}`)
+    .orderByChild('type')
+    .equalTo('CHORE_COMPLETED')
+    .once('value')
+    .then(result => {
+      const items = result.val();
+      if (!items) return [];
+      return Object.entries(items)
+        .map(([key, values]) => ({ key, ...values }))
+        .reverse();
+    });
+
+export const getChoreCompletionRatio = (game, id) =>
+  database
+    .ref(`games/${game}/history/completions/${id}`)
+    .once('value')
+    .then(result => {
+      const items = result.val();
+      if (!items) return [];
+      return Object.entries(items)
+        .map(([key, values]) => ({ key, ...values }))
+        .reverse();
+    });
+
+export const getChoreEdits = (game, id) =>
+  database
+    .ref(`games/${game}/history/${id}`)
+    .orderByChild('type')
+    .equalTo('CHORE_EDITED')
+    .once('value')
+    .then(result => {
+      const items = result.val();
+      if (!items) return [];
+      return Object.entries(items)
+        .map(([key, values]) => ({ key, ...values }))
+        .reverse();
+    });

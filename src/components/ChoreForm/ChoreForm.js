@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from 'components/Card';
 import Button from 'components/Button';
 import classes from './ChoreForm.module.css';
 
@@ -11,33 +12,35 @@ const ChoreForm = ({
   hasError,
 }) => {
   return (
-    <form onSubmit={onSubmit}>
-      <div className={classes.question}>{children}</div>
-      <div className={classes.buttons}>
-        {prevQuestion && (
-          <Button onClick={prevQuestion} appearance="secondary">
-            Previous
-          </Button>
-        )}
+    <form onSubmit={onSubmit} className={classes.form}>
+      <Card>
+        <div className={classes.question}>{children}</div>
+        <div className={classes.buttons}>
+          {prevQuestion && (
+            <Button onClick={prevQuestion} appearance="secondary">
+              Previous
+            </Button>
+          )}
 
-        {!prevQuestion && (
-          <Button onClick={onCancel} appearance="secondary">
-            Cancel
-          </Button>
-        )}
+          {!prevQuestion && (
+            <Button onClick={onCancel} appearance="secondary">
+              Cancel
+            </Button>
+          )}
 
-        {nextQuestion && (
-          <Button onClick={nextQuestion} disabled={hasError}>
-            Next
-          </Button>
-        )}
+          {nextQuestion && (
+            <Button onClick={nextQuestion} disabled={hasError}>
+              Next
+            </Button>
+          )}
 
-        {!nextQuestion && (
-          <Button type="submit" disabled={hasError}>
-            Done
-          </Button>
-        )}
-      </div>
+          {!nextQuestion && (
+            <Button type="submit" disabled={hasError}>
+              Done
+            </Button>
+          )}
+        </div>
+      </Card>
     </form>
   );
 };

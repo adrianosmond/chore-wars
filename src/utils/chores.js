@@ -51,3 +51,9 @@ export const sortByCurrentPoints = (a, b) => {
   }
   return b.currentPoints - a.currentPoints;
 };
+
+export const getFrequencyDescription = frequency => {
+  if (frequency === 0) return 'when it needs to be done';
+  if (frequency === 1) return 'every day';
+  return `every ${frequency} days`;
+};

@@ -22,7 +22,7 @@ const ActionsContainer = () => {
           <Link to={routes.MANAGE_CHAINS}>Manage chains</Link>
         </UnstyledList.Item>
         <UnstyledList.Item>
-          <LinkButton onClick={holiday}>We're on holiday</LinkButton>
+          <LinkButton onClick={holiday}>Start a holiday</LinkButton>
         </UnstyledList.Item>
         <UnstyledList.Item>
           <LinkButton onClick={logout}>Logout</LinkButton>

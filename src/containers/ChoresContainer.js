@@ -23,6 +23,10 @@ const ChoresContainer = () => {
     [game, user],
   );
 
+  if (chores.length === 0) {
+    return <p>You don't have any chores yet...</p>;
+  }
+
   return (
     <UnstyledList spacing="s">
       <Flipper flipKey={chores}>

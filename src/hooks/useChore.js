@@ -12,8 +12,8 @@ export default id => {
   );
 
   const onUpdateChore = useCallback(
-    newChore => updateChore(game, user, id, newChore),
-    [id, game, user],
+    newChore => updateChore(game, user, chore, newChore),
+    [chore, game, user],
   );
 
   return [chore, onUpdateChore];

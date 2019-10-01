@@ -17,6 +17,7 @@ export const GameProvider = ({ children }) => {
   const [game, setGame] = useState(null);
   const [holiday, setHoliday] = useState(null);
   const [players, setPlayers] = useState(null);
+  const [playersObj, setPlayersObj] = useState(null);
   const [chores, setChores] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -71,6 +72,7 @@ export const GameProvider = ({ children }) => {
     }
     const playersPath = `games/${game}/players`;
     const updatePlayers = result => {
+      setPlayersObj(result.val());
       setPlayers(makePlayersArray(result.val()));
     };
     database.ref(playersPath).on('value', updatePlayers);
@@ -101,9 +103,10 @@ export const GameProvider = ({ children }) => {
       game,
       holiday,
       players,
+      playersObj,
       chores,
     }),
-    [chores, game, holiday, players, user],
+    [chores, game, holiday, players, playersObj, user],
   );
 
   if (isLoading) {
@@ -117,4 +120,5 @@ export const useUser = () => useContext(GameContext).user;
 export const useGame = () => useContext(GameContext).game;
 export const useHoliday = () => useContext(GameContext).holiday;
 export const usePlayers = () => useContext(GameContext).players;
+export const usePlayersObj = () => useContext(GameContext).playersObj;
 export const useChores = () => useContext(GameContext).chores;

@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useContext, createContext } from 'react';
-import { parse } from 'date-fns';
+import { toDate, parseISO } from 'date-fns';
 
 const ChoreFormContext = createContext();
 
@@ -16,7 +16,9 @@ export const ChoreFormProvider = ({ children, chore = defaultChore }) => {
   const [frequency, setFrequency] = useState(chore.frequency);
   const [pointsPerTime, setPointsPerTime] = useState(chore.pointsPerTime);
   const [lastDone, setLastDone] = useState(chore.lastDone);
-  const [canBePaused, setCanBePaused] = useState(chore.canBePaused);
+  const [canBePaused, setCanBePaused] = useState(
+    typeof chore.timePaused === 'number',
+  );
 
   const [hasError, setHasError] = useState(false);
 
@@ -27,7 +29,10 @@ export const ChoreFormProvider = ({ children, chore = defaultChore }) => {
     [],
   );
   const updateLastDone = useCallback(e => {
-    setLastDone(parse(e.target.value).getTime());
+    const { value } = e.target;
+    if (value && value !== '') {
+      setLastDone(parseISO(e.target.value).getTime());
+    }
   }, []);
 
   const getState = useCallback(
@@ -36,7 +41,7 @@ export const ChoreFormProvider = ({ children, chore = defaultChore }) => {
       frequency: parseInt(frequency, 10) || 0,
       pointsPerTime: parseInt(pointsPerTime, 10),
       timePaused: canBePaused ? 0 : null,
-      lastDone: parse(lastDone).getTime(),
+      lastDone: toDate(lastDone).getTime(),
     }),
     [canBePaused, frequency, lastDone, name, pointsPerTime],
   );
