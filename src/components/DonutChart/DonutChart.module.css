@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+}
+
+.legend {
+  margin-right: var(--spacing-xs);
+  padding-top: var(--spacing-xs);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+}
+
+.colorSwatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-right: var(--spacing-xs);
+}

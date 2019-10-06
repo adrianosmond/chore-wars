@@ -1,0 +1,14 @@
+.statWrapper {
+  display: flex;
+  align-items: baseline;
+}
+
+.stat {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.statDetail {
+  margin-left: 0.25rem;
+  font-weight: bold;
+}

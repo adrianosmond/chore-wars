@@ -8,15 +8,16 @@ import routes, {
 import useChore from 'hooks/useChore';
 import useChoreDetails from 'hooks/useChoreDetails';
 import { useGame } from 'contexts/game';
-import { getFrequencyDescription } from 'utils/chores';
 import CompletionHistoryContainer from 'containers/CompletionHistoryContainer';
 import EditHistoryContainer from 'containers/EditHistoryContainer';
+import CompletionStatsContainer from 'containers/CompletionStatsContainer';
 import LinkButton from 'components/LinkButton';
 import UnstyledList from 'components/UnstyledList';
 import Card from 'components/Card';
 import Typography from 'components/Typography';
-import CompletionStats from 'components/CompletionStats';
+import Spacer from 'components/Spacer';
 import { EditIcon, LateIcon, DeleteIcon } from 'components/Icon';
+import Loading from 'components/Loading';
 
 export default ({ id }) => {
   const [chore] = useChore(id);
@@ -27,41 +28,31 @@ export default ({ id }) => {
     edits,
     loading,
   } = useChoreDetails(id);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <>
       <Typography as="h1" appearance="h1">
         {chore.name}
       </Typography>
-      <UnstyledList spacing="s">
-        <UnstyledList.Item>
-          Worth {chore.pointsPerTime} points{' '}
-          {getFrequencyDescription(chore.frequency)}
-        </UnstyledList.Item>
-        <UnstyledList.Item>
-          <CompletionStats
-            completionRatio={completionRatio}
-            timeDifferences={timeDifferences}
-          />
-        </UnstyledList.Item>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            <UnstyledList.Item>
-              <Card title="Completions">
-                <CompletionHistoryContainer history={completions} />
-              </Card>
-            </UnstyledList.Item>
-            {edits.length > 0 && (
-              <UnstyledList.Item>
-                <Card title="Edits">
-                  <EditHistoryContainer history={edits} />
-                </Card>
-              </UnstyledList.Item>
-            )}
-          </>
+      <Spacer>
+        <CompletionStatsContainer
+          completionRatio={completionRatio}
+          timeDifferences={timeDifferences}
+          frequency={chore.frequency}
+        />
+        <Card title="Recent completions">
+          <CompletionHistoryContainer history={completions} />
+        </Card>
+        {edits.length > 0 && (
+          <Card title="Edits">
+            <EditHistoryContainer history={edits} />
+          </Card>
         )}
-      </UnstyledList>
+      </Spacer>
     </>
   );
 };
