@@ -1,13 +1,46 @@
 .players {
   display: flex;
   width: 100%;
+  flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: var(--spacing-s);
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 0;
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+}
+
+.name {
+  margin-top: var(--spacing-xs);
 }
 
 .bar {
   display: flex;
-  flex-grow: 1;
+  order: 1;
+  flex-basis: 100%;
+  flex-grow: 6;
   align-items: center;
   margin-top: var(--spacing-l);
+}
+
+@media (min-width: 45rem) {
+  .players {
+    flex-wrap: nowrap;
+  }
+
+  .player {
+    flex-grow: 1;
+  }
+
+  .bar {
+    order: 0;
+    flex-basis: 0;
+  }
 }
