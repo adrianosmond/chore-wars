@@ -33,5 +33,6 @@
 
 .completeButton {
   width: 2.5rem;
+  min-width: 2.5rem;
   padding: 0.625rem;
 }

@@ -24,9 +24,20 @@ export const GameProvider = ({ children }) => {
   useEffect(() => {
     return auth.onAuthStateChanged(authUser => {
       if (authUser) {
+        // For login we need to set loading to true again
+        // (the auth state changes from !authUser to authUser)
+        // as we're going to display some routes that aren't yet ready
+        // until we pull game, player and chore info
+        setIsLoading(true);
         setUser(authUser.uid);
       } else {
+        // reset everything in case this change comes from a logout
         setUser(false);
+        setGame(false);
+        setPlayers(null);
+        setPlayersObj(null);
+        setChores(null);
+        setHoliday(null);
       }
     });
   }, []);
