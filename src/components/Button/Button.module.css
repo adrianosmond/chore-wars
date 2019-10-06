@@ -1,5 +1,6 @@
 .button {
   height: 2.5rem;
+  min-width: 8rem;
   margin: 0;
   padding: var(--spacing-xs) var(--spacing-s);
   border: 0;

@@ -1,8 +1,16 @@
 import React from 'react';
+import Spacer from 'components/Spacer';
 import classes from './Input.module.css';
 
-const Input = ({ type = 'text', value, onChange, label, ...props }) => (
-  <div>
+const Input = ({
+  type = 'text',
+  value,
+  onChange,
+  label,
+  spacing = 's',
+  ...props
+}) => (
+  <Spacer spacing={spacing}>
     {label && <label className={classes.label}>{label}</label>}
     <input
       type={type}
@@ -11,7 +19,7 @@ const Input = ({ type = 'text', value, onChange, label, ...props }) => (
       {...props}
       className={classes.input}
     />
-  </div>
+  </Spacer>
 );
 
 export default Input;

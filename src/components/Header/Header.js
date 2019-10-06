@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { auth } from 'database';
 import { useUser } from 'contexts/game';
@@ -9,7 +10,11 @@ import classes from './Header.module.css';
 
 const Header = () => {
   const user = useUser();
-  const logout = useCallback(() => auth.signOut(), []);
+  const history = useHistory();
+  const logout = useCallback(
+    () => auth.signOut().then(history.push(routes.HOME)),
+    [history],
+  );
   return (
     <div className={classes.header}>
       <Container>

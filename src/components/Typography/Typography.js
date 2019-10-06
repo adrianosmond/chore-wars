@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import classes from './Typography.module.css';
 
 const Typography = ({
-  as: Element = 'div',
+  as: Element = 'p',
   appearance = 'body',
   children,
   className,

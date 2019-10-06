@@ -4,10 +4,10 @@ import Header from 'components/Header';
 import Container from 'components/Container';
 import classes from './Layout.module.css';
 
-const Layout = ({ authenticated = true, header, primary, secondary }) => {
+const Layout = ({ header, primary, secondary }) => {
   return (
     <div>
-      <Header authenticated={authenticated} />
+      <Header />
       <div className={classes.body}>
         <Container>
           {header && <div className={classes.header}>{header}</div>}
