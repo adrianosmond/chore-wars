@@ -46,6 +46,7 @@ export const GameProvider = ({ children }) => {
         setGame(userData.gameId);
       } else {
         setGame(false);
+        setIsLoading(false);
       }
     };
 
