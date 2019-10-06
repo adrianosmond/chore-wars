@@ -1,0 +1,16 @@
+.table {
+  font-size: var(--font-size-s);
+  margin-top: var(--spacing-s);
+  width: 100%;
+  background-color: var(--color-orange-100);
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-xs);
+  width: calc(100% / 3);
+}
+
+.previous {
+  text-decoration: line-through;
+}

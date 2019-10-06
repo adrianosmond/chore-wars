@@ -1,13 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
-import HeaderContainer from 'containers/HeaderContainer';
+import Header from 'components/Header';
 import Container from 'components/Container';
 import classes from './Layout.module.css';
 
-const Layout = ({ header, primary, secondary }) => {
+const Layout = ({ authenticated = true, header, primary, secondary }) => {
   return (
     <div>
-      <HeaderContainer />
+      <Header authenticated={authenticated} />
       <div className={classes.body}>
         <Container>
           {header && <div className={classes.header}>{header}</div>}

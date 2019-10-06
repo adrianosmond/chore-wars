@@ -1,9 +1,7 @@
 import React from 'react';
-import { format } from 'date-fns';
-import { DATE_FORMAT } from 'constants/constants';
 import { usePlayersObj } from 'contexts/game';
 import UnstyledList from 'components/UnstyledList';
-import Typography from 'components/Typography';
+import CompletionLog from 'components/CompletionLog';
 
 const CompletionHistoryContainer = ({ history }) => {
   const players = usePlayersObj();
@@ -14,13 +12,11 @@ const CompletionHistoryContainer = ({ history }) => {
     <UnstyledList spacing="s">
       {history.map(item => (
         <UnstyledList.Item key={item.key}>
-          <Typography appearance="h4">
-            {format(item.date, DATE_FORMAT)}
-          </Typography>
-          <p>
-            {players[item.playerId].name} completed this chore for {item.points}{' '}
-            points.
-          </p>
+          <CompletionLog
+            date={item.date}
+            name={players[item.playerId].name}
+            points={item.points}
+          />
         </UnstyledList.Item>
       ))}
     </UnstyledList>

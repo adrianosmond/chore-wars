@@ -14,17 +14,24 @@ export const getChoreCompletions = (game, id) =>
         .reverse();
     });
 
-export const getChoreCompletionRatio = (game, id) =>
-  database
+export const getChoreCompletionRatio = (game, id, players) => {
+  return database
     .ref(`games/${game}/history/completions/${id}`)
     .once('value')
     .then(result => {
       const items = result.val();
-      if (!items) return [];
-      return Object.entries(items)
-        .map(([key, values]) => ({ key, ...values }))
-        .reverse();
+      return players.map(p => ({
+        ...p,
+        completions: items[p.id] || 0,
+      }));
     });
+};
+
+export const getChoreTimeDifferences = (game, id) =>
+  database
+    .ref(`games/${game}/history/timeDifferences/${id}`)
+    .once('value')
+    .then(result => Object.values(result.val() || []));
 
 export const getChoreEdits = (game, id) =>
   database

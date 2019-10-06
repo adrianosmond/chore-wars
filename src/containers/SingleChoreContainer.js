@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { deleteChore } from 'database/chores';
 import routes, {
   createEditChoreLink,
@@ -15,10 +15,18 @@ import LinkButton from 'components/LinkButton';
 import UnstyledList from 'components/UnstyledList';
 import Card from 'components/Card';
 import Typography from 'components/Typography';
+import CompletionStats from 'components/CompletionStats';
+import { EditIcon, LateIcon, DeleteIcon } from 'components/Icon';
 
 export default ({ id }) => {
   const [chore] = useChore(id);
-  const { completions, completionRatio, edits, loading } = useChoreDetails(id);
+  const {
+    completions,
+    completionRatio,
+    timeDifferences,
+    edits,
+    loading,
+  } = useChoreDetails(id);
   return (
     <>
       <Typography as="h1" appearance="h1">
@@ -28,6 +36,12 @@ export default ({ id }) => {
         <UnstyledList.Item>
           Worth {chore.pointsPerTime} points{' '}
           {getFrequencyDescription(chore.frequency)}
+        </UnstyledList.Item>
+        <UnstyledList.Item>
+          <CompletionStats
+            completionRatio={completionRatio}
+            timeDifferences={timeDifferences}
+          />
         </UnstyledList.Item>
         {loading ? (
           <p>Loading...</p>
@@ -63,13 +77,19 @@ export const SingleChoreContainerAside = ({ id }) => {
     <Card title="Actions">
       <UnstyledList spacing="xs">
         <UnstyledList.Item>
-          <Link to={createEditChoreLink(id)}>Edit</Link>{' '}
+          <LinkButton to={createEditChoreLink(id)} Icon={EditIcon}>
+            Edit
+          </LinkButton>{' '}
         </UnstyledList.Item>
         <UnstyledList.Item>
-          <Link to={createForgotToLogLink(id)}>Forgot to log</Link>{' '}
+          <LinkButton to={createForgotToLogLink(id)} Icon={LateIcon}>
+            Forgot to log
+          </LinkButton>{' '}
         </UnstyledList.Item>
         <UnstyledList.Item>
-          <LinkButton onClick={deleteChoreAndRedirect}>Delete</LinkButton>
+          <LinkButton onClick={deleteChoreAndRedirect} Icon={DeleteIcon}>
+            Delete
+          </LinkButton>
         </UnstyledList.Item>
       </UnstyledList>
     </Card>

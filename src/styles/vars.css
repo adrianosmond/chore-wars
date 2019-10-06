@@ -103,13 +103,14 @@
   --color-pink-900: #702459;
 
   --color-text: var(--color-gray-700);
+  --color-text-darker: var(--color-gray-900);
   --color-text-lighter: var(--color-gray-600);
   --color-link: var(--color-blue-700);
   --color-primary: var(--color-blue-500);
   --color-primary-dark: var(--color-blue-900);
   --color-secondary: var(--color-teal-500);
   --color-warning: var(--color-red-600);
-  --color-border: var(--color-gray-400);
+  --color-border: var(--color-gray-200);
 
   --spacing-xxxs: 0.125rem;
   --spacing-xxs: 0.25rem;

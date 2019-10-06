@@ -3,8 +3,9 @@ import LoginContainer from 'containers/LoginContainer';
 import SignUpContainer from 'containers/SignUpContainer';
 import Layout from 'components/Layout';
 
-const HomePage = () => (
+const UnauthenticatedPage = () => (
   <Layout
+    authenticated={false}
     primary={
       <>
         <LoginContainer />
@@ -14,4 +15,4 @@ const HomePage = () => (
   />
 );
 
-export default HomePage;
+export default UnauthenticatedPage;

@@ -55,6 +55,9 @@ export const completeChore = (
           .ref(`games/${game}/history/completions/${chore.id}/${playerId}`)
           .set(completions + 1);
       }),
+    database
+      .ref(`games/${game}/history/timeDifferences/${chore.id}`)
+      .push(date - chore.lastDone),
     database.ref(`games/${game}/history/${chore.id}`).push(historyObj),
   ]);
 };
@@ -124,6 +127,9 @@ export const deleteChore = (game, choreId) =>
       database.ref(`games/${game}/chores/${choreId}`).set(null),
       database.ref(`games/${game}/history/${choreId}`).set(null),
       database.ref(`games/${game}/history/completions/${choreId}`).set(null),
+      database
+        .ref(`games/${game}/history/timeDifferences/${choreId}`)
+        .set(null),
       database
         .ref(`games/${game}/history/all`)
         .orderByChild('choreId')

@@ -3,7 +3,7 @@ import NoGameContainer from 'containers/NoGameContainer';
 import Layout from 'components/Layout';
 
 const NoGamePage = () => {
-  return <Layout primary={<NoGameContainer />} />;
+  return <Layout authenticated={false} primary={<NoGameContainer />} />;
 };
 
 export default NoGamePage;

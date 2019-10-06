@@ -3,7 +3,7 @@ export const createEditChoreLink = id => `/chore/${id}/edit`;
 export const createForgotToLogLink = id => `/chore/${id}/forgot-to-log`;
 
 const routes = {
-  HOME: '/',
+  HOME: '/chores',
   NEW_CHORE: '/chore/new',
   MANAGE_CHAINS: '/chore/chain',
   SINGLE_CHORE: createSingleChoreLink(':id'),

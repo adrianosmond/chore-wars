@@ -1,0 +1,16 @@
+.pts {
+  position: absolute;
+  margin-left: -1px;
+  margin-top: 3px;
+  transform: rotate(-90deg) translate(-100%, 0);
+  transform-origin: 0 0;
+}
+
+.pts abbr {
+  text-decoration: none;
+}
+
+.highlight {
+  color: var(--color-text-lighter);
+  font-weight: bold;
+}
