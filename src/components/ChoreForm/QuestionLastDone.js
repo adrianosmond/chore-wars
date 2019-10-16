@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { format, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { useChoreForm } from 'contexts/choreForm';
 
 import ChoreQuestion from 'components/ChoreQuestion';
@@ -9,9 +9,10 @@ const QuestionLastDone = ({ includeTime = false }) => {
   const { lastDone, updateLastDone, setHasError } = useChoreForm();
 
   useEffect(() => {
-    const date = parseISO(lastDone).getTime();
     setHasError(
-      typeof date !== 'number' || date < 0 || date > new Date().getTime(),
+      typeof lastDone !== 'number' ||
+        lastDone < 0 ||
+        lastDone > new Date().getTime(),
     );
   }, [lastDone, setHasError]);
 
@@ -22,7 +23,7 @@ const QuestionLastDone = ({ includeTime = false }) => {
         label="When was this chore last done?"
         value={format(
           lastDone,
-          includeTime ? 'yyyy-MM-ddTHH:mm' : 'yyyy-MM-dd',
+          includeTime ? "yyyy-MM-dd'T'HH:mm" : 'yyyy-MM-dd',
         )}
         max={format(new Date(), 'yyyy-MM-dd')}
         onChange={updateLastDone}

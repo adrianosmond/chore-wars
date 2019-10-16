@@ -23,7 +23,7 @@ const DonutCircle = ({ stroke, ...props }) => (
     cy={CENTER}
     r={RADIUS}
     fill="transparent"
-    strokeWidth="13"
+    strokeWidth="12"
     stroke={stroke}
     {...props}
   />
