@@ -6,6 +6,7 @@ const routes = {
   HOME: '/',
   NEW_CHORE: '/chore/new',
   MANAGE_CHAINS: '/chore/chain',
+  PROFILE: '/profile',
   SINGLE_CHORE: createSingleChoreLink(':id'),
   EDIT_CHORE: createEditChoreLink(':id'),
   FORGOT_TO_LOG: createForgotToLogLink(':id'),

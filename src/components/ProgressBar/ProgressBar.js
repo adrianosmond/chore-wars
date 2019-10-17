@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import classes from './ProgressBar.module.css';
 
 const ProgressBar = ({
@@ -9,7 +9,7 @@ const ProgressBar = ({
   color = 'var(--color-warning)',
 }) => (
   <div
-    className={classNames({
+    className={classnames({
       [classes.outer]: true,
       [classes.reverse]: reverse,
     })}

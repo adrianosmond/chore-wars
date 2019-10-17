@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import routes from 'constants/routes';
 import HomePage from 'pages/HomePage';
+import ProfilePage from 'pages/ProfilePage';
 import NewChorePage from 'pages/NewChorePage';
 import SingleChorePage from 'pages/SingleChorePage';
 import EditChorePage from 'pages/EditChorePage';
@@ -21,6 +22,7 @@ const App = () => (
     <Router>
       <Switch>
         <Route exact path={routes.HOME} component={HomePage} />
+        <ProtectedRoute exact path={routes.PROFILE} component={ProfilePage} />
         <ProtectedRoute
           exact
           path={routes.NEW_CHORE}

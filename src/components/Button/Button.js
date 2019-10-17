@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import classes from './Button.module.css';
 
 const Button = ({
@@ -15,7 +15,7 @@ const Button = ({
     type={type}
     onClick={onClick}
     disabled={disabled}
-    className={classNames({
+    className={classnames({
       [classes.button]: true,
       [classes[appearance]]: true,
       [className]: className,

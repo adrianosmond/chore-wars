@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import classes from './Spacer.module.css';
 
 const Spacer = ({
@@ -11,7 +11,7 @@ const Spacer = ({
   ...props
 }) => (
   <Element
-    className={classNames({
+    className={classnames({
       [classes[`spacing-${spacing}`]]: true,
       [classes.grow]: grow,
       className,

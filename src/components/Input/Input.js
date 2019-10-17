@@ -7,7 +7,7 @@ const Input = ({
   value,
   onChange,
   label,
-  spacing = 's',
+  spacing = 'xs',
   ...props
 }) => (
   <Spacer spacing={spacing}>

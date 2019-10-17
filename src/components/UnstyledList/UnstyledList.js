@@ -1,10 +1,10 @@
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import classes from './UnstyledList.module.css';
 
 const UnstyledList = ({ children, spacing, className, ...props }) => (
   <ul
-    className={classNames({
+    className={classnames({
       [classes.list]: true,
       [classes[`spacing-${spacing}`]]: spacing,
       className,
@@ -16,7 +16,7 @@ const UnstyledList = ({ children, spacing, className, ...props }) => (
 );
 
 UnstyledList.Item = ({ children, className, ...props }) => (
-  <li className={classNames(classes.item, className)} {...props}>
+  <li className={classnames(classes.item, className)} {...props}>
     {children}
   </li>
 );
