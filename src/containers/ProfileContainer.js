@@ -79,7 +79,7 @@ const ProfileContainer = () => {
           />
           <FormButtonHolder>
             <Button onClick={changePassword} disabled={isPasswordInvalid}>
-              Save password
+              Change password
             </Button>
           </FormButtonHolder>
         </Spacer>

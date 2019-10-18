@@ -1,11 +1,12 @@
 import React from 'react';
-import classes from './ChoreQuestion.module.css';
+import Label from 'components/Label';
+import Spacer from 'components/Spacer';
 
 const ChoreQuestion = ({ question, children }) => (
-  <>
-    {question && <div className={classes.question}>{question}</div>}
+  <Spacer spacing="xs">
+    {question && <Label>{question}</Label>}
     {children}
-  </>
+  </Spacer>
 );
 
 export default ChoreQuestion;

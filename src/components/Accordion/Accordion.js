@@ -27,12 +27,4 @@ const Accordion = ({ title, children, startExpanded = false }) => {
   );
 };
 
-Accordion.propTypes = {
-  // bla: PropTypes.string,
-};
-
-Accordion.defaultProps = {
-  // bla: 'test',
-};
-
 export default Accordion;

@@ -9,19 +9,15 @@ const AvatarEditCard = ({ editAvatar }) => (
   <Card>
     <Spacer>
       <Avatar className={classes.avatar} />
-      <Button className={classes.button} onClick={editAvatar}>
+      <Button
+        className={classes.button}
+        onClick={editAvatar}
+        appearance="secondary"
+      >
         Edit avatar
       </Button>
     </Spacer>
   </Card>
 );
-
-AvatarEditCard.propTypes = {
-  // bla: PropTypes.string,
-};
-
-AvatarEditCard.defaultProps = {
-  // bla: 'test',
-};
 
 export default AvatarEditCard;
