@@ -1,6 +1,6 @@
 .form {
   max-width: 32rem;
-  margin: var(--spacing-l) auto 0;
+  margin: var(--spacing-s) auto 0;
 }
 
 .question {

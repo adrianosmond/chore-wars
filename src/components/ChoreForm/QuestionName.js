@@ -14,6 +14,7 @@ const QuestionName = () => {
     <ChoreQuestion>
       <Input
         label="What is the name of this chore?"
+        placeholder="e.g. Wash dishes"
         value={name}
         onChange={updateName}
       />

@@ -15,7 +15,11 @@ const defaultQuestions = [
   <QuestionLastDone key="lastDone" />,
 ];
 
-const ChoreFormContainer = ({ questions = defaultQuestions, onComplete }) => {
+const ChoreFormContainer = ({
+  questions = defaultQuestions,
+  onComplete,
+  title,
+}) => {
   const { hasError, getState } = useChoreForm();
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -42,6 +46,7 @@ const ChoreFormContainer = ({ questions = defaultQuestions, onComplete }) => {
 
   return (
     <ChoreForm
+      title={title}
       onSubmit={
         currentQuestion === questions.length - 1 ? onSubmit : nextQuestion
       }

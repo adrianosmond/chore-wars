@@ -3,11 +3,10 @@ import classnames from 'classnames';
 import Typography from 'components/Typography';
 import classes from './Card.module.css';
 
-const Card = ({ children, appearance = 'normal', spaced = false, title }) => (
+const Card = ({ children, appearance = 'normal', title }) => (
   <div
     className={classnames({
       [classes.card]: true,
-      [classes.spaced]: spaced,
       [classes[appearance]]: true,
     })}
   >

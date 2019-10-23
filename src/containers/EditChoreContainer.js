@@ -19,7 +19,7 @@ const EditChoreContainer = () => {
 
   return (
     <ChoreFormProvider chore={chore}>
-      <ChoreFormContainer onComplete={onComplete} />
+      <ChoreFormContainer title="Edit Chore" onComplete={onComplete} />
     </ChoreFormProvider>
   );
 };

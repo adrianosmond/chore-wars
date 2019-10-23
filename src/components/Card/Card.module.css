@@ -7,14 +7,11 @@
   border: 1px solid rgba(0, 0, 0, 0.075);
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   color: var(--color-text);
+  background-color: var(--color-white);
 }
 
 .title {
   margin-bottom: var(--spacing-s);
-}
-
-.normal {
-  background-color: var(--color-white);
 }
 
 .primary {
@@ -24,8 +21,8 @@
   --color-link: var(--color-white);
 }
 
-.spaced {
-  margin-bottom: var(--spacing-s);
+.medium {
+  padding: var(--spacing-m);
 }
 
 .info {

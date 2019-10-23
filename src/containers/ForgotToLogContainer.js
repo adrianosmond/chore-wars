@@ -46,6 +46,7 @@ const ForgotToLogContainer = () => {
   return (
     <ChoreFormProvider chore={modifiedChore}>
       <ChoreFormContainer
+        title="Forgot to log"
         questions={[<QuestionLastDone includeTime key="lastDone" />]}
         onComplete={onComplete}
       />

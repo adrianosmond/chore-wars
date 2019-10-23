@@ -6,7 +6,7 @@ import ChoreQuestion from 'components/ChoreQuestion';
 import Input from 'components/Input';
 import Radio from 'components/Radio';
 
-import classes from './QuestionFrequency.module.css';
+import classes from './Question.module.css';
 
 const isFrequencyInvalid = frequency =>
   Number.isNaN(frequency) ||

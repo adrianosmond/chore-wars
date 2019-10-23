@@ -21,7 +21,7 @@ const NewChoreContainer = () => {
 
   return (
     <ChoreFormProvider>
-      <ChoreFormContainer onComplete={onComplete} />
+      <ChoreFormContainer title="New Chore" onComplete={onComplete} />
     </ChoreFormProvider>
   );
 };
