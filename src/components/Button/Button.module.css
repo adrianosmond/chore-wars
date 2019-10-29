@@ -9,6 +9,11 @@
   outline: 0;
 }
 
+.button:hover,
+.button:focus {
+  filter: contrast(1.5);
+}
+
 .primary {
   background-color: var(--color-primary);
   color: var(--color-white);

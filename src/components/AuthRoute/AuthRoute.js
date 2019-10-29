@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { useUser, useGame } from 'contexts/game';
 import routes from 'constants/routes';
 
-const ProtectedRoute = props => {
+export const ProtectedRoute = props => {
   const user = useUser();
   const game = useGame();
   if (!user) return <Redirect to={routes.HOME} />;
@@ -11,4 +11,9 @@ const ProtectedRoute = props => {
   return <Route {...props} />;
 };
 
-export default ProtectedRoute;
+export const UnprotectedRoute = props => {
+  const user = useUser();
+  const game = useGame();
+  if (user || game) return <Redirect to={routes.HOME} />;
+  return <Route {...props} />;
+};

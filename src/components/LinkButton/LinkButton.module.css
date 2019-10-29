@@ -1,5 +1,6 @@
 .linkButton {
   display: inline;
+  text-align: left;
   margin: 0;
   padding: 0;
   border: 0;
@@ -9,7 +10,8 @@
   outline: 0;
 }
 
-.linkButton:hover {
+.linkButton:hover,
+.linkButton:focus {
   text-decoration: underline;
 }
 

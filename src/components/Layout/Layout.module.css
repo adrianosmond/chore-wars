@@ -1,5 +1,12 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .body {
   padding: var(--spacing-s);
+  flex-grow: 1;
 }
 
 .header {
@@ -26,6 +33,10 @@
     flex-shrink: 0;
     flex-basis: 0;
     margin-left: var(--spacing-s);
+  }
+
+  .secondaryBig {
+    flex-grow: 1.5;
   }
 
   .secondarySpaced {

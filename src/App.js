@@ -7,13 +7,15 @@ import {
 } from 'react-router-dom';
 import routes from 'constants/routes';
 import HomePage from 'pages/HomePage';
+import LoginPage from 'pages/LoginPage';
+import ForgotPasswordPage from 'pages/ForgotPasswordPage';
 import ProfilePage from 'pages/ProfilePage';
 import NewChorePage from 'pages/NewChorePage';
 import SingleChorePage from 'pages/SingleChorePage';
 import EditChorePage from 'pages/EditChorePage';
 import ForgotToLogPage from 'pages/ForgotToLogPage';
 import Loading from 'components/Loading';
-import ProtectedRoute from 'components/ProtectedRoute';
+import { ProtectedRoute, UnprotectedRoute } from 'components/AuthRoute';
 
 const ChoreChainPage = lazy(() => import('pages/ChoreChainPage'));
 
@@ -22,6 +24,12 @@ const App = () => (
     <Router>
       <Switch>
         <Route exact path={routes.HOME} component={HomePage} />
+        <UnprotectedRoute exact path={routes.LOGIN} component={LoginPage} />
+        <UnprotectedRoute
+          exact
+          path={routes.FORGOT_PASSWORD}
+          component={ForgotPasswordPage}
+        />
         <ProtectedRoute exact path={routes.PROFILE} component={ProfilePage} />
         <ProtectedRoute
           exact

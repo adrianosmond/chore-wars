@@ -4,6 +4,8 @@ export const createForgotToLogLink = id => `/chore/${id}/forgot-to-log`;
 
 const routes = {
   HOME: '/',
+  LOGIN: '/login',
+  FORGOT_PASSWORD: '/forgot-password',
   NEW_CHORE: '/chore/new',
   MANAGE_CHAINS: '/chore/chain',
   PROFILE: '/profile',

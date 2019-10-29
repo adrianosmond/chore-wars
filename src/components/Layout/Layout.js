@@ -6,7 +6,7 @@ import classes from './Layout.module.css';
 
 const Layout = ({ header, primary, secondary }) => {
   return (
-    <div>
+    <div className={classes.layout}>
       <Header />
       <div className={classes.body}>
         <Container>
@@ -17,6 +17,7 @@ const Layout = ({ header, primary, secondary }) => {
               <div
                 className={classnames({
                   [classes.secondary]: true,
+                  [classes.secondaryBig]: !primary,
                   [classes.secondarySpaced]: !header,
                 })}
               >

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { auth } from 'database';
+import routes from 'constants/routes';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Card from 'components/Card';
-import Typography from 'components/Typography';
 import Spacer from 'components/Spacer';
 import FormButtonHolder from 'components/FormButtonHolder';
+import LinkButton from 'components/LinkButton';
 
 const isInvalid = (email, password, password2) =>
   password.length === 0 ||
@@ -26,38 +27,42 @@ const SignUpContainer = () => {
     }
   };
   return (
-    <Card>
-      <Spacer as="form" onSubmit={onSubmit} grow>
-        <Typography appearance="h3">Create Account</Typography>
-        <Input
-          type="email"
-          placeholder="your.name@email.com"
-          label="Email"
-          value={email}
-          spacing="xs"
-          onChange={e => setEmail(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          label="Password"
-          value={password}
-          spacing="xs"
-          onChange={e => setPassword(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Password"
-          label="Confirm Password"
-          value={password2}
-          spacing="xs"
-          onChange={e => setPassword2(e.target.value)}
-        />
-        <FormButtonHolder>
-          <Button type="submit">Create Account</Button>
-        </FormButtonHolder>
-      </Spacer>
-    </Card>
+    <Spacer>
+      <Card title="Create Account">
+        <Spacer as="form" onSubmit={onSubmit}>
+          <Input
+            type="email"
+            placeholder="your.name@email.com"
+            label="Email"
+            value={email}
+            spacing="xs"
+            onChange={e => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            label="Password"
+            value={password}
+            spacing="xs"
+            onChange={e => setPassword(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            label="Confirm Password"
+            value={password2}
+            spacing="xs"
+            onChange={e => setPassword2(e.target.value)}
+          />
+          <FormButtonHolder>
+            <Button type="submit">Create Account</Button>
+          </FormButtonHolder>
+        </Spacer>
+      </Card>
+      <LinkButton to={routes.LOGIN} style={{ marginTop: '2rem' }}>
+        Already have an account?
+      </LinkButton>
+    </Spacer>
   );
 };
 
