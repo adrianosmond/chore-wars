@@ -77,8 +77,10 @@ export const updateChore = (slug, newChore, newSlug, game, allChores) => {
   createUndoState();
   database.ref(`games/${game}/chores/${newSlug}`).set({
     ...newChore,
-    enables: allChores[slug].enables,
-    isWaiting: allChores[slug].isWaiting,
+    ...(allChores[slug].enables && {
+      enables: allChores[slug].enables,
+      isWaiting: allChores[slug].isWaiting,
+    }),
   });
 
   if (slug !== newSlug) {
