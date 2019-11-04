@@ -20,6 +20,7 @@ export const getChoreCompletionRatio = (game, id, players) => {
     .once('value')
     .then(result => {
       const items = result.val();
+      if (!items) return [];
       return players.map(p => ({
         ...p,
         completions: items[p.id] || 0,
