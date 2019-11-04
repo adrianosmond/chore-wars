@@ -72,7 +72,13 @@ export const updateChore = (game, playerId, chore, newChore) => {
     ...newChore,
   };
   return Promise.all([
-    database.ref(`games/${game}/chores/${chore.id}`).set(newChore),
+    database.ref(`games/${game}/chores/${chore.id}`).set({
+      ...newChore,
+      ...(chore.enables && {
+        enables: chore.enables,
+        isWaiting: chore.isWaiting,
+      }),
+    }),
     database.ref(`games/${game}/history/all`).push(historyObj),
     database.ref(`games/${game}/history/${chore.id}`).push(historyObj),
   ]);
