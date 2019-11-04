@@ -75,7 +75,11 @@ export const addToTimePaused = (game, slug, existingTimePaused, timePaused) => {
 
 export const updateChore = (slug, newChore, newSlug, game, allChores) => {
   createUndoState();
-  database.ref(`games/${game}/chores/${newSlug}`).set(newChore);
+  database.ref(`games/${game}/chores/${newSlug}`).set({
+    ...newChore,
+    enables: allChores[slug].enables,
+    isWaiting: allChores[slug].isWaiting,
+  });
 
   if (slug !== newSlug) {
     database.ref(`games/${game}/chores/${slug}`).set(null);
