@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useUser } from 'contexts/game';
+import { useUserId } from 'contexts/game';
 import Container from 'components/Container';
 import routes from 'constants/routes';
 import ProfileMenu from 'components/ProfileMenu';
@@ -8,7 +8,7 @@ import LinkButton from 'components/LinkButton';
 import classes from './Header.module.css';
 
 const Header = () => {
-  const user = useUser();
+  const user = useUserId();
   const history = useHistory();
   const currentPath = history.location.pathname;
 

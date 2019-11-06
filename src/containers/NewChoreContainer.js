@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useGame, useUser } from 'contexts/game';
+import { useGame, useUserId } from 'contexts/game';
 import { ChoreFormProvider } from 'contexts/choreForm';
 import { createChore } from 'database/chores';
 import routes from 'constants/routes';
@@ -10,7 +10,7 @@ import ChoreFormContainer from 'containers/ChoreFormContainer';
 
 const NewChoreContainer = () => {
   const game = useGame();
-  const user = useUser();
+  const user = useUserId();
   const history = useHistory();
   const onComplete = useCallback(
     chore => {

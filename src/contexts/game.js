@@ -29,7 +29,7 @@ export const GameProvider = ({ children }) => {
         // as we're going to display some routes that aren't yet ready
         // until we pull game, player and chore info
         setIsLoading(true);
-        setUser(authUser.uid);
+        setUser(authUser);
       } else {
         // reset everything in case this change comes from a logout
         setUser(false);
@@ -50,10 +50,12 @@ export const GameProvider = ({ children }) => {
       return () => {};
     }
 
-    const ref = database.ref(`users/${user}`);
+    const ref = database.ref(`users/${user.uid}`);
     const onUserChange = result => {
       const userData = result.val();
       if (userData && userData.gameId) {
+        // If we've just created a game, set to loading while we create the rest of the data
+        setIsLoading(true);
         setGame(userData.gameId);
       } else {
         setGame(false);
@@ -84,8 +86,9 @@ export const GameProvider = ({ children }) => {
     }
     const playersPath = `games/${game}/players`;
     const updatePlayers = result => {
-      setPlayersObj(result.val());
-      setPlayers(makePlayersArray(result.val()));
+      const val = result.val() || {};
+      setPlayersObj(val);
+      setPlayers(makePlayersArray(val));
     };
     database.ref(playersPath).on('value', updatePlayers);
     return () => database.ref(playersPath).off('value', updatePlayers);
@@ -128,7 +131,8 @@ export const GameProvider = ({ children }) => {
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 };
 
-export const useUser = () => useContext(GameContext).user;
+export const useUserProfile = () => useContext(GameContext).user;
+export const useUserId = () => useContext(GameContext).user.uid;
 export const useGame = () => useContext(GameContext).game;
 export const useHoliday = () => useContext(GameContext).holiday;
 export const usePlayers = () => useContext(GameContext).players;

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 
 import { createGame, joinGame } from 'database/game';
 import { MAX_NAME_LENGTH, JOIN_CODE_LENGTH } from 'constants/constants';
-import { useUser } from 'contexts/game';
+import { useUserId } from 'contexts/game';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
@@ -10,9 +10,10 @@ import Card from 'components/Card';
 import Flexer from 'components/Flexer';
 import Spacer from 'components/Spacer';
 import FormButtonHolder from 'components/FormButtonHolder';
+import Typography from 'components/Typography';
 
 const NoGameContainer = () => {
-  const user = useUser();
+  const user = useUserId();
   const [playerName, setPlayerName] = useState('');
   const [gameToJoin, setGameToJoin] = useState('');
   const updatePlayerName = useCallback(
@@ -26,11 +27,13 @@ const NoGameContainer = () => {
 
   return (
     <Spacer>
-      <h1>Welcome to Chore Wars!</h1>
-      <p>
+      <Typography as="h1" appearance="h1">
+        Welcome to Chore Wars!
+      </Typography>
+      <Typography appearance="body">
         Firstly, please tell us your first name, or whatever you want to be
         called in the game.
-      </p>
+      </Typography>
       <Input
         placeholder="e.g. Sarah"
         value={playerName}
@@ -40,7 +43,9 @@ const NoGameContainer = () => {
       <Flexer>
         <Card>
           <Spacer grow>
-            <h2>Join a game</h2>
+            <Typography as="h2" appearance="h2">
+              Join a game
+            </Typography>
             <Input
               label="If you have been given a code to join someone else&#39;s game, you can enter it here:"
               placeholder="e.g. abcdwxyz"
@@ -62,11 +67,13 @@ const NoGameContainer = () => {
         </Card>
         <Card>
           <Spacer grow>
-            <h2>Create a game</h2>
-            <p>
+            <Typography as="h2" appearance="h2">
+              Create a game
+            </Typography>
+            <Typography>
               Alternatively, if you want create a new game and invite someone
               else...
-            </p>
+            </Typography>
             <FormButtonHolder>
               <Button
                 variant="secondary"

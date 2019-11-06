@@ -1,9 +1,9 @@
 import { useMemo, useCallback } from 'react';
-import { useGame, useUser, useChores } from 'contexts/game';
+import { useGame, useUserId, useChores } from 'contexts/game';
 import { updateChore } from 'database/chores';
 
 export default id => {
-  const user = useUser();
+  const user = useUserId();
   const game = useGame();
   const chores = useChores();
   const chore = useMemo(

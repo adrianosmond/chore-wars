@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import { completeChore } from 'database/chores';
-import { useUser, useGame, useChores } from 'contexts/game';
+import { useUserId, useGame, useChores } from 'contexts/game';
 import Chore from 'components/Chore';
 import UnstyledList from 'components/UnstyledList';
 import { sortByCurrentPoints, choreIsAvailable } from 'utils/chores';
@@ -10,7 +10,7 @@ import useRerender from 'hooks/useRerender';
 
 const ChoresContainer = () => {
   const rerenderAfter10s = useRerender(10000);
-  const user = useUser();
+  const user = useUserId();
   const game = useGame();
   const chores = useChores()
     .filter(choreIsAvailable)

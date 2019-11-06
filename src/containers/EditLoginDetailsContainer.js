@@ -1,18 +1,20 @@
 import React, { useState, useCallback } from 'react';
-import { useUser, usePlayersObj } from 'contexts/game';
-import Typography from 'components/Typography';
+import { useUserProfile } from 'contexts/game';
+import { updatePlayerLogin } from 'database/players';
 import Input from 'components/Input';
 import Accordion from 'components/Accordion';
 import Spacer from 'components/Spacer';
 import FormButtonHolder from 'components/FormButtonHolder';
 import Button from 'components/Button';
+import Typography from 'components/Typography';
 
-const ProfileContainer = () => {
-  const [name, setName] = useState(usePlayersObj()[useUser()].name);
-  const updateName = useCallback(e => setName(e.target.value), []);
-
+const EditLoginDetailsContainer = () => {
   const [password, setPassword] = useState('');
   const updatePassword = useCallback(e => setPassword(e.target.value), []);
+
+  const existingEmail = useUserProfile().email;
+  const [email, setEmail] = useState(existingEmail);
+  const updateEmail = useCallback(e => setEmail(e.target.value), []);
 
   const [newPassword, setNewPassword] = useState('');
   const updateNewPassword = useCallback(
@@ -26,41 +28,41 @@ const ProfileContainer = () => {
     [],
   );
 
-  const isNameInvalid = name.length === 0;
-  const isPasswordInvalid =
+  const isFormInvalid =
+    email.length < 6 ||
+    !email.includes('@') ||
+    (newPassword.length === 0 && email === existingEmail) ||
     password.length === 0 ||
-    newPassword.length === 0 ||
     newPassword !== newPassword2;
 
-  const changePassword = () => {};
-  const saveName = () => {};
+  const updateLoginDetails = () =>
+    updatePlayerLogin(
+      password,
+      email === existingEmail ? undefined : email,
+      newPassword.length === 0 ? undefined : newPassword,
+    );
 
   return (
     <>
-      <Typography appearance="h1">Profile</Typography>
-      <Accordion title="Personal details" startExpanded={true}>
+      <Accordion title="Login details">
         <Spacer>
-          <Input
-            type="text"
-            label="Name"
-            value={name}
-            onChange={updateName}
-            spacing="xs"
-          />
-          <FormButtonHolder>
-            <Button onClick={saveName} disabled={isNameInvalid}>
-              Save details
-            </Button>
-          </FormButtonHolder>
-        </Spacer>
-      </Accordion>
-      <Accordion title="Password">
-        <Spacer>
+          <Typography>
+            Before changing your email or password, please first confirm your
+            current password
+          </Typography>
           <Input
             type="password"
             label="Current password"
             value={password}
             onChange={updatePassword}
+            spacing="xs"
+          />
+          <Typography>&nbsp;</Typography>
+          <Input
+            type="email"
+            label="Email"
+            value={email}
+            onChange={updateEmail}
             spacing="xs"
           />
           <Input
@@ -78,8 +80,8 @@ const ProfileContainer = () => {
             spacing="xs"
           />
           <FormButtonHolder>
-            <Button onClick={changePassword} disabled={isPasswordInvalid}>
-              Change password
+            <Button onClick={updateLoginDetails} disabled={isFormInvalid}>
+              Change login details
             </Button>
           </FormButtonHolder>
         </Spacer>
@@ -88,4 +90,4 @@ const ProfileContainer = () => {
   );
 };
 
-export default ProfileContainer;
+export default EditLoginDetailsContainer;

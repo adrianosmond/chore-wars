@@ -39,11 +39,13 @@ export default ({ id }) => {
         {chore.name}
       </Typography>
       <Spacer>
-        <CompletionStatsContainer
-          completionRatio={completionRatio}
-          timeDifferences={timeDifferences}
-          frequency={chore.frequency}
-        />
+        {timeDifferences.length > 0 && (
+          <CompletionStatsContainer
+            completionRatio={completionRatio}
+            timeDifferences={timeDifferences}
+            frequency={chore.frequency}
+          />
+        )}
         <Card title="Recent completions">
           <CompletionHistoryContainer history={completions} />
         </Card>

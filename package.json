@@ -1,6 +1,6 @@
 {
-  "name": "hook-wars",
-  "version": "0.1.0",
+  "name": "chore-wars",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",

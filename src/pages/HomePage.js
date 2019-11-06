@@ -2,10 +2,10 @@ import React from 'react';
 import UnauthenticatedPage from 'pages/UnauthenticatedPage';
 import NoGamePage from 'pages/NoGamePage';
 import ChoresPage from 'pages/ChoresPage';
-import { useUser, useGame } from 'contexts/game';
+import { useUserId, useGame } from 'contexts/game';
 
 const HomePage = () => {
-  const user = useUser();
+  const user = useUserId();
   const game = useGame();
 
   if (!user) {

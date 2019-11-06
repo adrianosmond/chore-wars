@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-import { useGame, useUser } from 'contexts/game';
+import { useGame, useUserId } from 'contexts/game';
 import { ChoreFormProvider } from 'contexts/choreForm';
 import routes from 'constants/routes';
 import useChore from 'hooks/useChore';
@@ -13,7 +13,7 @@ import { computedChoreProperties } from 'utils/chores';
 
 const ForgotToLogContainer = () => {
   const game = useGame();
-  const user = useUser();
+  const user = useUserId();
   const history = useHistory();
   const { id } = useParams();
   const [chore] = useChore(id);
