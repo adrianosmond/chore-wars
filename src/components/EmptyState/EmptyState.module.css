@@ -1,5 +1,14 @@
 .wrapper {
+  margin: 0 auto;
+  max-width: 30rem;
   text-align: center;
+}
+
+.s {
+  font-size: var(--font-size-s);
+}
+
+.m {
   padding: var(--spacing-l) 0;
 }
 

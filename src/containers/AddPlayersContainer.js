@@ -3,8 +3,9 @@ import { database } from 'database';
 import { lockGame } from 'database/game';
 import { useGame, usePlayers } from 'contexts/game';
 import Card from 'components/Card';
-import LinkButton from 'components/LinkButton';
 import Typography from 'components/Typography';
+import EmptyState from 'components/EmptyState';
+import LinkButton from 'components/LinkButton';
 
 const AddPlayersContainer = () => {
   const game = useGame();
@@ -31,19 +32,24 @@ const AddPlayersContainer = () => {
   if (!joinCode) return null;
 
   return (
-    <Card appearance="info" spaced>
-      <Typography>
-        Want to add players? Give them the code: <strong>{joinCode}</strong>.{' '}
-        {players.length > 1 && (
+    <Card appearance="info">
+      <EmptyState
+        size="s"
+        title="Want to add players?"
+        description={
           <>
-            <br />
-            Once everyone has joined,{' '}
-            <LinkButton onClick={lockTheGame}>
-              click here to lock the game
-            </LinkButton>
+            If you want people to split the chores with you and join your game,
+            give them the code: <strong>{joinCode}</strong>.{' '}
+            {players.length > 1 && (
+              <>
+                Once everyone has joined, you can{' '}
+                <LinkButton onClick={lockTheGame}>lock the game</LinkButton> and
+                this message will go away
+              </>
+            )}
           </>
-        )}
-      </Typography>
+        }
+      />
     </Card>
   );
 };

@@ -10,6 +10,7 @@ import Chore from 'components/Chore';
 import UnstyledList from 'components/UnstyledList';
 import EmptyState from 'components/EmptyState';
 import Button from 'components/Button';
+import { SprayIcon } from 'components/Icon';
 
 const ChoresContainer = () => {
   const rerenderAfter10s = useRerender(10000);
@@ -29,6 +30,7 @@ const ChoresContainer = () => {
   if (chores.length === 0) {
     return (
       <EmptyState
+        Icon={SprayIcon}
         title="Nothing to see here"
         description="You don't have any chores yet. Once you do, they will show up here. Why not go ahead and create one now?"
         cta={<Button to={routes.NEW_CHORE}>Create a chore</Button>}

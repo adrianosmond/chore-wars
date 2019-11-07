@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { ReactComponent as Add } from './add.svg';
 import { ReactComponent as AvatarImg } from './avatar.svg';
 import { ReactComponent as Broom } from './broom.svg';
+import { ReactComponent as Camp } from './camp.svg';
 import { ReactComponent as Cloth } from './cloth.svg';
 import { ReactComponent as Delete } from './delete.svg';
 import { ReactComponent as Edit } from './edit.svg';
@@ -15,6 +16,7 @@ import avatarStyles from './avatar.module.css';
 
 export const AddIcon = Add;
 export const BroomIcon = Broom;
+export const CampIcon = Camp;
 export const ClothIcon = Cloth;
 export const DeleteIcon = Delete;
 export const EditIcon = Edit;
