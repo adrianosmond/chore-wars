@@ -1,0 +1,11 @@
+.wrapper {
+  text-align: center;
+  padding: var(--spacing-l) 0;
+}
+
+.icon {
+  margin-bottom: var(--spacing-s);
+  width: 4rem;
+  height: 4rem;
+  fill: currentColor;
+}

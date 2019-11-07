@@ -1,9 +1,9 @@
 import React from 'react';
+import useChain from 'hooks/useChain';
+import ChainActionsContainer from 'containers/ChainActionsContainer';
 import Layout from 'components/Layout';
 import Typography from 'components/Typography';
 import ChoreChains from 'components/ChoreChains';
-import useChain from 'hooks/useChain';
-import ChainActionsContainer from 'containers/ChainActionsContainer';
 
 const ChoreChainPage = () => {
   const {
@@ -26,6 +26,7 @@ const ChoreChainPage = () => {
           </Typography>
           <ChoreChains
             chains={chains}
+            createChain={createChain}
             availableChores={availableChores}
             addChoreToChain={addChoreToChain}
             removeChoreFromChain={removeChoreFromChain}

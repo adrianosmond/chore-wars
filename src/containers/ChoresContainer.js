@@ -2,11 +2,14 @@ import React, { useCallback } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import { completeChore } from 'database/chores';
 import { useUserId, useGame, useChores } from 'contexts/game';
-import Chore from 'components/Chore';
-import UnstyledList from 'components/UnstyledList';
+import useRerender from 'hooks/useRerender';
 import { sortByCurrentPoints, choreIsAvailable } from 'utils/chores';
 import { onAppear, onExit } from 'utils/animations';
-import useRerender from 'hooks/useRerender';
+import routes from 'constants/routes';
+import Chore from 'components/Chore';
+import UnstyledList from 'components/UnstyledList';
+import EmptyState from 'components/EmptyState';
+import Button from 'components/Button';
 
 const ChoresContainer = () => {
   const rerenderAfter10s = useRerender(10000);
@@ -24,7 +27,13 @@ const ChoresContainer = () => {
   );
 
   if (chores.length === 0) {
-    return <p>You don't have any chores yet...</p>;
+    return (
+      <EmptyState
+        title="Nothing to see here"
+        description="You don't have any chores yet. Once you do, they will show up here. Why not go ahead and create one now?"
+        cta={<Button to={routes.NEW_CHORE}>Create a chore</Button>}
+      />
+    );
   }
 
   return (

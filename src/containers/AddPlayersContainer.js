@@ -4,6 +4,7 @@ import { lockGame } from 'database/game';
 import { useGame, usePlayers } from 'contexts/game';
 import Card from 'components/Card';
 import LinkButton from 'components/LinkButton';
+import Typography from 'components/Typography';
 
 const AddPlayersContainer = () => {
   const game = useGame();
@@ -31,15 +32,18 @@ const AddPlayersContainer = () => {
 
   return (
     <Card appearance="info" spaced>
-      <p>
+      <Typography>
         Want to add players? Give them the code: <strong>{joinCode}</strong>.{' '}
         {players.length > 1 && (
           <>
-            Once everyone has joined, click here to{' '}
-            <LinkButton onClick={lockTheGame}>lock the game</LinkButton>
+            <br />
+            Once everyone has joined,{' '}
+            <LinkButton onClick={lockTheGame}>
+              click here to lock the game
+            </LinkButton>
           </>
         )}
-      </p>
+      </Typography>
     </Card>
   );
 };

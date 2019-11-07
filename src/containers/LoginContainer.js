@@ -18,6 +18,9 @@ const LoginContainer = () => {
       .catch(err => console.error(err));
   };
 
+  const formIsInvalid =
+    email.length < 6 || !email.includes('@') || password.length === 0;
+
   return (
     <Spacer>
       <Card title="Login">
@@ -39,7 +42,9 @@ const LoginContainer = () => {
             onChange={e => setPassword(e.target.value)}
           />
           <FormButtonHolder>
-            <Button type="submit">Login</Button>
+            <Button type="submit" disabled={formIsInvalid}>
+              Login
+            </Button>
           </FormButtonHolder>
         </Spacer>
       </Card>

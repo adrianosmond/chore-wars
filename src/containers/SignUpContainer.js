@@ -26,6 +26,13 @@ const SignUpContainer = () => {
         .catch(error => console.log('failed:', error.message));
     }
   };
+
+  const formIsInvalid =
+    email.length < 6 ||
+    !email.includes('@') ||
+    password.length === 0 ||
+    password !== password2;
+
   return (
     <Spacer>
       <Card title="Create Account">
@@ -55,13 +62,13 @@ const SignUpContainer = () => {
             onChange={e => setPassword2(e.target.value)}
           />
           <FormButtonHolder>
-            <Button type="submit">Create Account</Button>
+            <Button type="submit" disabled={formIsInvalid}>
+              Create Account
+            </Button>
           </FormButtonHolder>
         </Spacer>
       </Card>
-      <LinkButton to={routes.LOGIN} style={{ marginTop: '2rem' }}>
-        Already have an account?
-      </LinkButton>
+      <LinkButton to={routes.LOGIN}>Already have an account?</LinkButton>
     </Spacer>
   );
 };
