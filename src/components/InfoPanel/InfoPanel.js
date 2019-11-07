@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Spacer from 'components/Spacer';
 import Typography from 'components/Typography';
-import classes from './EmptyState.module.css';
+import classes from './InfoPanel.module.css';
 
 const headingSize = size => {
   if (size === 's') {
@@ -11,7 +11,7 @@ const headingSize = size => {
   return 'h2';
 };
 
-const EmptyState = ({ Icon, title, description, cta, size = 'm' }) => (
+const InfoPanel = ({ Icon, title, description, cta, size = 'm' }) => (
   <div
     className={classnames({
       [classes.wrapper]: true,
@@ -29,4 +29,4 @@ const EmptyState = ({ Icon, title, description, cta, size = 'm' }) => (
   </div>
 );
 
-export default EmptyState;
+export default InfoPanel;

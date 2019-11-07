@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { stopHoliday } from 'database/game';
 import { useGame, useHoliday } from 'contexts/game';
-import EmptyState from 'components/EmptyState';
+import InfoPanel from 'components/InfoPanel';
 import Button from 'components/Button';
 import { CampIcon } from 'components/Icon';
 
@@ -13,7 +13,7 @@ const HolidayContainer = () => {
     game,
   ]);
   return (
-    <EmptyState
+    <InfoPanel
       Icon={CampIcon}
       title="Put your feet up!"
       description="The game is paused while you're on holiday. When you come back let us know and you can pick things up where you left off."

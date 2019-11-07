@@ -3,8 +3,7 @@ import { database } from 'database';
 import { lockGame } from 'database/game';
 import { useGame, usePlayers } from 'contexts/game';
 import Card from 'components/Card';
-import Typography from 'components/Typography';
-import EmptyState from 'components/EmptyState';
+import InfoPanel from 'components/InfoPanel';
 import LinkButton from 'components/LinkButton';
 
 const AddPlayersContainer = () => {
@@ -33,7 +32,7 @@ const AddPlayersContainer = () => {
 
   return (
     <Card appearance="info">
-      <EmptyState
+      <InfoPanel
         size="s"
         title="Want to add players?"
         description={

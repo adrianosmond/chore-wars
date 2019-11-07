@@ -8,7 +8,7 @@ import { onAppear, onExit } from 'utils/animations';
 import routes from 'constants/routes';
 import Chore from 'components/Chore';
 import UnstyledList from 'components/UnstyledList';
-import EmptyState from 'components/EmptyState';
+import InfoPanel from 'components/InfoPanel';
 import Button from 'components/Button';
 import { SprayIcon } from 'components/Icon';
 
@@ -29,7 +29,7 @@ const ChoresContainer = () => {
 
   if (chores.length === 0) {
     return (
-      <EmptyState
+      <InfoPanel
         Icon={SprayIcon}
         title="Nothing to see here"
         description="You don't have any chores yet. Once you do, they will show up here. Why not go ahead and create one now?"
