@@ -1,7 +1,6 @@
 import React from 'react';
-import SingleChoreContainer, {
-  SingleChoreContainerAside,
-} from 'containers/SingleChoreContainer';
+import SingleChoreContainer from 'containers/SingleChoreContainer';
+import SingleChoreActionContainer from 'containers/SingleChoreActionContainer';
 import Layout from 'components/Layout';
 
 const SingleChorePage = ({
@@ -11,7 +10,7 @@ const SingleChorePage = ({
 }) => (
   <Layout
     primary={<SingleChoreContainer id={id} />}
-    secondary={<SingleChoreContainerAside id={id} />}
+    secondary={<SingleChoreActionContainer id={id} />}
   />
 );
 

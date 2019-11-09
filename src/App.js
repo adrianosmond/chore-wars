@@ -10,6 +10,7 @@ import HomePage from 'pages/HomePage';
 import LoginPage from 'pages/LoginPage';
 import ForgotPasswordPage from 'pages/ForgotPasswordPage';
 import ProfilePage from 'pages/ProfilePage';
+import PlayerPage from 'pages/PlayerPage';
 import NewChorePage from 'pages/NewChorePage';
 import SingleChorePage from 'pages/SingleChorePage';
 import EditChorePage from 'pages/EditChorePage';
@@ -31,6 +32,7 @@ const App = () => (
           component={ForgotPasswordPage}
         />
         <ProtectedRoute exact path={routes.PROFILE} component={ProfilePage} />
+        <ProtectedRoute exact path={routes.PLAYER} component={PlayerPage} />
         <ProtectedRoute
           exact
           path={routes.NEW_CHORE}

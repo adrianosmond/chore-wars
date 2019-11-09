@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { createPlayerProfileLink } from 'constants/routes';
 import ProgressBar from 'components/ProgressBar';
 import { MAX_POINT_DIFFERENCE } from 'constants/constants';
 import Typography from 'components/Typography';
@@ -27,18 +29,18 @@ const TwoPlayerScorecard = ({ players: [player1, player2], minPoints }) => {
       : getPercentage(player2.points - minPoints);
   return (
     <div className={classes.players}>
-      <div className={classes.player}>
+      <Link to={createPlayerProfileLink(player1.id)} className={classes.player}>
         <Avatar className={classes.avatar} />
         <Typography className={classes.name}>{player1.name}</Typography>
-      </div>
+      </Link>
       <div className={classes.bar}>
         <ProgressBar percentage={player1Pct} label={player1Label} reverse />
         <ProgressBar percentage={player2Pct} label={player2Label} />
       </div>
-      <div className={classes.player}>
+      <Link to={createPlayerProfileLink(player2.id)} className={classes.player}>
         <Avatar className={classes.avatar} />
         <Typography className={classes.name}>{player2.name}</Typography>
-      </div>
+      </Link>
     </div>
   );
 };

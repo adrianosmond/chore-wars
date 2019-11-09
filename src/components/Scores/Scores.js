@@ -18,6 +18,7 @@ const Scores = ({ players, minPoints, maxPoints }) => {
             {players.map(({ name, points, id }) => (
               <PlayerRow
                 key={id}
+                id={id}
                 name={name}
                 points={points}
                 minPoints={minPoints}

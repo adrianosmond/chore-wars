@@ -1,29 +1,18 @@
-import React, { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { deleteChore } from 'database/chores';
-import routes, {
-  createEditChoreLink,
-  createForgotToLogLink,
-} from 'constants/routes';
-import useChore from 'hooks/useChore';
+import React from 'react';
 import useChoreDetails from 'hooks/useChoreDetails';
-import { useGame } from 'contexts/game';
 import CompletionHistoryContainer from 'containers/CompletionHistoryContainer';
 import EditHistoryContainer from 'containers/EditHistoryContainer';
 import CompletionStatsContainer from 'containers/CompletionStatsContainer';
-import LinkButton from 'components/LinkButton';
-import UnstyledList from 'components/UnstyledList';
 import Card from 'components/Card';
 import Typography from 'components/Typography';
 import Spacer from 'components/Spacer';
-import { EditIcon, LateIcon, DeleteIcon, ClothIcon } from 'components/Icon';
+import { ClothIcon } from 'components/Icon';
 import Loading from 'components/Loading';
 import InfoPanel from 'components/InfoPanel';
-import { ConfirmModal } from 'components/Modal';
 
 export default ({ id }) => {
-  const [chore] = useChore(id);
   const {
+    chore,
     completions,
     completionRatio,
     timeDifferences,
@@ -48,9 +37,12 @@ export default ({ id }) => {
             frequency={chore.frequency}
           />
         )}
-        {completions.length > 1 ? (
+        {completions.length > 0 ? (
           <Card title="Recent completions">
-            <CompletionHistoryContainer history={completions} />
+            <CompletionHistoryContainer
+              history={completions}
+              highlightPlayerName={true}
+            />
           </Card>
         ) : (
           <InfoPanel
@@ -66,52 +58,5 @@ export default ({ id }) => {
         )}
       </Spacer>
     </>
-  );
-};
-
-export const SingleChoreContainerAside = ({ id }) => {
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const openDeleteModal = useCallback(() => setShowDeleteModal(true), []);
-  const closeDeleteModal = useCallback(() => setShowDeleteModal(false), []);
-
-  const game = useGame();
-  const history = useHistory();
-  const deleteChoreAndRedirect = useCallback(() => {
-    history.push(routes.HOME);
-    deleteChore(game, id);
-  }, [game, history, id]);
-  return (
-    <Card title="Actions">
-      <UnstyledList spacing="xs">
-        <UnstyledList.Item>
-          <LinkButton to={createEditChoreLink(id)} Icon={EditIcon}>
-            Edit
-          </LinkButton>{' '}
-        </UnstyledList.Item>
-        <UnstyledList.Item>
-          <LinkButton to={createForgotToLogLink(id)} Icon={LateIcon}>
-            Forgot to log
-          </LinkButton>{' '}
-        </UnstyledList.Item>
-        <UnstyledList.Item>
-          <LinkButton onClick={openDeleteModal} Icon={DeleteIcon}>
-            Delete
-          </LinkButton>
-        </UnstyledList.Item>
-      </UnstyledList>
-      {showDeleteModal && (
-        <ConfirmModal
-          isDelete={true}
-          closeModal={closeDeleteModal}
-          onConfirm={deleteChoreAndRedirect}
-          confirmText="Yes, delete it"
-        >
-          <Typography>
-            Are you sure you want to delete this chore? It and all of its
-            history will be gone forever.
-          </Typography>
-        </ConfirmModal>
-      )}
-    </Card>
   );
 };
