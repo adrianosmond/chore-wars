@@ -10,7 +10,7 @@
 .progressBar {
   display: flex;
   align-items: flex-end;
-  height: 2rem;
+  height: 2.5rem;
   margin-bottom: var(--spacing-s);
 }
 

@@ -22,7 +22,11 @@ const ProgressBar = ({
         borderTopColor: color,
       }}
     >
-      {label ? <div className={classes.label}>{label}</div> : '&nbsp;'}
+      {label || label === 0 ? (
+        <div className={classes.label}>{label}</div>
+      ) : (
+        '&nbsp;'
+      )}
     </div>
   </div>
 );
