@@ -19,14 +19,10 @@ const Header = () => {
           <Link to={routes.HOME}>Chore Wars</Link>
           {user && <ProfileMenu />}
           {!user && currentPath !== routes.LOGIN && (
-            <LinkButton appearance="secondary" to={routes.LOGIN}>
-              Log in
-            </LinkButton>
+            <LinkButton to={routes.LOGIN}>Log in</LinkButton>
           )}
           {!user && currentPath === routes.LOGIN && (
-            <LinkButton appearance="secondary" to={routes.HOME}>
-              Sign up
-            </LinkButton>
+            <LinkButton to={routes.HOME}>Sign up</LinkButton>
           )}
         </div>
       </Container>

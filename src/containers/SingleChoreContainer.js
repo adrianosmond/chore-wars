@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { deleteChore } from 'database/chores';
 import routes, {
@@ -16,8 +16,10 @@ import UnstyledList from 'components/UnstyledList';
 import Card from 'components/Card';
 import Typography from 'components/Typography';
 import Spacer from 'components/Spacer';
-import { EditIcon, LateIcon, DeleteIcon } from 'components/Icon';
+import { EditIcon, LateIcon, DeleteIcon, ClothIcon } from 'components/Icon';
 import Loading from 'components/Loading';
+import InfoPanel from 'components/InfoPanel';
+import { ConfirmModal } from 'components/Modal';
 
 export default ({ id }) => {
   const [chore] = useChore(id);
@@ -46,9 +48,17 @@ export default ({ id }) => {
             frequency={chore.frequency}
           />
         )}
-        <Card title="Recent completions">
-          <CompletionHistoryContainer history={completions} />
-        </Card>
+        {completions.length > 1 ? (
+          <Card title="Recent completions">
+            <CompletionHistoryContainer history={completions} />
+          </Card>
+        ) : (
+          <InfoPanel
+            Icon={ClothIcon}
+            title="No completions yet"
+            description="It looks like this chore has never been completed. When you have done it, you'll be able to see stats about it here."
+          />
+        )}
         {edits.length > 0 && (
           <Card title="Edits">
             <EditHistoryContainer history={edits} />
@@ -60,6 +70,10 @@ export default ({ id }) => {
 };
 
 export const SingleChoreContainerAside = ({ id }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const openDeleteModal = useCallback(() => setShowDeleteModal(true), []);
+  const closeDeleteModal = useCallback(() => setShowDeleteModal(false), []);
+
   const game = useGame();
   const history = useHistory();
   const deleteChoreAndRedirect = useCallback(() => {
@@ -80,11 +94,24 @@ export const SingleChoreContainerAside = ({ id }) => {
           </LinkButton>{' '}
         </UnstyledList.Item>
         <UnstyledList.Item>
-          <LinkButton onClick={deleteChoreAndRedirect} Icon={DeleteIcon}>
+          <LinkButton onClick={openDeleteModal} Icon={DeleteIcon}>
             Delete
           </LinkButton>
         </UnstyledList.Item>
       </UnstyledList>
+      {showDeleteModal && (
+        <ConfirmModal
+          isDelete={true}
+          closeModal={closeDeleteModal}
+          onConfirm={deleteChoreAndRedirect}
+          confirmText="Yes, delete it"
+        >
+          <Typography>
+            Are you sure you want to delete this chore? It and all of its
+            history will be gone forever.
+          </Typography>
+        </ConfirmModal>
+      )}
     </Card>
   );
 };

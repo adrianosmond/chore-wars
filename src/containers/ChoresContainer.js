@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
+import { useHistory } from 'react-router-dom';
 import { completeChore } from 'database/chores';
 import { useUserId, useGame, useChores } from 'contexts/game';
 import useRerender from 'hooks/useRerender';
@@ -27,13 +28,19 @@ const ChoresContainer = () => {
     [game, user],
   );
 
+  const history = useHistory();
+
   if (chores.length === 0) {
     return (
       <InfoPanel
         Icon={SprayIcon}
         title="Nothing to see here"
         description="You don't have any chores yet. Once you do, they will show up here. Why not go ahead and create one now?"
-        cta={<Button to={routes.NEW_CHORE}>Create a chore</Button>}
+        cta={
+          <Button onClick={() => history.push(routes.NEW_CHORE)}>
+            Create a chore
+          </Button>
+        }
       />
     );
   }
