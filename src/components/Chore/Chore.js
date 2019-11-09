@@ -36,14 +36,15 @@ const Chore = ({
             }
           />
         </div>
-        <p className={classes.date}>
+        <Typography appearance="oneLine" className={classes.date}>
           <Typography appearance="h3" as="span">
             Last Done:
           </Typography>{' '}
           {format(lastDone, DATE_FORMAT)}
-        </p>
+        </Typography>
         {frequency > 0 && (
-          <p
+          <Typography
+            appearance="oneLine"
             className={classnames({
               [classes.date]: true,
               [classes.overdue]: percentage === 100,
@@ -53,7 +54,7 @@ const Chore = ({
               Due:
             </Typography>{' '}
             {format(due, DATE_FORMAT)}
-          </p>
+          </Typography>
         )}
       </div>
       <div className={classes.right}>

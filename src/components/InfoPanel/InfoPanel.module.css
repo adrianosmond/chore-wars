@@ -4,7 +4,8 @@
   text-align: center;
 }
 
-.s {
+.s,
+.xs {
   font-size: var(--font-size-s);
 }
 
@@ -17,4 +18,18 @@
   width: 4rem;
   height: 4rem;
   fill: currentColor;
+}
+
+.s .icon,
+.xs .icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.xs .icon {
+  margin-bottom: var(--spacing-xs);
+}
+
+.xs button {
+  margin-top: var(--spacing-xs);
 }

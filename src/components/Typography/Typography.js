@@ -10,7 +10,10 @@ const Typography = ({
   ...props
 }) => (
   <Element
-    className={classnames({ [classes[appearance]]: true, [className]: true })}
+    className={classnames({
+      [classes[appearance]]: true,
+      [className]: className,
+    })}
     {...props}
   >
     {children}

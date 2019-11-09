@@ -28,3 +28,7 @@ export const addPointsToPlayer = (playerId, points, game) =>
         .ref(`games/${game}/players/${playerId}/points`)
         .set(pts + points);
     });
+
+export const claimVictory = (loserId, winnerId) => {
+  console.log(winnerId, 'beat', loserId);
+};

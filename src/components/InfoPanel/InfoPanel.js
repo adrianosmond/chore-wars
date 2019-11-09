@@ -5,7 +5,7 @@ import Typography from 'components/Typography';
 import classes from './InfoPanel.module.css';
 
 const headingSize = size => {
-  if (size === 's') {
+  if (['xs', 's'].includes(size)) {
     return 'h4';
   }
   return 'h2';

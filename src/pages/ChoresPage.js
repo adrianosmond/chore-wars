@@ -7,6 +7,7 @@ import ActionsContainer from 'containers/ActionsContainer';
 import OnHolidayContainer from 'containers/OnHolidayContainer';
 import Layout from 'components/Layout';
 import Spacer from 'components/Spacer';
+import VictoryContainer from 'containers/VictoryContainer';
 
 const ChoresPage = () => {
   const holiday = useHoliday();
@@ -24,6 +25,7 @@ const ChoresPage = () => {
         <>
           <Spacer>
             <AddPlayersContainer />
+            <VictoryContainer />
             <ChoresContainer />
           </Spacer>
         </>
