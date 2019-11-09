@@ -1,15 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { database } from 'database';
 import { lockGame } from 'database/game';
-import { useGame, usePlayers } from 'contexts/game';
+import { useGame } from 'contexts/game';
 import Card from 'components/Card';
 import InfoPanel from 'components/InfoPanel';
 import LinkButton from 'components/LinkButton';
+import { ConfirmModal } from 'components/Modal';
+import Typography from 'components/Typography';
 
 const AddPlayersContainer = () => {
   const game = useGame();
-  const players = usePlayers();
   const [joinCode, setJoinCode] = useState(null);
+
+  const [showLockGameModal, setShowLockGameModal] = useState(false);
+  const openLockGameModal = useCallback(() => setShowLockGameModal(true), []);
+  const closeLockGameModal = useCallback(() => setShowLockGameModal(false), []);
 
   useEffect(() => {
     database.ref(`games/${game}/gameIncomplete`).once('value', result => {
@@ -23,10 +28,10 @@ const AddPlayersContainer = () => {
     });
   }, [game]);
 
-  const lockTheGame = useCallback(() => lockGame(game, joinCode), [
-    game,
-    joinCode,
-  ]);
+  const lockTheGame = useCallback(() => {
+    closeLockGameModal();
+    lockGame(game, joinCode).then(() => setJoinCode(null));
+  }, [closeLockGameModal, game, joinCode]);
 
   if (!joinCode) return null;
 
@@ -38,17 +43,22 @@ const AddPlayersContainer = () => {
         description={
           <>
             If you want people to split the chores with you and join your game,
-            give them the code: <strong>{joinCode}</strong>.{' '}
-            {players.length > 1 && (
-              <>
-                Once everyone has joined, you can{' '}
-                <LinkButton onClick={lockTheGame}>lock the game</LinkButton> and
-                this message will go away
-              </>
-            )}
+            give them the code: <strong>{joinCode}</strong>. Once everyone has
+            joined, you can{' '}
+            <LinkButton onClick={openLockGameModal}>lock the game</LinkButton>{' '}
+            and this message will go away
           </>
         }
       />
+      {showLockGameModal && (
+        <ConfirmModal
+          closeModal={closeLockGameModal}
+          confirmText="Yes, lock it"
+          onConfirm={lockTheGame}
+        >
+          <Typography>Are you sure you want to lock the game?</Typography>
+        </ConfirmModal>
+      )}
     </Card>
   );
 };

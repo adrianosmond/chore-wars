@@ -5,6 +5,7 @@
   padding: var(--spacing-xs) var(--spacing-s);
   border: 0;
   border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
   cursor: pointer;
   outline: 0;
 }
@@ -20,8 +21,9 @@
 }
 
 .secondary {
-  background-color: var(--color-secondary);
-  color: var(--color-white);
+  border: 1px solid var(--color-text);
+  border-bottom: 2px solid var(--color-text);
+  color: var(--color-text);
 }
 
 .button:disabled {
