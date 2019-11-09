@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MAX_POINT_DIFFERENCE } from 'constants/constants';
+import { createPlayerProfileLink } from 'constants/routes';
 import ProgressBar from 'components/ProgressBar';
 import Typography from 'components/Typography';
 import { Avatar } from 'components/Icon';
@@ -24,13 +26,15 @@ const PointsBar = ({ points, minPoints, maxPoints }) => {
   );
 };
 
-const PlayerRow = ({ name, points, minPoints, maxPoints }) => (
+const PlayerRow = ({ id, name, points, minPoints, maxPoints }) => (
   <tr className={classes.playerRow}>
     <td className={classes.nameCell}>
-      <Avatar className={classes.avatar} />
-      <Typography as="span" className={classes.playerName}>
-        {name}
-      </Typography>
+      <Link to={createPlayerProfileLink(id)}>
+        <Avatar className={classes.avatar} />
+        <Typography as="span" className={classes.playerName}>
+          {name}
+        </Typography>
+      </Link>
     </td>
     <td className={classes.pointsCell}>
       <PointsBar

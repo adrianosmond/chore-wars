@@ -4,13 +4,24 @@ import Typography from 'components/Typography';
 import ActivityLog from 'components/ActivityLog';
 import classes from './CompletionLog.module.css';
 
-const CompletionLog = ({ date, name, points }) => (
+const conditionalHighlight = (text, condition) =>
+  condition ? <span className={classes.highlight}>{text}</span> : text;
+
+const CompletionLog = ({
+  date,
+  playerName,
+  highlightPlayerName = false,
+  points,
+  choreName,
+  highlightChoreName = false,
+}) => (
   <ActivityLog
     date={date}
     description={
       <>
-        <span className={classes.highlight}>{name}</span> completed this chore
-        at <span className={classes.highlight}>{format(date, 'HH:mm')}</span>
+        {conditionalHighlight(playerName, highlightPlayerName)} completed{' '}
+        {conditionalHighlight(choreName, highlightChoreName)} at{' '}
+        {conditionalHighlight(format(date, 'HH:mm'), true)}
       </>
     }
     extra={

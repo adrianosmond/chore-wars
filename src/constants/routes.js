@@ -2,6 +2,8 @@ export const createSingleChoreLink = id => `/chore/${id}`;
 export const createEditChoreLink = id => `/chore/${id}/edit`;
 export const createForgotToLogLink = id => `/chore/${id}/forgot-to-log`;
 
+export const createPlayerProfileLink = id => `/player/${id}`;
+
 const routes = {
   HOME: '/',
   LOGIN: '/login',
@@ -9,6 +11,7 @@ const routes = {
   NEW_CHORE: '/chore/new',
   MANAGE_CHAINS: '/chore/chain',
   PROFILE: '/profile',
+  PLAYER: createPlayerProfileLink(':id'),
   SINGLE_CHORE: createSingleChoreLink(':id'),
   EDIT_CHORE: createEditChoreLink(':id'),
   FORGOT_TO_LOG: createForgotToLogLink(':id'),

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useGame, usePlayers } from 'contexts/game';
+import useChore from 'hooks/useChore';
 import {
   getChoreEdits,
   getChoreCompletions,
@@ -10,7 +11,9 @@ import {
 export default id => {
   const game = useGame();
   const players = usePlayers();
+  const [chore] = useChore(id);
   const [details, setDetails] = useState({
+    chore,
     completions: [],
     completionRatio: [],
     timeDifferences: [],
@@ -26,6 +29,7 @@ export default id => {
       getChoreEdits(game, id),
     ]).then(([completions, completionRatio, timeDifferences, edits]) => {
       setDetails({
+        chore,
         completions,
         completionRatio,
         timeDifferences,
@@ -33,7 +37,7 @@ export default id => {
         loading: false,
       });
     });
-  }, [game, id, players]);
+  }, [chore, game, id, players]);
 
   return details;
 };
