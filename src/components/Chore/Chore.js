@@ -29,7 +29,7 @@ const Chore = ({
           <ProgressBar
             percentage={percentage}
             label={currentPoints}
-            appearance={percentage === 100 && 'attention'}
+            appearance={percentage === 100 && frequency > 0 && 'attention'}
           />
         </div>
         <Typography appearance="oneLine" className={classes.date}>
