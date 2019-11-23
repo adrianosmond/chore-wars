@@ -1,32 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MAX_POINT_DIFFERENCE } from 'constants/constants';
 import { createPlayerProfileLink } from 'constants/routes';
-import ProgressBar from 'components/ProgressBar';
+import PointsBar from 'components/PointsBar';
 import Typography from 'components/Typography';
 import { Avatar } from 'components/Icon';
 import classes from './PlayerRow.module.css';
 
-const PointsBar = ({ points, minPoints, maxPoints }) => {
-  const range = maxPoints - minPoints;
-  const mid = range / 2;
-  const negativeWidth = Math.min(
-    -Math.min((200 * (points - mid)) / MAX_POINT_DIFFERENCE, 0),
-    100,
-  );
-  const positiveWidth = Math.min(
-    Math.max((200 * (points - mid)) / MAX_POINT_DIFFERENCE, 0),
-    100,
-  );
-  return (
-    <div className={classes.pointsBar}>
-      <ProgressBar percentage={negativeWidth} reverse />
-      <ProgressBar percentage={positiveWidth} />
-    </div>
-  );
-};
-
-const PlayerRow = ({ id, name, points, minPoints, maxPoints }) => (
+const PlayerRow = ({ id, name, points, minPoints, mid }) => (
   <tr className={classes.playerRow}>
     <td className={classes.nameCell}>
       <Link to={createPlayerProfileLink(id)}>
@@ -37,12 +17,7 @@ const PlayerRow = ({ id, name, points, minPoints, maxPoints }) => (
       </Link>
     </td>
     <td className={classes.pointsCell}>
-      <PointsBar
-        points={points}
-        minPoints={minPoints}
-        maxPoints={maxPoints}
-        className={classes.pointsBar}
-      />
+      <PointsBar points={points} minPoints={minPoints} mid={mid} />
     </td>
   </tr>
 );

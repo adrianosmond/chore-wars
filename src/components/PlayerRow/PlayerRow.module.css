@@ -27,12 +27,6 @@
   width: 95%;
 }
 
-.pointsBar {
-  display: flex;
-  flex-grow: 1;
-  align-self: center;
-}
-
 @media (min-width: 45rem) {
   .playerRow {
     --row-spacing: var(--spacing-s);

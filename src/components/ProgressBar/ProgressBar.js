@@ -6,7 +6,7 @@ const ProgressBar = ({
   percentage,
   reverse = false,
   label = false,
-  color = 'var(--color-warning)',
+  appearance,
 }) => (
   <div
     className={classnames({
@@ -15,12 +15,11 @@ const ProgressBar = ({
     })}
   >
     <div
-      className={classes.inner}
-      style={{
-        width: `${percentage}%`,
-        backgroundColor: color,
-        borderTopColor: color,
-      }}
+      className={classnames({
+        [classes.inner]: true,
+        [classes[appearance]]: appearance,
+      })}
+      style={{ width: `${percentage}%` }}
     >
       {label || label === 0 ? (
         <div className={classes.label}>{label}</div>

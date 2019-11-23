@@ -29,11 +29,7 @@ const Chore = ({
           <ProgressBar
             percentage={percentage}
             label={currentPoints}
-            color={
-              percentage === 100
-                ? 'var(--color-warning)'
-                : 'var(--color-primary-dark)'
-            }
+            appearance={percentage === 100 && 'attention'}
           />
         </div>
         <Typography appearance="oneLine" className={classes.date}>

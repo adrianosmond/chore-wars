@@ -4,14 +4,10 @@ export const makePlayersArray = players =>
     id: player,
   }));
 
-export const generatePlayerData = (playerName, points = 0) => {
-  const data = {
-    name: playerName,
-    points,
-    isOwed: 0,
-  };
-  return data;
-};
+export const generateNewPlayerData = (name, points = 0) => ({
+  name,
+  points,
+});
 
 export const getMinPoints = players => Math.min(...players.map(p => p.points));
 

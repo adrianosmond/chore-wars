@@ -10,12 +10,12 @@ const makeHistoryObj = (type, date, playerId, choreId, extras) => ({
   ...extras,
 });
 
-const addToAllHistory = (game, historyObj) =>
-  database.ref(`games/${game}/history/all`).push(historyObj);
+const addToAllChoresHistory = (game, historyObj) =>
+  database.ref(`games/${game}/history/allChores`).push(historyObj);
 
-const deleteFromAllHistory = (game, choreId) =>
+const deleteFromChoresAllHistory = (game, choreId) =>
   database
-    .ref(`games/${game}/history/all`)
+    .ref(`games/${game}/history/allChores`)
     .orderByChild('choreId')
     .equalTo(choreId)
     .once('value', result =>
@@ -174,7 +174,7 @@ export const createChore = (game, playerId, chore) =>
     );
 
     return Promise.all([
-      addToAllHistory(game, historyObj),
+      addToAllChoresHistory(game, historyObj),
       addToChoreHistory(game, ref.key, historyObj),
     ]);
   });
@@ -196,9 +196,9 @@ export const completeChore = (
 
   return Promise.all([
     updateLastDone(game, chore.id, date),
-    addPointsToPlayer(playerId, points, game),
+    addPointsToPlayer(game, playerId, points),
     enableNextChoreInChain(game, chore),
-    addToAllHistory(game, historyObj),
+    addToAllChoresHistory(game, historyObj),
     addToChoreHistory(game, chore.id, historyObj),
     incrementPlayerCompletions(game, chore.id, playerId),
     addToTimeDifferenceHistory(game, chore.id, date - chore.lastDone),
@@ -216,7 +216,7 @@ export const updateChore = (game, playerId, chore, newChore) => {
   );
   return Promise.all([
     editChoreInDatabase(game, chore, newChore),
-    addToAllHistory(game, historyObj),
+    addToAllChoresHistory(game, historyObj),
     addToChoreHistory(game, chore.id, historyObj),
   ]);
 };
@@ -237,7 +237,7 @@ export const deleteChore = (game, choreId) =>
   breakChain(game, choreId).then(() =>
     Promise.all([
       deleteChoreFromDatabase(game, choreId),
-      deleteFromAllHistory(game, choreId),
+      deleteFromChoresAllHistory(game, choreId),
       deleteFromChoreHistory(game, choreId),
       deleteFromChoreCompletionHistory(game, choreId),
       deleteFromTimeDifferenceHistory(game, choreId),

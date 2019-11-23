@@ -1,15 +1,35 @@
-import firebase, { auth, database } from 'database';
+import { auth, database, emailCredential } from 'database';
+import { MAX_POINT_DIFFERENCE } from 'constants/constants';
+
+const makeVictoryHistoryObj = (
+  loserId,
+  winnerId,
+  date = new Date().getTime(),
+) => ({
+  winner: winnerId,
+  loser: loserId,
+  dateWon: date,
+  datePaidBack: 0,
+});
+
+const getPlayerPoints = (game, playerId) =>
+  database
+    .ref(`games/${game}/players/${playerId}/points`)
+    .once('value')
+    .then(result => result.val());
+
+const setPlayerPoints = (game, playerId, points) =>
+  database.ref(`games/${game}/players/${playerId}/points`).set(points);
+
+const addToVictories = (game, historyObj) =>
+  database.ref(`games/${game}/history/victories`).push(historyObj);
 
 export const savePlayerName = (game, playerId, playerName) =>
   database.ref(`games/${game}/players/${playerId}/name`).set(playerName);
 
 export const updatePlayerLogin = (existingPassword, newEmail, newPassword) => {
   const user = auth.currentUser;
-  // eslint-disable-next-line import/no-named-as-default-member
-  const credential = firebase.auth.EmailAuthProvider.credential(
-    user.email,
-    existingPassword,
-  );
+  const credential = emailCredential(user.email, existingPassword);
 
   user
     .reauthenticateWithCredential(credential)
@@ -19,16 +39,13 @@ export const updatePlayerLogin = (existingPassword, newEmail, newPassword) => {
     );
 };
 
-export const addPointsToPlayer = (playerId, points, game) =>
-  database
-    .ref(`games/${game}/players/${playerId}/points`)
-    .once('value', result => {
-      const pts = result.val();
-      database
-        .ref(`games/${game}/players/${playerId}/points`)
-        .set(pts + points);
-    });
+export const addPointsToPlayer = (game, playerId, points) =>
+  getPlayerPoints(game, playerId).then(currentPoints =>
+    setPlayerPoints(game, playerId, points + currentPoints),
+  );
 
-export const claimVictory = (loserId, winnerId) => {
-  console.log(winnerId, 'beat', loserId);
-};
+export const claimVictory = (game, loserId, winnerId) =>
+  Promise.all([
+    addPointsToPlayer(game, loserId, MAX_POINT_DIFFERENCE),
+    addToVictories(game, makeVictoryHistoryObj(loserId, winnerId)),
+  ]);

@@ -18,3 +18,4 @@ export default app;
 
 export const database = app.database();
 export const auth = app.auth();
+export const emailCredential = app.auth.EmailAuthProvider.credential;

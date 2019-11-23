@@ -1,6 +1,6 @@
 import { createJoinCode } from 'utils/game';
 import {
-  generatePlayerData,
+  generateNewPlayerData,
   makePlayersArray,
   getMaxPoints,
 } from 'utils/players';
@@ -12,7 +12,7 @@ export const createGame = (userId, playerName) => {
   const gameData = {
     gameIncomplete: true,
     players: {
-      [userId]: generatePlayerData(playerName),
+      [userId]: generateNewPlayerData(playerName),
     },
   };
 
@@ -61,7 +61,7 @@ export const joinGame = (userId, joinCode, playerName) => {
       const maxPoints = getMaxPoints(makePlayersArray(result.val()));
       return database
         .ref(`games/${gameKey}/players/${userId}`)
-        .set(generatePlayerData(playerName, maxPoints));
+        .set(generateNewPlayerData(playerName, maxPoints));
     });
 
   return getGameFromJoinCode()
