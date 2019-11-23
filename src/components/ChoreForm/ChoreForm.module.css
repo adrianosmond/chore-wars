@@ -1,0 +1,17 @@
+.form {
+  max-width: 32rem;
+  margin: var(--spacing-s) auto 0;
+}
+
+.question {
+  margin-bottom: var(--spacing-l);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons > :only-child {
+  margin-left: auto;
+}

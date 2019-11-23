@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: calc(var(--spacing-s) / -2);
+}
+
+.wrapper > * {
+  flex-grow: 1;
+  margin: calc(var(--spacing-s) / 2);
+  flex-basis: calc((var(--flexer-breakpoint) - 100%) * 999);
+}

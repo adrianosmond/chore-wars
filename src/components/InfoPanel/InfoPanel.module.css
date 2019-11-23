@@ -1,0 +1,35 @@
+.wrapper {
+  margin: 0 auto;
+  max-width: 30rem;
+  text-align: center;
+}
+
+.s,
+.xs {
+  font-size: var(--font-size-s);
+}
+
+.m {
+  padding: var(--spacing-l) 0;
+}
+
+.icon {
+  margin-bottom: var(--spacing-s);
+  width: 4rem;
+  height: 4rem;
+  fill: currentColor;
+}
+
+.s .icon,
+.xs .icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.xs .icon {
+  margin-bottom: var(--spacing-xs);
+}
+
+.xs button {
+  margin-top: var(--spacing-xs);
+}

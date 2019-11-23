@@ -1,188 +1,80 @@
-import React, { Component } from 'react';
-import FlipMove from 'react-flip-move';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import Select from 'react-select';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
 
-import * as routes from 'constants/routes';
+import Card from 'components/Card';
+import LinkButton from 'components/LinkButton';
+import ChoreChainChore from './ChoreChainChore';
+import classes from './ChoreChain.module.css';
 
-import Button from 'components/Button';
+const PLACEHOLDER = 'Select a chore to add';
 
-import checkIcon from 'images/check.svg';
-import './ChoreChain.css';
+const ChoreChain = ({
+  chores,
+  availableChores,
+  chainId,
+  addChoreToChain,
+  reorderChores,
+  removeChain,
+  removeChoreFromChain,
+}) => {
+  const handleSelect = useCallback(
+    e => {
+      addChoreToChain(availableChores.find(c => c.id === e.value), chainId);
+    },
+    [addChoreToChain, availableChores, chainId],
+  );
 
-const ChainSelect = ({
-  chores, chain, chooseChore, canSave, nextStage,
-}) => (
-  <div className="chore-chain__section">
-    <p>Select all the chores that are part of this chain</p>
-    <ul className="chore-chain__options">
-      {chores.map(chore => (
-        <li key={chore.slug}>
-          <label className="chore-chain__option">
-            <input
-              className="chore-chain__checkbox"
-              type="checkbox"
-              name={chore.slug}
-              onChange={() => chooseChore(chore)}
-              checked={chain.findIndex(item => item.slug === chore.slug) >= 0}
-            />
-            <span className="chore-chain__chore-title">{chore.title}</span>
-            <div className="chore-chain__status">
-              <img className="chore-chain__status-icon" src={checkIcon} alt="Include chore in chain" />
-            </div>
-          </label>
-        </li>
-      ))}
-    </ul>
-    <div className="form__button-holder">
-      <Button to={routes.CHORES} variant="secondary">Cancel</Button>
-      <Button disabled={!canSave} onClick={nextStage}>
-        Next
-      </Button>
-    </div>
-  </div>
-);
+  const handleRemove = useCallback(
+    choreId => {
+      removeChoreFromChain(chores.find(c => c.id === choreId), chainId);
+    },
+    [removeChoreFromChain, chores, chainId],
+  );
 
-ChainSelect.propTypes = {
-  chores: PropTypes.arrayOf(PropTypes.object).isRequired,
-  chain: PropTypes.arrayOf(PropTypes.object).isRequired,
-  chooseChore: PropTypes.func.isRequired,
-  canSave: PropTypes.bool.isRequired,
-  nextStage: PropTypes.func.isRequired,
-};
+  const handleRemoveChain = useCallback(() => {
+    removeChain(chainId);
+  }, [removeChain, chainId]);
 
-const ChainOrder = ({
-  chain, moveChoreDown, moveChoreUp, prevStage, canSave, saveChain,
-}) => (
-  <div className="chore-chain__section">
-    <p>Choose the order that the chores should be done in</p>
-    <ul className="chore-chain__options">
-      <FlipMove>
-        {chain.map((chore, idx) => (
-          <li key={chore.slug} className="chore-chain__option">
-            <span className="chore-chain__chore-title">{chore.title}</span>
-            <div className="chore-chain__sort-buttons">
-              <button
-                type="button"
-                className="chore-chain__sort-button"
-                onClick={() => moveChoreUp(idx)}
-                disabled={idx === 0}
-              >
-                &uarr;
-              </button>
-              <button
-                type="button"
-                className="chore-chain__sort-button"
-                onClick={() => moveChoreDown(idx)}
-                disabled={idx === chain.length - 1}
-              >
-                &darr;
-              </button>
-            </div>
-          </li>
-        ))}
-      </FlipMove>
-    </ul>
-    <div className="form__button-holder">
-      <Button variant="secondary" onClick={prevStage}>
-        Back
-      </Button>
-      <Button disabled={!canSave} onClick={() => saveChain(chain)}>
-        Save
-      </Button>
-    </div>
-  </div>
-);
+  const moveChore = useCallback(
+    (dragIndex, hoverIndex) => {
+      reorderChores(chainId, dragIndex, hoverIndex);
+    },
+    [chainId, reorderChores],
+  );
 
-ChainOrder.propTypes = {
-  chain: PropTypes.arrayOf(PropTypes.object).isRequired,
-  moveChoreUp: PropTypes.func.isRequired,
-  moveChoreDown: PropTypes.func.isRequired,
-  saveChain: PropTypes.func.isRequired,
-  canSave: PropTypes.bool.isRequired,
-  prevStage: PropTypes.func.isRequired,
-};
-
-class ChoreChain extends Component {
-  state = {
-    chain: [],
-    stage: 'selection',
-  };
-
-  static propTypes = {
-    chores: PropTypes.arrayOf(PropTypes.object).isRequired,
-    saveChain: PropTypes.func.isRequired,
-  }
-
-  chooseChore = (chosenChore) => {
-    const { chain } = this.state;
-    let chainClone = chain.slice();
-    const newChain = chainClone.filter(chore => chore.slug !== chosenChore.slug);
-    if (chainClone.length === newChain.length) {
-      chainClone.push(chosenChore);
-    } else {
-      chainClone = newChain;
-    }
-    this.setState({
-      chain: chainClone,
-    });
-  }
-
-  moveChoreUp = (idx) => {
-    const { chain } = this.state;
-    const chainClone = chain.slice();
-    if (chainClone.length === 1 || idx === 0) return;
-    [chainClone[idx], chainClone[idx - 1]] = [chainClone[idx - 1], chainClone[idx]];
-    this.setState({
-      chain: chainClone,
-    });
-  }
-
-  moveChoreDown = (idx) => {
-    const { chain } = this.state;
-    const chainClone = chain.slice();
-    if (chainClone.length === 1 || idx === chainClone.length - 1) return;
-    [chainClone[idx], chainClone[idx + 1]] = [chainClone[idx + 1], chainClone[idx]];
-    this.setState({
-      chain: chainClone,
-    });
-  }
-
-  render() {
-    const { chores, saveChain } = this.props;
-    if (!chores) return null;
-    const { chain, stage } = this.state;
-    const canSave = chain.length > 1;
-    return (
-      <div className="chore-chain">
-        <h1 className="chore-chain__title">Create a Chain</h1>
-        { stage === 'selection'
-          ? (
-            <ChainSelect
-              chores={chores}
-              chain={chain}
-              canSave={canSave}
-              chooseChore={this.chooseChore}
-              nextStage={() => { this.setState({ stage: 'sorting' }); }}
-            />
-          )
-          : null }
-        { stage === 'sorting'
-          ? (
-            <ChainOrder
-              chain={chain}
-              canSave={canSave}
-              moveChoreUp={this.moveChoreUp}
-              moveChoreDown={this.moveChoreDown}
-              prevStage={() => { this.setState({ stage: 'selection' }); }}
-              saveChain={saveChain}
-            />
-          )
-          : null }
+  return (
+    <Card>
+      <div>
+        <Select
+          options={availableChores.map(chore => ({
+            value: chore.id,
+            label: chore.name,
+          }))}
+          onChange={handleSelect}
+          value={null}
+          placeholder={PLACEHOLDER}
+        />
       </div>
-    );
-  }
-}
-
-export { ChainSelect, ChainOrder };
-
+      <DndProvider backend={HTML5Backend}>
+        <div className={classes.chain}>
+          {chores.map((chore, index) => (
+            <ChoreChainChore
+              key={chore.id}
+              chainId={chainId}
+              chore={chore}
+              index={index}
+              moveChore={moveChore}
+              removeChore={() => handleRemove(chore.id)}
+            />
+          ))}
+        </div>
+      </DndProvider>
+      <div className={classes.remove}>
+        <LinkButton onClick={handleRemoveChain}>Remove</LinkButton>
+      </div>
+    </Card>
+  );
+};
 export default ChoreChain;

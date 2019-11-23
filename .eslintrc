@@ -1,31 +1,30 @@
 {
   "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
   "extends": [
     "react-app",
-    "airbnb"
+    "airbnb-base",
+    "prettier",
+    "prettier/react"
   ],
   "plugins": [
-    "import"
+    "import",
+    "prettier"
   ],
   "rules": {
     "import/no-extraneous-dependencies": [
-      "error", {"packageDir": "./"}
-    ],
-    "react/jsx-filename-extension": ["off"],
-    "jsx-a11y/label-has-for": ["off"],
-    "jsx-a11y/label-has-associated-control": ["off"]
+      "error", {
+        "packageDir": "./"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["src"]
+        "paths": ["src"],
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
       }
     }
   }

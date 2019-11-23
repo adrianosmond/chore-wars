@@ -1,0 +1,39 @@
+.playerRow {
+  --row-spacing: var(--spacing-xs);
+}
+
+.playerRow:not(:first-child) > td {
+  padding-top: var(--row-spacing);
+}
+
+.nameCell {
+  vertical-align: middle;
+  white-space: nowrap;
+  padding-right: var(--row-spacing);
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  margin-right: var(--row-spacing);
+  vertical-align: middle;
+}
+
+.playerName {
+  vertical-align: middle;
+}
+
+.pointsCell {
+  width: 95%;
+}
+
+@media (min-width: 45rem) {
+  .playerRow {
+    --row-spacing: var(--spacing-s);
+  }
+
+  .avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+}

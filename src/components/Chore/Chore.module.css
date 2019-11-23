@@ -1,0 +1,38 @@
+.divider {
+  display: flex;
+}
+
+.left {
+  flex-grow: 1;
+  padding-right: 2rem;
+}
+
+.progressBar {
+  display: flex;
+  align-items: flex-end;
+  height: 2.5rem;
+  margin-bottom: var(--spacing-s);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.date {
+  margin-top: var(--spacing-xs);
+  font-size: 0.75rem;
+  text-align: right;
+}
+
+.overdue {
+  color: var(--color-warning);
+}
+
+.completeButton {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0.625rem;
+}

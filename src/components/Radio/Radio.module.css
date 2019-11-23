@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  min-height: 2rem;
+}
+
+.wrapper + .wrapper {
+  margin-top: var(--spacing-xs);
+}
+
+.label {
+  margin-left: var(--spacing-xs);
+  line-height: 1.5;
+}

@@ -1,0 +1,29 @@
+.linkButton {
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--color-link);
+  outline: 0;
+  line-height: 1.5;
+}
+
+.linkButton:hover,
+.linkButton:focus {
+  text-decoration: underline;
+}
+
+.withIcon {
+  display: inline-flex;
+  padding: var(--spacing-xxs) 0;
+}
+
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  margin-right: var(--spacing-xs);
+}

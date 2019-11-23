@@ -1,0 +1,21 @@
+.chain {
+  margin-top: var(--spacing-s);
+}
+
+.chore {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-s);
+  background-color: var(--color-gray-100);
+  border: 1px solid var(--color-border);
+  border-top: 0;
+}
+
+.chore:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.remove {
+  margin-top: var(--spacing-s);
+  text-align: right;
+}

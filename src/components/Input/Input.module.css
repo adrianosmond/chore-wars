@@ -1,0 +1,26 @@
+.input {
+  width: 100%;
+  height: 2.5rem;
+  padding: var(--spacing-xs);
+  background-color: var(--color-white-tint);
+  border: 1px solid rgba(0, 0, 0, 0.025);
+  border-bottom-width: 2px;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+.input:focus {
+  outline: 0;
+  border-bottom-color: var(--color-primary);
+}
+
+.input::placeholder {
+  color: var(--color-gray-400);
+}
+
+.input[type='number'] {
+  text-align: right;
+}
+
+.input[type='password'] {
+  font-family: sans-serif;
+}

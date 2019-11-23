@@ -1,0 +1,7 @@
+<svg viewBox="-27 24 100 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M36 96c0 4 5 5 7 6l23 6c3 1 6 3 7 6v10H-27v-10c1-3 4-5 7-6l23-6c2-1 7-2 7-6V85h26v11z" id="a"/>
+  <use fill="var(--color-gray-400)" overflow="visible" xlink:href="#a"/>
+  <clipPath id="b"><use overflow="visible" xlink:href="#a"/></clipPath>
+  <path fill="var(--color-gray-500)" clip-path="url(#b)" d="M23 35c4 0 9 0 12 2s7 6 8 12c3 14-2 36-6 43-4 6-10 9-13 9h-1c-4 0-10-3-14-9-4-7-8-29-6-43 1-6 5-10 9-12 3-2 8-2 11-2z" />
+  <path fill="var(--color-gray-400)" d="M23 40c19 0 20 14 20 15 2 12-3 28-6 34-4 6-10 8-14 8s-10-2-14-8-8-22-7-34c0-1 2-15 21-15z" />
+</svg>

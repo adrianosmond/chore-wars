@@ -1,0 +1,113 @@
+.outer {
+  --bar-color: var(--color-primary-dark);
+  display: flex;
+  flex-grow: 1;
+  background-color: var(--color-gray-200);
+}
+
+.inner {
+  position: relative;
+  color: var(--color-white);
+  font-size: 0;
+  height: 4px;
+  transition: width 0.3s;
+  background-color: var(--bar-color);
+  border-top-color: var(--bar-color);
+}
+
+.attention {
+  --bar-color: var(--color-warning);
+}
+
+.winning {
+  --bar-color: var(--color-yellow-500);
+  background-image: linear-gradient(
+    90deg,
+    var(--color-warning) 0,
+    var(--color-yellow-500) 100%
+  );
+}
+
+.reverse {
+  justify-content: flex-end;
+}
+
+.reverse .winning {
+  background-image: linear-gradient(
+    270deg,
+    var(--color-warning) 0,
+    var(--color-yellow-500) 100%
+  );
+}
+
+.label {
+  --label-x-transform: -50%;
+  position: absolute;
+  left: 100%;
+  bottom: 8px;
+  padding: 6px;
+  transform-origin: 50% 100%;
+  transform: translateX(var(--label-x-transform));
+  background-color: inherit;
+  border-top-color: inherit;
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 1;
+  color: inherit;
+  border-radius: 2px;
+}
+
+.label:after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  margin-left: -3px;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-top-color: inherit;
+  border-style: solid;
+  border-width: 3px 3px 0;
+}
+
+.winning .label {
+  animation: jump 2s infinite;
+}
+
+.reverse .label {
+  --label-x-transform: 50%;
+  left: auto;
+  right: 100%;
+}
+
+@keyframes jump {
+  0%,
+  100% {
+    transform: translateX(var(--label-x-transform)) rotate(0.05deg)
+      translateY(0);
+  }
+  15% {
+    transform: translateX(var(--label-x-transform)) rotate(-10deg)
+      translateY(-20%);
+  }
+  30% {
+    transform: translateX(var(--label-x-transform)) rotate(0.05deg)
+      translateY(0);
+  }
+  45% {
+    transform: translateX(var(--label-x-transform)) translateY(-20%);
+  }
+  60% {
+    transform: translateX(var(--label-x-transform)) rotate(0.05deg)
+      translateY(0);
+  }
+  75% {
+    transform: translateX(var(--label-x-transform)) rotate(10deg)
+      translateY(-20%);
+  }
+  90% {
+    transform: translateX(var(--label-x-transform)) rotate(0.05deg)
+      translateY(0);
+  }
+}

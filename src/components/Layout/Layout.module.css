@@ -1,0 +1,45 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.body {
+  padding: var(--spacing-s);
+  flex-grow: 1;
+}
+
+.header {
+  margin-bottom: var(--spacing-s);
+}
+
+.primary {
+  margin-bottom: var(--spacing-s);
+}
+
+@media (min-width: 45rem) {
+  .wrapper {
+    display: flex;
+  }
+
+  .primary {
+    flex-grow: 2;
+    flex-shrink: 0;
+    flex-basis: 0;
+  }
+
+  .secondary {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+    margin-left: var(--spacing-s);
+  }
+
+  .secondaryBig {
+    flex-grow: 1.5;
+  }
+
+  .secondarySpaced {
+    padding-top: 4.25rem;
+  }
+}

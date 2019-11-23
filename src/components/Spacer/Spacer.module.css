@@ -1,0 +1,21 @@
+.grow {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.spacing-xs > *:not(:last-child) {
+  margin-bottom: var(--spacing-xs);
+}
+
+.spacing-s > *:not(:last-child) {
+  margin-bottom: var(--spacing-s);
+}
+
+.spacing-m > *:not(:last-child) {
+  margin-bottom: var(--spacing-m);
+}
+
+.spacing-l > *:not(:last-child) {
+  margin-bottom: var(--spacing-l);
+}

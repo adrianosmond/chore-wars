@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.wrapper > * + * {
+  margin-left: var(--spacing-s);
+}

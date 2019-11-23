@@ -1,0 +1,22 @@
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  --list-item-spacing: 0;
+}
+
+.item {
+  padding: 0;
+}
+
+.item:not(:last-child) {
+  margin-bottom: var(--list-item-spacing);
+}
+
+.spacing-xs {
+  --list-item-spacing: var(--spacing-xs);
+}
+
+.spacing-s {
+  --list-item-spacing: var(--spacing-s);
+}

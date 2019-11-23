@@ -1,0 +1,40 @@
+.profileMenu {
+  position: relative;
+}
+
+.avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  cursor: pointer;
+}
+
+.menu {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--avatar-size) + var(--spacing-xs));
+  right: calc(-1 * var(--spacing-s));
+  background-color: var(--color-white);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+.menu::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--spacing-xs));
+  left: 0;
+  height: var(--spacing-xs);
+  width: 100%;
+}
+
+.menuItem {
+  display: block;
+  width: 100%;
+  text-align: center;
+  line-height: 1.5;
+  padding: var(--spacing-xs) var(--spacing-m);
+}
+
+.menuItem:hover {
+  background-color: var(--color-gray-100);
+  text-decoration: none;
+}

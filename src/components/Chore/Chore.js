@@ -1,86 +1,75 @@
 import React from 'react';
-import fecha from 'fecha';
-import PropTypes from 'prop-types';
-
-import PopUpMenu from 'components/PopUpMenu';
-
-import { completeChore, removeChore, breakChain } from 'utils/database';
+import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
+import classnames from 'classnames';
+import { createSingleChoreLink } from 'constants/routes';
 import { DATE_FORMAT } from 'constants/constants';
-import * as routes from 'constants/routes';
+import Card from 'components/Card';
+import Button from 'components/Button';
+import ProgressBar from 'components/ProgressBar';
+import Typography from 'components/Typography';
 
-import checkIcon from 'images/check.svg';
-import './Chore.css';
+import classes from './Chore.module.css';
 
 const Chore = ({
-  chore, user, game, allChores,
-}) => {
-  const bonusPoints = chore.currentPoints > chore.pointsPerTime;
-  const menuOptions = [
-    { type: 'link', to: `${routes.EDIT_CHORE}/${chore.slug}`, text: 'Edit' },
-    { type: 'button', onClick: () => removeChore(game, chore.slug, allChores), text: 'Delete' },
-    { type: 'link', to: `${routes.LOG_PAST_COMPLETION}/${chore.slug}`, text: 'I forgot to log this' },
-  ];
-  if (chore.enables) {
-    menuOptions.push({
-      type: 'button',
-      onClick: () => breakChain(game, chore.slug, allChores),
-      text: 'Break Chain',
-    });
-  }
-  return (
-    <div className="chore">
-      <span className="chore__title">{chore.title}</span>
-      <div className="chore__bar">
-        <div
-          className={`chore__bar-inner${bonusPoints ? ' chore__bar-inner--bonus' : ''}`}
-          style={{
-            width: `${chore.percentage}%`,
-          }}
+  id,
+  name,
+  currentPoints,
+  lastDone,
+  frequency,
+  due,
+  completeChore,
+  percentage,
+}) => (
+  <Card appearance="primary">
+    <div className={classes.divider}>
+      <div className={classes.left}>
+        <Typography appearance="h4">{name}</Typography>
+        <div className={classes.progressBar}>
+          <ProgressBar
+            percentage={percentage}
+            label={currentPoints}
+            appearance={percentage === 100 && frequency > 0 && 'attention'}
+          />
+        </div>
+        <Typography appearance="oneLine" className={classes.date}>
+          <Typography appearance="h3" as="span">
+            Last Done:
+          </Typography>{' '}
+          {format(lastDone, DATE_FORMAT)}
+        </Typography>
+        {frequency > 0 && (
+          <Typography
+            appearance="oneLine"
+            className={classnames({
+              [classes.date]: true,
+              [classes.overdue]: percentage === 100,
+            })}
+          >
+            <Typography appearance="h3" as="span">
+              Due:
+            </Typography>{' '}
+            {format(due, DATE_FORMAT)}
+          </Typography>
+        )}
+      </div>
+      <div className={classes.right}>
+        <Button
+          onClick={completeChore}
+          className={classes.completeButton}
+          appearance="inverse"
         >
-          <span className={`chore__points${bonusPoints ? ' chore__points--bonus' : ''}`}>
-            {chore.currentPoints}
-          </span>
-        </div>
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill="var(--color-primary-dark)"
+              d="M434.8 49L174.2 309.7l-97.4-97.4L0 289.2l174.1 174.1 22.5-22.4 315.1-315.1L434.8 49z"
+            />
+          </svg>
+        </Button>
+        <Link to={createSingleChoreLink(id)}>More...</Link>
       </div>
-      <div className="chore__last-done">
-        {'Done: '}
-        {fecha.format(new Date(chore.lastDone), DATE_FORMAT)}
-        <br />
-        { chore.frequency > 0
-          ? (
-            <span>
-              {'Due: '}
-              <span className={`${bonusPoints ? 'chore__last-done--overdue' : ''}`}>
-                {fecha.format(new Date(chore.due), DATE_FORMAT)}
-              </span>
-            </span>
-          )
-          : null }
-      </div>
-      <button
-        type="button"
-        className="chore__complete-button"
-        onClick={() => completeChore(chore, user, game)}
-      >
-        <img src={checkIcon} alt="Mark as complete" />
-      </button>
-      <PopUpMenu
-        extraClasses="chore__extra-options"
-        options={menuOptions}
-      >
-        <div className="chore__extra-icon">
-          <span className="chore__extra-icon-text">…</span>
-        </div>
-      </PopUpMenu>
     </div>
-  );
-};
-
-Chore.propTypes = {
-  chore: PropTypes.objectOf(PropTypes.any).isRequired,
-  user: PropTypes.string.isRequired,
-  game: PropTypes.string.isRequired,
-  allChores: PropTypes.objectOf(PropTypes.any).isRequired,
-};
+  </Card>
+);
 
 export default Chore;
