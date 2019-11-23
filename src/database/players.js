@@ -24,6 +24,11 @@ const setPlayerPoints = (game, playerId, points) =>
 const addToVictories = (game, historyObj) =>
   database.ref(`games/${game}/history/victories`).push(historyObj);
 
+const setPaidBackDate = (game, victoryId, date = new Date().getTime()) =>
+  database
+    .ref(`games/${game}/history/victories/${victoryId}/datePaidBack`)
+    .set(date);
+
 export const savePlayerName = (game, playerId, playerName) =>
   database.ref(`games/${game}/players/${playerId}/name`).set(playerName);
 
@@ -49,3 +54,6 @@ export const claimVictory = (game, loserId, winnerId) =>
     addPointsToPlayer(game, loserId, MAX_POINT_DIFFERENCE),
     addToVictories(game, makeVictoryHistoryObj(loserId, winnerId)),
   ]);
+
+export const victoryPaidBack = (game, victoryId) =>
+  setPaidBackDate(game, victoryId);

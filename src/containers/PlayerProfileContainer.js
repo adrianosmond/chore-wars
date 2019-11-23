@@ -6,10 +6,11 @@ import Card from 'components/Card';
 import Spacer from 'components/Spacer';
 import Typography from 'components/Typography';
 import InfoPanel from 'components/InfoPanel';
-import { BroomIcon } from 'components/Icon';
+import { BroomIcon, SprayIcon } from 'components/Icon';
+import WinsAndLossesContainer from './WinsAndLossesContainer';
 
 export default ({ id }) => {
-  const { player, completions, loading } = usePlayerDetails(id);
+  const { player, completions, winsAndLosses, loading } = usePlayerDetails(id);
 
   if (loading) {
     return <Loading />;
@@ -32,8 +33,29 @@ export default ({ id }) => {
           <InfoPanel
             Icon={BroomIcon}
             title="No completions yet"
-            description={`Eventually completion stats will show up here, but it looks like ${player.name} hasn't completed any chores yet.`}
+            description={`Eventually completion stats will show up here,
+              but it looks like ${player.name} hasn't completed any chores yet.`}
           />
+        )}
+        {winsAndLosses.length > 0 ? (
+          <Card title="Wins and losses">
+            <WinsAndLossesContainer
+              winsAndLosses={winsAndLosses}
+              currentPlayerId={id}
+            />
+          </Card>
+        ) : (
+          /* Don't show two InfoPanel's
+           - only show this one if we aren't showing the other */
+          completions.length > 0 && (
+            <InfoPanel
+              Icon={SprayIcon}
+              title="No wins or losses yet"
+              description={`It looks like ${player.name} hasn't won or lost yet. 
+                When ${player.name} beats or is beaten by someone,
+                records of that will show up here`}
+            />
+          )
         )}
       </Spacer>
     </>

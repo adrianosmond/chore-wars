@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useGame, usePlayersObj } from 'contexts/game';
-import { getPlayerCompletions } from 'database/history';
+import { getPlayerCompletions, getPlayerWinsAndLosses } from 'database/history';
 
 export default id => {
   const game = useGame();
@@ -12,10 +12,14 @@ export default id => {
   });
 
   useEffect(() => {
-    Promise.all([getPlayerCompletions(game, id)]).then(([completions]) => {
+    Promise.all([
+      getPlayerCompletions(game, id),
+      getPlayerWinsAndLosses(game, id),
+    ]).then(([completions, winsAndLosses]) => {
       setDetails({
         player,
         completions,
+        winsAndLosses,
         loading: false,
       });
     });

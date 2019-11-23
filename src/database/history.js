@@ -49,3 +49,12 @@ export const getPlayerCompletions = (game, id) =>
     .ref(`games/${game}/history/playerCompletions/${id}`)
     .once('value')
     .then(getItemsArrayWithKey);
+
+export const getPlayerWinsAndLosses = (game, id) =>
+  database
+    .ref(`games/${game}/history/victories`)
+    .once('value')
+    .then(getItemsArrayWithKey)
+    .then(results =>
+      results.filter(result => result.winner === id || result.loser === id),
+    );
