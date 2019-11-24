@@ -8,6 +8,7 @@ import Avatar from 'components/Avatar';
 import UnstyledList from 'components/UnstyledList';
 import LinkButton from 'components/LinkButton';
 import classes from './ProfileMenu.module.css';
+import { MenuIcon } from 'components/Icon';
 
 const ProfileMenu = () => {
   const ref = useRef();
@@ -31,8 +32,8 @@ const ProfileMenu = () => {
 
   return (
     <div className={classes.profileMenu} ref={ref}>
-      <button className={classes.avatar} onClick={toggleMenu}>
-        <Avatar url={avatar} />
+      <button className={classes.menuToggle} onClick={toggleMenu}>
+        <MenuIcon />
       </button>
       {isMenuOpen && (
         <nav className={classes.menu}>
