@@ -1,18 +1,15 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { auth } from 'database';
-import { useCurrentPlayer } from 'contexts/game';
 import routes from 'constants/routes';
 import useOutsideClick from 'hooks/useOutsideClick';
-import Avatar from 'components/Avatar';
 import UnstyledList from 'components/UnstyledList';
 import LinkButton from 'components/LinkButton';
-import classes from './ProfileMenu.module.css';
 import { MenuIcon } from 'components/Icon';
+import classes from './ProfileMenu.module.css';
 
 const ProfileMenu = () => {
   const ref = useRef();
-  const { avatar } = useCurrentPlayer();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = useCallback(e => {
