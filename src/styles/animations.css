@@ -37,3 +37,7 @@
 .fadeOut {
   animation: fadeOut 0.3s forwards;
 }
+
+.spin {
+  animation: spin 1s forwards;
+}

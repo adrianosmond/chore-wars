@@ -27,3 +27,9 @@
   height: 1.25em;
   margin-right: var(--spacing-xs);
 }
+
+.spinIcon :global {
+  fill: none;
+  stroke: var(--color-link);
+  animation: spin 1s linear infinite;
+}
