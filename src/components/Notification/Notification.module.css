@@ -1,0 +1,32 @@
+.notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--spacing-s);
+  line-height: 1.5;
+  transform: translateY(-100%);
+  transition: transform 0.3s;
+}
+
+.visible {
+  transform: translateY(0);
+}
+
+.success {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+.error {
+  background-color: var(--color-warning);
+  color: var(--color-white);
+}
+
+.content {
+  display: flex;
+}
+
+.message {
+  flex-grow: 1;
+}

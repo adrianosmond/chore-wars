@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useContext, createContext } from 'react';
 import { toDate, parseISO } from 'date-fns';
+import useInput from 'hooks/useInput';
 
 const ChoreFormContext = createContext();
 
@@ -12,28 +13,21 @@ const defaultChore = {
 };
 
 export const ChoreFormProvider = ({ children, chore = defaultChore }) => {
-  const [name, setName] = useState(chore.name);
-  const [frequency, setFrequency] = useState(chore.frequency);
-  const [pointsPerTime, setPointsPerTime] = useState(chore.pointsPerTime);
+  const [name, updateName] = useInput(chore.name);
+  const [frequency, updateFrequency] = useInput(chore.frequency);
+  const [pointsPerTime, updatePointsPerTime] = useInput(chore.pointsPerTime);
   const [lastDone, setLastDone] = useState(chore.lastDone);
-  const [canBePaused, setCanBePaused] = useState(
-    typeof chore.timePaused === 'number',
-  );
-
-  const [hasError, setHasError] = useState(false);
-
-  const updateName = useCallback(e => setName(e.target.value), []);
-  const updateFrequency = useCallback(e => setFrequency(e.target.value), []);
-  const updatePointsPerTime = useCallback(
-    e => setPointsPerTime(e.target.value),
-    [],
-  );
   const updateLastDone = useCallback(e => {
     const { value } = e.target;
     if (value && value !== '') {
       setLastDone(parseISO(e.target.value).getTime());
     }
   }, []);
+  const [canBePaused, setCanBePaused] = useState(
+    typeof chore.timePaused === 'number',
+  );
+
+  const [hasError, setHasError] = useState(false);
 
   const getState = useCallback(
     () => ({

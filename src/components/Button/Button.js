@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { SpinnerIcon } from 'components/Icon';
 import classes from './Button.module.css';
 
 const Button = ({
@@ -9,6 +10,7 @@ const Button = ({
   appearance = 'primary',
   className,
   children,
+  isBusy = false,
   ...otherProps
 }) => (
   <button
@@ -19,10 +21,12 @@ const Button = ({
       [classes.button]: true,
       [classes[appearance]]: true,
       [className]: className,
+      [classes.isBusy]: isBusy,
     })}
     {...otherProps}
   >
     {children}
+    {isBusy && <SpinnerIcon className={classes.busyIcon} />}
   </button>
 );
 

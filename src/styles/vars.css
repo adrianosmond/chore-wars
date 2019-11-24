@@ -109,6 +109,7 @@
   --color-link: var(--color-blue-700);
   --color-primary: var(--color-blue-500);
   --color-primary-dark: var(--color-blue-900);
+  --color-success: var(--color-green-700);
   --color-warning: var(--color-red-600);
   --color-border: var(--color-gray-200);
 

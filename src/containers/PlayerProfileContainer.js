@@ -13,7 +13,7 @@ export default ({ id }) => {
   const { player, completions, winsAndLosses, loading } = usePlayerDetails(id);
 
   if (loading) {
-    return <Loading />;
+    return <Loading showText={false} />;
   }
 
   return (

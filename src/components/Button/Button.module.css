@@ -1,4 +1,5 @@
 .button {
+  position: relative;
   height: 2.5rem;
   min-width: 6rem;
   margin: 0;
@@ -14,6 +15,7 @@
 .primary {
   background-color: var(--color-primary);
   color: var(--color-white);
+  stroke: var(--color-white);
 }
 
 .primary:not(:disabled):hover,
@@ -37,6 +39,7 @@
 .warning {
   background-color: var(--color-warning);
   color: var(--color-white);
+  stroke: var(--color-white);
 }
 
 .warning:not(:disabled):hover,
@@ -44,15 +47,33 @@
   filter: contrast(1.5);
 }
 
-.button:disabled {
+.button:disabled:not(.isBusy) {
   background-color: var(--color-gray-400);
   color: var(--color-gray-100);
+  stroke: var(--color-gray-100);
   cursor: auto;
 }
 
 .inverse {
   background-color: var(--color-white);
   color: var(--color-primary);
+  stroke: var(--color-primary);
+}
+
+.isBusy {
+  color: transparent;
+}
+
+.busyIcon :global {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.75rem;
+  margin-left: -0.75rem;
+  stroke: inherit;
+  width: 1.5rem;
+  height: 1.5rem;
+  animation: spin 1s linear infinite;
 }
 
 @media (min-width: 45rem) {

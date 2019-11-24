@@ -21,7 +21,7 @@ import { ProtectedRoute, UnprotectedRoute } from 'components/AuthRoute';
 const ChoreChainPage = lazy(() => import('pages/ChoreChainPage'));
 
 const App = () => (
-  <Suspense fallback={<Loading />}>
+  <Suspense fallback={<Loading showText={false} />}>
     <Router>
       <Switch>
         <Route exact path={routes.HOME} component={HomePage} />

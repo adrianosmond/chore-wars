@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { useUserProfile, useGame, usePlayersObj } from 'contexts/game';
 import { savePlayerName } from 'database/players';
+import useInput from 'hooks/useInput';
 import Input from 'components/Input';
 import Accordion from 'components/Accordion';
 import Spacer from 'components/Spacer';
@@ -12,8 +13,7 @@ const EditPersonalDetailsContainer = () => {
   const { uid: playerId } = player;
   const game = useGame();
 
-  const [name, setName] = useState(usePlayersObj()[playerId].name);
-  const updateName = useCallback(e => setName(e.target.value), []);
+  const [name, updateName] = useInput(usePlayersObj()[playerId].name);
 
   const isFormInvalid = name.length === 0;
 

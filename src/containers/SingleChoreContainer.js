@@ -21,7 +21,7 @@ export default ({ id }) => {
   } = useChoreDetails(id);
 
   if (loading) {
-    return <Loading />;
+    return <Loading showText={false} />;
   }
 
   return (

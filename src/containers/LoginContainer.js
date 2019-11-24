@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { auth } from 'database';
 import routes from 'constants/routes';
+import useInput from 'hooks/useInput';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Card from 'components/Card';
@@ -9,8 +10,9 @@ import FormButtonHolder from 'components/FormButtonHolder';
 import LinkButton from 'components/LinkButton';
 
 const LoginContainer = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, updateEmail] = useInput('');
+  const [password, updatePassword] = useInput('');
+
   const onSubmit = e => {
     e.preventDefault();
     auth
@@ -31,7 +33,7 @@ const LoginContainer = () => {
             label="Email"
             value={email}
             spacing="xs"
-            onChange={e => setEmail(e.target.value)}
+            onChange={updateEmail}
           />
           <Input
             type="password"
@@ -39,7 +41,7 @@ const LoginContainer = () => {
             label="Password"
             value={password}
             spacing="xs"
-            onChange={e => setPassword(e.target.value)}
+            onChange={updatePassword}
           />
           <FormButtonHolder>
             <Button type="submit" disabled={formIsInvalid}>

@@ -1,31 +1,32 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useUserProfile } from 'contexts/game';
 import { updatePlayerLogin } from 'database/players';
+import useInput from 'hooks/useInput';
+import useToggle from 'hooks/useToggle';
 import Input from 'components/Input';
 import Accordion from 'components/Accordion';
 import Spacer from 'components/Spacer';
 import FormButtonHolder from 'components/FormButtonHolder';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
+import Notification from 'components/Notification';
 
 const EditLoginDetailsContainer = () => {
-  const [password, setPassword] = useState('');
-  const updatePassword = useCallback(e => setPassword(e.target.value), []);
-
   const existingEmail = useUserProfile().email;
-  const [email, setEmail] = useState(existingEmail);
-  const updateEmail = useCallback(e => setEmail(e.target.value), []);
+  const [error, setError] = useState('');
+  const [email, updateEmail] = useInput(existingEmail);
+  const [password, updatePassword, setPassword] = useInput('');
+  const [newPassword, updateNewPassword, setNewPassword] = useInput('');
+  const [newPassword2, updateNewPassword2, setNewPassword2] = useInput('');
+  const [isUpdating, setIsUpdating] = useState(false);
 
-  const [newPassword, setNewPassword] = useState('');
-  const updateNewPassword = useCallback(
-    e => setNewPassword(e.target.value),
-    [],
-  );
-
-  const [newPassword2, setNewPassword2] = useState('');
-  const updateNewPassword2 = useCallback(
-    e => setNewPassword2(e.target.value),
-    [],
+  const [
+    successMessageVisible,
+    showSuccessMessage,
+    hideSuccessMessage,
+  ] = useToggle(false);
+  const [errorMessageVisible, showErrorMessage, hideErrorMessage] = useToggle(
+    false,
   );
 
   const isFormInvalid =
@@ -35,15 +36,42 @@ const EditLoginDetailsContainer = () => {
     password.length === 0 ||
     newPassword !== newPassword2;
 
-  const updateLoginDetails = () =>
+  const updateLoginDetails = () => {
+    setIsUpdating(true);
     updatePlayerLogin(
       password,
       email === existingEmail ? undefined : email,
       newPassword.length === 0 ? undefined : newPassword,
-    );
+    )
+      .then(() => {
+        setPassword('');
+        setNewPassword('');
+        setNewPassword2('');
+        showSuccessMessage();
+      })
+      .catch(err => {
+        setError(err.message);
+        showErrorMessage();
+      })
+      .then(() => setIsUpdating(false));
+  };
 
   return (
     <>
+      {successMessageVisible && (
+        <Notification closeNotification={hideSuccessMessage}>
+          Your details were successfully updated
+        </Notification>
+      )}
+      {errorMessageVisible && (
+        <Notification
+          closeNotification={hideErrorMessage}
+          appearance="error"
+          hideAfter={5000}
+        >
+          Could not update your details: {error}
+        </Notification>
+      )}
       <Accordion title="Login details">
         <Spacer>
           <Typography>
@@ -80,7 +108,11 @@ const EditLoginDetailsContainer = () => {
             spacing="xs"
           />
           <FormButtonHolder>
-            <Button onClick={updateLoginDetails} disabled={isFormInvalid}>
+            <Button
+              onClick={updateLoginDetails}
+              disabled={isFormInvalid || isUpdating}
+              isBusy={isUpdating}
+            >
               Change login details
             </Button>
           </FormButtonHolder>

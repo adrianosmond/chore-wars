@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { auth } from 'database';
+import useInput from 'hooks/useInput';
 import routes from 'constants/routes';
 import Input from 'components/Input';
 import Button from 'components/Button';
@@ -15,9 +16,10 @@ const isInvalid = (email, password, password2) =>
   email.indexOf('@') === -1;
 
 const SignUpContainer = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [email, updateEmail] = useInput('');
+  const [password, updatePassword] = useInput('');
+  const [password2, updatePassword2] = useInput('');
+
   const onSubmit = e => {
     e.preventDefault();
     if (!isInvalid(email, password, password2)) {
@@ -43,7 +45,7 @@ const SignUpContainer = () => {
             label="Email"
             value={email}
             spacing="xs"
-            onChange={e => setEmail(e.target.value)}
+            onChange={updateEmail}
           />
           <Input
             type="password"
@@ -51,7 +53,7 @@ const SignUpContainer = () => {
             label="Password"
             value={password}
             spacing="xs"
-            onChange={e => setPassword(e.target.value)}
+            onChange={updatePassword}
           />
           <Input
             type="password"
@@ -59,7 +61,7 @@ const SignUpContainer = () => {
             label="Confirm Password"
             value={password2}
             spacing="xs"
-            onChange={e => setPassword2(e.target.value)}
+            onChange={updatePassword2}
           />
           <FormButtonHolder>
             <Button type="submit" disabled={formIsInvalid}>

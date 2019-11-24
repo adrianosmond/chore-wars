@@ -36,7 +36,7 @@ export const updatePlayerLogin = (existingPassword, newEmail, newPassword) => {
   const user = auth.currentUser;
   const credential = emailCredential(user.email, existingPassword);
 
-  user
+  return user
     .reauthenticateWithCredential(credential)
     .then(() => (newEmail ? user.updateEmail(newEmail) : Promise.resolve()))
     .then(() =>
