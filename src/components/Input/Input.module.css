@@ -6,6 +6,8 @@
   border: 1px solid rgba(0, 0, 0, 0.025);
   border-bottom-width: 2px;
   border-bottom-color: rgba(0, 0, 0, 0.2);
+  appearance: none;
+  border-radius: 0;
 }
 
 .input:focus {

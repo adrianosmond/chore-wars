@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
+import 'firebase/storage';
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -18,4 +19,5 @@ export default app;
 
 export const database = app.database();
 export const auth = app.auth();
+export const storage = app.storage();
 export const emailCredential = app.auth.EmailAuthProvider.credential;

@@ -32,7 +32,7 @@ export const SaveIcon = Save;
 export const SpinnerIcon = Spinner;
 export const SprayIcon = Spray;
 
-export const Avatar = ({ className, ...props }) => (
+export const AvatarPlaceholder = ({ className, ...props }) => (
   <AvatarImg
     className={classnames({
       [avatarStyles.avatar]: true,

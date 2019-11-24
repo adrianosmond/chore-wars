@@ -4,13 +4,18 @@ import InfoPanel from 'components/InfoPanel';
 import Button from 'components/Button';
 import Card from 'components/Card';
 import { ConfettiIcon } from 'components/Icon';
-import { usePlayers, usePlayersObj, useUserId, useGame } from 'contexts/game';
+import {
+  usePlayers,
+  useUserId,
+  useGame,
+  useCurrentPlayer,
+} from 'contexts/game';
 import { claimVictory } from 'database/players';
 
 const VictoryContainer = () => {
   const game = useGame();
   const userId = useUserId();
-  const currentPoints = usePlayersObj()[userId].points;
+  const currentPoints = useCurrentPlayer().points;
   const players = usePlayers();
   const victories = players.filter(
     p => p.points + MAX_POINT_DIFFERENCE < currentPoints,

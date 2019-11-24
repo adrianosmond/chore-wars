@@ -18,6 +18,7 @@ export const GameProvider = ({ children }) => {
   const [holiday, setHoliday] = useState(null);
   const [players, setPlayers] = useState(null);
   const [playersObj, setPlayersObj] = useState(null);
+  const [currentPlayer, setCurrentPlayer] = useState(null);
   const [chores, setChores] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -89,10 +90,11 @@ export const GameProvider = ({ children }) => {
       const val = result.val() || {};
       setPlayersObj(val);
       setPlayers(makePlayersArray(val));
+      setCurrentPlayer(val[user.uid]);
     };
     database.ref(playersPath).on('value', updatePlayers);
     return () => database.ref(playersPath).off('value', updatePlayers);
-  }, [game]);
+  }, [game, user]);
 
   useEffect(() => {
     if (!game) {
@@ -119,9 +121,10 @@ export const GameProvider = ({ children }) => {
       holiday,
       players,
       playersObj,
+      currentPlayer,
       chores,
     }),
-    [chores, game, holiday, players, playersObj, user],
+    [chores, game, holiday, players, playersObj, currentPlayer, user],
   );
 
   if (isLoading) {
@@ -137,4 +140,5 @@ export const useGame = () => useContext(GameContext).game;
 export const useHoliday = () => useContext(GameContext).holiday;
 export const usePlayers = () => useContext(GameContext).players;
 export const usePlayersObj = () => useContext(GameContext).playersObj;
+export const useCurrentPlayer = () => useContext(GameContext).currentPlayer;
 export const useChores = () => useContext(GameContext).chores;

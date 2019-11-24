@@ -4,7 +4,7 @@ import { createPlayerProfileLink } from 'constants/routes';
 import ProgressBar from 'components/ProgressBar';
 import { MAX_POINT_DIFFERENCE } from 'constants/constants';
 import Typography from 'components/Typography';
-import { Avatar } from 'components/Icon';
+import Avatar from 'components/Avatar';
 import classes from './TwoPlayerScorecard.module.css';
 
 const getPercentage = points =>
@@ -34,7 +34,7 @@ const TwoPlayerScorecard = ({ players: [player1, player2], minPoints }) => {
   return (
     <div className={classes.players}>
       <Link to={createPlayerProfileLink(player1.id)} className={classes.player}>
-        <Avatar className={classes.avatar} />
+        <Avatar className={classes.avatar} url={player1.avatar} />
         <Typography className={classes.name}>{player1.name}</Typography>
       </Link>
       <div className={classes.bar}>
@@ -51,7 +51,7 @@ const TwoPlayerScorecard = ({ players: [player1, player2], minPoints }) => {
         />
       </div>
       <Link to={createPlayerProfileLink(player2.id)} className={classes.player}>
-        <Avatar className={classes.avatar} />
+        <Avatar className={classes.avatar} url={player2.avatar} />
         <Typography className={classes.name}>{player2.name}</Typography>
       </Link>
     </div>

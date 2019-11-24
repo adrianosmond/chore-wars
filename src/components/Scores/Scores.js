@@ -18,11 +18,12 @@ const Scores = ({ players, minPoints, maxPoints }) => {
       ) : (
         <table>
           <tbody>
-            {players.map(({ name, points, id }) => (
+            {players.map(({ name, points, id, avatar }) => (
               <PlayerRow
                 key={id}
                 id={id}
                 name={name}
+                avatar={avatar}
                 points={points}
                 minPoints={minPoints}
                 mid={mid}

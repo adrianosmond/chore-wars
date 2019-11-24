@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUserProfile, useGame, usePlayersObj } from 'contexts/game';
+import { useGame, useCurrentPlayer, useUserId } from 'contexts/game';
 import { savePlayerName } from 'database/players';
 import useInput from 'hooks/useInput';
 import Input from 'components/Input';
@@ -9,15 +9,14 @@ import FormButtonHolder from 'components/FormButtonHolder';
 import Button from 'components/Button';
 
 const EditPersonalDetailsContainer = () => {
-  const player = useUserProfile();
-  const { uid: playerId } = player;
+  const userId = useUserId();
   const game = useGame();
 
-  const [name, updateName] = useInput(usePlayersObj()[playerId].name);
+  const [name, updateName] = useInput(useCurrentPlayer().name);
 
   const isFormInvalid = name.length === 0;
 
-  const saveDetails = () => savePlayerName(game, playerId, name);
+  const saveDetails = () => savePlayerName(game, userId, name);
 
   return (
     <>
