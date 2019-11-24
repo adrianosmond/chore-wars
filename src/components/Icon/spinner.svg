@@ -1,4 +1,4 @@
-<svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <circle cx="19" cy="19" r="17" stroke-width="4" stroke-opacity=".3" />
-  <circle cx="19" cy="19" r="17" stroke-width="4" stroke-dasharray="107" stroke-dashoffset="75" stroke-linecap="round" />
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <circle cx="12" cy="12" r="10.5" stroke-width="3" stroke-opacity=".3" />
+  <circle cx="12" cy="12" r="10.5" stroke-width="3" stroke-dasharray="70" stroke-dashoffset="50" stroke-linecap="round" />
 </svg>
