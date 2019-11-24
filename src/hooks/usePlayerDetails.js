@@ -8,8 +8,25 @@ export default id => {
   const [details, setDetails] = useState({
     player,
     completions: [],
+    winsAndLosses: [],
     loading: true,
   });
+
+  const setDebtPaidBack = key => {
+    const newWinsAndLosses = details.winsAndLosses.map(w => {
+      if (w.key === key) {
+        return {
+          ...w,
+          datePaidBack: new Date().getTime(),
+        };
+      }
+      return w;
+    });
+    setDetails({
+      ...details,
+      winsAndLosses: newWinsAndLosses,
+    });
+  };
 
   useEffect(() => {
     Promise.all([
@@ -25,5 +42,8 @@ export default id => {
     });
   }, [player, game, id]);
 
-  return details;
+  return {
+    ...details,
+    setDebtPaidBack,
+  };
 };

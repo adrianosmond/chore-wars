@@ -38,7 +38,7 @@ const LinkButton = ({
       disabled={isBusy}
     >
       {Icon && !isBusy && <Icon className={classes.icon} fill="currentColor" />}
-      {Icon && isBusy && (
+      {isBusy && (
         <SpinnerIcon
           className={classnames([classes.icon, classes.spinIcon])}
           fill="currentColor"

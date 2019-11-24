@@ -10,7 +10,13 @@ import { BroomIcon, SprayIcon } from 'components/Icon';
 import WinsAndLossesContainer from './WinsAndLossesContainer';
 
 export default ({ id }) => {
-  const { player, completions, winsAndLosses, loading } = usePlayerDetails(id);
+  const {
+    player,
+    completions,
+    winsAndLosses,
+    loading,
+    setDebtPaidBack,
+  } = usePlayerDetails(id);
 
   if (loading) {
     return <Loading showText={false} />;
@@ -41,6 +47,7 @@ export default ({ id }) => {
           <Card title="Wins and losses">
             <WinsAndLossesContainer
               winsAndLosses={winsAndLosses}
+              setDebtPaidBack={setDebtPaidBack}
               currentPlayerId={id}
             />
           </Card>
