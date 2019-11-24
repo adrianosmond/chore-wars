@@ -3,11 +3,10 @@ import { format } from 'date-fns';
 import { victoryPaidBack } from 'database/players';
 import { usePlayersObj, useGame } from 'contexts/game';
 import { DATE_FORMAT } from 'constants/constants';
-import useToggle from 'hooks/useToggle';
+import useAsyncMessages from 'hooks/useAsyncMessages';
 import UnstyledList from 'components/UnstyledList';
 import ActivityLog from 'components/ActivityLog';
 import LinkButton from 'components/LinkButton';
-import Notification from 'components/Notification';
 
 const getPlayerName = (id, players) => players[id].name;
 
@@ -20,9 +19,7 @@ const WinsAndLossesContainer = ({
   const players = usePlayersObj();
 
   const [isUpdating, setIsUpdating] = useState(false);
-  const [errorMessageVisible, showErrorMessage, hideErrorMessage] = useToggle(
-    false,
-  );
+  const { Messages, showErrorMessage } = useAsyncMessages();
 
   const payBackDebt = useCallback(
     id => {
@@ -37,15 +34,7 @@ const WinsAndLossesContainer = ({
 
   return (
     <>
-      {errorMessageVisible && (
-        <Notification
-          closeNotification={hideErrorMessage}
-          appearance="error"
-          hideAfter={5000}
-        >
-          Something went wrong
-        </Notification>
-      )}
+      <Messages />
       <UnstyledList spacing="s">
         {winsAndLosses.map(item => {
           const winner = getPlayerName(item.winner, players);

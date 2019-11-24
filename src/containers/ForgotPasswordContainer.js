@@ -1,37 +1,35 @@
 import React, { useState } from 'react';
 import { auth } from 'database';
 import useInput from 'hooks/useInput';
-import useToggle from 'hooks/useToggle';
+import useAsyncMessages from 'hooks/useAsyncMessages';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Card from 'components/Card';
 import Spacer from 'components/Spacer';
-import Notification from 'components/Notification';
+
 import FormButtonHolder from 'components/FormButtonHolder';
 
 const LoginContainer = () => {
   const [email, updateEmail] = useInput('');
 
   const [isUpdating, setIsUpdating] = useState(false);
-  const [error, setError] = useState('');
-
-  const [
-    successMessageVisible,
+  const {
+    Messages,
     showSuccessMessage,
-    hideSuccessMessage,
-  ] = useToggle(false);
-  const [errorMessageVisible, showErrorMessage, hideErrorMessage] = useToggle(
-    false,
-  );
+    setSuccessMessage,
+    showErrorMessage,
+    setErrorMessage,
+  } = useAsyncMessages();
 
   const onSubmit = e => {
     e.preventDefault();
+    setSuccessMessage(`A password reset has been sent to ${email}`);
     setIsUpdating(true);
     auth
       .sendPasswordResetEmail(email)
       .then(() => showSuccessMessage())
       .catch(err => {
-        setError(err.message);
+        setErrorMessage(err.message);
         showErrorMessage();
       })
       .then(() => setIsUpdating(false));
@@ -41,20 +39,7 @@ const LoginContainer = () => {
 
   return (
     <>
-      {successMessageVisible && (
-        <Notification closeNotification={hideSuccessMessage}>
-          A password reset has been sent to {email}
-        </Notification>
-      )}
-      {errorMessageVisible && (
-        <Notification
-          closeNotification={hideErrorMessage}
-          appearance="error"
-          hideAfter={5000}
-        >
-          {error}
-        </Notification>
-      )}
+      <Messages />
       <Card title="Forgot your password">
         <Spacer as="form" onSubmit={onSubmit}>
           <Input

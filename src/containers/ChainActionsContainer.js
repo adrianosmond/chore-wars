@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
 import Card from 'components/Card';
-import useToggle from 'hooks/useToggle';
+import useAsyncMessages from 'hooks/useAsyncMessages';
 import LinkButton from 'components/LinkButton';
 import UnstyledList from 'components/UnstyledList';
 import { AddIcon, SaveIcon } from 'components/Icon';
-import Notification from 'components/Notification';
 
 const ChainActionsContainer = ({ createChain, saveChains }) => {
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const [
-    successMessageVisible,
-    showSuccessMessage,
-    hideSuccessMessage,
-  ] = useToggle(false);
-
-  const [errorMessageVisible, showErrorMessage, hideErrorMessage] = useToggle(
-    false,
-  );
+  const { Messages, showSuccessMessage, showErrorMessage } = useAsyncMessages({
+    successMessage: 'Chains successfully saved',
+  });
 
   const save = () => {
     setIsUpdating(true);
@@ -29,20 +22,7 @@ const ChainActionsContainer = ({ createChain, saveChains }) => {
 
   return (
     <>
-      {successMessageVisible && (
-        <Notification closeNotification={hideSuccessMessage}>
-          Chains successfully saved
-        </Notification>
-      )}
-      {errorMessageVisible && (
-        <Notification
-          closeNotification={hideErrorMessage}
-          appearance="error"
-          hideAfter={5000}
-        >
-          Something went wrong. Please try again later
-        </Notification>
-      )}
+      <Messages />
       <Card title="Actions">
         <UnstyledList spacing="xs">
           <UnstyledList.Item>

@@ -2,32 +2,30 @@ import React, { useState } from 'react';
 import { useUserProfile } from 'contexts/game';
 import { updatePlayerLogin } from 'database/players';
 import useInput from 'hooks/useInput';
-import useToggle from 'hooks/useToggle';
+import useAsyncMessages from 'hooks/useAsyncMessages';
 import Input from 'components/Input';
 import Accordion from 'components/Accordion';
 import Spacer from 'components/Spacer';
 import FormButtonHolder from 'components/FormButtonHolder';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
-import Notification from 'components/Notification';
 
 const EditLoginDetailsContainer = () => {
   const existingEmail = useUserProfile().email;
-  const [error, setError] = useState('');
   const [email, updateEmail] = useInput(existingEmail);
   const [password, updatePassword, setPassword] = useInput('');
   const [newPassword, updateNewPassword, setNewPassword] = useInput('');
   const [newPassword2, updateNewPassword2, setNewPassword2] = useInput('');
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const [
-    successMessageVisible,
+  const {
+    Messages,
     showSuccessMessage,
-    hideSuccessMessage,
-  ] = useToggle(false);
-  const [errorMessageVisible, showErrorMessage, hideErrorMessage] = useToggle(
-    false,
-  );
+    showErrorMessage,
+    setErrorMessage,
+  } = useAsyncMessages({
+    successMessage: 'Your details were successfully updated',
+  });
 
   const isFormInvalid =
     email.length < 6 ||
@@ -50,7 +48,7 @@ const EditLoginDetailsContainer = () => {
         showSuccessMessage();
       })
       .catch(err => {
-        setError(err.message);
+        setErrorMessage(`Could not update your details: ${err.message}`);
         showErrorMessage();
       })
       .then(() => setIsUpdating(false));
@@ -58,20 +56,7 @@ const EditLoginDetailsContainer = () => {
 
   return (
     <>
-      {successMessageVisible && (
-        <Notification closeNotification={hideSuccessMessage}>
-          Your details were successfully updated
-        </Notification>
-      )}
-      {errorMessageVisible && (
-        <Notification
-          closeNotification={hideErrorMessage}
-          appearance="error"
-          hideAfter={5000}
-        >
-          Could not update your details: {error}
-        </Notification>
-      )}
+      <Messages />
       <Accordion title="Login details">
         <Spacer>
           <Typography>
