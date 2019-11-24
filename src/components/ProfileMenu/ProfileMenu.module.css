@@ -6,6 +6,16 @@
   width: var(--avatar-size);
   height: var(--avatar-size);
   cursor: pointer;
+  outline: 0;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.avatar:focus {
+  box-shadow: 0 0 0 2px var(--color-gray-300);
 }
 
 .menu {

@@ -31,7 +31,9 @@ const ProfileMenu = () => {
 
   return (
     <div className={classes.profileMenu} ref={ref}>
-      <Avatar onClick={toggleMenu} className={classes.avatar} url={avatar} />
+      <button className={classes.avatar} onClick={toggleMenu}>
+        <Avatar url={avatar} />
+      </button>
       {isMenuOpen && (
         <nav className={classes.menu}>
           <UnstyledList>

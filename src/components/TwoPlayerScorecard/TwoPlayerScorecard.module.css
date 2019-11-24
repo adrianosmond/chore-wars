@@ -3,6 +3,7 @@
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
+  --avatar-size: 4rem;
 }
 
 .player {
@@ -13,8 +14,8 @@
 }
 
 .avatar {
-  width: 3rem;
-  height: 3rem;
+  width: var(--avatar-size);
+  height: var(--avatar-size);
 }
 
 .name {

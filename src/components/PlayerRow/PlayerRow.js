@@ -9,8 +9,10 @@ import classes from './PlayerRow.module.css';
 const PlayerRow = ({ id, name, points, minPoints, mid, avatar }) => (
   <tr className={classes.playerRow}>
     <td className={classes.nameCell}>
-      <Link to={createPlayerProfileLink(id)}>
-        <Avatar className={classes.avatar} url={avatar} />
+      <Link to={createPlayerProfileLink(id)} className={classes.link}>
+        <div className={classes.avatar}>
+          <Avatar url={avatar} />
+        </div>
         <Typography as="span" className={classes.playerName}>
           {name}
         </Typography>
