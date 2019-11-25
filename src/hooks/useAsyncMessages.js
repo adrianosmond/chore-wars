@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import useToggle from 'hooks/useToggle';
 import Notification from 'components/Notification';
 
@@ -18,23 +18,33 @@ export default ({
     false,
   );
 
-  const Messages = () => (
-    <>
-      {successMessageVisible && (
-        <Notification closeNotification={hideSuccessMessage}>
-          {success}
-        </Notification>
-      )}
-      {errorMessageVisible && (
-        <Notification
-          closeNotification={hideErrorMessage}
-          appearance="error"
-          hideAfter={5000}
-        >
-          {error}
-        </Notification>
-      )}
-    </>
+  const Messages = useMemo(
+    () => () => (
+      <>
+        {successMessageVisible && (
+          <Notification closeNotification={hideSuccessMessage}>
+            {success}
+          </Notification>
+        )}
+        {errorMessageVisible && (
+          <Notification
+            closeNotification={hideErrorMessage}
+            appearance="error"
+            hideAfter={5000}
+          >
+            {error}
+          </Notification>
+        )}
+      </>
+    ),
+    [
+      error,
+      errorMessageVisible,
+      hideErrorMessage,
+      hideSuccessMessage,
+      success,
+      successMessageVisible,
+    ],
   );
 
   return {
