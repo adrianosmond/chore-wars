@@ -33,7 +33,7 @@ const SignUpContainer = () => {
         .createUserWithEmailAndPassword(email, password)
         .catch(error => {
           setErrorMessage(error.message);
-          showErrorMessage(true);
+          showErrorMessage();
         })
         .then(() => setIsUpdating(false));
     }

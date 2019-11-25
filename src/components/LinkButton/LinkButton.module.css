@@ -18,7 +18,6 @@
 }
 
 .withIcon {
-  display: inline-flex;
   padding: var(--spacing-xxs) 0;
 }
 

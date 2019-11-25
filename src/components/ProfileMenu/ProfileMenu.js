@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { auth } from 'database';
+import { useGame } from 'contexts/game';
 import routes from 'constants/routes';
 import useOutsideClick from 'hooks/useOutsideClick';
 import UnstyledList from 'components/UnstyledList';
@@ -10,6 +11,7 @@ import classes from './ProfileMenu.module.css';
 
 const ProfileMenu = () => {
   const ref = useRef();
+  const game = useGame();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = useCallback(e => {
@@ -35,11 +37,13 @@ const ProfileMenu = () => {
       {isMenuOpen && (
         <nav className={classes.menu}>
           <UnstyledList>
-            <UnstyledList.Item>
-              <Link to={routes.PROFILE} className={classes.menuItem}>
-                Profile
-              </Link>
-            </UnstyledList.Item>
+            {game && (
+              <UnstyledList.Item>
+                <Link to={routes.PROFILE} className={classes.menuItem}>
+                  Profile
+                </Link>
+              </UnstyledList.Item>
+            )}
             <UnstyledList.Item>
               <LinkButton onClick={logout} className={classes.menuItem}>
                 Logout

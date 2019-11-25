@@ -37,9 +37,14 @@ export const createGame = (userId, playerName) => {
 export const joinGame = (userId, joinCode, playerName) => {
   let userData = null;
   const getGameFromJoinCode = () =>
-    new Promise(resolve => {
+    new Promise((resolve, reject) => {
       database.ref(`joinCodes/${joinCode}`).once('value', result => {
-        resolve(result.val());
+        const game = result.val();
+        if (!game) {
+          reject(new Error(`No game found with the code ${joinCode}`));
+        } else {
+          resolve(result.val());
+        }
       });
     });
 
