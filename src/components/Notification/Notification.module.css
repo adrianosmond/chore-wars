@@ -30,3 +30,8 @@
 .message {
   flex-grow: 1;
 }
+
+.closeButton {
+  color: inherit;
+  margin-left: var(--spacing-s);
+}

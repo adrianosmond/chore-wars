@@ -95,7 +95,7 @@ const EditLoginDetailsContainer = () => {
           <FormButtonHolder>
             <Button
               onClick={updateLoginDetails}
-              disabled={isFormInvalid || isUpdating}
+              disabled={isFormInvalid}
               isBusy={isUpdating}
             >
               Change login details

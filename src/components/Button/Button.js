@@ -16,7 +16,7 @@ const Button = ({
   <button
     type={type}
     onClick={onClick}
-    disabled={disabled}
+    disabled={disabled || isBusy}
     className={classnames({
       [classes.button]: true,
       [classes[appearance]]: true,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { auth } from 'database';
 import useInput from 'hooks/useInput';
 import routes from 'constants/routes';
@@ -8,6 +8,7 @@ import Card from 'components/Card';
 import Spacer from 'components/Spacer';
 import FormButtonHolder from 'components/FormButtonHolder';
 import LinkButton from 'components/LinkButton';
+import useAsyncMessages from 'hooks/useAsyncMessages';
 
 const isInvalid = (email, password, password2) =>
   password.length === 0 ||
@@ -20,12 +21,21 @@ const SignUpContainer = () => {
   const [password, updatePassword] = useInput('');
   const [password2, updatePassword2] = useInput('');
 
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  const { Messages, showErrorMessage, setErrorMessage } = useAsyncMessages();
+
   const onSubmit = e => {
     e.preventDefault();
+    setIsUpdating(true);
     if (!isInvalid(email, password, password2)) {
       auth
         .createUserWithEmailAndPassword(email, password)
-        .catch(error => console.log('failed:', error.message));
+        .catch(error => {
+          setErrorMessage(error.message);
+          showErrorMessage(true);
+        })
+        .then(() => setIsUpdating(false));
     }
   };
 
@@ -36,42 +46,49 @@ const SignUpContainer = () => {
     password !== password2;
 
   return (
-    <Spacer>
-      <Card title="Create Account">
-        <Spacer as="form" onSubmit={onSubmit}>
-          <Input
-            type="email"
-            placeholder="your.name@email.com"
-            label="Email"
-            value={email}
-            spacing="xs"
-            onChange={updateEmail}
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            label="Password"
-            value={password}
-            spacing="xs"
-            onChange={updatePassword}
-          />
-          <Input
-            type="password"
-            placeholder="Password"
-            label="Confirm Password"
-            value={password2}
-            spacing="xs"
-            onChange={updatePassword2}
-          />
-          <FormButtonHolder>
-            <Button type="submit" disabled={formIsInvalid}>
-              Create Account
-            </Button>
-          </FormButtonHolder>
-        </Spacer>
-      </Card>
-      <LinkButton to={routes.LOGIN}>Already have an account?</LinkButton>
-    </Spacer>
+    <>
+      <Messages />
+      <Spacer>
+        <Card title="Create Account">
+          <Spacer as="form" onSubmit={onSubmit}>
+            <Input
+              type="email"
+              placeholder="your.name@email.com"
+              label="Email"
+              value={email}
+              spacing="xs"
+              onChange={updateEmail}
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              label="Password"
+              value={password}
+              spacing="xs"
+              onChange={updatePassword}
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              label="Confirm Password"
+              value={password2}
+              spacing="xs"
+              onChange={updatePassword2}
+            />
+            <FormButtonHolder>
+              <Button
+                type="submit"
+                disabled={formIsInvalid}
+                isBusy={isUpdating}
+              >
+                Create Account
+              </Button>
+            </FormButtonHolder>
+          </Spacer>
+        </Card>
+        <LinkButton to={routes.LOGIN}>Already have an account?</LinkButton>
+      </Spacer>
+    </>
   );
 };
 

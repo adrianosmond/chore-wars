@@ -51,11 +51,7 @@ const LoginContainer = () => {
             onChange={updateEmail}
           />
           <FormButtonHolder>
-            <Button
-              type="submit"
-              disabled={isFormInvalid || isUpdating}
-              isBusy={isUpdating}
-            >
+            <Button type="submit" disabled={isFormInvalid} isBusy={isUpdating}>
               Send password reset
             </Button>
           </FormButtonHolder>

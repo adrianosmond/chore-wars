@@ -50,7 +50,11 @@ const Notification = ({
       <Container>
         <div className={classes.content}>
           <div className={classes.message}>{children}</div>
-          <IconButton Icon={CloseIcon} onClick={hideNotification} />
+          <IconButton
+            className={classes.closeButton}
+            Icon={CloseIcon}
+            onClick={hideNotification}
+          />
         </div>
       </Container>
     </div>,
