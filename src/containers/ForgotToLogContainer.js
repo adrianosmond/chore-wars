@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { useGame, useUserId } from 'contexts/game';
@@ -9,6 +9,7 @@ import { completeChore } from 'database/chores';
 
 import ChoreFormContainer from 'containers/ChoreFormContainer';
 import QuestionLastDone from 'components/ChoreForm/QuestionLastDone';
+import QuestionCompletedBy from 'components/ChoreForm/QuestionCompletedBy';
 import { computedChoreProperties } from 'utils/chores';
 
 const ForgotToLogContainer = () => {
@@ -24,21 +25,22 @@ const ForgotToLogContainer = () => {
     }),
     [chore],
   );
+
+  const [completer, setCompleter] = useState(user);
+  const updateCompleter = ({ value }) => setCompleter(value);
+
   const onComplete = useCallback(
-    newChore => {
-      const { currentPoints } = computedChoreProperties(
+    ({ lastDone }) => {
+      const { currentPoints: points } = computedChoreProperties(
         chore,
-        newChore.lastDone,
+        lastDone,
       );
-      return completeChore(
-        game,
-        user,
-        chore,
-        currentPoints,
-        newChore.lastDone,
-      ).then(() => history.push(routes.HOME));
+
+      return completeChore(game, completer, chore, points, lastDone)
+        .then(() => history.push(routes.HOME))
+        .catch(err => console.error(err));
     },
-    [chore, game, user, history],
+    [chore, game, completer, history],
   );
 
   if (!chore) history.replace(routes.HOME);
@@ -47,7 +49,14 @@ const ForgotToLogContainer = () => {
     <ChoreFormProvider chore={modifiedChore}>
       <ChoreFormContainer
         title="Forgot to log"
-        questions={[<QuestionLastDone includeTime key="lastDone" />]}
+        questions={[
+          <QuestionCompletedBy
+            currentPlayer={completer}
+            onChange={updateCompleter}
+            key="completedBy"
+          />,
+          <QuestionLastDone includeTime key="lastDone" />,
+        ]}
         onComplete={onComplete}
       />
     </ChoreFormProvider>

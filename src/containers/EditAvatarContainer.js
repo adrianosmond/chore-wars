@@ -7,7 +7,7 @@ import AvatarCard from 'components/AvatarCard';
 const EditAvatarContainer = ({ id }) => {
   const userId = useUserId();
   const url = usePlayersObj()[id].avatar;
-  console.log(url);
+
   const history = useHistory();
   const editAvatar =
     id === userId ? () => history.push(routes.EDIT_AVATAR) : null;

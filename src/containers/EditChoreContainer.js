@@ -11,7 +11,10 @@ const EditChoreContainer = () => {
   const { id } = useParams();
   const [chore, updateChore] = useChore(id);
   const onComplete = useCallback(
-    newChore => updateChore(newChore).then(() => history.push(routes.HOME)),
+    newChore =>
+      updateChore(newChore)
+        .then(() => history.push(routes.HOME))
+        .catch(err => console.error(err)),
     [updateChore, history],
   );
 

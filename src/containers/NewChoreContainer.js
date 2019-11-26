@@ -14,7 +14,9 @@ const NewChoreContainer = () => {
   const history = useHistory();
   const onComplete = useCallback(
     chore => {
-      createChore(game, user, chore).then(() => history.push(routes.HOME));
+      createChore(game, user, chore)
+        .then(() => history.push(routes.HOME))
+        .catch(err => console.error(err));
     },
     [game, user, history],
   );
