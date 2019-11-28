@@ -18,16 +18,16 @@ const WinsAndLossesContainer = ({
   const game = useGame();
   const players = usePlayersObj();
 
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
   const { Messages, showErrorMessage } = useAsyncMessages();
 
   const payBackDebt = useCallback(
     id => {
-      setIsUpdating(true);
+      setIsBusy(true);
       return victoryPaidBack(game, id)
         .then(() => setDebtPaidBack(id))
         .catch(() => showErrorMessage())
-        .then(() => setIsUpdating(false));
+        .then(() => setIsBusy(false));
     },
     [game, setDebtPaidBack, showErrorMessage],
   );
@@ -58,7 +58,7 @@ const WinsAndLossesContainer = ({
                     {item.datePaidBack === 0 && (
                       <LinkButton
                         onClick={() => payBackDebt(item.key)}
-                        isBusy={isUpdating}
+                        isBusy={isBusy}
                       >
                         Mark this debt as paid back
                       </LinkButton>

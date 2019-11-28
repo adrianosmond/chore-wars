@@ -16,7 +16,7 @@ const EditLoginDetailsContainer = () => {
   const [password, updatePassword, setPassword] = useInput('');
   const [newPassword, updateNewPassword, setNewPassword] = useInput('');
   const [newPassword2, updateNewPassword2, setNewPassword2] = useInput('');
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
 
   const {
     Messages,
@@ -35,7 +35,7 @@ const EditLoginDetailsContainer = () => {
     newPassword !== newPassword2;
 
   const updateLoginDetails = () => {
-    setIsUpdating(true);
+    setIsBusy(true);
     updatePlayerLogin(
       password,
       email === existingEmail ? undefined : email,
@@ -51,7 +51,7 @@ const EditLoginDetailsContainer = () => {
         setErrorMessage(`Could not update your details: ${err.message}`);
         showErrorMessage();
       })
-      .then(() => setIsUpdating(false));
+      .then(() => setIsBusy(false));
   };
 
   return (
@@ -96,7 +96,7 @@ const EditLoginDetailsContainer = () => {
             <Button
               onClick={updateLoginDetails}
               disabled={isFormInvalid}
-              isBusy={isUpdating}
+              isBusy={isBusy}
             >
               Change login details
             </Button>

@@ -11,6 +11,7 @@ const ChoreForm = ({
   nextQuestion,
   children,
   hasError,
+  isBusy,
   title,
 }) => {
   return (
@@ -38,7 +39,7 @@ const ChoreForm = ({
           )}
 
           {!nextQuestion && (
-            <Button type="submit" disabled={hasError}>
+            <Button type="submit" disabled={hasError} isBusy={isBusy}>
               Done
             </Button>
           )}

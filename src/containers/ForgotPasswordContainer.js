@@ -12,7 +12,7 @@ import FormButtonHolder from 'components/FormButtonHolder';
 const LoginContainer = () => {
   const [email, updateEmail] = useInput('');
 
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
   const {
     Messages,
     showSuccessMessage,
@@ -24,7 +24,7 @@ const LoginContainer = () => {
   const onSubmit = e => {
     e.preventDefault();
     setSuccessMessage(`A password reset has been sent to ${email}`);
-    setIsUpdating(true);
+    setIsBusy(true);
     auth
       .sendPasswordResetEmail(email)
       .then(() => showSuccessMessage())
@@ -32,7 +32,7 @@ const LoginContainer = () => {
         setErrorMessage(err.message);
         showErrorMessage();
       })
-      .then(() => setIsUpdating(false));
+      .then(() => setIsBusy(false));
   };
 
   const isFormInvalid = email.length < 6 || !email.includes('@');
@@ -51,7 +51,7 @@ const LoginContainer = () => {
             onChange={updateEmail}
           />
           <FormButtonHolder>
-            <Button type="submit" disabled={isFormInvalid} isBusy={isUpdating}>
+            <Button type="submit" disabled={isFormInvalid} isBusy={isBusy}>
               Send password reset
             </Button>
           </FormButtonHolder>

@@ -6,6 +6,7 @@ import { ChoreFormProvider } from 'contexts/choreForm';
 import routes from 'constants/routes';
 import useChore from 'hooks/useChore';
 import { completeChore } from 'database/chores';
+import useAsyncMessages from 'hooks/useAsyncMessages';
 
 import ChoreFormContainer from 'containers/ChoreFormContainer';
 import QuestionLastDone from 'components/ChoreForm/QuestionLastDone';
@@ -26,6 +27,9 @@ const ForgotToLogContainer = () => {
     [chore],
   );
 
+  const [isBusy, setIsBusy] = useState(false);
+  const { Messages, showErrorMessage } = useAsyncMessages();
+
   const [completer, setCompleter] = useState(user);
   const updateCompleter = ({ value }) => setCompleter(value);
 
@@ -36,17 +40,23 @@ const ForgotToLogContainer = () => {
         lastDone,
       );
 
+      setIsBusy(true);
+
       return completeChore(game, completer, chore, points, lastDone)
         .then(() => history.push(routes.HOME))
-        .catch(err => console.error(err));
+        .catch(() => {
+          setIsBusy(false);
+          showErrorMessage();
+        });
     },
-    [chore, game, completer, history],
+    [chore, game, completer, history, showErrorMessage],
   );
 
   if (!chore) history.replace(routes.HOME);
 
   return (
     <ChoreFormProvider chore={modifiedChore}>
+      <Messages />
       <ChoreFormContainer
         title="Forgot to log"
         questions={[
@@ -57,6 +67,7 @@ const ForgotToLogContainer = () => {
           />,
           <QuestionLastDone includeTime key="lastDone" />,
         ]}
+        isBusy={isBusy}
         onComplete={onComplete}
       />
     </ChoreFormProvider>

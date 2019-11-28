@@ -19,6 +19,7 @@ const ChoreFormContainer = ({
   questions = defaultQuestions,
   onComplete,
   title,
+  isBusy,
 }) => {
   const { hasError, getState } = useChoreForm();
 
@@ -54,6 +55,7 @@ const ChoreFormContainer = ({
       prevQuestion={currentQuestion > 0 && prevQuestion}
       nextQuestion={currentQuestion < questions.length - 1 && nextQuestion}
       hasError={hasError}
+      isBusy={isBusy}
     >
       {questions.filter((q, i) => i === currentQuestion)}
     </ChoreForm>

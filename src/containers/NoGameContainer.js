@@ -18,18 +18,18 @@ const NoGameContainer = () => {
   const user = useUserId();
   const [playerName, updatePlayerName] = useInput('');
   const [gameToJoin, updateGameToJoin] = useInput('');
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
 
   const { Messages, showErrorMessage, setErrorMessage } = useAsyncMessages();
 
   const attemptJoinGame = () => {
-    setIsUpdating(true);
+    setIsBusy(true);
     joinGame(user, gameToJoin, playerName)
       .catch(err => {
         setErrorMessage(err.message);
         showErrorMessage();
       })
-      .then(() => setIsUpdating(false));
+      .then(() => setIsBusy(false));
   };
 
   return (
@@ -68,7 +68,7 @@ const NoGameContainer = () => {
                   disabled={
                     playerName.trim().length === 0 || gameToJoin.length !== 8
                   }
-                  isBusy={isUpdating}
+                  isBusy={isBusy}
                 >
                   Join game
                 </Button>

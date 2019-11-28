@@ -21,13 +21,13 @@ const SignUpContainer = () => {
   const [password, updatePassword] = useInput('');
   const [password2, updatePassword2] = useInput('');
 
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
 
   const { Messages, showErrorMessage, setErrorMessage } = useAsyncMessages();
 
   const onSubmit = e => {
     e.preventDefault();
-    setIsUpdating(true);
+    setIsBusy(true);
     if (!isInvalid(email, password, password2)) {
       auth
         .createUserWithEmailAndPassword(email, password)
@@ -35,7 +35,7 @@ const SignUpContainer = () => {
           setErrorMessage(error.message);
           showErrorMessage();
         })
-        .then(() => setIsUpdating(false));
+        .then(() => setIsBusy(false));
     }
   };
 
@@ -76,11 +76,7 @@ const SignUpContainer = () => {
               onChange={updatePassword2}
             />
             <FormButtonHolder>
-              <Button
-                type="submit"
-                disabled={formIsInvalid}
-                isBusy={isUpdating}
-              >
+              <Button type="submit" disabled={formIsInvalid} isBusy={isBusy}>
                 Create Account
               </Button>
             </FormButtonHolder>

@@ -14,20 +14,20 @@ const LoginContainer = () => {
   const [email, updateEmail] = useInput('');
   const [password, updatePassword] = useInput('');
 
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
 
   const { Messages, showErrorMessage, setErrorMessage } = useAsyncMessages();
 
   const onSubmit = e => {
     e.preventDefault();
-    setIsUpdating(true);
+    setIsBusy(true);
     auth
       .signInWithEmailAndPassword(email, password)
       .catch(err => {
         setErrorMessage(err.message);
         showErrorMessage();
       })
-      .then(() => setIsUpdating(false));
+      .then(() => setIsBusy(false));
   };
 
   const formIsInvalid =
@@ -56,11 +56,7 @@ const LoginContainer = () => {
               onChange={updatePassword}
             />
             <FormButtonHolder>
-              <Button
-                type="submit"
-                disabled={formIsInvalid}
-                isBusy={isUpdating}
-              >
+              <Button type="submit" disabled={formIsInvalid} isBusy={isBusy}>
                 Login
               </Button>
             </FormButtonHolder>

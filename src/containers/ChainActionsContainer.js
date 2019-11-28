@@ -6,18 +6,18 @@ import UnstyledList from 'components/UnstyledList';
 import { AddIcon, SaveIcon } from 'components/Icon';
 
 const ChainActionsContainer = ({ createChain, saveChains }) => {
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
 
   const { Messages, showSuccessMessage, showErrorMessage } = useAsyncMessages({
     successMessage: 'Chains successfully saved',
   });
 
   const save = () => {
-    setIsUpdating(true);
+    setIsBusy(true);
     saveChains()
       .then(() => showSuccessMessage())
       .catch(() => showErrorMessage())
-      .then(() => setIsUpdating(false));
+      .then(() => setIsBusy(false));
   };
 
   return (
@@ -31,7 +31,7 @@ const ChainActionsContainer = ({ createChain, saveChains }) => {
             </LinkButton>
           </UnstyledList.Item>
           <UnstyledList.Item>
-            <LinkButton onClick={save} Icon={SaveIcon} isBusy={isUpdating}>
+            <LinkButton onClick={save} Icon={SaveIcon} isBusy={isBusy}>
               Save chains
             </LinkButton>
           </UnstyledList.Item>
