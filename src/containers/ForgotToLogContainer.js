@@ -1,17 +1,18 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-
+import { completeChore } from 'database/chores';
 import { useGame, useUserId } from 'contexts/game';
 import { ChoreFormProvider } from 'contexts/choreForm';
-import routes from 'constants/routes';
 import useChore from 'hooks/useChore';
-import { completeChore } from 'database/chores';
 import useAsyncMessages from 'hooks/useAsyncMessages';
-
+import routes from 'constants/routes';
+import { computedChoreProperties } from 'utils/chores';
 import ChoreFormContainer from 'containers/ChoreFormContainer';
 import QuestionLastDone from 'components/ChoreForm/QuestionLastDone';
 import QuestionCompletedBy from 'components/ChoreForm/QuestionCompletedBy';
-import { computedChoreProperties } from 'utils/chores';
+import InfoPanel from 'components/InfoPanel';
+import { SprayIcon } from 'components/Icon';
+import Button from 'components/Button';
 
 const ForgotToLogContainer = () => {
   const game = useGame();
@@ -52,7 +53,20 @@ const ForgotToLogContainer = () => {
     [chore, game, completer, history, showErrorMessage],
   );
 
-  if (!chore) history.replace(routes.HOME);
+  if (!chore) {
+    return (
+      <InfoPanel
+        Icon={SprayIcon}
+        title="Which chore?"
+        description="Hmm. Not sure what's happened here. If there was ever a chore here, it's gone now. Maybe you cleaned up it?"
+        cta={
+          <Button onClick={() => history.push(routes.HOME)}>
+            Go back to the chores
+          </Button>
+        }
+      />
+    );
+  }
 
   return (
     <ChoreFormProvider chore={modifiedChore}>

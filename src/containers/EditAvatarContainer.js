@@ -6,9 +6,15 @@ import AvatarCard from 'components/AvatarCard';
 
 const EditAvatarContainer = ({ id }) => {
   const userId = useUserId();
-  const url = usePlayersObj()[id].avatar;
-
+  const player = usePlayersObj()[id];
   const history = useHistory();
+
+  if (!player) {
+    return null;
+  }
+
+  const url = player.avatar;
+
   const editAvatar =
     id === userId ? () => history.push(routes.EDIT_AVATAR) : null;
   return <AvatarCard editAvatar={editAvatar} url={url} />;

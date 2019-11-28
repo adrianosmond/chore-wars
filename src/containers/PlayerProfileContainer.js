@@ -1,13 +1,16 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import usePlayerDetails from 'hooks/usePlayerDetails';
+import routes from 'constants/routes';
 import CompletionHistoryContainer from 'containers/CompletionHistoryContainer';
+import WinsAndLossesContainer from 'containers/WinsAndLossesContainer';
 import Loading from 'components/Loading';
 import Card from 'components/Card';
 import Spacer from 'components/Spacer';
 import Typography from 'components/Typography';
 import InfoPanel from 'components/InfoPanel';
-import { BroomIcon, SprayIcon } from 'components/Icon';
-import WinsAndLossesContainer from './WinsAndLossesContainer';
+import { BroomIcon, SprayIcon, ClothIcon } from 'components/Icon';
+import Button from 'components/Button';
 
 export default ({ id }) => {
   const {
@@ -18,8 +21,25 @@ export default ({ id }) => {
     setDebtPaidBack,
   } = usePlayerDetails(id);
 
+  const history = useHistory();
+
   if (loading) {
     return <Loading showText={false} />;
+  }
+
+  if (!player) {
+    return (
+      <InfoPanel
+        Icon={ClothIcon}
+        title="Who?"
+        description="Hmm. Not sure what's happened here. If there was ever a player here, they're gone now."
+        cta={
+          <Button onClick={() => history.push(routes.HOME)}>
+            Go back to the chores
+          </Button>
+        }
+      />
+    );
   }
 
   return (

@@ -4,8 +4,10 @@ import { ChoreFormProvider } from 'contexts/choreForm';
 import routes from 'constants/routes';
 import useChore from 'hooks/useChore';
 import useAsyncMessages from 'hooks/useAsyncMessages';
-
 import ChoreFormContainer from 'containers/ChoreFormContainer';
+import InfoPanel from 'components/InfoPanel';
+import { SprayIcon } from 'components/Icon';
+import Button from 'components/Button';
 
 const EditChoreContainer = () => {
   const history = useHistory();
@@ -28,7 +30,20 @@ const EditChoreContainer = () => {
     [updateChore, history, showErrorMessage],
   );
 
-  if (!chore) history.replace(routes.HOME);
+  if (!chore) {
+    return (
+      <InfoPanel
+        Icon={SprayIcon}
+        title="Which chore?"
+        description="Hmm. Not sure what's happened here. If there was ever a chore here, it's gone now. Maybe you cleaned up it?"
+        cta={
+          <Button onClick={() => history.push(routes.HOME)}>
+            Go back to the chores
+          </Button>
+        }
+      />
+    );
+  }
 
   return (
     <ChoreFormProvider chore={chore}>

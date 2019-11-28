@@ -6,6 +6,7 @@ import routes, {
   createForgotToLogLink,
 } from 'constants/routes';
 import { useGame } from 'contexts/game';
+import useChore from 'hooks/useChore';
 import LinkButton from 'components/LinkButton';
 import UnstyledList from 'components/UnstyledList';
 import Card from 'components/Card';
@@ -24,6 +25,10 @@ const SingleChoreActionContainer = ({ id }) => {
     history.push(routes.HOME);
     deleteChore(game, id);
   }, [game, history, id]);
+
+  const [chore] = useChore(id);
+  if (!chore) return null;
+
   return (
     <Card title="Actions">
       <UnstyledList spacing="xs">
