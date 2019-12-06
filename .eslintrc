@@ -1,18 +1,11 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "react-app",
-    "airbnb-base",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": [
-    "import",
-    "prettier"
-  ],
+  "extends": ["react-app", "airbnb-base", "prettier", "prettier/react"],
+  "plugins": ["import", "prettier"],
   "rules": {
     "import/no-extraneous-dependencies": [
-      "error", {
+      "error",
+      {
         "packageDir": "./"
       }
     ]
@@ -21,10 +14,7 @@
     "import/resolver": {
       "node": {
         "paths": ["src"],
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     }
   }
