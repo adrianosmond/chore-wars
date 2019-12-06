@@ -21,6 +21,7 @@ export const GameProvider = ({ children }) => {
   const [currentPlayer, setCurrentPlayer] = useState(null);
   const [chores, setChores] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isConnected, setIsConnected] = useState(true);
 
   useEffect(() => {
     return auth.onAuthStateChanged(authUser => {
@@ -39,6 +40,17 @@ export const GameProvider = ({ children }) => {
         setPlayersObj(null);
         setChores(null);
         setHoliday(null);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const connectedRef = database.ref('.info/connected');
+    connectedRef.on('value', snap => {
+      if (snap.val() === true) {
+        setIsConnected(true);
+      } else {
+        setIsConnected(false);
       }
     });
   }, []);
@@ -127,7 +139,7 @@ export const GameProvider = ({ children }) => {
     [chores, game, holiday, players, playersObj, currentPlayer, user],
   );
 
-  if (isLoading) {
+  if (isLoading || !isConnected) {
     return <Loading />;
   }
 
