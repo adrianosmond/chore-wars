@@ -41,12 +41,12 @@ export const choreIsAvailable = chore =>
   !chore.isWaiting && new Date().getTime() - chore.lastDone >= 10000;
 
 export const sortByCurrentPoints = (a, b) => {
-  const aBonusPts = a.currentPoints > a.pointsPerTime;
-  const bBonusPts = b.currentPoints > b.pointsPerTime;
-  if (aBonusPts && !bBonusPts) {
+  const aDue = a.currentPoints >= a.pointsPerTime;
+  const bDue = b.currentPoints >= b.pointsPerTime;
+  if (aDue && !bDue) {
     return -1;
   }
-  if (bBonusPts && !aBonusPts) {
+  if (bDue && !aDue) {
     return 1;
   }
   return b.currentPoints - a.currentPoints;
