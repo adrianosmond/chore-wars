@@ -110,6 +110,11 @@ const updateWaiting = (game, choreId, isWaiting) =>
 const updateTimePaused = (game, choreId, timePaused) =>
   updateChoreProperty(game, choreId, 'timePaused', timePaused);
 
+const resetTimePaused = (game, chore) =>
+  'timePaused' in chore
+    ? updateChoreProperty(game, chore.id, 'timePaused', 0)
+    : Promise.resolve();
+
 const enableNextChoreInChain = (game, chore) =>
   chore.enables
     ? Promise.all([
@@ -121,6 +126,9 @@ const enableNextChoreInChain = (game, chore) =>
 const editChoreInDatabase = (game, chore, newChore) =>
   database.ref(`games/${game}/chores/${chore.id}`).set({
     ...newChore,
+    ...('timePaused' in chore && {
+      timePaused: chore.timePaused,
+    }),
     ...(chore.enables && {
       enables: chore.enables,
       isWaiting: chore.isWaiting,
@@ -196,6 +204,7 @@ export const completeChore = (
 
   return Promise.all([
     updateLastDone(game, chore.id, date),
+    resetTimePaused(game, chore),
     addPointsToPlayer(game, playerId, points),
     enableNextChoreInChain(game, chore),
     addToAllChoresHistory(game, historyObj),
