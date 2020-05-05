@@ -17,7 +17,7 @@ const NewChoreContainer = () => {
   const { Messages, showErrorMessage } = useAsyncMessages();
 
   const onComplete = useCallback(
-    chore => {
+    (chore) => {
       setIsBusy(true);
       createChore(game, user, chore)
         .then(() => history.push(routes.HOME))

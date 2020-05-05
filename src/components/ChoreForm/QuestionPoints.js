@@ -8,7 +8,7 @@ import Label from 'components/Label';
 
 import classes from './Question.module.css';
 
-const isPointsInvalid = points =>
+const isPointsInvalid = (points) =>
   Number.isNaN(points) ||
   typeof points !== 'number' ||
   points < MIN_CHORE_POINTS ||

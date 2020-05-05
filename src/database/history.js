@@ -1,6 +1,6 @@
 import { database } from './index';
 
-const getItemsArrayWithKey = result => {
+const getItemsArrayWithKey = (result) => {
   const items = result.val();
   if (!items) return [];
   return Object.entries(items)
@@ -20,10 +20,10 @@ export const getChoreCompletionRatio = (game, id, players) => {
   return database
     .ref(`games/${game}/history/completions/${id}`)
     .once('value')
-    .then(result => {
+    .then((result) => {
       const items = result.val();
       if (!items) return [];
-      return players.map(p => ({
+      return players.map((p) => ({
         ...p,
         completions: items[p.id] || 0,
       }));
@@ -34,7 +34,7 @@ export const getChoreTimeDifferences = (game, id) =>
   database
     .ref(`games/${game}/history/timeDifferences/${id}`)
     .once('value')
-    .then(result => Object.values(result.val() || []));
+    .then((result) => Object.values(result.val() || []));
 
 export const getChoreEdits = (game, id) =>
   database
@@ -55,6 +55,6 @@ export const getPlayerWinsAndLosses = (game, id) =>
     .ref(`games/${game}/history/victories`)
     .once('value')
     .then(getItemsArrayWithKey)
-    .then(results =>
-      results.filter(result => result.winner === id || result.loser === id),
+    .then((results) =>
+      results.filter((result) => result.winner === id || result.loser === id),
     );

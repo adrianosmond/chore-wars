@@ -18,12 +18,12 @@ const LoginContainer = () => {
 
   const { Messages, showErrorMessage, setErrorMessage } = useAsyncMessages();
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setIsBusy(true);
     auth
       .signInWithEmailAndPassword(email, password)
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(err.message);
         showErrorMessage();
       })

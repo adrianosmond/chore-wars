@@ -31,13 +31,13 @@ export const computedChoreProperties = (chore, now) => {
 };
 
 export const makeChoresArray = (chores, now = new Date().getTime()) =>
-  Object.keys(chores).map(chore => ({
+  Object.keys(chores).map((chore) => ({
     ...chores[chore],
     id: chore,
     ...computedChoreProperties(chores[chore], now),
   }));
 
-export const choreIsAvailable = chore =>
+export const choreIsAvailable = (chore) =>
   !chore.isWaiting && new Date().getTime() - chore.lastDone >= 10000;
 
 export const sortByCurrentPoints = (a, b) => {
@@ -52,7 +52,7 @@ export const sortByCurrentPoints = (a, b) => {
   return b.currentPoints - a.currentPoints;
 };
 
-export const getFrequencyDescription = frequency => {
+export const getFrequencyDescription = (frequency) => {
   if (frequency === 0) return 'when it needs to be done';
   if (frequency === 1) return 'every day';
   return `every ${frequency} days`;

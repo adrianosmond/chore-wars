@@ -17,13 +17,13 @@ const AddPlayersContainer = () => {
   const closeLockGameModal = useCallback(() => setShowLockGameModal(false), []);
 
   useEffect(() => {
-    database.ref(`games/${game}/gameIncomplete`).once('value', result => {
+    database.ref(`games/${game}/gameIncomplete`).once('value', (result) => {
       if (result.val()) {
         database
           .ref(`joinCodes`)
           .orderByValue()
           .equalTo(game)
-          .once('value', code => setJoinCode(Object.keys(code.val())[0]));
+          .once('value', (code) => setJoinCode(Object.keys(code.val())[0]));
       }
     });
   }, [game]);

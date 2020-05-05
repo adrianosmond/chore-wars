@@ -21,14 +21,14 @@ const LoginContainer = () => {
     setErrorMessage,
   } = useAsyncMessages();
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setSuccessMessage(`A password reset has been sent to ${email}`);
     setIsBusy(true);
     auth
       .sendPasswordResetEmail(email)
       .then(() => showSuccessMessage())
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(err.message);
         showErrorMessage();
       })

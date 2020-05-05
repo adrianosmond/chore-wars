@@ -18,7 +18,7 @@ const EditChoreContainer = () => {
   const { Messages, showErrorMessage } = useAsyncMessages();
 
   const onComplete = useCallback(
-    newChore => {
+    (newChore) => {
       setIsBusy(true);
       updateChore(newChore)
         .then(() => history.push(routes.HOME))

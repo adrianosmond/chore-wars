@@ -25,7 +25,7 @@ const NoGameContainer = () => {
   const attemptJoinGame = () => {
     setIsBusy(true);
     joinGame(user, gameToJoin, playerName)
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(err.message);
         showErrorMessage();
       })

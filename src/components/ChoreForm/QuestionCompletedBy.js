@@ -8,7 +8,7 @@ const QuestionCompletedBy = ({ currentPlayer, onChange }) => {
 
   const playerOptions = useMemo(
     () =>
-      players.map(player => ({
+      players.map((player) => ({
         value: player.id,
         label: player.name,
       })),
@@ -16,7 +16,7 @@ const QuestionCompletedBy = ({ currentPlayer, onChange }) => {
   );
 
   const initialValue = playerOptions.find(
-    player => player.value === currentPlayer,
+    (player) => player.value === currentPlayer,
   );
 
   return (

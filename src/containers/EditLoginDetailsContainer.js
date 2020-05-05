@@ -47,7 +47,7 @@ const EditLoginDetailsContainer = () => {
         setNewPassword2('');
         showSuccessMessage();
       })
-      .catch(err => {
+      .catch((err) => {
         setErrorMessage(`Could not update your details: ${err.message}`);
         showErrorMessage();
       })

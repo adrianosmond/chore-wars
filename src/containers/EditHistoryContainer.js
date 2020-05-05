@@ -7,7 +7,7 @@ const EditHistoryContainer = ({ history }) => {
   const players = usePlayersObj();
   return (
     <UnstyledList spacing="s">
-      {history.map(edit => (
+      {history.map((edit) => (
         <UnstyledList.Item key={edit.key}>
           <EditLog
             date={edit.date}

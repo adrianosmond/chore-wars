@@ -5,7 +5,7 @@ import classes from './Accordion.module.css';
 
 const Accordion = ({ title, children, startExpanded = false }) => {
   const [isExpanded, setIsExpanded] = useState(startExpanded);
-  const toggleOpen = useCallback(() => setIsExpanded(e => !e), []);
+  const toggleOpen = useCallback(() => setIsExpanded((e) => !e), []);
   return (
     <div className={classes.wrapper}>
       <button className={classes.button} onClick={toggleOpen}>

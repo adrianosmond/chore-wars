@@ -4,7 +4,7 @@ import Spacer from 'components/Spacer';
 import Typography from 'components/Typography';
 import classes from './InfoPanel.module.css';
 
-const headingSize = size => {
+const headingSize = (size) => {
   if (['xs', 's'].includes(size)) {
     return 'h4';
   }

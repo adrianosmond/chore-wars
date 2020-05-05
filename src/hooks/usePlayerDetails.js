@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useGame, usePlayersObj } from 'contexts/game';
 import { getPlayerCompletions, getPlayerWinsAndLosses } from 'database/history';
 
-export default id => {
+export default (id) => {
   const game = useGame();
   const player = usePlayersObj()[id];
   const [details, setDetails] = useState({
@@ -12,8 +12,8 @@ export default id => {
     loading: true,
   });
 
-  const setDebtPaidBack = key => {
-    const newWinsAndLosses = details.winsAndLosses.map(w => {
+  const setDebtPaidBack = (key) => {
+    const newWinsAndLosses = details.winsAndLosses.map((w) => {
       if (w.key === key) {
         return {
           ...w,

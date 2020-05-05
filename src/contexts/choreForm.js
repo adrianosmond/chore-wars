@@ -17,7 +17,7 @@ export const ChoreFormProvider = ({ children, chore = defaultChore }) => {
   const [frequency, updateFrequency] = useInput(chore.frequency);
   const [pointsPerTime, updatePointsPerTime] = useInput(chore.pointsPerTime);
   const [lastDone, setLastDone] = useState(chore.lastDone);
-  const updateLastDone = useCallback(e => {
+  const updateLastDone = useCallback((e) => {
     const { value } = e.target;
     if (value && value !== '') {
       setLastDone(parseISO(e.target.value).getTime());

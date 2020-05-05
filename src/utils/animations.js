@@ -1,4 +1,4 @@
-export const onAppear = el => {
+export const onAppear = (el) => {
   setTimeout(() => {
     el.classList.add('fadeIn');
     setTimeout(() => {

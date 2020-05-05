@@ -50,7 +50,7 @@ const ChoreChainChore = ({ chore, chainId, index, moveChore, removeChore }) => {
   });
   const [{ isDragging }, drag] = useDrag({
     item: { type: `CHORE_${chainId}`, id: chore.id, index },
-    collect: monitor => ({
+    collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });

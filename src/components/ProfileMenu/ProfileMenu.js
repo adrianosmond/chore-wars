@@ -14,8 +14,8 @@ const ProfileMenu = () => {
   const game = useGame();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = useCallback(e => {
-    setIsMenuOpen(open => !open);
+  const toggleMenu = useCallback((e) => {
+    setIsMenuOpen((open) => !open);
     e.stopPropagation();
   }, []);
 

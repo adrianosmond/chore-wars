@@ -17,9 +17,7 @@ const ChoresContainer = () => {
   const rerenderAfter10s = useRerender(10000);
   const user = useUserId();
   const game = useGame();
-  const chores = useChores()
-    .filter(choreIsAvailable)
-    .sort(sortByCurrentPoints);
+  const chores = useChores().filter(choreIsAvailable).sort(sortByCurrentPoints);
 
   const markChoreComplete = useCallback(
     (chore, points) => {
@@ -48,7 +46,7 @@ const ChoresContainer = () => {
   return (
     <UnstyledList spacing="s">
       <Flipper flipKey={chores}>
-        {chores.map(chore => (
+        {chores.map((chore) => (
           <Flipped
             key={chore.id}
             flipId={chore.id}

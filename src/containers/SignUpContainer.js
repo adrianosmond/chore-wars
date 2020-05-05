@@ -25,13 +25,13 @@ const SignUpContainer = () => {
 
   const { Messages, showErrorMessage, setErrorMessage } = useAsyncMessages();
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setIsBusy(true);
     if (!isInvalid(email, password, password2)) {
       auth
         .createUserWithEmailAndPassword(email, password)
-        .catch(error => {
+        .catch((error) => {
           setErrorMessage(error.message);
           showErrorMessage();
         })

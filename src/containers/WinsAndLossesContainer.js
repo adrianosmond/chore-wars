@@ -22,7 +22,7 @@ const WinsAndLossesContainer = ({
   const { Messages, showErrorMessage } = useAsyncMessages();
 
   const payBackDebt = useCallback(
-    id => {
+    (id) => {
       setIsBusy(true);
       return victoryPaidBack(game, id)
         .then(() => setDebtPaidBack(id))
@@ -36,7 +36,7 @@ const WinsAndLossesContainer = ({
     <>
       <Messages />
       <UnstyledList spacing="s">
-        {winsAndLosses.map(item => {
+        {winsAndLosses.map((item) => {
           const winner = getPlayerName(item.winner, players);
           const loser = getPlayerName(item.loser, players);
           return (

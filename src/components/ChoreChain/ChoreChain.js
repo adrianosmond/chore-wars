@@ -20,15 +20,21 @@ const ChoreChain = ({
   removeChoreFromChain,
 }) => {
   const handleSelect = useCallback(
-    e => {
-      addChoreToChain(availableChores.find(c => c.id === e.value), chainId);
+    (e) => {
+      addChoreToChain(
+        availableChores.find((c) => c.id === e.value),
+        chainId,
+      );
     },
     [addChoreToChain, availableChores, chainId],
   );
 
   const handleRemove = useCallback(
-    choreId => {
-      removeChoreFromChain(chores.find(c => c.id === choreId), chainId);
+    (choreId) => {
+      removeChoreFromChain(
+        chores.find((c) => c.id === choreId),
+        chainId,
+      );
     },
     [removeChoreFromChain, chores, chainId],
   );
@@ -48,7 +54,7 @@ const ChoreChain = ({
     <Card>
       <div>
         <Select
-          options={availableChores.map(chore => ({
+          options={availableChores.map((chore) => ({
             value: chore.id,
             label: chore.name,
           }))}

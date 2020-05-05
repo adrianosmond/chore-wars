@@ -7,7 +7,7 @@ import Typography from 'components/Typography';
 import Avatar from 'components/Avatar';
 import classes from './TwoPlayerScorecard.module.css';
 
-const getPercentage = points =>
+const getPercentage = (points) =>
   Math.min((100 * points) / MAX_POINT_DIFFERENCE, 100);
 
 const getPtsPercentage = (points, minPoints) =>

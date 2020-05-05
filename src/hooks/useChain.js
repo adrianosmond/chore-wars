@@ -2,18 +2,18 @@ import { useReducer, useCallback, useMemo } from 'react';
 import { useGame, useChores } from 'contexts/game';
 import { makeChain, removeChainFeatures } from 'database/chores';
 
-const createInitialState = chores => {
+const createInitialState = (chores) => {
   // Find all chores that are in chains but not waiting
   // (we'll choose for these to be the start of our existing chains)
   // Then from each start point, loop around the chain
   // picking up all the chores that follow on from the first
   return {
     chains: chores
-      .filter(chore => chore.isWaiting === false)
-      .map(chore => {
+      .filter((chore) => chore.isWaiting === false)
+      .map((chore) => {
         const chain = [];
         let currentChore = chore;
-        const getNextChore = c => c.id === currentChore.enables;
+        const getNextChore = (c) => c.id === currentChore.enables;
         while (!chain.includes(currentChore)) {
           chain.push(currentChore);
           currentChore = chores.find(getNextChore);
@@ -74,7 +74,7 @@ const chainReducer = (state, action) => {
         chains: state.chains.map((chain, idx) => {
           if (idx !== chainId) return chain;
           return {
-            chores: chain.chores.filter(c => c !== chore),
+            chores: chain.chores.filter((c) => c !== chore),
           };
         }),
       };
@@ -121,7 +121,7 @@ export default () => {
   );
 
   const removeChain = useCallback(
-    chainId =>
+    (chainId) =>
       dispatch({ type: actionTypes.REMOVE_CHAIN, payload: { chainId } }),
     [],
   );
@@ -145,16 +145,16 @@ export default () => {
   );
 
   const availableChores = useMemo(() => {
-    const chainedChores = state.chains.map(c => c.chores).flat();
+    const chainedChores = state.chains.map((c) => c.chores).flat();
     return chores
-      .filter(chore => !chainedChores.includes(chore))
+      .filter((chore) => !chainedChores.includes(chore))
       .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
   }, [chores, state.chains]);
 
   const saveChains = useCallback(() => {
     return Promise.all(
-      availableChores.map(chore => removeChainFeatures(game, chore)),
-      state.chains.map(chain => makeChain(game, chain.chores)),
+      availableChores.map((chore) => removeChainFeatures(game, chore)),
+      state.chains.map((chain) => makeChain(game, chain.chores)),
     );
   }, [game, state.chains, availableChores]);
 

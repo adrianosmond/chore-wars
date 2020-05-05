@@ -18,17 +18,17 @@ const VictoryContainer = () => {
   const currentPoints = useCurrentPlayer().points;
   const players = usePlayers();
   const victories = players.filter(
-    p => p.points + MAX_POINT_DIFFERENCE < currentPoints,
+    (p) => p.points + MAX_POINT_DIFFERENCE < currentPoints,
   );
 
   const victory = useCallback(
-    versusId => claimVictory(game, versusId, userId),
+    (versusId) => claimVictory(game, versusId, userId),
     [game, userId],
   );
 
   return (
     <>
-      {victories.map(player => (
+      {victories.map((player) => (
         <Card key={player.id} appearance="info">
           <InfoPanel
             Icon={ConfettiIcon}

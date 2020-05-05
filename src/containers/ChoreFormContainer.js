@@ -24,19 +24,19 @@ const ChoreFormContainer = ({
   const { hasError, getState } = useChoreForm();
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const prevQuestion = useCallback(() => setCurrentQuestion(q => q - 1), []);
+  const prevQuestion = useCallback(() => setCurrentQuestion((q) => q - 1), []);
   const nextQuestion = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
       if (!hasError) {
-        setCurrentQuestion(q => q + 1);
+        setCurrentQuestion((q) => q + 1);
       }
     },
     [hasError],
   );
 
   const onSubmit = useCallback(
-    e => {
+    (e) => {
       e.preventDefault();
       onComplete(getState());
     },

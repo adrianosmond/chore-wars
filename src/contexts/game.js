@@ -24,7 +24,7 @@ export const GameProvider = ({ children }) => {
   const [isConnected, setIsConnected] = useState(true);
 
   useEffect(() => {
-    return auth.onAuthStateChanged(authUser => {
+    return auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         // For login we need to set loading to true again
         // (the auth state changes from !authUser to authUser)
@@ -46,7 +46,7 @@ export const GameProvider = ({ children }) => {
 
   useEffect(() => {
     const connectedRef = database.ref('.info/connected');
-    connectedRef.on('value', snap => {
+    connectedRef.on('value', (snap) => {
       if (snap.val() === true) {
         setIsConnected(true);
       } else {
@@ -64,7 +64,7 @@ export const GameProvider = ({ children }) => {
     }
 
     const ref = database.ref(`users/${user.uid}`);
-    const onUserChange = result => {
+    const onUserChange = (result) => {
       const userData = result.val();
       if (userData && userData.gameId) {
         // If we've just created a game, set to loading while we create the rest of the data
@@ -85,7 +85,7 @@ export const GameProvider = ({ children }) => {
       return () => {};
     }
 
-    const onHolidayChange = result => {
+    const onHolidayChange = (result) => {
       setHoliday(result.val());
     };
     database.ref(`games/${game}/holiday`).on('value', onHolidayChange);
@@ -98,7 +98,7 @@ export const GameProvider = ({ children }) => {
       return () => {};
     }
     const playersPath = `games/${game}/players`;
-    const updatePlayers = result => {
+    const updatePlayers = (result) => {
       const val = result.val() || {};
       setPlayersObj(val);
       setPlayers(makePlayersArray(val));
@@ -113,7 +113,7 @@ export const GameProvider = ({ children }) => {
       return () => {};
     }
     const choresPath = `games/${game}/chores`;
-    const updateChores = result => {
+    const updateChores = (result) => {
       setChores(makeChoresArray(result.val() || {}));
     };
     database.ref(choresPath).on('value', updateChores);

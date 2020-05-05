@@ -12,7 +12,7 @@ const CompletionHistoryContainer = ({
   const players = usePlayersObj();
   const [showAll, setShowAll] = useState(false);
   const toggleShowAll = useCallback(() => {
-    setShowAll(state => !state);
+    setShowAll((state) => !state);
   }, []);
   const last5 = useMemo(() => history.slice(0, 5), [history]);
   const toShow = showAll ? history : last5;
@@ -20,7 +20,7 @@ const CompletionHistoryContainer = ({
 
   return (
     <UnstyledList spacing="s">
-      {toShow.map(item => (
+      {toShow.map((item) => (
         <UnstyledList.Item key={item.key}>
           <CompletionLog
             date={item.date}

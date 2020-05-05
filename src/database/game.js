@@ -19,7 +19,7 @@ export const createGame = (userId, playerName) => {
   return database
     .ref('games')
     .push()
-    .then(ref => {
+    .then((ref) => {
       const gameKey = ref.key;
       const userData = {
         gameId: gameKey,
@@ -38,7 +38,7 @@ export const joinGame = (userId, joinCode, playerName) => {
   let userData = null;
   const getGameFromJoinCode = () =>
     new Promise((resolve, reject) => {
-      database.ref(`joinCodes/${joinCode}`).once('value', result => {
+      database.ref(`joinCodes/${joinCode}`).once('value', (result) => {
         const game = result.val();
         if (!game) {
           reject(new Error(`No game found with the code ${joinCode}`));
@@ -48,8 +48,8 @@ export const joinGame = (userId, joinCode, playerName) => {
       });
     });
 
-  const setUserData = gameKey =>
-    new Promise(resolve => {
+  const setUserData = (gameKey) =>
+    new Promise((resolve) => {
       userData = { gameId: gameKey };
       database
         .ref(`users/${userId}`)
@@ -59,8 +59,8 @@ export const joinGame = (userId, joinCode, playerName) => {
         });
     });
 
-  const addUserToGame = gameKey =>
-    database.ref(`games/${gameKey}/players`).once('value', result => {
+  const addUserToGame = (gameKey) =>
+    database.ref(`games/${gameKey}/players`).once('value', (result) => {
       // Someone joining the game shouldn't be at a disadvantage, so give
       // them the same number of points as the current leader
       const maxPoints = getMaxPoints(makePlayersArray(result.val()));
@@ -69,9 +69,7 @@ export const joinGame = (userId, joinCode, playerName) => {
         .set(generateNewPlayerData(playerName, maxPoints));
     });
 
-  return getGameFromJoinCode()
-    .then(setUserData)
-    .then(addUserToGame);
+  return getGameFromJoinCode().then(setUserData).then(addUserToGame);
 };
 
 export const startHoliday = (gameId, holidayStartTime = new Date().getTime()) =>
@@ -85,8 +83,8 @@ export const stopHoliday = (
   const holidayTime = holidayEndTime - holidayStartTime;
   return Promise.all([
     database.ref(`games/${gameId}/holiday`).set(null),
-    database.ref(`games/${gameId}/chores`).once('value', result =>
-      result.forEach(choreRef => {
+    database.ref(`games/${gameId}/chores`).once('value', (result) =>
+      result.forEach((choreRef) => {
         const chore = choreRef.val();
         if ('timePaused' in chore) {
           addToTimePaused(gameId, choreRef.key, chore.timePaused, holidayTime);

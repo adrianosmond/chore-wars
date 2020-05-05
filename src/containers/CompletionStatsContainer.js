@@ -5,7 +5,7 @@ import Spacer from 'components/Spacer';
 import Typography from 'components/Typography';
 import StatTile from 'components/StatTile';
 
-const msToDays = time => (time / 60000 / 60 / 24).toFixed(1);
+const msToDays = (time) => (time / 60000 / 60 / 24).toFixed(1);
 
 const CompletionStatsContainer = ({ completionRatio, timeDifferences }) => {
   const avgCompletionTime =

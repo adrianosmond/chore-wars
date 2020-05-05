@@ -1,8 +1,8 @@
-export const createSingleChoreLink = id => `/chore/${id}`;
-export const createEditChoreLink = id => `/chore/${id}/edit`;
-export const createForgotToLogLink = id => `/chore/${id}/forgot-to-log`;
+export const createSingleChoreLink = (id) => `/chore/${id}`;
+export const createEditChoreLink = (id) => `/chore/${id}/edit`;
+export const createForgotToLogLink = (id) => `/chore/${id}/forgot-to-log`;
 
-export const createPlayerProfileLink = id => `/player/${id}`;
+export const createPlayerProfileLink = (id) => `/player/${id}`;
 
 const routes = {
   HOME: '/',

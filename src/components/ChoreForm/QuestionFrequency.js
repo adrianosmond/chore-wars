@@ -8,7 +8,7 @@ import Radio from 'components/Radio';
 
 import classes from './Question.module.css';
 
-const isFrequencyInvalid = frequency =>
+const isFrequencyInvalid = (frequency) =>
   Number.isNaN(frequency) ||
   typeof frequency !== 'number' ||
   frequency < MIN_CHORE_FREQUENCY ||

@@ -16,7 +16,7 @@ const getPlayerPoints = (game, playerId) =>
   database
     .ref(`games/${game}/players/${playerId}/points`)
     .once('value')
-    .then(result => result.val());
+    .then((result) => result.val());
 
 const setPlayerPoints = (game, playerId, points) =>
   database.ref(`games/${game}/players/${playerId}/points`).set(points);
@@ -45,7 +45,7 @@ export const updatePlayerLogin = (existingPassword, newEmail, newPassword) => {
 };
 
 export const addPointsToPlayer = (game, playerId, points) =>
-  getPlayerPoints(game, playerId).then(currentPoints =>
+  getPlayerPoints(game, playerId).then((currentPoints) =>
     setPlayerPoints(game, playerId, points + currentPoints),
   );
 

@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   loading: true,
 };
 
-export default id => {
+export default (id) => {
   const game = useGame();
   const players = usePlayers();
   const [chore] = useChore(id);
@@ -49,7 +49,7 @@ export default id => {
           loading: false,
         });
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.error(err));
     return () => {};
   }, [chore, game, id, players]);
 

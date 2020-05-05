@@ -18,8 +18,8 @@ const deleteFromChoresAllHistory = (game, choreId) =>
     .ref(`games/${game}/history/allChores`)
     .orderByChild('choreId')
     .equalTo(choreId)
-    .once('value', result =>
-      result.forEach(record => {
+    .once('value', (result) =>
+      result.forEach((record) => {
         record.ref.remove();
       }),
     );
@@ -34,7 +34,7 @@ const incrementPlayerCompletions = (game, choreId, playerId) =>
   database
     .ref(`games/${game}/history/completions/${choreId}/${playerId}`)
     .once('value')
-    .then(result => {
+    .then((result) => {
       const completions = result.val() || 0;
       database
         .ref(`games/${game}/history/completions/${choreId}/${playerId}`)
@@ -61,7 +61,7 @@ const deleteFromPlayerCompletionHistory = (game, choreId) =>
   database
     .ref(`games/${game}/history/playerCompletions`)
     .once('value')
-    .then(result => {
+    .then((result) => {
       const allPlayerCompletionHistory = result.val();
       if (!allPlayerCompletionHistory) {
         return Promise.resolve();
@@ -135,17 +135,17 @@ const editChoreInDatabase = (game, chore, newChore) =>
     }),
   });
 
-const getAllChores = game =>
+const getAllChores = (game) =>
   database.ref(`games/${game}/chores/`).once('value');
 
 const getWholeChainFromMemberChore = (game, choreId) =>
-  getAllChores(game).then(result => {
+  getAllChores(game).then((result) => {
     const allChores = result.val();
     let currentChore = allChores[choreId];
     if (!currentChore.enables) {
       return Promise.resolve([]);
     }
-    Object.keys(allChores).forEach(key => {
+    Object.keys(allChores).forEach((key) => {
       allChores[key].id = key;
     });
     const chain = [];
@@ -167,12 +167,12 @@ export const removeChainFeatures = (game, chore) =>
   });
 
 const breakChain = (game, choreId) =>
-  getWholeChainFromMemberChore(game, choreId).then(chain =>
-    Promise.all(chain.map(chore => removeChainFeatures(game, chore))),
+  getWholeChainFromMemberChore(game, choreId).then((chain) =>
+    Promise.all(chain.map((chore) => removeChainFeatures(game, chore))),
   );
 
 export const createChore = (game, playerId, chore) =>
-  addChoreToDatabase(game, chore).then(ref => {
+  addChoreToDatabase(game, chore).then((ref) => {
     const historyObj = makeHistoryObj(
       HISTORY_TYPES.CHORE_CREATED,
       new Date().getTime(),
